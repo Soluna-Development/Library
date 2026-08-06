@@ -23,6 +23,7 @@ function Element:New(Idx, Config)
 	local ImagePicker = {
 		Images = Config.Images or {},
 		SelectedImages = {},
+		SelectedIndexes = {},
 		Columns = Config.Columns or 3,
 		MultiSelect = Config.MultiSelect or false,
 		ImageSize = Config.ImageSize or UDim2.fromOffset(80, 80),
@@ -32,16 +33,33 @@ function Element:New(Idx, Config)
 		ImageButtons = {},
 	}
 
-	if Config.Default then
+	local function FindIndexesForIds(Ids)
+		local Indexes = {}
+		for _, WantedId in next, Ids do
+			for Index, ImageEntry in next, ImagePicker.Images do
+				if ResolveImageId(ImageEntry) == WantedId and not table.find(Indexes, Index) then
+					table.insert(Indexes, Index)
+					break
+				end
+			end
+		end
+		return Indexes
+	end
+
+	if Config.Default ~= nil then
 		local RawDefaults = ImagePicker.MultiSelect and (typeof(Config.Default) == "table" and Config.Default or {Config.Default}) or {Config.Default}
-		local Resolved = {}
+		local ResolvedIds = {}
 		for _, Entry in next, RawDefaults do
 			local ResolvedId = ResolveImageId(Entry)
 			if ResolvedId ~= nil then
-				table.insert(Resolved, ResolvedId)
+				table.insert(ResolvedIds, ResolvedId)
 			end
 		end
-		ImagePicker.SelectedImages = Resolved
+		local Indexes = FindIndexesForIds(ResolvedIds)
+		if not ImagePicker.MultiSelect and #Indexes > 1 then
+			Indexes = {Indexes[1]}
+		end
+		ImagePicker.SelectedIndexes = Indexes
 	end
 
 	local ImagePickerFrame = require(Components.Element)(Config.Title, Config.Description, self.Container, false)
@@ -105,29 +123,37 @@ function Element:New(Idx, Config)
 
 	Creator.AddSignal(ImagePickerFrame.LabelHolder:GetPropertyChangedSignal("AbsoluteSize"), RecalculateGridSize)
 
-	local function IsImageSelected(ImageId)
-		for _, SelectedId in next, ImagePicker.SelectedImages do
-			if SelectedId == ImageId then
+	local function IsImageIndexSelected(Index)
+		for _, SelectedIndex in next, ImagePicker.SelectedIndexes do
+			if SelectedIndex == Index then
 				return true
 			end
 		end
 		return false
 	end
 
+	local function SyncSelectedImages()
+		local Ids = {}
+		for _, Index in next, ImagePicker.SelectedIndexes do
+			local ButtonData = ImagePicker.ImageButtons[Index]
+			if ButtonData then
+				table.insert(Ids, ButtonData.ImageId)
+			end
+		end
+		ImagePicker.SelectedImages = Ids
+	end
+
 	local function SetButtonSelected(Data, IsSelected)
-		Data.Selector.Visible = IsSelected
-		Data.Stroke.Enabled = IsSelected
-		Data.Button.BackgroundTransparency = IsSelected and 0.7 or 0.9
-		Data.Button.Text = IsSelected and "Selected" or "Select"
+		Data.SetSelected(IsSelected)
 	end
 
 	local function RefreshAllButtons()
-		for _, ButtonData in next, ImagePicker.ImageButtons do
-			SetButtonSelected(ButtonData, IsImageSelected(ButtonData.ImageId))
+		for Index, ButtonData in next, ImagePicker.ImageButtons do
+			SetButtonSelected(ButtonData, IsImageIndexSelected(Index))
 		end
 	end
 
-	local function CreateImageButton(ImageId)
+	local function CreateImageButton(ImageId, Index)
 		local ImageData = typeof(ImageId) == "table" and ImageId or {Id = ImageId}
 		local ImageUrl = ImageData.Id
 		assert(ImageUrl ~= nil, "ImagePicker - Image entry missing Id")
@@ -175,46 +201,41 @@ function Element:New(Idx, Config)
 			}),
 		})
 
-		local Selector = New("Frame", {
-			Size = UDim2.new(1, 0, 1, 0),
-			Position = UDim2.fromOffset(0, 0),
-			AnchorPoint = Vector2.new(0, 0),
-			Visible = false,
-			ZIndex = 0,
-			BackgroundTransparency = 0.3,
+		local SelectLabel = New("TextLabel", {
+			FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Medium, Enum.FontStyle.Normal),
+			Text = "Select",
+			TextSize = 13,
+			TextXAlignment = Enum.TextXAlignment.Center,
+			BackgroundTransparency = 1,
+			Size = UDim2.new(1, -20, 1, 0),
+			Position = UDim2.fromOffset(6, 0),
 			ThemeTag = {
-				BackgroundColor3 = "Accent",
-			}
-		}, {
-			New("UICorner", {
-				CornerRadius = UDim.new(0, 6),
-			}),
-		})
-
-		local SelectorStroke = New("UIStroke", {
-			Transparency = 0,
-			Thickness = 1.5,
-			ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
-			Enabled = false,
-			ThemeTag = {
-				Color = "Accent",
+				TextColor3 = "Text",
 			},
 		})
 
+		local SelectIcon = New("ImageLabel", {
+			Size = UDim2.fromOffset(14, 14),
+			AnchorPoint = Vector2.new(1, 0.5),
+			Position = UDim2.new(1, -8, 0.5, 0),
+			BackgroundTransparency = 1,
+			Visible = false,
+			ThemeTag = {
+				ImageColor3 = "Accent",
+			},
+		})
+
+		Library.Utilities.Icons:SetIcon(SelectIcon, "check")
+
 		local SelectButton = New("TextButton", {
 			Size = UDim2.new(1, 0, 0, 30),
-			BackgroundTransparency = 0.9,
-			BackgroundColor3 = Color3.fromRGB(60, 60, 60),
-			Text = "Select",
-			FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Medium, Enum.FontStyle.Normal),
-			TextSize = 13,
-			TextColor3 = Color3.fromRGB(240, 240, 240),
+			BackgroundTransparency = 1,
+			Text = "",
 			LayoutOrder = 2,
 			ZIndex = 3,
 			ThemeTag = {
 				BackgroundColor3 = "DropdownFrame",
-				TextColor3 = "Text",
-			}
+			},
 		}, {
 			New("UICorner", {
 				CornerRadius = UDim.new(0, 5),
@@ -226,62 +247,78 @@ function Element:New(Idx, Config)
 					Color = "InElementBorder",
 				},
 			}),
-			SelectorStroke,
+			SelectLabel,
+			SelectIcon,
 		})
+
+		local BackMotor, SetBackTransparency = Creator.SpringMotor(1, SelectButton, "BackgroundTransparency")
+
+		local IsSelected = false
+
+		Creator.AddThemeObject(SelectLabel, {
+			TextColor3 = "Text",
+		})
+
+		local function SetSelected(Value)
+			IsSelected = Value
+			SelectLabel.Text = IsSelected and "Selected" or "Select"
+			SelectIcon.Visible = IsSelected
+			SetBackTransparency(IsSelected and 0.85 or 0.9)
+			SelectLabel.TextColor3 = Creator.GetThemeProperty(IsSelected and "Accent" or "Text")
+		end
+
+		Creator.AddSignal(SelectButton.MouseEnter, function()
+			SetBackTransparency(IsSelected and 0.8 or 0.85)
+		end)
+
+		Creator.AddSignal(SelectButton.MouseLeave, function()
+			SetBackTransparency(IsSelected and 0.85 or 0.9)
+		end)
+
+		Creator.AddSignal(SelectButton.MouseButton1Down, function()
+			SetBackTransparency(0.75)
+		end)
+
+		Creator.AddSignal(SelectButton.MouseButton1Up, function()
+			SetBackTransparency(IsSelected and 0.8 or 0.85)
+		end)
 
 		ImageContainer.Parent = Container
 		SelectButton.Parent = Container
-		Selector.Parent = SelectButton
 
 		local ButtonData = {
 			Button = SelectButton,
-			Selector = Selector,
-			Stroke = SelectorStroke,
 			ImageId = ImageUrl,
-			Container = Container
+			Container = Container,
+			SetSelected = SetSelected,
 		}
 
-		table.insert(ImagePicker.ImageButtons, ButtonData)
+		ImagePicker.ImageButtons[Index] = ButtonData
 
 		Creator.AddSignal(SelectButton.MouseButton1Click, function()
 			if ImagePicker.MultiSelect then
-				if IsImageSelected(ImageUrl) then
-					for i, SelectedId in next, ImagePicker.SelectedImages do
-						if SelectedId == ImageUrl then
-							table.remove(ImagePicker.SelectedImages, i)
+				if IsImageIndexSelected(Index) then
+					for i, SelectedIndex in next, ImagePicker.SelectedIndexes do
+						if SelectedIndex == Index then
+							table.remove(ImagePicker.SelectedIndexes, i)
 							break
 						end
 					end
-					SetButtonSelected(ButtonData, false)
 				else
-					table.insert(ImagePicker.SelectedImages, ImageUrl)
-					SetButtonSelected(ButtonData, true)
+					table.insert(ImagePicker.SelectedIndexes, Index)
 				end
 			else
-				for _, OtherButtonData in next, ImagePicker.ImageButtons do
-					SetButtonSelected(OtherButtonData, false)
-				end
-				ImagePicker.SelectedImages = {ImageUrl}
-				SetButtonSelected(ButtonData, true)
+				ImagePicker.SelectedIndexes = {Index}
 			end
+
+			RefreshAllButtons()
+			SyncSelectedImages()
 
 			if typeof(ImagePicker.Callback) == "function" then
 				Library:SafeCallback(ImagePicker.Callback, ImagePicker.SelectedImages)
 			end
 			if typeof(ImagePicker.Changed) == "function" then
 				Library:SafeCallback(ImagePicker.Changed, ImagePicker.SelectedImages)
-			end
-		end)
-
-		Creator.AddSignal(SelectButton.MouseEnter, function()
-			if not IsImageSelected(ImageUrl) then
-				SelectButton.BackgroundTransparency = 0.7
-			end
-		end)
-
-		Creator.AddSignal(SelectButton.MouseLeave, function()
-			if not IsImageSelected(ImageUrl) then
-				SelectButton.BackgroundTransparency = 0.9
 			end
 		end)
 
@@ -294,8 +331,8 @@ function Element:New(Idx, Config)
 		end
 		ImagePicker.ImageButtons = {}
 
-		for _, ImageId in next, ImagePicker.Images do
-			local ImageButton = CreateImageButton(ImageId)
+		for Index, ImageId in next, ImagePicker.Images do
+			local ImageButton = CreateImageButton(ImageId, Index)
 			ImageButton.Parent = GridFrame
 		end
 
@@ -304,16 +341,22 @@ function Element:New(Idx, Config)
 
 	function ImagePicker:SetValue(Images)
 		local RawList = typeof(Images) == "table" and Images or {Images}
-		local Resolved = {}
+		local ResolvedIds = {}
 		for _, Entry in next, RawList do
 			local ResolvedId = ResolveImageId(Entry)
 			if ResolvedId ~= nil then
-				table.insert(Resolved, ResolvedId)
+				table.insert(ResolvedIds, ResolvedId)
 			end
 		end
-		ImagePicker.SelectedImages = Resolved
+
+		local Indexes = FindIndexesForIds(ResolvedIds)
+		if not ImagePicker.MultiSelect and #Indexes > 1 then
+			Indexes = {Indexes[1]}
+		end
+		ImagePicker.SelectedIndexes = Indexes
 
 		RefreshAllButtons()
+		SyncSelectedImages()
 
 		if typeof(ImagePicker.Callback) == "function" then
 			Library:SafeCallback(ImagePicker.Callback, ImagePicker.SelectedImages)
@@ -325,6 +368,8 @@ function Element:New(Idx, Config)
 
 	function ImagePicker:SetImages(NewImages)
 		ImagePicker.Images = NewImages
+		ImagePicker.SelectedIndexes = {}
+		ImagePicker.SelectedImages = {}
 		local NewCellWidth, NewCellHeight = RecalculateCellSize()
 		GridLayout.CellSize = UDim2.fromOffset(NewCellWidth, NewCellHeight)
 		ImagePicker:BuildImageList()
@@ -341,6 +386,7 @@ function Element:New(Idx, Config)
 	end
 
 	ImagePicker:BuildImageList()
+	SyncSelectedImages()
 	RefreshAllButtons()
 
 	Library.Options[Idx] = ImagePicker
