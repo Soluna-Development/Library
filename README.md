@@ -12,14 +12,9 @@ local Library = loadstring(game:GetService("HttpService"):GetAsync("https://gith
 local Library = loadstring(game:HttpGetAsync("https://github.com/Soluna-Development/Library/releases/latest/download/Fluent.luau", true))()
 ```
 
-## Usage
-
-[Example Script the studio environment](https://github.com/Soluna-Development/Library/blob/master/Example.client.luau)
-
-[Example Script for an exploit environment](https://github.com/Soluna-Development/Library/blob/master/Example.luau)
-
 ## Credits
 
+- [Soluna Development](https://github.com/Soluna-Development) - The continuation of Fluent Renewed
 - [Master Oogway](https://github.com/Soluna-Development/Library) - The master mind behind Fluent Renewed
 - [dawid](https://github.com/dawid-scripts/Fluent) - The master mind behind Fluent
 - [Lucide](https://github.com/lucide-icons), [Phosphor](https://github.com/phosphor-icons) - The sexy icons

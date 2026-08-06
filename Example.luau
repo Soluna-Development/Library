@@ -224,6 +224,87 @@ end)
 
 Keybind:SetValue("MB2", "Toggle") -- Sets keybind to MB2, mode to Hold
 
+-- ImagePicker Examples
+local SingleImagePicker = Tabs.Main:CreateImagePicker("SingleImagePicker", {
+	Title = "Single Image Picker",
+	Description = "Select one image from the grid",
+	Images = {
+		"rbxassetid://10709790948",
+		"rbxassetid://10709791797",
+		"rbxassetid://10709792390",
+		"rbxassetid://10709793377",
+		"rbxassetid://10709794386",
+		"rbxassetid://10709795111",
+	},
+	Columns = 3,
+	ImageSize = UDim2.fromOffset(80, 80),
+	MultiSelect = false,
+	Default = "rbxassetid://10709790948",
+	Callback = function(Selected)
+		print("Single image selected:", Selected[1])
+	end
+})
+
+SingleImagePicker:OnChanged(function(Selected)
+	print("Single image changed:", Selected[1])
+end)
+
+local MultiImagePicker = Tabs.Main:CreateImagePicker("MultiImagePicker", {
+	Title = "Multi Image Picker",
+	Description = "Select multiple images from the grid",
+	Images = {
+		"rbxassetid://10709790948",
+		"rbxassetid://10709791797",
+		"rbxassetid://10709792390",
+		"rbxassetid://10709793377",
+		"rbxassetid://10709794386",
+		"rbxassetid://10709795111",
+		"rbxassetid://10709795844",
+		"rbxassetid://10709796738",
+		"rbxassetid://10709797599",
+	},
+	Columns = 4,
+	ImageSize = UDim2.fromOffset(70, 70),
+	MultiSelect = true,
+	Default = {"rbxassetid://10709790948", "rbxassetid://10709791797"},
+	Callback = function(Selected)
+		print("Multiple images selected:", #Selected)
+	end
+})
+
+MultiImagePicker:OnChanged(function(Selected)
+	print("Multi image changed:", #Selected, "images selected")
+end)
+
+-- Advanced ImagePicker with custom image data
+local AdvancedImagePicker = Tabs.Main:CreateImagePicker("AdvancedImagePicker", {
+	Title = "Advanced Image Picker",
+	Description = "Custom image sizes and properties",
+	Images = {
+		{
+			Id = "rbxassetid://10709790948",
+			ScaleType = Enum.ScaleType.Crop,
+		},
+		{
+			Id = "rbxassetid://10709791797",
+			ScaleType = Enum.ScaleType.Fit,
+		},
+		{
+			Id = "rbxassetid://10709792390",
+			ScaleType = Enum.ScaleType.Stretch,
+		},
+	},
+	Columns = 2,
+	ImageSize = UDim2.fromOffset(120, 120),
+	MultiSelect = true,
+	Callback = function(Selected)
+		print("Advanced image selection changed")
+	end
+})
+
+-- Access the value via Options
+print("Default selected images:", Options.SingleImagePicker.Value)
+
 local Input = Tabs.Main:CreateInput("Input", {
     Title = "Input",
     Default = "Default",
