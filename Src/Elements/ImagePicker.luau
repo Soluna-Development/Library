@@ -58,7 +58,7 @@ function Element:New(Idx, Config)
 		ZIndex = 1,
 	}, {
 		New("UIPadding", {
-			PaddingTop = UDim.new(0, 20),
+			PaddingTop = UDim.new(0, 50),
 		}),
 		GridLayout,
 	})
@@ -125,14 +125,15 @@ function Element:New(Idx, Config)
 			}),
 		})
 
-		-- Selector highlight (accent color)
+		-- Selector highlight (accent color) - now just a border highlight
 		local Selector = New("Frame", {
 			Size = UDim2.new(1, 0, 1, 0),
 			BackgroundColor3 = Color3.fromRGB(76, 194, 255),
 			Position = UDim2.fromOffset(0, 0),
 			AnchorPoint = Vector2.new(0, 0),
 			Visible = false,
-			ZIndex = 2,
+			ZIndex = 1,
+			BackgroundTransparency = 0.7,
 			ThemeTag = {
 				BackgroundColor3 = "Accent",
 			}
@@ -168,11 +169,11 @@ function Element:New(Idx, Config)
 					Color = "InElementBorder",
 				},
 			}),
-			Selector,
 		})
 
 		ImageContainer.Parent = Container
 		SelectButton.Parent = Container
+		Selector.Parent = SelectButton
 
 		ImagePicker.ImageButtons[ImageUrl] = {
 			Button = SelectButton,
@@ -191,25 +192,25 @@ function Element:New(Idx, Config)
 							break
 						end
 					end
-					Selector.Visible = false
+					SelectButton.Selector.Visible = false
 					SelectButton.BackgroundTransparency = 0.9
 					SelectButton.Text = "Select"
 				else
 					-- Select
 					table.insert(ImagePicker.SelectedImages, ImageUrl)
-					Selector.Visible = true
+					SelectButton.Selector.Visible = true
 					SelectButton.BackgroundTransparency = 0.7
 					SelectButton.Text = "Selected"
 				end
 			else
 				-- Single select - clear previous selection
 				for _, ButtonData in next, ImagePicker.ImageButtons do
-					ButtonData.Selector.Visible = false
+					ButtonData.Button.Selector.Visible = false
 					ButtonData.Button.BackgroundTransparency = 0.9
 					ButtonData.Button.Text = "Select"
 				end
 				ImagePicker.SelectedImages = {ImageUrl}
-				Selector.Visible = true
+				SelectButton.Selector.Visible = true
 				SelectButton.BackgroundTransparency = 0.7
 				SelectButton.Text = "Selected"
 			end
@@ -233,6 +234,9 @@ function Element:New(Idx, Config)
 				SelectButton.BackgroundTransparency = 0.9
 			end
 		end)
+
+		-- Store selector reference on the button for easy access
+		SelectButton.Selector = Selector
 
 		return Container
 	end
@@ -259,20 +263,20 @@ function Element:New(Idx, Config)
 		else
 			ImagePicker.SelectedImages = {Images}
 		end
-		
+
 		-- Update button states
 		for ImageUrl, ButtonData in next, ImagePicker.ImageButtons do
 			if IsImageSelected(ImageUrl) then
-				ButtonData.Selector.Visible = true
+				ButtonData.Button.Selector.Visible = true
 				ButtonData.Button.BackgroundTransparency = 0.7
 				ButtonData.Button.Text = "Selected"
 			else
-				ButtonData.Selector.Visible = false
+				ButtonData.Button.Selector.Visible = false
 				ButtonData.Button.BackgroundTransparency = 0.9
 				ButtonData.Button.Text = "Select"
 			end
 		end
-		
+
 		if typeof(ImagePicker.Callback) == "function" then
 			Library:SafeCallback(ImagePicker.Callback, ImagePicker.SelectedImages)
 		end
@@ -302,11 +306,11 @@ function Element:New(Idx, Config)
 	-- Set initial button states
 	for ImageUrl, ButtonData in next, ImagePicker.ImageButtons do
 		if IsImageSelected(ImageUrl) then
-			ButtonData.Selector.Visible = true
+			ButtonData.Button.Selector.Visible = true
 			ButtonData.Button.BackgroundTransparency = 0.7
 			ButtonData.Button.Text = "Selected"
 		else
-			ButtonData.Selector.Visible = false
+			ButtonData.Button.Selector.Visible = false
 			ButtonData.Button.BackgroundTransparency = 0.9
 			ButtonData.Button.Text = "Select"
 		end
