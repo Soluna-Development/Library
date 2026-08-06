@@ -1,3 +1,5 @@
+-- Instead of calling it from the releaes you could also do: https://raw.githubusercontent.com/Soluna-Development/Library/refs/heads/main/Fluent.luau but it might be outdated
+
 local Library = loadstring(game:HttpGetAsync("https://github.com/Soluna-Development/Library/releases/latest/download/Fluent.luau"))()
 local SaveManager = loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/Soluna-Development/Library/refs/heads/main/Addons/SaveManager.luau"))()
 local InterfaceManager = loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/Soluna-Development/Library/refs/heads/main/Addons/InterfaceManager.luau"))()
@@ -229,17 +231,17 @@ local SingleImagePicker = Tabs.Main:CreateImagePicker("SingleImagePicker", {
 	Title = "Single Image Picker",
 	Description = "Select one image from the grid",
 	Images = {
-		"rbxassetid://10709790948",
-		"rbxassetid://10709791797",
-		"rbxassetid://10709792390",
-		"rbxassetid://10709793377",
-		"rbxassetid://10709794386",
-		"rbxassetid://10709795111",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
 	},
 	Columns = 3,
 	ImageSize = UDim2.fromOffset(80, 80),
 	MultiSelect = false,
-	Default = "rbxassetid://10709790948",
+	Default = "",
 	Callback = function(Selected)
 		print("Single image selected:", Selected[1])
 	end
@@ -253,20 +255,20 @@ local MultiImagePicker = Tabs.Main:CreateImagePicker("MultiImagePicker", {
 	Title = "Multi Image Picker",
 	Description = "Select multiple images from the grid",
 	Images = {
-		"rbxassetid://10709790948",
-		"rbxassetid://10709791797",
-		"rbxassetid://10709792390",
-		"rbxassetid://10709793377",
-		"rbxassetid://10709794386",
-		"rbxassetid://10709795111",
-		"rbxassetid://10709795844",
-		"rbxassetid://10709796738",
-		"rbxassetid://10709797599",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
 	},
 	Columns = 4,
 	ImageSize = UDim2.fromOffset(70, 70),
 	MultiSelect = true,
-	Default = {"rbxassetid://10709790948", "rbxassetid://10709791797"},
+	Default = {"", ""},
 	Callback = function(Selected)
 		print("Multiple images selected:", #Selected)
 	end
@@ -282,15 +284,15 @@ local AdvancedImagePicker = Tabs.Main:CreateImagePicker("AdvancedImagePicker", {
 	Description = "Custom image sizes and properties",
 	Images = {
 		{
-			Id = "rbxassetid://10709790948",
+			Id = "",
 			ScaleType = Enum.ScaleType.Crop,
 		},
 		{
-			Id = "rbxassetid://10709791797",
+			Id = "",
 			ScaleType = Enum.ScaleType.Fit,
 		},
 		{
-			Id = "rbxassetid://10709792390",
+			Id = "",
 			ScaleType = Enum.ScaleType.Stretch,
 		},
 	},

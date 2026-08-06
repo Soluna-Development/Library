@@ -57,6 +57,9 @@ function Element:New(Idx, Config)
 		AutomaticSize = Enum.AutomaticSize.Y,
 		ZIndex = 1,
 	}, {
+		New("UIPadding", {
+			PaddingTop = UDim.new(0, 20),
+		}),
 		GridLayout,
 	})
 
@@ -155,7 +158,6 @@ function Element:New(Idx, Config)
 				TextColor3 = "Text",
 			}
 		}, {
-			Selector,
 			New("UICorner", {
 				CornerRadius = UDim.new(0, 5),
 			}),
@@ -166,6 +168,7 @@ function Element:New(Idx, Config)
 					Color = "InElementBorder",
 				},
 			}),
+			Selector,
 		})
 
 		ImageContainer.Parent = Container
