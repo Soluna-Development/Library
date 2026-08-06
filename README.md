@@ -1,35 +1,26 @@
-# Fluent Renewed
+# Fluent Renewed - Soluna Development
 
-![Fluent Renewed Title](Assets/darkmode.png#gh-dark-mode-only)
-![Fluent Renewed Title](Assets/darkmode.png#gh-light-mode-only)
-
-## ⚡ Features
-
-- Modern design
-- Many customization options
-- Almost any UI Element you would ever need
-
-## 🔌 Installation
+## Installation
 
 You can load Fluent through a GitHub Release:
 
 ```lua
-local Library = loadstring(game:GetService("HttpService"):GetAsync("https://github.com/ActualMasterOogway/Fluent-Renewed/releases/latest/download/Fluent.luau", true))()
+local Library = loadstring(game:GetService("HttpService"):GetAsync("https://github.com/Soluna-Development/Library/releases/latest/download/Fluent.luau", true))()
 ```
 
 ```lua
-local Library = loadstring(game:HttpGetAsync("https://github.com/ActualMasterOogway/Fluent-Renewed/releases/latest/download/Fluent.luau", true))()
+local Library = loadstring(game:HttpGetAsync("https://github.com/Soluna-Development/Library/releases/latest/download/Fluent.luau", true))()
 ```
 
-## 📜 Usage
+## Usage
 
-[Example Script the studio environment](https://github.com/ActualMasterOogway/Fluent-Renewed/blob/master/Example.client.luau)
+[Example Script the studio environment](https://github.com/Soluna-Development/Library/blob/master/Example.client.luau)
 
-[Example Script for an exploit environment](https://github.com/ActualMasterOogway/Fluent-Renewed/blob/master/Example.luau)
+[Example Script for an exploit environment](https://github.com/Soluna-Development/Library/blob/master/Example.luau)
 
 ## Credits
 
-- [Master Oogway](https://github.com/ActualMasterOogway/Fluent-Renewed) - The master mind behind Fluent Renewed
+- [Master Oogway](https://github.com/Soluna-Development/Library) - The master mind behind Fluent Renewed
 - [dawid](https://github.com/dawid-scripts/Fluent) - The master mind behind Fluent
 - [Lucide](https://github.com/lucide-icons), [Phosphor](https://github.com/phosphor-icons) - The sexy icons
 - [richie0866/remote-spy](https://github.com/richie0866/remote-spy) - Assets for the UI, some of the code
