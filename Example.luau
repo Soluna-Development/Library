@@ -1,6 +1,6 @@
 local Library = loadstring(game:HttpGetAsync("https://github.com/Soluna-Development/Library/releases/latest/download/Fluent.luau"))()
-local SaveManager = loadstring(game:HttpGetAsync("https://github.com/Soluna-Development/Library/releases/latest/download/SaveManager.luau"))()
-local InterfaceManager = loadstring(game:HttpGetAsync("https://github.com/Soluna-Development/Library/releases/latest/download/InterfaceManager.luau"))()
+local SaveManager = loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/Soluna-Development/Library/refs/heads/main/Addons/SaveManager.luau"))()
+local InterfaceManager = loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/Soluna-Development/Library/refs/heads/main/Addons/InterfaceManager.luau"))()
  
 local Window = Library:CreateWindow{
     Title = `Fluent {Library.Version}`,
