@@ -20,6 +20,10 @@ function Element:New(Idx, Config)
 		return ImageEntry
 	end
 
+	local function IsValidId(Id)
+		return Id ~= nil and Id ~= ""
+	end
+
 	local ImagePicker = {
 		Images = Config.Images or {},
 		SelectedImages = {},
@@ -46,12 +50,12 @@ function Element:New(Idx, Config)
 		return Indexes
 	end
 
-	if Config.Default ~= nil then
+	if IsValidId(Config.Default) or typeof(Config.Default) == "table" then
 		local RawDefaults = ImagePicker.MultiSelect and (typeof(Config.Default) == "table" and Config.Default or {Config.Default}) or {Config.Default}
 		local ResolvedIds = {}
 		for _, Entry in next, RawDefaults do
 			local ResolvedId = ResolveImageId(Entry)
-			if ResolvedId ~= nil then
+			if IsValidId(ResolvedId) then
 				table.insert(ResolvedIds, ResolvedId)
 			end
 		end
@@ -201,17 +205,19 @@ function Element:New(Idx, Config)
 			}),
 		})
 
-		local SelectFrame = require(Components.Element)("Select", nil, Container, true, {
-			TitleAlignment = Enum.TextXAlignment.Center,
+		local SelectLabel = New("TextLabel", {
+			FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Medium, Enum.FontStyle.Normal),
+			Text = "Select",
+			TextSize = 13,
+			TextXAlignment = Enum.TextXAlignment.Center,
+			BackgroundTransparency = 1,
+			Size = UDim2.new(1, -20, 1, 0),
+			Position = UDim2.fromOffset(6, 0),
+			ZIndex = 4,
+			ThemeTag = {
+				TextColor3 = "Text",
+			},
 		})
-
-		local SelectButton = SelectFrame.Frame
-		SelectButton.Size = UDim2.new(1, 0, 0, 30)
-		SelectButton.LayoutOrder = 2
-		SelectButton.ZIndex = 3
-		SelectFrame.LabelHolder.Size = UDim2.new(1, 0, 0, 0)
-		SelectFrame.LabelHolder.Position = UDim2.fromOffset(0, 0)
-		SelectFrame.TitleLabel.TextSize = 13
 
 		local SelectIcon = New("ImageLabel", {
 			Size = UDim2.fromOffset(14, 14),
@@ -220,7 +226,6 @@ function Element:New(Idx, Config)
 			BackgroundTransparency = 1,
 			Visible = false,
 			ZIndex = 4,
-			Parent = SelectButton,
 			ThemeTag = {
 				ImageColor3 = "Accent",
 			},
@@ -228,16 +233,81 @@ function Element:New(Idx, Config)
 
 		Library.Utilities.Icons:SetIcon(SelectIcon, "check")
 
+		local SelectBack = New("Frame", {
+			Size = UDim2.fromScale(1, 1),
+			BackgroundTransparency = 1,
+			ZIndex = 2,
+			ThemeTag = {
+				BackgroundColor3 = "Accent",
+			},
+		}, {
+			New("UICorner", {
+				CornerRadius = UDim.new(0, 5),
+			}),
+		})
+
+		local SelectButton = New("TextButton", {
+			Size = UDim2.new(1, 0, 0, 30),
+			BackgroundTransparency = 1,
+			Text = "",
+			LayoutOrder = 2,
+			ZIndex = 3,
+			ThemeTag = {
+				BackgroundColor3 = "DropdownFrame",
+			},
+		}, {
+			New("UICorner", {
+				CornerRadius = UDim.new(0, 5),
+			}),
+			New("UIStroke", {
+				Transparency = 0.5,
+				ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
+				ThemeTag = {
+					Color = "InElementBorder",
+				},
+			}),
+			SelectBack,
+			SelectLabel,
+			SelectIcon,
+		})
+
+		Creator.AddThemeObject(SelectLabel, {
+			TextColor3 = "Text",
+		})
+
+		local BackMotor, SetBackTransparency = Creator.SpringMotor(1, SelectButton, "BackgroundTransparency")
+		local AccentMotor, SetAccentTransparency = Creator.SpringMotor(1, SelectBack, "BackgroundTransparency")
+
 		local IsSelected = false
 
 		local function SetSelected(Value)
 			IsSelected = Value
-			SelectFrame:SetTitle(IsSelected and "Selected" or "Select")
+			SelectLabel.Text = IsSelected and "Selected" or "Select"
 			SelectIcon.Visible = IsSelected
-			SelectButton.BackgroundColor3 = Creator.GetThemeProperty("Accent")
-			SelectButton.BackgroundTransparency = IsSelected and 0.7 or Creator.GetThemeProperty("ElementTransparency")
-			SelectFrame.TitleLabel.TextColor3 = Creator.GetThemeProperty(IsSelected and "Accent" or "Text")
+			SetBackTransparency(IsSelected and 1 or 0.9)
+			SetAccentTransparency(IsSelected and 0.8 or 1)
+			SelectLabel.TextColor3 = Creator.GetThemeProperty(IsSelected and "Accent" or "Text")
 		end
+
+		Creator.AddSignal(SelectButton.MouseEnter, function()
+			SetBackTransparency(IsSelected and 1 or 0.85)
+			SetAccentTransparency(IsSelected and 0.7 or 1)
+		end)
+
+		Creator.AddSignal(SelectButton.MouseLeave, function()
+			SetBackTransparency(IsSelected and 1 or 0.9)
+			SetAccentTransparency(IsSelected and 0.8 or 1)
+		end)
+
+		Creator.AddSignal(SelectButton.MouseButton1Down, function()
+			SetBackTransparency(IsSelected and 1 or 0.8)
+			SetAccentTransparency(IsSelected and 0.65 or 1)
+		end)
+
+		Creator.AddSignal(SelectButton.MouseButton1Up, function()
+			SetBackTransparency(IsSelected and 1 or 0.85)
+			SetAccentTransparency(IsSelected and 0.7 or 1)
+		end)
 
 		ImageContainer.Parent = Container
 		SelectButton.Parent = Container
@@ -300,7 +370,7 @@ function Element:New(Idx, Config)
 		local ResolvedIds = {}
 		for _, Entry in next, RawList do
 			local ResolvedId = ResolveImageId(Entry)
-			if ResolvedId ~= nil then
+			if IsValidId(ResolvedId) then
 				table.insert(ResolvedIds, ResolvedId)
 			end
 		end
