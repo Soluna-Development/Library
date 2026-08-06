@@ -13,6 +13,13 @@ function Element:New(Idx, Config)
 	assert(Config.Title, "ImagePicker - Missing Title")
 	assert(Config.Images, "ImagePicker - Missing Images table")
 
+	local function ResolveImageId(ImageEntry)
+		if typeof(ImageEntry) == "table" then
+			return ImageEntry.Id
+		end
+		return ImageEntry
+	end
+
 	local ImagePicker = {
 		Images = Config.Images or {},
 		SelectedImages = {},
@@ -26,11 +33,15 @@ function Element:New(Idx, Config)
 	}
 
 	if Config.Default then
-		if ImagePicker.MultiSelect then
-			ImagePicker.SelectedImages = typeof(Config.Default) == "table" and Config.Default or {Config.Default}
-		else
-			ImagePicker.SelectedImages = {Config.Default}
+		local RawDefaults = ImagePicker.MultiSelect and (typeof(Config.Default) == "table" and Config.Default or {Config.Default}) or {Config.Default}
+		local Resolved = {}
+		for _, Entry in next, RawDefaults do
+			local ResolvedId = ResolveImageId(Entry)
+			if ResolvedId ~= nil then
+				table.insert(Resolved, ResolvedId)
+			end
 		end
+		ImagePicker.SelectedImages = Resolved
 	end
 
 	local ImagePickerFrame = require(Components.Element)(Config.Title, Config.Description, self.Container, false)
@@ -38,8 +49,30 @@ function Element:New(Idx, Config)
 	ImagePicker.SetTitle = ImagePickerFrame.SetTitle
 	ImagePicker.SetDesc = ImagePickerFrame.SetDesc
 
+	local ImagePickerSize = ImagePicker.ImageSize
+	local SelectButtonHeight = 30
+	local ContainerPadding = 8
+	local ImageVerticalPadding = 8
+
+	local function RecalculateCellSize()
+		local MaxImageWidth, MaxImageHeight = ImagePickerSize.X.Offset, ImagePickerSize.Y.Offset
+		for _, Entry in next, ImagePicker.Images do
+			if typeof(Entry) == "table" and Entry.Size then
+				MaxImageWidth = math.max(MaxImageWidth, Entry.Size.X.Offset)
+				MaxImageHeight = math.max(MaxImageHeight, Entry.Size.Y.Offset)
+			end
+		end
+
+		local CellWidth = MaxImageWidth + 20
+		local CellHeight = MaxImageHeight + ImageVerticalPadding + SelectButtonHeight + ContainerPadding
+
+		return CellWidth, CellHeight
+	end
+
+	local InitialCellWidth, InitialCellHeight = RecalculateCellSize()
+
 	local GridLayout = New("UIGridLayout", {
-		CellSize = UDim2.fromOffset(100, 120),
+		CellSize = UDim2.fromOffset(InitialCellWidth, InitialCellHeight),
 		CellPadding = UDim2.fromOffset(10, 10),
 		FillDirection = Enum.FillDirection.Horizontal,
 		FillDirectionMaxCells = ImagePicker.Columns,
@@ -96,7 +129,8 @@ function Element:New(Idx, Config)
 
 	local function CreateImageButton(ImageId)
 		local ImageData = typeof(ImageId) == "table" and ImageId or {Id = ImageId}
-		local ImageUrl = ImageData.Id or ImageId
+		local ImageUrl = ImageData.Id
+		assert(ImageUrl ~= nil, "ImagePicker - Image entry missing Id")
 
 		local Container = New("Frame", {
 			Size = UDim2.fromScale(1, 1),
@@ -119,7 +153,7 @@ function Element:New(Idx, Config)
 				PaddingBottom = UDim.new(0, 4),
 			}),
 			New("ImageLabel", {
-				Size = UDim2.fromOffset(80, 80),
+				Size = ImageData.Size or ImagePickerSize,
 				BackgroundTransparency = 1,
 				Image = ImageUrl,
 				ScaleType = ImageData.ScaleType or Enum.ScaleType.Stretch,
@@ -269,11 +303,15 @@ function Element:New(Idx, Config)
 	end
 
 	function ImagePicker:SetValue(Images)
-		if typeof(Images) == "table" then
-			ImagePicker.SelectedImages = Images
-		else
-			ImagePicker.SelectedImages = {Images}
+		local RawList = typeof(Images) == "table" and Images or {Images}
+		local Resolved = {}
+		for _, Entry in next, RawList do
+			local ResolvedId = ResolveImageId(Entry)
+			if ResolvedId ~= nil then
+				table.insert(Resolved, ResolvedId)
+			end
 		end
+		ImagePicker.SelectedImages = Resolved
 
 		RefreshAllButtons()
 
@@ -287,6 +325,8 @@ function Element:New(Idx, Config)
 
 	function ImagePicker:SetImages(NewImages)
 		ImagePicker.Images = NewImages
+		local NewCellWidth, NewCellHeight = RecalculateCellSize()
+		GridLayout.CellSize = UDim2.fromOffset(NewCellWidth, NewCellHeight)
 		ImagePicker:BuildImageList()
 	end
 
