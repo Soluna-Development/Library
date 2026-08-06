@@ -88,7 +88,13 @@ function Element:New(Idx, Config)
 		Data.Button.Text = IsSelected and "Selected" or "Select"
 	end
 
-	local function CreateImageButton(ImageId, Index)
+	local function RefreshAllButtons()
+		for _, ButtonData in next, ImagePicker.ImageButtons do
+			SetButtonSelected(ButtonData, IsImageSelected(ButtonData.ImageId))
+		end
+	end
+
+	local function CreateImageButton(ImageId)
 		local ImageData = typeof(ImageId) == "table" and ImageId or {Id = ImageId}
 		local ImageUrl = ImageData.Id or ImageId
 
@@ -193,7 +199,7 @@ function Element:New(Idx, Config)
 		SelectButton.Parent = Container
 		Selector.Parent = SelectButton
 
-		ImagePicker.ImageButtons[ImageUrl] = {
+		local ButtonData = {
 			Button = SelectButton,
 			Selector = Selector,
 			Stroke = SelectorStroke,
@@ -201,8 +207,9 @@ function Element:New(Idx, Config)
 			Container = Container
 		}
 
+		table.insert(ImagePicker.ImageButtons, ButtonData)
+
 		Creator.AddSignal(SelectButton.MouseButton1Click, function()
-			local ButtonData = ImagePicker.ImageButtons[ImageUrl]
 			if ImagePicker.MultiSelect then
 				if IsImageSelected(ImageUrl) then
 					for i, SelectedId in next, ImagePicker.SelectedImages do
@@ -253,8 +260,8 @@ function Element:New(Idx, Config)
 		end
 		ImagePicker.ImageButtons = {}
 
-		for i, ImageId in next, ImagePicker.Images do
-			local ImageButton = CreateImageButton(ImageId, i)
+		for _, ImageId in next, ImagePicker.Images do
+			local ImageButton = CreateImageButton(ImageId)
 			ImageButton.Parent = GridFrame
 		end
 
@@ -268,9 +275,7 @@ function Element:New(Idx, Config)
 			ImagePicker.SelectedImages = {Images}
 		end
 
-		for ImageUrl, ButtonData in next, ImagePicker.ImageButtons do
-			SetButtonSelected(ButtonData, IsImageSelected(ImageUrl))
-		end
+		RefreshAllButtons()
 
 		if typeof(ImagePicker.Callback) == "function" then
 			Library:SafeCallback(ImagePicker.Callback, ImagePicker.SelectedImages)
@@ -296,12 +301,10 @@ function Element:New(Idx, Config)
 	end
 
 	ImagePicker:BuildImageList()
-
-	for ImageUrl, ButtonData in next, ImagePicker.ImageButtons do
-		SetButtonSelected(ButtonData, IsImageSelected(ImageUrl))
-	end
+	RefreshAllButtons()
 
 	Library.Options[Idx] = ImagePicker
+	ImagePicker.Instance = ImagePickerFrame
 
 	return setmetatable(ImagePicker, {
 		__index = function(self, key)

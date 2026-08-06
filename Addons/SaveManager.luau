@@ -124,6 +124,16 @@ local SaveManager = {} do
 				end
 			end,
 		},
+		ImagePicker = {
+			Save = function(idx, object)
+				return { type = "ImagePicker", idx = idx, value = object.Value, Timestamp = object.Instance.CreatedAt }
+			end,
+			Load = function(idx, data)
+				if SaveManager.Options[idx] and data.value ~= nil then
+					SaveManager.Options[idx]:SetValue(data.value)
+				end
+			end,
+		},
 	}
 
 	function SaveManager:SetIgnoreIndexes(list)
