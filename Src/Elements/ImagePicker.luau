@@ -183,6 +183,7 @@ function Element:New(Idx, Config)
 		}
 
 		Creator.AddSignal(SelectButton.MouseButton1Click, function()
+			local ButtonData = ImagePicker.ImageButtons[ImageUrl]
 			if ImagePicker.MultiSelect then
 				if IsImageSelected(ImageUrl) then
 					-- Deselect
@@ -192,25 +193,25 @@ function Element:New(Idx, Config)
 							break
 						end
 					end
-					SelectButton.Selector.Visible = false
+					ButtonData.Selector.Visible = false
 					SelectButton.BackgroundTransparency = 0.9
 					SelectButton.Text = "Select"
 				else
 					-- Select
 					table.insert(ImagePicker.SelectedImages, ImageUrl)
-					SelectButton.Selector.Visible = true
+					ButtonData.Selector.Visible = true
 					SelectButton.BackgroundTransparency = 0.7
 					SelectButton.Text = "Selected"
 				end
 			else
 				-- Single select - clear previous selection
 				for _, ButtonData in next, ImagePicker.ImageButtons do
-					ButtonData.Button.Selector.Visible = false
+					ButtonData.Selector.Visible = false
 					ButtonData.Button.BackgroundTransparency = 0.9
 					ButtonData.Button.Text = "Select"
 				end
 				ImagePicker.SelectedImages = {ImageUrl}
-				SelectButton.Selector.Visible = true
+				ButtonData.Selector.Visible = true
 				SelectButton.BackgroundTransparency = 0.7
 				SelectButton.Text = "Selected"
 			end
@@ -234,9 +235,6 @@ function Element:New(Idx, Config)
 				SelectButton.BackgroundTransparency = 0.9
 			end
 		end)
-
-		-- Store selector reference on the button for easy access
-		SelectButton.Selector = Selector
 
 		return Container
 	end
@@ -267,11 +265,11 @@ function Element:New(Idx, Config)
 		-- Update button states
 		for ImageUrl, ButtonData in next, ImagePicker.ImageButtons do
 			if IsImageSelected(ImageUrl) then
-				ButtonData.Button.Selector.Visible = true
+				ButtonData.Selector.Visible = true
 				ButtonData.Button.BackgroundTransparency = 0.7
 				ButtonData.Button.Text = "Selected"
 			else
-				ButtonData.Button.Selector.Visible = false
+				ButtonData.Selector.Visible = false
 				ButtonData.Button.BackgroundTransparency = 0.9
 				ButtonData.Button.Text = "Select"
 			end
@@ -306,11 +304,11 @@ function Element:New(Idx, Config)
 	-- Set initial button states
 	for ImageUrl, ButtonData in next, ImagePicker.ImageButtons do
 		if IsImageSelected(ImageUrl) then
-			ButtonData.Button.Selector.Visible = true
+			ButtonData.Selector.Visible = true
 			ButtonData.Button.BackgroundTransparency = 0.7
 			ButtonData.Button.Text = "Selected"
 		else
-			ButtonData.Button.Selector.Visible = false
+			ButtonData.Selector.Visible = false
 			ButtonData.Button.BackgroundTransparency = 0.9
 			ButtonData.Button.Text = "Select"
 		end
