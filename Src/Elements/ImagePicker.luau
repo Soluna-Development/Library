@@ -25,7 +25,6 @@ function Element:New(Idx, Config)
 		ImageButtons = {},
 	}
 
-	-- Initialize selected images
 	if Config.Default then
 		if ImagePicker.MultiSelect then
 			ImagePicker.SelectedImages = typeof(Config.Default) == "table" and Config.Default or {Config.Default}
@@ -35,12 +34,10 @@ function Element:New(Idx, Config)
 	end
 
 	local ImagePickerFrame = require(Components.Element)(Config.Title, Config.Description, self.Container, false)
-	ImagePickerFrame.DescLabel.Size = UDim2.new(1, 0, 0, 14)
 
 	ImagePicker.SetTitle = ImagePickerFrame.SetTitle
 	ImagePicker.SetDesc = ImagePickerFrame.SetDesc
 
-	-- Grid Layout for image containers
 	local GridLayout = New("UIGridLayout", {
 		CellSize = UDim2.fromOffset(100, 120),
 		CellPadding = UDim2.fromOffset(10, 10),
@@ -58,14 +55,22 @@ function Element:New(Idx, Config)
 		ZIndex = 1,
 	}, {
 		New("UIPadding", {
-			PaddingTop = UDim.new(0, 50),
+			PaddingTop = UDim.new(0, 8),
+			PaddingBottom = UDim.new(0, 12),
 		}),
 		GridLayout,
 	})
 
-	local function RecalculateGridSize()
-		ImagePickerFrame.Frame.Size = UDim2.new(1, 0, 0, ImagePickerFrame.LabelHolder.AbsoluteSize.Y + GridFrame.AbsoluteSize.Y + 10)
+	local function RepositionGrid()
+		GridFrame.Position = UDim2.fromOffset(10, ImagePickerFrame.LabelHolder.AbsoluteSize.Y)
 	end
+
+	local function RecalculateGridSize()
+		RepositionGrid()
+		ImagePickerFrame.Frame.Size = UDim2.new(1, 0, 0, ImagePickerFrame.LabelHolder.AbsoluteSize.Y + GridFrame.AbsoluteSize.Y)
+	end
+
+	Creator.AddSignal(ImagePickerFrame.LabelHolder:GetPropertyChangedSignal("AbsoluteSize"), RecalculateGridSize)
 
 	local function IsImageSelected(ImageId)
 		for _, SelectedId in next, ImagePicker.SelectedImages do
@@ -76,11 +81,17 @@ function Element:New(Idx, Config)
 		return false
 	end
 
+	local function SetButtonSelected(Data, IsSelected)
+		Data.Selector.Visible = IsSelected
+		Data.Stroke.Enabled = IsSelected
+		Data.Button.BackgroundTransparency = IsSelected and 0.7 or 0.9
+		Data.Button.Text = IsSelected and "Selected" or "Select"
+	end
+
 	local function CreateImageButton(ImageId, Index)
 		local ImageData = typeof(ImageId) == "table" and ImageId or {Id = ImageId}
 		local ImageUrl = ImageData.Id or ImageId
 
-		-- Main container for image + button
 		local Container = New("Frame", {
 			Size = UDim2.fromScale(1, 1),
 			BackgroundTransparency = 1,
@@ -91,7 +102,6 @@ function Element:New(Idx, Config)
 			}),
 		})
 
-		-- Image container with spacing
 		local ImageContainer = New("Frame", {
 			Size = UDim2.fromScale(1, 0),
 			AutomaticSize = Enum.AutomaticSize.Y,
@@ -125,15 +135,13 @@ function Element:New(Idx, Config)
 			}),
 		})
 
-		-- Selector highlight (accent color) - now just a border highlight
 		local Selector = New("Frame", {
 			Size = UDim2.new(1, 0, 1, 0),
-			BackgroundColor3 = Color3.fromRGB(76, 194, 255),
 			Position = UDim2.fromOffset(0, 0),
 			AnchorPoint = Vector2.new(0, 0),
 			Visible = false,
-			ZIndex = 1,
-			BackgroundTransparency = 0.7,
+			ZIndex = 0,
+			BackgroundTransparency = 0.3,
 			ThemeTag = {
 				BackgroundColor3 = "Accent",
 			}
@@ -143,13 +151,22 @@ function Element:New(Idx, Config)
 			}),
 		})
 
-		-- Button that looks like dropdown button
+		local SelectorStroke = New("UIStroke", {
+			Transparency = 0,
+			Thickness = 1.5,
+			ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
+			Enabled = false,
+			ThemeTag = {
+				Color = "Accent",
+			},
+		})
+
 		local SelectButton = New("TextButton", {
 			Size = UDim2.new(1, 0, 0, 30),
 			BackgroundTransparency = 0.9,
 			BackgroundColor3 = Color3.fromRGB(60, 60, 60),
 			Text = "Select",
-			FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal),
+			FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Medium, Enum.FontStyle.Normal),
 			TextSize = 13,
 			TextColor3 = Color3.fromRGB(240, 240, 240),
 			LayoutOrder = 2,
@@ -169,6 +186,7 @@ function Element:New(Idx, Config)
 					Color = "InElementBorder",
 				},
 			}),
+			SelectorStroke,
 		})
 
 		ImageContainer.Parent = Container
@@ -178,6 +196,7 @@ function Element:New(Idx, Config)
 		ImagePicker.ImageButtons[ImageUrl] = {
 			Button = SelectButton,
 			Selector = Selector,
+			Stroke = SelectorStroke,
 			ImageId = ImageUrl,
 			Container = Container
 		}
@@ -186,34 +205,23 @@ function Element:New(Idx, Config)
 			local ButtonData = ImagePicker.ImageButtons[ImageUrl]
 			if ImagePicker.MultiSelect then
 				if IsImageSelected(ImageUrl) then
-					-- Deselect
 					for i, SelectedId in next, ImagePicker.SelectedImages do
 						if SelectedId == ImageUrl then
 							table.remove(ImagePicker.SelectedImages, i)
 							break
 						end
 					end
-					ButtonData.Selector.Visible = false
-					SelectButton.BackgroundTransparency = 0.9
-					SelectButton.Text = "Select"
+					SetButtonSelected(ButtonData, false)
 				else
-					-- Select
 					table.insert(ImagePicker.SelectedImages, ImageUrl)
-					ButtonData.Selector.Visible = true
-					SelectButton.BackgroundTransparency = 0.7
-					SelectButton.Text = "Selected"
+					SetButtonSelected(ButtonData, true)
 				end
 			else
-				-- Single select - clear previous selection
-				for _, ButtonData in next, ImagePicker.ImageButtons do
-					ButtonData.Selector.Visible = false
-					ButtonData.Button.BackgroundTransparency = 0.9
-					ButtonData.Button.Text = "Select"
+				for _, OtherButtonData in next, ImagePicker.ImageButtons do
+					SetButtonSelected(OtherButtonData, false)
 				end
 				ImagePicker.SelectedImages = {ImageUrl}
-				ButtonData.Selector.Visible = true
-				SelectButton.BackgroundTransparency = 0.7
-				SelectButton.Text = "Selected"
+				SetButtonSelected(ButtonData, true)
 			end
 
 			if typeof(ImagePicker.Callback) == "function" then
@@ -240,13 +248,11 @@ function Element:New(Idx, Config)
 	end
 
 	function ImagePicker:BuildImageList()
-		-- Clear existing buttons
 		for _, ButtonData in next, ImagePicker.ImageButtons do
 			ButtonData.Container:Destroy()
 		end
 		ImagePicker.ImageButtons = {}
 
-		-- Create new buttons
 		for i, ImageId in next, ImagePicker.Images do
 			local ImageButton = CreateImageButton(ImageId, i)
 			ImageButton.Parent = GridFrame
@@ -262,17 +268,8 @@ function Element:New(Idx, Config)
 			ImagePicker.SelectedImages = {Images}
 		end
 
-		-- Update button states
 		for ImageUrl, ButtonData in next, ImagePicker.ImageButtons do
-			if IsImageSelected(ImageUrl) then
-				ButtonData.Selector.Visible = true
-				ButtonData.Button.BackgroundTransparency = 0.7
-				ButtonData.Button.Text = "Selected"
-			else
-				ButtonData.Selector.Visible = false
-				ButtonData.Button.BackgroundTransparency = 0.9
-				ButtonData.Button.Text = "Select"
-			end
+			SetButtonSelected(ButtonData, IsImageSelected(ImageUrl))
 		end
 
 		if typeof(ImagePicker.Callback) == "function" then
@@ -298,23 +295,12 @@ function Element:New(Idx, Config)
 		Library.Options[Idx] = nil
 	end
 
-	-- Build the initial image list
 	ImagePicker:BuildImageList()
 
-	-- Set initial button states
 	for ImageUrl, ButtonData in next, ImagePicker.ImageButtons do
-		if IsImageSelected(ImageUrl) then
-			ButtonData.Selector.Visible = true
-			ButtonData.Button.BackgroundTransparency = 0.7
-			ButtonData.Button.Text = "Selected"
-		else
-			ButtonData.Selector.Visible = false
-			ButtonData.Button.BackgroundTransparency = 0.9
-			ButtonData.Button.Text = "Select"
-		end
+		SetButtonSelected(ButtonData, IsImageSelected(ImageUrl))
 	end
 
-	-- Register in Library.Options
 	Library.Options[Idx] = ImagePicker
 
 	return setmetatable(ImagePicker, {
