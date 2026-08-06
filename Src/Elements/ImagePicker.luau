@@ -201,18 +201,17 @@ function Element:New(Idx, Config)
 			}),
 		})
 
-		local SelectLabel = New("TextLabel", {
-			FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Medium, Enum.FontStyle.Normal),
-			Text = "Select",
-			TextSize = 13,
-			TextXAlignment = Enum.TextXAlignment.Center,
-			BackgroundTransparency = 1,
-			Size = UDim2.new(1, -20, 1, 0),
-			Position = UDim2.fromOffset(6, 0),
-			ThemeTag = {
-				TextColor3 = "Text",
-			},
+		local SelectFrame = require(Components.Element)("Select", nil, Container, true, {
+			TitleAlignment = Enum.TextXAlignment.Center,
 		})
+
+		local SelectButton = SelectFrame.Frame
+		SelectButton.Size = UDim2.new(1, 0, 0, 30)
+		SelectButton.LayoutOrder = 2
+		SelectButton.ZIndex = 3
+		SelectFrame.LabelHolder.Size = UDim2.new(1, 0, 0, 0)
+		SelectFrame.LabelHolder.Position = UDim2.fromOffset(0, 0)
+		SelectFrame.TitleLabel.TextSize = 13
 
 		local SelectIcon = New("ImageLabel", {
 			Size = UDim2.fromOffset(14, 14),
@@ -220,6 +219,8 @@ function Element:New(Idx, Config)
 			Position = UDim2.new(1, -8, 0.5, 0),
 			BackgroundTransparency = 1,
 			Visible = false,
+			ZIndex = 4,
+			Parent = SelectButton,
 			ThemeTag = {
 				ImageColor3 = "Accent",
 			},
@@ -227,61 +228,16 @@ function Element:New(Idx, Config)
 
 		Library.Utilities.Icons:SetIcon(SelectIcon, "check")
 
-		local SelectButton = New("TextButton", {
-			Size = UDim2.new(1, 0, 0, 30),
-			BackgroundTransparency = 1,
-			Text = "",
-			LayoutOrder = 2,
-			ZIndex = 3,
-			ThemeTag = {
-				BackgroundColor3 = "DropdownFrame",
-			},
-		}, {
-			New("UICorner", {
-				CornerRadius = UDim.new(0, 5),
-			}),
-			New("UIStroke", {
-				Transparency = 0.5,
-				ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
-				ThemeTag = {
-					Color = "InElementBorder",
-				},
-			}),
-			SelectLabel,
-			SelectIcon,
-		})
-
-		local BackMotor, SetBackTransparency = Creator.SpringMotor(1, SelectButton, "BackgroundTransparency")
-
 		local IsSelected = false
-
-		Creator.AddThemeObject(SelectLabel, {
-			TextColor3 = "Text",
-		})
 
 		local function SetSelected(Value)
 			IsSelected = Value
-			SelectLabel.Text = IsSelected and "Selected" or "Select"
+			SelectFrame:SetTitle(IsSelected and "Selected" or "Select")
 			SelectIcon.Visible = IsSelected
-			SetBackTransparency(IsSelected and 0.85 or 0.9)
-			SelectLabel.TextColor3 = Creator.GetThemeProperty(IsSelected and "Accent" or "Text")
+			SelectButton.BackgroundColor3 = Creator.GetThemeProperty("Accent")
+			SelectButton.BackgroundTransparency = IsSelected and 0.7 or Creator.GetThemeProperty("ElementTransparency")
+			SelectFrame.TitleLabel.TextColor3 = Creator.GetThemeProperty(IsSelected and "Accent" or "Text")
 		end
-
-		Creator.AddSignal(SelectButton.MouseEnter, function()
-			SetBackTransparency(IsSelected and 0.8 or 0.85)
-		end)
-
-		Creator.AddSignal(SelectButton.MouseLeave, function()
-			SetBackTransparency(IsSelected and 0.85 or 0.9)
-		end)
-
-		Creator.AddSignal(SelectButton.MouseButton1Down, function()
-			SetBackTransparency(0.75)
-		end)
-
-		Creator.AddSignal(SelectButton.MouseButton1Up, function()
-			SetBackTransparency(IsSelected and 0.8 or 0.85)
-		end)
 
 		ImageContainer.Parent = Container
 		SelectButton.Parent = Container
