@@ -12,6 +12,12 @@ local Library = loadstring(game:GetService("HttpService"):GetAsync("https://gith
 local Library = loadstring(game:HttpGetAsync("https://github.com/Soluna-Development/Library/releases/latest/download/Fluent.luau", true))()
 ```
 
+To create the Fluent.luau:
+
+```
+lune run Lune/Build/init.luau bundle input=default.project.json script-output=Fluent.luau minify=false ci-mode=true
+```
+
 ## Credits
 
 - [Soluna Development](https://github.com/Soluna-Development) - The continuation of Fluent Renewed
