@@ -3,7 +3,7 @@ name: Feature request
 about: Suggest an idea for Fluent Renewed
 title: ''
 labels: enhancement
-assignees: ActualMasterOogway
+assignees: Soluna-Development
 
 ---
 

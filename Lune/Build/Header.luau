@@ -9,7 +9,7 @@
     To view the source code, see the 'Src' folder on the official GitHub!
     This Library was originally made by dawid but Master Oogway continued working on it!
 
-    Author: ActualMasterOogway
+    Author: Soluna Development
     License: MIT
-    GitHub: https://github.com/ActualMasterOogway/Fluent-Renewed
+    GitHub: https://github.com/Soluna-Development/Library
 --]]
