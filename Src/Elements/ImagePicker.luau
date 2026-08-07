@@ -431,9 +431,6 @@ function Element:New(Idx, Config)
 
 	return setmetatable(ImagePicker, {
 		__index = function(self, key)
-			if key == "Value" then
-				return ImagePicker.SelectedImages
-			end
 			return rawget(ImagePicker, key) or Element[key]
 		end
 	})

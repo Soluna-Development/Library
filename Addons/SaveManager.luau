@@ -282,7 +282,7 @@ local SaveManager = {} do
 
 					if char == "/" or char == "\\" then
 						local name = file:sub(pos + 1, start - 1)
-						if name ~= "options" then
+						if name ~= "options" and name ~= "autosave" then
 							out[#out + 1] = name
 						end
 					end
@@ -332,6 +332,20 @@ local SaveManager = {} do
 						end
 					end
 				end
+				-- Special hook for ImagePicker since it doesn't use SetValue traditionally
+				if option.Type == "ImagePicker" and option.SelectedImages and not option._OriginalCallback then
+					option._OriginalCallback = option.Callback
+					option.Callback = function(Selected)
+						if option._OriginalCallback then
+							option._OriginalCallback(Selected)
+						end
+						if SaveManager.AutoSave and SaveManager.AutoSaveConfig and not SaveManager._SettingAutoSave then
+							task.spawn(function()
+								SaveManager:Save(SaveManager.AutoSaveConfig)
+							end)
+						end
+					end
+				end
 			end
 		end)
 	end
@@ -365,6 +379,7 @@ local SaveManager = {} do
 		assert(self.Library, "Must set SaveManager.Library")
 
 		local section = tab:AddSection("Configuration")
+		local AutoSaveToggle -- Declare before use
 
 		section:AddInput("SaveManager_ConfigName",    { Title = "Config name" })
 		section:AddDropdown("SaveManager_ConfigList", {
@@ -379,6 +394,14 @@ local SaveManager = {} do
 						config = Value
 					}
 					writefile(`{self.Folder}/settings/autosave.json`, httpService:JSONEncode(autoSaveData))
+					-- Update the auto-save description if we have the toggle reference
+					if AutoSaveToggle then
+						if Value then
+							AutoSaveToggle:SetDesc("Current autosave config: " .. Value)
+						else
+							AutoSaveToggle:SetDesc("No autosave config selected")
+						end
+					end
 				end
 			end
 		})
@@ -494,9 +517,18 @@ local SaveManager = {} do
 			end
 		end
 
-		section:AddToggle("SaveManager_AutoSave", {
+		local AutoSaveToggle
+		local function updateAutoSaveDescription()
+			if SaveManager.AutoSave and SaveManager.AutoSaveConfig then
+				AutoSaveToggle:SetDesc("Current autosave config: " .. SaveManager.AutoSaveConfig)
+			else
+				AutoSaveToggle:SetDesc("No autosave config selected")
+			end
+		end
+
+		AutoSaveToggle = section:AddToggle("SaveManager_AutoSave", {
 			Title = "Auto Save",
-			Description = "Automatically save config when settings change",
+			Description = "No autosave config selected",
 			Default = SaveManager.AutoSave,
 			Callback = function(Value)
 				local selectedConfig = SaveManager.Options.SaveManager_ConfigList.Value
@@ -525,6 +557,8 @@ local SaveManager = {} do
 				}
 				writefile(`{self.Folder}/settings/autosave.json`, httpService:JSONEncode(autoSaveData))
 
+				updateAutoSaveDescription()
+
 				if Value then
 					self.Library:Notify({
 						Title = "Interface",
@@ -542,6 +576,8 @@ local SaveManager = {} do
 				end
 			end
 		})
+
+		updateAutoSaveDescription()
 
 		SaveManager:SetIgnoreIndexes({ "SaveManager_ConfigList", "SaveManager_ConfigName", "SaveManager_AutoSave" })
 	end
