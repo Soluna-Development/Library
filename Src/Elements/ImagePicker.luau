@@ -94,7 +94,7 @@ function Element:New(Idx, Config)
 			MaxImageHeight = MaxImageWidth
 		end
 
-		local CellWidth = MaxImageWidth + 20
+		local CellWidth = MaxImageWidth
 		local CellHeight = MaxImageHeight + ImageVerticalPadding + SelectButtonHeight + ContainerPadding
 
 		return CellWidth, CellHeight
