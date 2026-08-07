@@ -395,7 +395,7 @@ local SaveManager = {} do
 					}
 					writefile(`{self.Folder}/settings/autosave.json`, httpService:JSONEncode(autoSaveData))
 					-- Update the auto-save description if we have the toggle reference
-					if AutoSaveToggle then
+					if AutoSaveToggle and AutoSaveToggle.SetDesc then
 						if Value then
 							AutoSaveToggle:SetDesc("Current autosave config: " .. Value)
 						else
@@ -542,7 +542,9 @@ local SaveManager = {} do
 					})
 					SaveManager._SettingAutoSave = true
 					task.spawn(function()
-						SaveManager.Options.SaveManager_AutoSave:SetValue(false)
+						if SaveManager.Options.SaveManager_AutoSave then
+							SaveManager.Options.SaveManager_AutoSave:SetValue(false)
+						end
 						SaveManager._SettingAutoSave = false
 					end)
 					return
