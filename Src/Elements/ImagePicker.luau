@@ -30,7 +30,7 @@ function Element:New(Idx, Config)
 		SelectedIndexes = {},
 		Columns = Config.Columns or 3,
 		MultiSelect = Config.MultiSelect or false,
-		ImageSize = Config.ImageSize or UDim2.fromOffset(80, 0),
+		ImageSize = Config.ImageSize or UDim2.fromOffset(100, 0),
 		SelectText = Config.SelectText or "Select",
 		SelectedText = Config.SelectedText or "Selected",
 		Callback = Config.Callback or function(Selected) end,
@@ -154,7 +154,6 @@ function Element:New(Idx, Config)
 			end
 		end
 		ImagePicker.SelectedImages = Ids
-		-- Update Value property for SaveManager compatibility
 		ImagePicker.Value = Ids
 	end
 
@@ -194,14 +193,12 @@ function Element:New(Idx, Config)
 				PaddingBottom = UDim.new(0, 4),
 			}),
 			New("ImageLabel", {
-				Size = ImageData.Size or ImagePickerSize,
+				Size = UDim2.new(1, 0, 0, (ImageData.Size and ImageData.Size.Y.Offset > 0 and ImageData.Size.Y.Offset) or (ImagePickerSize.Y.Offset > 0 and ImagePickerSize.Y.Offset) or ImagePickerSize.X.Offset),
 				BackgroundTransparency = 1,
 				Image = ImageUrl,
 				ScaleType = ImageData.ScaleType or Enum.ScaleType.Stretch,
 				ImageRectOffset = ImageData.ImageRectOffset or Vector2.zero,
 				ImageRectSize = ImageData.ImageRectSize or Vector2.zero,
-				AnchorPoint = Vector2.new(0.5, 0),
-				Position = UDim2.fromScale(0.5, 0),
 			}, {
 				New("UICorner", {
 					CornerRadius = UDim.new(0, 6),
@@ -349,7 +346,6 @@ function Element:New(Idx, Config)
 			RefreshAllButtons()
 			SyncSelectedImages()
 
-			-- Update Value property for SaveManager compatibility
 			ImagePicker.Value = ImagePicker.SelectedImages
 
 			if typeof(ImagePicker.Callback) == "function" then
@@ -396,7 +392,6 @@ function Element:New(Idx, Config)
 		RefreshAllButtons()
 		SyncSelectedImages()
 
-		-- Update Value property for SaveManager compatibility
 		ImagePicker.Value = ImagePicker.SelectedImages
 
 		if typeof(ImagePicker.Callback) == "function" then
@@ -430,7 +425,6 @@ function Element:New(Idx, Config)
 	SyncSelectedImages()
 	RefreshAllButtons()
 
-	-- Add Value property for SaveManager compatibility
 	ImagePicker.Value = ImagePicker.SelectedImages
 
 	Library.Options[Idx] = ImagePicker
