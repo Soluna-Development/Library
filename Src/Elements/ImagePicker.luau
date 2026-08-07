@@ -81,33 +81,26 @@ function Element:New(Idx, Config)
 	local CellPaddingOffset = 10
 
 	local function RecalculateCellSize()
-		local MaxImageWidth = ImagePickerSize.X.Offset
-		local MaxImageHeight = ImagePickerSize.Y.Offset
-		for _, Entry in next, ImagePicker.Images do
-			if typeof(Entry) == "table" and Entry.Size then
-				MaxImageWidth = math.max(MaxImageWidth, Entry.Size.X.Offset)
-				if Entry.Size.Y.Offset > 0 then
-					MaxImageHeight = math.max(MaxImageHeight, Entry.Size.Y.Offset)
-				end
-			end
+		local ImageWidth = ImagePickerSize.X.Offset
+		local ImageHeight = ImagePickerSize.Y.Offset
+
+		if ImageHeight <= 0 then
+			ImageHeight = ImageWidth
 		end
 
-		if MaxImageHeight == 0 then
-			MaxImageHeight = MaxImageWidth
-		end
+		ImagePicker.ImageAreaWidth = ImageWidth
+		ImagePicker.ImageAreaHeight = ImageHeight
 
-		ImagePicker.ImageAreaHeight = MaxImageHeight
+		local CellWidth = ImageWidth
+		local CellHeight = ImageHeight + ImageVerticalPadding + SelectButtonHeight + ContainerPadding
 
-		local CellWidthScale = 1 / ImagePicker.Columns
-		local CellHeight = MaxImageHeight + ImageVerticalPadding + SelectButtonHeight + ContainerPadding
-
-		return CellWidthScale, CellHeight
+		return CellWidth, CellHeight
 	end
 
-	local InitialCellWidthScale, InitialCellHeight = RecalculateCellSize()
+	local InitialCellWidth, InitialCellHeight = RecalculateCellSize()
 
 	local GridLayout = New("UIGridLayout", {
-		CellSize = UDim2.new(InitialCellWidthScale, -CellPaddingOffset, 0, InitialCellHeight),
+		CellSize = UDim2.fromOffset(InitialCellWidth, InitialCellHeight),
 		CellPadding = UDim2.fromOffset(CellPaddingOffset, CellPaddingOffset),
 		FillDirection = Enum.FillDirection.Horizontal,
 		FillDirectionMaxCells = ImagePicker.Columns,
@@ -177,12 +170,12 @@ function Element:New(Idx, Config)
 		assert(ImageUrl ~= nil, "ImagePicker - Image entry missing Id")
 
 		local EntrySize = ImageData.Size
-		local SourceWidth = (EntrySize and EntrySize.X.Offset > 0 and EntrySize.X.Offset) or ImagePickerSize.X.Offset
-		local SourceHeight = (EntrySize and EntrySize.Y.Offset > 0 and EntrySize.Y.Offset) or (ImagePickerSize.Y.Offset > 0 and ImagePickerSize.Y.Offset) or SourceWidth
+		local SourceWidth = ImagePicker.ImageAreaWidth
+		local SourceHeight = (EntrySize and EntrySize.Y.Offset > 0 and EntrySize.Y.Offset) or ImagePicker.ImageAreaHeight
 		local ImageAspectRatio = SourceWidth / SourceHeight
 
 		local Container = New("Frame", {
-			Size = UDim2.fromScale(1, 1),
+			Size = UDim2.fromOffset(SourceWidth, 0),
 			BackgroundTransparency = 1,
 		}, {
 			New("UIListLayout", {
@@ -192,7 +185,7 @@ function Element:New(Idx, Config)
 		})
 
 		local ImageContainer = New("Frame", {
-			Size = UDim2.new(1, 0, 0, ImagePicker.ImageAreaHeight),
+			Size = UDim2.new(1, 0, 0, SourceHeight),
 			BackgroundTransparency = 1,
 			LayoutOrder = 1,
 		}, {
@@ -420,8 +413,8 @@ function Element:New(Idx, Config)
 		ImagePicker.Images = NewImages
 		ImagePicker.SelectedIndexes = {}
 		ImagePicker.SelectedImages = {}
-		local NewCellWidthScale, NewCellHeight = RecalculateCellSize()
-		GridLayout.CellSize = UDim2.new(NewCellWidthScale, -CellPaddingOffset, 0, NewCellHeight)
+		local NewCellWidth, NewCellHeight = RecalculateCellSize()
+		GridLayout.CellSize = UDim2.fromOffset(NewCellWidth, NewCellHeight)
 		ImagePicker:BuildImageList()
 	end
 
