@@ -172,6 +172,11 @@ function Element:New(Idx, Config)
 		local ImageUrl = ImageData.Id
 		assert(ImageUrl ~= nil, "ImagePicker - Image entry missing Id")
 
+		local EntrySize = ImageData.Size
+		local SourceWidth = (EntrySize and EntrySize.X.Offset > 0 and EntrySize.X.Offset) or ImagePickerSize.X.Offset
+		local SourceHeight = (EntrySize and EntrySize.Y.Offset > 0 and EntrySize.Y.Offset) or (ImagePickerSize.Y.Offset > 0 and ImagePickerSize.Y.Offset) or SourceWidth
+		local ImageAspectRatio = SourceWidth / SourceHeight
+
 		local Container = New("Frame", {
 			Size = UDim2.fromScale(1, 1),
 			BackgroundTransparency = 1,
@@ -193,13 +198,19 @@ function Element:New(Idx, Config)
 				PaddingBottom = UDim.new(0, 4),
 			}),
 			New("ImageLabel", {
-				Size = UDim2.new(1, 0, 0, (ImageData.Size and ImageData.Size.Y.Offset > 0 and ImageData.Size.Y.Offset) or (ImagePickerSize.Y.Offset > 0 and ImagePickerSize.Y.Offset) or ImagePickerSize.X.Offset),
+				Size = UDim2.new(1, 0, 0, SourceHeight),
 				BackgroundTransparency = 1,
 				Image = ImageUrl,
 				ScaleType = ImageData.ScaleType or Enum.ScaleType.Stretch,
+				TileSize = ImageData.TileSize or UDim2.fromScale(1, 1),
 				ImageRectOffset = ImageData.ImageRectOffset or Vector2.zero,
 				ImageRectSize = ImageData.ImageRectSize or Vector2.zero,
 			}, {
+				New("UIAspectRatioConstraint", {
+					AspectRatio = ImageAspectRatio,
+					AspectType = Enum.AspectType.FitWithinMaxSize,
+					DominantAxis = Enum.DominantAxis.Width,
+				}),
 				New("UICorner", {
 					CornerRadius = UDim.new(0, 6),
 				}),

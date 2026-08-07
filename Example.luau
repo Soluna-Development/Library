@@ -278,25 +278,31 @@ MultiImagePicker:OnChanged(function(Selected)
 end)
 
 -- Advanced ImagePicker with custom image data
+-- ScaleType controls how a non-square image fills its box: Fit (letterbox, no crop), Crop (fills box, crops overflow), Stretch (fills box, ignores aspect), Tile (repeats image)
 local AdvancedImagePicker = Tabs.Main:CreateImagePicker("AdvancedImagePicker", {
 	Title = "Advanced Image Picker",
 	Description = "Custom image sizes and properties",
 	Images = {
 		{
 			Id = "rbxassetid://113440921474935",
-			ScaleType = Enum.ScaleType.Crop,
+			ScaleType = Enum.ScaleType.Fit,
 		},
 		{
 			Id = "rbxassetid://110703867969634",
-			ScaleType = Enum.ScaleType.Fit,
+			ScaleType = Enum.ScaleType.Crop,
 		},
 		{
 			Id = "rbxassetid://87701424695968",
 			ScaleType = Enum.ScaleType.Stretch,
 		},
+		{
+			Id = "rbxassetid://117705810423288",
+			ScaleType = Enum.ScaleType.Tile,
+			TileSize = UDim2.fromScale(0.5, 0.5),
+		},
 	},
 	Columns = 2,
-	ImageSize = UDim2.fromOffset(150, 0), -- Height 0 = auto (1:1 ratio)
+	ImageSize = UDim2.fromOffset(150, 0), -- Height 0 = auto (1:1 ratio), set a non-zero Y for a rectangular image
 	SelectText = "Select",
 	SelectedText = "Active",
 	MultiSelect = true,
