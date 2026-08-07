@@ -39,6 +39,11 @@ local function SerializeValue(Value)
 			enumType = tostring(Value.EnumType),
 			name = Value.Name
 		}
+	elseif valueType == "Enum" then
+		return {
+			type = "Enum",
+			enumType = tostring(Value)
+		}
 	elseif valueType == "table" then
 		local serialized = {}
 		for k, v in next, Value do
@@ -62,10 +67,10 @@ local function SerializeMultiDropdownValue(Value)
 	for k, v in next, Value do
 		if v == true then -- Only serialize selected items
 			local serializedKey = SerializeValue(k)
-			-- If the key is a complex type (table), we need to use it as a string key
+			-- ALWAYS use string keys for JSON compatibility
+			local keyString
 			if typeof(serializedKey) == "table" then
 				-- Create a string representation for the key
-				local keyString
 				if serializedKey.type == "Instance" then
 					keyString = `<Instance> (${serializedKey.className})`
 				elseif serializedKey.type == "EnumItem" then
@@ -73,10 +78,11 @@ local function SerializeMultiDropdownValue(Value)
 				else
 					keyString = tostring(k)
 				end
-				serialized[keyString] = serializedKey
 			else
-				serialized[serializedKey] = v
+				-- Convert simple types to string keys
+				keyString = tostring(serializedKey)
 			end
+			serialized[keyString] = serializedKey
 		end
 	end
 	return serialized
@@ -101,6 +107,16 @@ local function DeserializeValue(Value, AvailableValues)
 			for _, availableValue in next, AvailableValues do
 				if typeof(availableValue) == "EnumItem" then
 					if tostring(availableValue.EnumType) == Value.enumType and availableValue.Name == Value.name then
+						return availableValue
+					end
+				end
+			end
+			return nil -- Enum not found
+		elseif Value.type == "Enum" then
+			-- Try to find matching enum from available values
+			for _, availableValue in next, AvailableValues do
+				if typeof(availableValue) == "Enum" then
+					if tostring(availableValue) == Value.enumType then
 						return availableValue
 					end
 				end
@@ -144,12 +160,21 @@ local function DeserializeValue(Value, AvailableValues)
 			end
 
 			if hasBooleanValues then
-				-- This is a multi-dropdown value table with simple keys
+				-- This is a multi-dropdown value table with simple keys (now as strings)
 				local deserialized = {}
 				for k, v in next, Value do
-					-- For multi-dropdowns, the key might be the serialized value
-					local deserializedKey = DeserializeValue(k, AvailableValues)
-					deserialized[deserializedKey] = v
+					-- Convert string keys back to original types
+					local originalKey
+					if tonumber(k) then
+						originalKey = tonumber(k)
+					elseif k == "true" then
+						originalKey = true
+					elseif k == "false" then
+						originalKey = false
+					else
+						originalKey = k -- keep as string
+					end
+					deserialized[originalKey] = v
 				end
 				return deserialized
 			else
@@ -257,6 +282,7 @@ local SaveManager = {} do
 					else
 						local deserializedValue = {}
 						for k, v in next, Value do
+							-- All keys are now strings, deserialize the value
 							if typeof(v) == "table" and v.type then
 								-- Deserialize the complex type (instance/enum)
 								local deserializedValueItem = DeserializeValue(v, DropdownElement.Values or {})
@@ -264,8 +290,19 @@ local SaveManager = {} do
 									deserializedValue[deserializedValueItem] = true
 								end
 							else
-								-- Simple value
-								deserializedValue[k] = v
+								-- Simple value - the key was a simple type converted to string
+								-- Try to convert back to original type
+								local originalKey
+								if tonumber(k) then
+									originalKey = tonumber(k)
+								elseif k == "true" then
+									originalKey = true
+								elseif k == "false" then
+									originalKey = false
+								else
+									originalKey = k -- keep as string
+								end
+								deserializedValue[originalKey] = v
 							end
 						end
 						DropdownElement:SetValue(deserializedValue)
