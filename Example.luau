@@ -1,6 +1,4 @@
--- Instead of calling it from the releaes you could also do: https://raw.githubusercontent.com/Soluna-Development/Library/refs/heads/main/Fluent.luau but it might be outdated
-
-local Library = loadstring(game:HttpGetAsync("https://github.com/Soluna-Development/Library/releases/latest/download/Fluent.luau"))()
+local Library = loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/Soluna-Development/Library/refs/heads/main/Fluent.luau"))()
 local SaveManager = loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/Soluna-Development/Library/refs/heads/main/Addons/SaveManager.luau"))()
 local InterfaceManager = loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/Soluna-Development/Library/refs/heads/main/Addons/InterfaceManager.luau"))()
  
