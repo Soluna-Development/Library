@@ -40,6 +40,8 @@ local function SerializeValue(Value)
 		}
 	elseif valueType == "EnumItem" then
 		local enumTypeStr = tostring(Value.EnumType)
+		-- Convert $ to . for JSON compatibility
+		enumTypeStr = enumTypeStr:gsub("%$", ".")
 		-- Ensure the enum type starts with "Enum." for consistent matching
 		if not enumTypeStr:find("^Enum%.") then
 			enumTypeStr = "Enum." .. enumTypeStr
@@ -51,6 +53,8 @@ local function SerializeValue(Value)
 		}
 	elseif valueType == "Enum" then
 		local enumTypeStr = tostring(Value)
+		-- Convert $ to . for JSON compatibility
+		enumTypeStr = enumTypeStr:gsub("%$", ".")
 		-- Ensure the enum type starts with "Enum." for consistent matching
 		if not enumTypeStr:find("^Enum%.") then
 			enumTypeStr = "Enum." .. enumTypeStr
@@ -75,10 +79,6 @@ local function SerializeMultiDropdownValue(Value)
 	for k, v in next, Value do
 		if v == true then -- Only serialize selected items
 			local serializedKey = SerializeValue(k)
-			-- Debug logging for Enum
-			if typeof(k) == "Enum" then
-				print("Serializing Enum:", tostring(k), "Result:", typeof(serializedKey) == "table" and serializedKey or serializedKey)
-			end
 			-- ALWAYS use string keys for JSON compatibility
 			local keyString
 			if typeof(serializedKey) == "table" then
@@ -86,9 +86,13 @@ local function SerializeMultiDropdownValue(Value)
 				if serializedKey.type == "Instance" then
 					keyString = `<Instance> (${serializedKey.className})`
 				elseif serializedKey.type == "EnumItem" then
-					keyString = `<EnumItem> (${serializedKey.enumType}.${serializedKey.name})`
+					-- Replace $ with . for clean display
+					local cleanEnumType = serializedKey.enumType:gsub("%$", ".")
+					keyString = `<EnumItem> (${cleanEnumType}.${serializedKey.name})`
 				elseif serializedKey.type == "Enum" then
-					keyString = `<Enum> (${serializedKey.enumType})`
+					-- Replace $ with . for clean display
+					local cleanEnumType = serializedKey.enumType:gsub("%$", ".")
+					keyString = `<Enum> (${cleanEnumType})`
 				else
 					keyString = tostring(k)
 				end
@@ -121,7 +125,12 @@ local function DeserializeValue(Value, AvailableValues)
 			for _, availableValue in next, AvailableValues do
 				if typeof(availableValue) == "EnumItem" then
 					-- Compare both the full enum type and the name
-					if tostring(availableValue.EnumType) == Value.enumType and availableValue.Name == Value.name then
+					local availableEnumType = tostring(availableValue.EnumType):gsub("%$", ".")
+					if availableEnumType == Value.enumType and availableValue.Name == Value.name then
+						return availableValue
+					end
+					-- Also try without "Enum." prefix
+					if availableEnumType:gsub("^Enum%.", "") == Value.enumType:gsub("^Enum%.", "") and availableValue.Name == Value.name then
 						return availableValue
 					end
 				end
@@ -131,8 +140,9 @@ local function DeserializeValue(Value, AvailableValues)
 			-- Try to find matching enum from available values
 			for _, availableValue in next, AvailableValues do
 				if typeof(availableValue) == "Enum" then
+					local availableEnumType = tostring(availableValue):gsub("%$", ".")
 					-- Try both with and without "Enum." prefix
-					if tostring(availableValue) == Value.enumType or tostring(availableValue) == Value.enumType:gsub("^Enum%.", "") then
+					if availableEnumType == Value.enumType or availableEnumType == Value.enumType:gsub("^Enum%.", "") then
 						return availableValue
 					end
 				end
