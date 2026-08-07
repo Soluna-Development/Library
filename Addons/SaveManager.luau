@@ -16,11 +16,105 @@ local DisplayerParser = {
 }
 
 local function TableEqual(Table, Reflect)
-	for Index, Value in Table do 
-		if Reflect[Index] ~= Value then return false end 
-	end 
+	for Index, Value in Table do
+		if Reflect[Index] ~= Value then return false end
+	end
 
 	return true
+end
+
+local function SerializeValue(Value)
+	local valueType = typeof(Value)
+
+	if valueType == "Instance" then
+		return {
+			type = "Instance",
+			className = Value.ClassName,
+			name = Value.Name,
+			path = Value:GetFullName()
+		}
+	elseif valueType == "EnumItem" then
+		return {
+			type = "EnumItem",
+			enumType = tostring(Value.EnumType),
+			name = Value.Name
+		}
+	elseif valueType == "table" then
+		local serialized = {}
+		for k, v in next, Value do
+			serialized[k] = SerializeValue(v)
+		end
+		return serialized
+	else
+		return Value
+	end
+end
+
+local function SerializeMultiDropdownValue(Value)
+	local serialized = {}
+	for k, v in next, Value do
+		serialized[k] = SerializeValue(v)
+	end
+	return serialized
+end
+
+local function DeserializeValue(Value, AvailableValues)
+	local valueType = typeof(Value)
+
+	if valueType == "table" and Value.type then
+		if Value.type == "Instance" then
+			-- Try to find matching instance from available values
+			for _, availableValue in next, AvailableValues do
+				if typeof(availableValue) == "Instance" then
+					if availableValue.ClassName == Value.className and availableValue.Name == Value.name then
+						return availableValue
+					end
+				end
+			end
+			return nil -- Instance not found
+		elseif Value.type == "EnumItem" then
+			-- Try to find matching enum from available values
+			for _, availableValue in next, AvailableValues do
+				if typeof(availableValue) == "EnumItem" then
+					if tostring(availableValue.EnumType) == Value.enumType and availableValue.Name == Value.name then
+						return availableValue
+					end
+				end
+			end
+			return nil -- Enum not found
+		end
+	elseif valueType == "table" then
+		-- Check if this is a multi-dropdown value (table with boolean values)
+		local hasBooleanValues = false
+		for _, v in next, Value do
+			if typeof(v) == "boolean" then
+				hasBooleanValues = true
+				break
+			end
+		end
+
+		if hasBooleanValues then
+			-- This is a multi-dropdown value table
+			local deserialized = {}
+			for k, v in next, Value do
+				-- For multi-dropdowns, the key might be the serialized value
+				local deserializedKey = DeserializeValue(k, AvailableValues)
+				deserialized[deserializedKey] = v
+			end
+			return deserialized
+		else
+			-- Regular table
+			local deserialized = {}
+			for k, v in next, Value do
+				deserialized[k] = DeserializeValue(v, AvailableValues)
+			end
+			return deserialized
+		end
+	else
+		return Value
+	end
+
+	return Value
 end  
 
 local function SetDisplayerDropdownValue(Dropdown: Dropdown, Value)
@@ -78,22 +172,48 @@ local SaveManager = {} do
 		Dropdown = {
 			Save = function(idx, object)
 				local HasDisplayer = object.CustomDisplayer
-				
-				return { type = "Dropdown", idx = idx, value = (HasDisplayer and object.Multi and DisplayerParser.Encode(object.Value) or object.Value), mutli = object.Multi, Timestamp = object.Instance.CreatedAt, displayer = HasDisplayer}
+				local valueToSave
+
+				if object.Multi then
+					if HasDisplayer then
+						valueToSave = DisplayerParser.Encode(object.Value)
+					else
+						valueToSave = SerializeMultiDropdownValue(object.Value)
+					end
+				else
+					valueToSave = SerializeValue(object.Value)
+				end
+
+				return { type = "Dropdown", idx = idx, value = valueToSave, mutli = object.Multi, Timestamp = object.Instance.CreatedAt, displayer = HasDisplayer}
 			end,
 			Load = function(idx, data)
 				if data.value == nil then return end
-				
+
 				local DropdownElement = SaveManager.Options[idx]
 				if not DropdownElement then return end
-				
-				local Value = data.value 
-				if typeof(Value) ~= 'table' or (not data.displayer) then
-					DropdownElement:SetValue(Value)
-					return
+
+				local Value = data.value
+
+				if data.mutli then
+					-- Handle multi-dropdown deserialization
+					if data.displayer then
+						SetDisplayerDropdownValue(DropdownElement, Value)
+					else
+						local deserializedValue = {}
+						for k, v in next, Value do
+							deserializedValue[k] = DeserializeValue(v, DropdownElement.Values or {})
+						end
+						DropdownElement:SetValue(deserializedValue)
+					end
+				else
+					-- Handle single dropdown deserialization
+					if typeof(Value) ~= 'table' or (not data.displayer) then
+						local deserializedValue = DeserializeValue(Value, DropdownElement.Values or {})
+						DropdownElement:SetValue(deserializedValue)
+						return
+					end
+					SetDisplayerDropdownValue(DropdownElement, Value)
 				end
-				
-				SetDisplayerDropdownValue(DropdownElement, Value)
 			end,
 		},
 		Colorpicker = {
