@@ -53,7 +53,24 @@ end
 local function SerializeMultiDropdownValue(Value)
 	local serialized = {}
 	for k, v in next, Value do
-		serialized[k] = SerializeValue(v)
+		if v == true then -- Only serialize selected items
+			local serializedKey = SerializeValue(k)
+			-- If the key is a complex type (table), we need to use it as a string key
+			if typeof(serializedKey) == "table" then
+				-- Create a string representation for the key
+				local keyString
+				if serializedKey.type == "Instance" then
+					keyString = `<Instance> (${serializedKey.className})`
+				elseif serializedKey.type == "EnumItem" then
+					keyString = `<EnumItem> (${serializedKey.enumType}.${serializedKey.name})`
+				else
+					keyString = tostring(k)
+				end
+				serialized[keyString] = serializedKey
+			else
+				serialized[serializedKey] = v
+			end
+		end
 	end
 	return serialized
 end
@@ -84,31 +101,58 @@ local function DeserializeValue(Value, AvailableValues)
 			return nil -- Enum not found
 		end
 	elseif valueType == "table" then
-		-- Check if this is a multi-dropdown value (table with boolean values)
-		local hasBooleanValues = false
+		-- Check if this is a multi-dropdown value (table with serialized complex types as values)
+		local hasSerializedTypes = false
 		for _, v in next, Value do
-			if typeof(v) == "boolean" then
-				hasBooleanValues = true
+			if typeof(v) == "table" and v.type then
+				hasSerializedTypes = true
 				break
 			end
 		end
 
-		if hasBooleanValues then
-			-- This is a multi-dropdown value table
+		if hasSerializedTypes then
+			-- This is a multi-dropdown value with complex types
 			local deserialized = {}
 			for k, v in next, Value do
-				-- For multi-dropdowns, the key might be the serialized value
-				local deserializedKey = DeserializeValue(k, AvailableValues)
-				deserialized[deserializedKey] = v
+				if typeof(v) == "table" and v.type then
+					-- Deserialize the complex type
+					local deserializedValue = DeserializeValue(v, AvailableValues)
+					if deserializedValue then
+						deserialized[deserializedValue] = true
+					end
+				else
+					-- Regular value
+					deserialized[k] = v
+				end
 			end
 			return deserialized
 		else
-			-- Regular table
-			local deserialized = {}
-			for k, v in next, Value do
-				deserialized[k] = DeserializeValue(v, AvailableValues)
+			-- Check if this is a multi-dropdown value (table with boolean values)
+			local hasBooleanValues = false
+			for _, v in next, Value do
+				if typeof(v) == "boolean" then
+					hasBooleanValues = true
+					break
+				end
 			end
-			return deserialized
+
+			if hasBooleanValues then
+				-- This is a multi-dropdown value table with simple keys
+				local deserialized = {}
+				for k, v in next, Value do
+					-- For multi-dropdowns, the key might be the serialized value
+					local deserializedKey = DeserializeValue(k, AvailableValues)
+					deserialized[deserializedKey] = v
+				end
+				return deserialized
+			else
+				-- Regular table
+				local deserialized = {}
+				for k, v in next, Value do
+					deserialized[k] = DeserializeValue(v, AvailableValues)
+				end
+				return deserialized
+			end
 		end
 	else
 		return Value
@@ -201,7 +245,16 @@ local SaveManager = {} do
 					else
 						local deserializedValue = {}
 						for k, v in next, Value do
-							deserializedValue[k] = DeserializeValue(v, DropdownElement.Values or {})
+							if typeof(v) == "table" and v.type then
+								-- Deserialize the complex type (instance/enum)
+								local deserializedValueItem = DeserializeValue(v, DropdownElement.Values or {})
+								if deserializedValueItem then
+									deserializedValue[deserializedValueItem] = true
+								end
+							else
+								-- Simple value
+								deserializedValue[k] = v
+							end
 						end
 						DropdownElement:SetValue(deserializedValue)
 					end
