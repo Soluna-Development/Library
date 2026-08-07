@@ -50,6 +50,9 @@ end
 local SaveManager = {} do
 	SaveManager.Folder = "FluentSettings"
 	SaveManager.Ignore = {}
+	SaveManager.AutoSave = false
+	SaveManager.AutoSaveConfig = nil
+	SaveManager._SettingAutoSave = false
 	SaveManager.Options, SaveManager.Library = {} :: { [string]: {Type: string, Value: any, SetValues: (self: any, NewValue: { [any]: any }) -> nil, SetValue: (self: any, NewValue: any, ...any) -> nil, SetValueRGB: (self: any, NewValue: Color3, Transparency: number?) -> nil} }, {}
 	SaveManager.Parser = {
 		Toggle = {
@@ -189,11 +192,14 @@ local SaveManager = {} do
 		local success, decoded = pcall(httpService.JSONDecode, httpService, readfile(file))
 		if not success then return false, "decode error" end
 
+		-- Prevent auto-save from triggering during load
+		SaveManager._SettingAutoSave = true
 		for _, option in next, decoded.objects do
 			if self.Parser[option.type] then
 				task.spawn(self.Library.SafeCallback, self.Library, self.Parser[option.type].Load, option.idx, option)
 			end
 		end
+		SaveManager._SettingAutoSave = false
 
 		self.Library:SetTheme(self.Library.Theme)
 
@@ -253,6 +259,33 @@ local SaveManager = {} do
 	function SaveManager:SetLibrary(library)
 		self.Library = library
 		self.Options = library.Options
+
+		task.spawn(function()
+			for idx, option in next, self.Options do
+				if option.SetValue and not option._OriginalSetValue then
+					option._OriginalSetValue = option.SetValue
+					option.SetValue = function(self, ...)
+						option._OriginalSetValue(self, ...)
+						if SaveManager.AutoSave and SaveManager.AutoSaveConfig and idx ~= "SaveManager_AutoSave" and not SaveManager._SettingAutoSave then
+							task.spawn(function()
+								SaveManager:Save(SaveManager.AutoSaveConfig)
+							end)
+						end
+					end
+				end
+				if option.SetValueRGB and not option._OriginalSetValueRGB then
+					option._OriginalSetValueRGB = option.SetValueRGB
+					option.SetValueRGB = function(self, ...)
+						option._OriginalSetValueRGB(self, ...)
+						if SaveManager.AutoSave and SaveManager.AutoSaveConfig and not SaveManager._SettingAutoSave then
+							task.spawn(function()
+								SaveManager:Save(SaveManager.AutoSaveConfig)
+							end)
+						end
+					end
+				end
+			end
+		end)
 	end
 
 	function SaveManager:LoadAutoloadConfig()
@@ -286,7 +319,21 @@ local SaveManager = {} do
 		local section = tab:AddSection("Configuration")
 
 		section:AddInput("SaveManager_ConfigName",    { Title = "Config name" })
-		section:AddDropdown("SaveManager_ConfigList", { Title = "Config list", Values = self:RefreshConfigList(), AllowNull = true })
+		section:AddDropdown("SaveManager_ConfigList", {
+			Title = "Config list",
+			Values = self:RefreshConfigList(),
+			AllowNull = true,
+			Callback = function(Value)
+				if SaveManager.AutoSave and not SaveManager._SettingAutoSave then
+					SaveManager.AutoSaveConfig = Value
+					local autoSaveData = {
+						enabled = SaveManager.AutoSave,
+						config = Value
+					}
+					writefile(`{self.Folder}/settings/autosave.json`, httpService:JSONEncode(autoSaveData))
+				end
+			end
+		})
 
 		section:AddButton({
 			Title = "Create config",
@@ -391,7 +438,64 @@ local SaveManager = {} do
 			AutoloadButton:SetDesc("Current autoload config: " .. name)
 		end
 
-		SaveManager:SetIgnoreIndexes({ "SaveManager_ConfigList", "SaveManager_ConfigName" })
+		if isfile(`{self.Folder}/settings/autosave.json`) then
+			local success, decoded = pcall(httpService.JSONDecode, httpService, readfile(`{self.Folder}/settings/autosave.json`))
+			if success then
+				SaveManager.AutoSave = decoded.enabled or false
+				SaveManager.AutoSaveConfig = decoded.config or nil
+			end
+		end
+
+		section:AddToggle("SaveManager_AutoSave", {
+			Title = "Auto Save",
+			Description = "Automatically save config when settings change",
+			Default = SaveManager.AutoSave,
+			Callback = function(Value)
+				local selectedConfig = SaveManager.Options.SaveManager_ConfigList.Value
+
+				if Value and not selectedConfig then
+					self.Library:Notify({
+						Title = "Interface",
+						Content = "Auto Save",
+						SubContent = "Please select a config from the list first",
+						Duration = 7
+					})
+					SaveManager._SettingAutoSave = true
+					task.spawn(function()
+						SaveManager.Options.SaveManager_AutoSave:SetValue(false)
+						SaveManager._SettingAutoSave = false
+					end)
+					return
+				end
+
+				SaveManager.AutoSave = Value
+				SaveManager.AutoSaveConfig = selectedConfig
+
+				local autoSaveData = {
+					enabled = Value,
+					config = selectedConfig
+				}
+				writefile(`{self.Folder}/settings/autosave.json`, httpService:JSONEncode(autoSaveData))
+
+				if Value then
+					self.Library:Notify({
+						Title = "Interface",
+						Content = "Auto Save",
+						SubContent = string.format("Auto-saving to config %q", selectedConfig),
+						Duration = 7
+					})
+				else
+					self.Library:Notify({
+						Title = "Interface",
+						Content = "Auto Save",
+						SubContent = "Auto-save disabled",
+						Duration = 7
+					})
+				end
+			end
+		})
+
+		SaveManager:SetIgnoreIndexes({ "SaveManager_ConfigList", "SaveManager_ConfigName", "SaveManager_AutoSave" })
 	end
 
 	SaveManager:BuildFolderTree()
