@@ -26,6 +26,11 @@ end
 local function SerializeValue(Value)
 	local valueType = typeof(Value)
 
+	-- Debug logging for Enum
+	if valueType == "Enum" then
+		print("SerializeValue detected Enum:", tostring(Value), "type:", valueType)
+	end
+
 	if valueType == "Instance" then
 		local fullName = Value:GetFullName()
 		-- Ensure the path starts with "game." for consistent matching
@@ -79,6 +84,10 @@ local function SerializeMultiDropdownValue(Value)
 	for k, v in next, Value do
 		if v == true then
 			local serializedKey = SerializeValue(k)
+			-- Debug logging for Enum
+			if typeof(k) == "Enum" then
+				print("Serializing Enum:", tostring(k), "Type:", typeof(k), "Serialized:", typeof(serializedKey) == "table" and serializedKey or serializedKey)
+			end
 			local keyString
 			if typeof(serializedKey) == "table" then
 				if serializedKey.type == "Instance" then
