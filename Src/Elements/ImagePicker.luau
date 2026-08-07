@@ -78,6 +78,8 @@ function Element:New(Idx, Config)
 	local ContainerPadding = 8
 	local ImageVerticalPadding = 8
 
+	local CellPaddingOffset = 10
+
 	local function RecalculateCellSize()
 		local MaxImageWidth = ImagePickerSize.X.Offset
 		local MaxImageHeight = ImagePickerSize.Y.Offset
@@ -94,17 +96,17 @@ function Element:New(Idx, Config)
 			MaxImageHeight = MaxImageWidth
 		end
 
-		local CellWidth = MaxImageWidth
+		local CellWidthScale = 1 / ImagePicker.Columns
 		local CellHeight = MaxImageHeight + ImageVerticalPadding + SelectButtonHeight + ContainerPadding
 
-		return CellWidth, CellHeight
+		return CellWidthScale, CellHeight
 	end
 
-	local InitialCellWidth, InitialCellHeight = RecalculateCellSize()
+	local InitialCellWidthScale, InitialCellHeight = RecalculateCellSize()
 
 	local GridLayout = New("UIGridLayout", {
-		CellSize = UDim2.fromOffset(InitialCellWidth, InitialCellHeight),
-		CellPadding = UDim2.fromOffset(10, 10),
+		CellSize = UDim2.new(InitialCellWidthScale, -CellPaddingOffset, 0, InitialCellHeight),
+		CellPadding = UDim2.fromOffset(CellPaddingOffset, CellPaddingOffset),
 		FillDirection = Enum.FillDirection.Horizontal,
 		FillDirectionMaxCells = ImagePicker.Columns,
 		StartCorner = Enum.StartCorner.TopLeft,
@@ -417,8 +419,8 @@ function Element:New(Idx, Config)
 		ImagePicker.Images = NewImages
 		ImagePicker.SelectedIndexes = {}
 		ImagePicker.SelectedImages = {}
-		local NewCellWidth, NewCellHeight = RecalculateCellSize()
-		GridLayout.CellSize = UDim2.fromOffset(NewCellWidth, NewCellHeight)
+		local NewCellWidthScale, NewCellHeight = RecalculateCellSize()
+		GridLayout.CellSize = UDim2.new(NewCellWidthScale, -CellPaddingOffset, 0, NewCellHeight)
 		ImagePicker:BuildImageList()
 	end
 
