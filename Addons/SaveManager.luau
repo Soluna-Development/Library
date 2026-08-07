@@ -26,12 +26,8 @@ end
 local function SerializeValue(Value)
 	local valueType = typeof(Value)
 
-	-- Debug logging for all types to see what Enum.JoinSource actually is
-	print("SerializeValue:", "Value:", tostring(Value), "Type:", valueType)
-
 	if valueType == "Instance" then
 		local fullName = Value:GetFullName()
-		-- Ensure the path starts with "game." for consistent matching
 		if not fullName:find("^game%.") then
 			fullName = "game." .. fullName
 		end
@@ -43,9 +39,7 @@ local function SerializeValue(Value)
 		}
 	elseif valueType == "EnumItem" then
 		local enumTypeStr = tostring(Value.EnumType)
-		-- Convert $ to . for JSON compatibility
 		enumTypeStr = enumTypeStr:gsub("%$", ".")
-		-- Ensure the enum type starts with "Enum." for consistent matching
 		if not enumTypeStr:find("^Enum%.") then
 			enumTypeStr = "Enum." .. enumTypeStr
 		end
@@ -56,9 +50,7 @@ local function SerializeValue(Value)
 		}
 	elseif valueType == "Enum" then
 		local enumTypeStr = tostring(Value)
-		-- Convert $ to . for JSON compatibility
 		enumTypeStr = enumTypeStr:gsub("%$", ".")
-		-- Ensure the enum type starts with "Enum." for consistent matching
 		if not enumTypeStr:find("^Enum%.") then
 			enumTypeStr = "Enum." .. enumTypeStr
 		end
@@ -82,10 +74,6 @@ local function SerializeMultiDropdownValue(Value)
 	for k, v in next, Value do
 		if v == true then
 			local serializedKey = SerializeValue(k)
-			-- Debug logging for Enum
-			if typeof(k) == "Enum" then
-				print("Serializing Enum:", tostring(k), "Type:", typeof(k), "Serialized:", typeof(serializedKey) == "table" and serializedKey or serializedKey)
-			end
 			local keyString
 			if typeof(serializedKey) == "table" then
 				if serializedKey.type == "Instance" then
@@ -113,7 +101,6 @@ local function DeserializeValue(Value, AvailableValues)
 
 	if valueType == "table" and Value.type then
 		if Value.type == "Instance" then
-			-- Try to find matching instance from available values
 			for _, availableValue in next, AvailableValues do
 				if typeof(availableValue) == "Instance" then
 					if availableValue.ClassName == Value.className and availableValue.Name == Value.name then
@@ -121,23 +108,20 @@ local function DeserializeValue(Value, AvailableValues)
 					end
 				end
 			end
-			return nil -- Instance not found
+			return nil
 		elseif Value.type == "EnumItem" then
-			-- Try to find matching enum from available values
 			for _, availableValue in next, AvailableValues do
 				if typeof(availableValue) == "EnumItem" then
-					-- Compare both the full enum type and the name
 					local availableEnumType = tostring(availableValue.EnumType):gsub("%$", ".")
 					if availableEnumType == Value.enumType and availableValue.Name == Value.name then
 						return availableValue
 					end
-					-- Also try without "Enum." prefix
 					if availableEnumType:gsub("^Enum%.", "") == Value.enumType:gsub("^Enum%.", "") and availableValue.Name == Value.name then
 						return availableValue
 					end
 				end
 			end
-			return nil -- Enum not found
+			return nil
 		elseif Value.type == "Enum" then
 			for _, availableValue in next, AvailableValues do
 				if typeof(availableValue) == "Enum" then
@@ -155,7 +139,6 @@ local function DeserializeValue(Value, AvailableValues)
 			return nil
 		end
 	elseif valueType == "table" then
-		-- Check if this is a multi-dropdown value (table with serialized complex types as values)
 		local hasSerializedTypes = false
 		for _, v in next, Value do
 			if typeof(v) == "table" and v.type then
@@ -165,23 +148,19 @@ local function DeserializeValue(Value, AvailableValues)
 		end
 
 		if hasSerializedTypes then
-			-- This is a multi-dropdown value with complex types
 			local deserialized = {}
 			for k, v in next, Value do
 				if typeof(v) == "table" and v.type then
-					-- Deserialize the complex type
 					local deserializedValue = DeserializeValue(v, AvailableValues)
 					if deserializedValue then
 						deserialized[deserializedValue] = true
 					end
 				else
-					-- Regular value
 					deserialized[k] = v
 				end
 			end
 			return deserialized
 		else
-			-- Check if this is a multi-dropdown value (table with boolean values)
 			local hasBooleanValues = false
 			for _, v in next, Value do
 				if typeof(v) == "boolean" then
@@ -191,10 +170,8 @@ local function DeserializeValue(Value, AvailableValues)
 			end
 
 			if hasBooleanValues then
-				-- This is a multi-dropdown value table with simple keys (now as strings)
 				local deserialized = {}
 				for k, v in next, Value do
-					-- Convert string keys back to original types
 					local originalKey
 					if tonumber(k) then
 						originalKey = tonumber(k)
@@ -203,13 +180,12 @@ local function DeserializeValue(Value, AvailableValues)
 					elseif k == "false" then
 						originalKey = false
 					else
-						originalKey = k -- keep as string
+						originalKey = k
 					end
 					deserialized[originalKey] = v
 				end
 				return deserialized
 			else
-				-- Regular table
 				local deserialized = {}
 				for k, v in next, Value do
 					deserialized[k] = DeserializeValue(v, AvailableValues)
@@ -285,7 +261,6 @@ local SaveManager = {} do
 					if HasDisplayer then
 						valueToSave = DisplayerParser.Encode(object.Value)
 					else
-						-- Debug: print what we're trying to save
 						local valueDebug = {}
 						for k, v in next, object.Value do
 							valueDebug[tostring(k)] = tostring(v)
@@ -307,7 +282,6 @@ local SaveManager = {} do
 				local Value = data.value
 
 				if data.mutli then
-					-- Handle multi-dropdown deserialization
 					if data.displayer then
 						SetDisplayerDropdownValue(DropdownElement, Value)
 					else
@@ -335,7 +309,6 @@ local SaveManager = {} do
 						DropdownElement:SetValue(deserializedValue)
 					end
 				else
-					-- Handle single dropdown deserialization
 					if typeof(Value) ~= 'table' or (not data.displayer) then
 						local deserializedValue = DeserializeValue(Value, DropdownElement.Values or {})
 						DropdownElement:SetValue(deserializedValue)
@@ -448,7 +421,6 @@ local SaveManager = {} do
 			end
 		end
 
-		-- Save window size
 		local windowSizeData = self.Parser.WindowSize.Save("WindowSize", nil)
 		if windowSizeData then
 			data.objects[#data.objects + 1] = windowSizeData
@@ -478,7 +450,6 @@ local SaveManager = {} do
 		local success, decoded = pcall(httpService.JSONDecode, httpService, readfile(file))
 		if not success then return false, "decode error" end
 
-		-- Prevent auto-save from triggering during load
 		SaveManager._SettingAutoSave = true
 		for _, option in next, decoded.objects do
 			if self.Parser[option.type] then
@@ -546,7 +517,6 @@ local SaveManager = {} do
 		self.Library = library
 		self.Options = library.Options
 
-		-- Hook into window size changes for auto-save
 		if library.WindowSizeChanged then
 			library.WindowSizeChanged:Connect(function()
 				if SaveManager.AutoSave and SaveManager.AutoSaveConfig and not SaveManager._SettingAutoSave then
@@ -581,7 +551,6 @@ local SaveManager = {} do
 						end
 					end
 				end
-				-- Special hook for ImagePicker since it doesn't use SetValue traditionally
 				if option.Type == "ImagePicker" and option.SelectedImages and not option._OriginalCallback then
 					option._OriginalCallback = option.Callback
 					option.Callback = function(Selected)
@@ -628,7 +597,7 @@ local SaveManager = {} do
 		assert(self.Library, "Must set SaveManager.Library")
 
 		local section = tab:AddSection("Configuration")
-		local AutoSaveToggle -- Declare before use
+		local AutoSaveToggle
 
 		section:AddInput("SaveManager_ConfigName",    { Title = "Config name" })
 		section:AddDropdown("SaveManager_ConfigList", {
@@ -643,7 +612,6 @@ local SaveManager = {} do
 						config = Value
 					}
 					writefile(`{self.Folder}/settings/autosave.json`, httpService:JSONEncode(autoSaveData))
-					-- Update the auto-save description if we have the toggle reference
 					if AutoSaveToggle and AutoSaveToggle.SetDesc then
 						if Value then
 							AutoSaveToggle:SetDesc("Current autosave config: " .. Value)
