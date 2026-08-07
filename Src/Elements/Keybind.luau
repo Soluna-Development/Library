@@ -173,8 +173,12 @@ function Element:New(Idx, Config)
 
 						KeybindDisplayLabel.Text = Library.Utilities:Prettify(Keybind.Value)
 
-						Library:SafeCallback(Keybind.ChangedCallback, Input.KeyCode or Input.UserInputType)
-						Library:SafeCallback(Keybind.Changed, Input.KeyCode or Input.UserInputType)
+						if typeof(Keybind.ChangedCallback) == "function" then
+							Library:SafeCallback(Keybind.ChangedCallback, Input.KeyCode or Input.UserInputType)
+						end
+						if typeof(Keybind.Changed) == "function" then
+							Library:SafeCallback(Keybind.Changed, Input.KeyCode or Input.UserInputType)
+						end
 					end
 				end)
 			end)
