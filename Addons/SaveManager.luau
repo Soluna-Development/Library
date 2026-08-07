@@ -52,6 +52,13 @@ end
 
 local function SerializeMultiDropdownValue(Value)
 	local serialized = {}
+	-- Debug: print the value structure
+	local debugInfo = {}
+	for k, v in next, Value do
+		debugInfo[#debugInfo + 1] = `{tostring(k)} (type: {typeof(k)}) = {tostring(v)}`
+	end
+	print("MultiDropdown Value:", table.concat(debugInfo, ", "))
+
 	for k, v in next, Value do
 		if v == true then -- Only serialize selected items
 			local serializedKey = SerializeValue(k)
@@ -222,6 +229,11 @@ local SaveManager = {} do
 					if HasDisplayer then
 						valueToSave = DisplayerParser.Encode(object.Value)
 					else
+						-- Debug: print what we're trying to save
+						local valueDebug = {}
+						for k, v in next, object.Value do
+							valueDebug[tostring(k)] = tostring(v)
+						end
 						valueToSave = SerializeMultiDropdownValue(object.Value)
 					end
 				else
