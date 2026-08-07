@@ -320,6 +320,10 @@ return function(Config)
 		if Resizing == true or Input.UserInputType == Enum.UserInputType.Touch then
 			Resizing = false
 			Window.Size = UDim2.fromOffset(SizeMotor:getValue().X, SizeMotor:getValue().Y)
+			-- Fire size changed signal
+			if Library and Library.WindowSizeChanged then
+				Library.WindowSizeChanged:Fire(Window.Size)
+			end
 		end
 	end)
 

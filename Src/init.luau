@@ -122,6 +122,7 @@ local Library = {
 	OnUnload = Signal.new(),
 	PostUnload = Signal.new(),
 	ThemeChanged = Signal.new(),
+	WindowSizeChanged = Signal.new(),
 	CreatedWindow = nil,
 	WindowFrame = nil,
 	UIContainer = BaseContainer.Parent,

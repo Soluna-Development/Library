@@ -137,6 +137,24 @@ local SaveManager = {} do
 				end
 			end,
 		},
+		WindowSize = {
+			Save = function(idx, object)
+				local window = SaveManager.Library.CreatedWindow
+				if window and window.Size then
+					return { type = "WindowSize", idx = idx, sizeX = window.Size.X.Offset, sizeY = window.Size.Y.Offset, Timestamp = tick() }
+				end
+				return nil
+			end,
+			Load = function(idx, data)
+				local window = SaveManager.Library.CreatedWindow
+				if window and data.sizeX and data.sizeY then
+					window.Size = UDim2.fromOffset(data.sizeX, data.sizeY)
+					if window.Root then
+						window.Root.Size = window.Size
+					end
+				end
+			end
+		},
 	}
 
 	function SaveManager:SetIgnoreIndexes(list)
@@ -165,7 +183,16 @@ local SaveManager = {} do
 			if not self.Parser[option.Type] then continue end
 			if self.Ignore[idx] then continue end
 
-			data.objects[#data.objects + 1] = self.Parser[option.Type].Save(idx, option)
+			local savedData = self.Parser[option.Type].Save(idx, option)
+			if savedData then
+				data.objects[#data.objects + 1] = savedData
+			end
+		end
+
+		-- Save window size
+		local windowSizeData = self.Parser.WindowSize.Save("WindowSize", nil)
+		if windowSizeData then
+			data.objects[#data.objects + 1] = windowSizeData
 		end
 
 		table.sort(data.objects, function(v1: { Timestamp: number }, v2: { Timestamp: number })
@@ -259,6 +286,17 @@ local SaveManager = {} do
 	function SaveManager:SetLibrary(library)
 		self.Library = library
 		self.Options = library.Options
+
+		-- Hook into window size changes for auto-save
+		if library.WindowSizeChanged then
+			library.WindowSizeChanged:Connect(function()
+				if SaveManager.AutoSave and SaveManager.AutoSaveConfig and not SaveManager._SettingAutoSave then
+					task.spawn(function()
+						SaveManager:Save(SaveManager.AutoSaveConfig)
+					end)
+				end
+			end)
+		end
 
 		task.spawn(function()
 			for idx, option in next, self.Options do
