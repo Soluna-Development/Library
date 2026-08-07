@@ -200,7 +200,7 @@ function Element:New(Idx, Config)
 				PaddingBottom = UDim.new(0, 4),
 			}),
 			New("ImageLabel", {
-				Size = UDim2.new(1, 0, 0, SourceHeight),
+				Size = UDim2.fromScale(1, 0),
 				BackgroundTransparency = 1,
 				Image = ImageUrl,
 				ScaleType = ImageData.ScaleType or Enum.ScaleType.Stretch,
