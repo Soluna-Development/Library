@@ -172,7 +172,9 @@ function Element:New(Idx, Config)
 		local EntrySize = ImageData.Size
 		local SourceWidth = ImagePicker.ImageAreaWidth
 		local SourceHeight = (EntrySize and EntrySize.Y.Offset > 0 and EntrySize.Y.Offset) or ImagePicker.ImageAreaHeight
-		local ImageAspectRatio = SourceWidth / SourceHeight
+		local ImageVerticalInset = 8
+		local EffectiveHeight = SourceHeight - ImageVerticalInset
+		local ImageAspectRatio = SourceWidth / EffectiveHeight
 
 		local Container = New("Frame", {
 			Size = UDim2.fromOffset(SourceWidth, 0),
