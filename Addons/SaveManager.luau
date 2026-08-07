@@ -75,6 +75,10 @@ local function SerializeMultiDropdownValue(Value)
 	for k, v in next, Value do
 		if v == true then -- Only serialize selected items
 			local serializedKey = SerializeValue(k)
+			-- Debug logging for Enum
+			if typeof(k) == "Enum" then
+				print("Serializing Enum:", tostring(k), "Result:", typeof(serializedKey) == "table" and serializedKey or serializedKey)
+			end
 			-- ALWAYS use string keys for JSON compatibility
 			local keyString
 			if typeof(serializedKey) == "table" then
@@ -127,7 +131,8 @@ local function DeserializeValue(Value, AvailableValues)
 			-- Try to find matching enum from available values
 			for _, availableValue in next, AvailableValues do
 				if typeof(availableValue) == "Enum" then
-					if tostring(availableValue) == Value.enumType then
+					-- Try both with and without "Enum." prefix
+					if tostring(availableValue) == Value.enumType or tostring(availableValue) == Value.enumType:gsub("^Enum%.", "") then
 						return availableValue
 					end
 				end
@@ -297,6 +302,9 @@ local SaveManager = {} do
 							if typeof(v) == "table" and v.type then
 								-- Deserialize the complex type (instance/enum)
 								local deserializedValueItem = DeserializeValue(v, DropdownElement.Values or {})
+								if idx == "MultiInstanceDropdown" then
+									print("Deserializing complex type:", k, "Result:", deserializedValueItem)
+								end
 								if deserializedValueItem then
 									deserializedValue[deserializedValueItem] = true
 								end
@@ -315,6 +323,9 @@ local SaveManager = {} do
 								end
 								deserializedValue[originalKey] = v
 							end
+						end
+						if idx == "MultiInstanceDropdown" then
+							print("Final deserialized value:", deserializedValue)
 						end
 						DropdownElement:SetValue(deserializedValue)
 					end
