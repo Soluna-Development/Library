@@ -94,14 +94,13 @@ function Element:New(Idx, Config)
 			MaxImageHeight = MaxImageWidth
 		end
 
-		local CellWidth = MaxImageWidth
+		local CellWidth = MaxImageWidth + 12
 		local CellHeight = MaxImageHeight + ImageVerticalPadding + SelectButtonHeight + ContainerPadding
 
 		return CellWidth, CellHeight
 	end
 
 	local InitialCellWidth, InitialCellHeight = RecalculateCellSize()
-	local CurrentCellWidth = InitialCellWidth
 
 	local GridLayout = New("UIGridLayout", {
 		CellSize = UDim2.fromOffset(InitialCellWidth, InitialCellHeight),
@@ -177,7 +176,6 @@ function Element:New(Idx, Config)
 		local SourceWidth = (EntrySize and EntrySize.X.Offset > 0 and EntrySize.X.Offset) or ImagePickerSize.X.Offset
 		local SourceHeight = (EntrySize and EntrySize.Y.Offset > 0 and EntrySize.Y.Offset) or (ImagePickerSize.Y.Offset > 0 and ImagePickerSize.Y.Offset) or SourceWidth
 		local ImageAspectRatio = SourceWidth / SourceHeight
-		local RenderHeight = math.floor(CurrentCellWidth / ImageAspectRatio)
 
 		local Container = New("Frame", {
 			Size = UDim2.fromScale(1, 1),
@@ -200,7 +198,7 @@ function Element:New(Idx, Config)
 				PaddingBottom = UDim.new(0, 4),
 			}),
 			New("ImageLabel", {
-				Size = UDim2.fromOffset(CurrentCellWidth, RenderHeight),
+				Size = UDim2.new(1, 0, 0, SourceHeight),
 				BackgroundTransparency = 1,
 				Image = ImageUrl,
 				ScaleType = ImageData.ScaleType or Enum.ScaleType.Stretch,
@@ -208,6 +206,11 @@ function Element:New(Idx, Config)
 				ImageRectOffset = ImageData.ImageRectOffset or Vector2.zero,
 				ImageRectSize = ImageData.ImageRectSize or Vector2.zero,
 			}, {
+				New("UIAspectRatioConstraint", {
+					AspectRatio = ImageAspectRatio,
+					AspectType = Enum.AspectType.FitWithinMaxSize,
+					DominantAxis = Enum.DominantAxis.Width,
+				}),
 				New("UICorner", {
 					CornerRadius = UDim.new(0, 6),
 				}),
@@ -415,7 +418,6 @@ function Element:New(Idx, Config)
 		ImagePicker.SelectedIndexes = {}
 		ImagePicker.SelectedImages = {}
 		local NewCellWidth, NewCellHeight = RecalculateCellSize()
-		CurrentCellWidth = NewCellWidth
 		GridLayout.CellSize = UDim2.fromOffset(NewCellWidth, NewCellHeight)
 		ImagePicker:BuildImageList()
 	end
