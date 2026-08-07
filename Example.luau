@@ -12,16 +12,6 @@ local Window = Library:CreateWindow{
     Acrylic = true, -- The blur may be detectable, setting this to false disables blur entirely
     Theme = "Darker",
     MinimizeKey = Enum.KeyCode.LeftShift, -- Used when theres no MinimizeKeybind
-    Mobile = {
-        GetIcon = function(Visible)
-            return {
-                Image = "rbxassetid://10709790948",
-                ImageRectOffset = Vector2.new(Visible and 0 or 60, 0),
-                ImageRectSize = Vector2.new(30, 30)
-            }
-        end,
-        Size = UDim2.fromOffset(44, 44)
-    }
 }
 
 -- Fluent Renewed provides ALL 1544 Lucide 0.469.0 https://lucide.dev/icons/ Icons and ALL 9072 Phosphor 2.1.0 https://phosphoricons.com/ Icons for the tabs, icons are optional
