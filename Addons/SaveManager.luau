@@ -27,22 +27,37 @@ local function SerializeValue(Value)
 	local valueType = typeof(Value)
 
 	if valueType == "Instance" then
+		local fullName = Value:GetFullName()
+		-- Ensure the path starts with "game." for consistent matching
+		if not fullName:find("^game%.") then
+			fullName = "game." .. fullName
+		end
 		return {
 			type = "Instance",
 			className = Value.ClassName,
 			name = Value.Name,
-			path = Value:GetFullName()
+			path = fullName
 		}
 	elseif valueType == "EnumItem" then
+		local enumTypeStr = tostring(Value.EnumType)
+		-- Ensure the enum type starts with "Enum." for consistent matching
+		if not enumTypeStr:find("^Enum%.") then
+			enumTypeStr = "Enum." .. enumTypeStr
+		end
 		return {
 			type = "EnumItem",
-			enumType = tostring(Value.EnumType),
+			enumType = enumTypeStr,
 			name = Value.Name
 		}
 	elseif valueType == "Enum" then
+		local enumTypeStr = tostring(Value)
+		-- Ensure the enum type starts with "Enum." for consistent matching
+		if not enumTypeStr:find("^Enum%.") then
+			enumTypeStr = "Enum." .. enumTypeStr
+		end
 		return {
 			type = "Enum",
-			enumType = tostring(Value)
+			enumType = enumTypeStr
 		}
 	elseif valueType == "table" then
 		local serialized = {}
@@ -57,13 +72,6 @@ end
 
 local function SerializeMultiDropdownValue(Value)
 	local serialized = {}
-	-- Debug: print the value structure
-	local debugInfo = {}
-	for k, v in next, Value do
-		debugInfo[#debugInfo + 1] = `{tostring(k)} (type: {typeof(k)}) = {tostring(v)}`
-	end
-	print("MultiDropdown Value:", table.concat(debugInfo, ", "))
-
 	for k, v in next, Value do
 		if v == true then -- Only serialize selected items
 			local serializedKey = SerializeValue(k)
@@ -75,6 +83,8 @@ local function SerializeMultiDropdownValue(Value)
 					keyString = `<Instance> (${serializedKey.className})`
 				elseif serializedKey.type == "EnumItem" then
 					keyString = `<EnumItem> (${serializedKey.enumType}.${serializedKey.name})`
+				elseif serializedKey.type == "Enum" then
+					keyString = `<Enum> (${serializedKey.enumType})`
 				else
 					keyString = tostring(k)
 				end
@@ -106,6 +116,7 @@ local function DeserializeValue(Value, AvailableValues)
 			-- Try to find matching enum from available values
 			for _, availableValue in next, AvailableValues do
 				if typeof(availableValue) == "EnumItem" then
+					-- Compare both the full enum type and the name
 					if tostring(availableValue.EnumType) == Value.enumType and availableValue.Name == Value.name then
 						return availableValue
 					end
