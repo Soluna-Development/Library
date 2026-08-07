@@ -244,7 +244,9 @@ local SingleImagePicker = Tabs.Main:CreateImagePicker("SingleImagePicker", {
 		"rbxassetid://87701424695968",
 	},
 	Columns = 3,
-	ImageSize = UDim2.fromOffset(80, 80),
+	ImageSize = UDim2.fromOffset(80, 0), -- Height 0 = auto (1:1 ratio)
+	SelectText = "Choose",
+	SelectedText = "Chosen",
 	MultiSelect = false,
 	Default = "",
 	Callback = function(Selected)
@@ -271,7 +273,9 @@ local MultiImagePicker = Tabs.Main:CreateImagePicker("MultiImagePicker", {
 		"rbxassetid://116418392062460",
 	},
 	Columns = 4,
-	ImageSize = UDim2.fromOffset(70, 70),
+	ImageSize = UDim2.fromOffset(70, 0), -- Height 0 = auto (1:1 ratio)
+	SelectText = "Pick",
+	SelectedText = "Picked",
 	MultiSelect = true,
 	Default = {"", ""},
 	Callback = function(Selected)
@@ -302,7 +306,9 @@ local AdvancedImagePicker = Tabs.Main:CreateImagePicker("AdvancedImagePicker", {
 		},
 	},
 	Columns = 2,
-	ImageSize = UDim2.fromOffset(120, 120),
+	ImageSize = UDim2.fromOffset(120, 0), -- Height 0 = auto (1:1 ratio)
+	SelectText = "Select",
+	SelectedText = "Active",
 	MultiSelect = true,
 	Callback = function(Selected)
 		print("Advanced image selection changed")

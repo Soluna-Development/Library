@@ -30,7 +30,9 @@ function Element:New(Idx, Config)
 		SelectedIndexes = {},
 		Columns = Config.Columns or 3,
 		MultiSelect = Config.MultiSelect or false,
-		ImageSize = Config.ImageSize or UDim2.fromOffset(80, 80),
+		ImageSize = Config.ImageSize or UDim2.fromOffset(80, 0),
+		SelectText = Config.SelectText or "Select",
+		SelectedText = Config.SelectedText or "Selected",
 		Callback = Config.Callback or function(Selected) end,
 		Changed = Config.Changed or function(Selected) end,
 		Type = "ImagePicker",
@@ -77,12 +79,19 @@ function Element:New(Idx, Config)
 	local ImageVerticalPadding = 8
 
 	local function RecalculateCellSize()
-		local MaxImageWidth, MaxImageHeight = ImagePickerSize.X.Offset, ImagePickerSize.Y.Offset
+		local MaxImageWidth = ImagePickerSize.X.Offset
+		local MaxImageHeight = ImagePickerSize.Y.Offset
 		for _, Entry in next, ImagePicker.Images do
 			if typeof(Entry) == "table" and Entry.Size then
 				MaxImageWidth = math.max(MaxImageWidth, Entry.Size.X.Offset)
-				MaxImageHeight = math.max(MaxImageHeight, Entry.Size.Y.Offset)
+				if Entry.Size.Y.Offset > 0 then
+					MaxImageHeight = math.max(MaxImageHeight, Entry.Size.Y.Offset)
+				end
 			end
+		end
+
+		if MaxImageHeight == 0 then
+			MaxImageHeight = MaxImageWidth
 		end
 
 		local CellWidth = MaxImageWidth + 20
@@ -282,7 +291,7 @@ function Element:New(Idx, Config)
 
 		local function SetSelected(Value)
 			IsSelected = Value
-			SelectLabel.Text = IsSelected and "Selected" or "Select"
+			SelectLabel.Text = IsSelected and ImagePicker.SelectedText or ImagePicker.SelectText
 			SelectIcon.Visible = IsSelected
 			SetBackTransparency(IsSelected and 1 or 0.9)
 			SetAccentTransparency(IsSelected and 0.8 or 1)
