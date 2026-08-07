@@ -302,7 +302,7 @@ local AdvancedImagePicker = Tabs.Main:CreateImagePicker("AdvancedImagePicker", {
 		},
 	},
 	Columns = 2,
-	ImageSize = UDim2.fromOffset(150, 0), -- Height 0 = auto (1:1 ratio), set a non-zero Y for a rectangular image
+	ImageSize = UDim2.fromOffset(170, 0), -- Height 0 = auto (1:1 ratio), set a non-zero Y for a rectangular image
 	SelectText = "Select",
 	SelectedText = "Active",
 	MultiSelect = true,

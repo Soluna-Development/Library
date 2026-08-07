@@ -172,9 +172,7 @@ function Element:New(Idx, Config)
 		local EntrySize = ImageData.Size
 		local SourceWidth = ImagePicker.ImageAreaWidth
 		local SourceHeight = (EntrySize and EntrySize.Y.Offset > 0 and EntrySize.Y.Offset) or ImagePicker.ImageAreaHeight
-		local ImageVerticalInset = 8
-		local EffectiveHeight = SourceHeight - ImageVerticalInset
-		local ImageAspectRatio = SourceWidth / EffectiveHeight
+		local ImageAspectRatio = SourceWidth / SourceHeight
 
 		local Container = New("Frame", {
 			Size = UDim2.fromOffset(SourceWidth, 0),
@@ -191,10 +189,6 @@ function Element:New(Idx, Config)
 			BackgroundTransparency = 1,
 			LayoutOrder = 1,
 		}, {
-			New("UIPadding", {
-				PaddingTop = UDim.new(0, 4),
-				PaddingBottom = UDim.new(0, 4),
-			}),
 			New("ImageLabel", {
 				Size = UDim2.fromScale(1, 1),
 				BackgroundTransparency = 1,
