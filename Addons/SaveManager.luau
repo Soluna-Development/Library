@@ -77,27 +77,22 @@ end
 local function SerializeMultiDropdownValue(Value)
 	local serialized = {}
 	for k, v in next, Value do
-		if v == true then -- Only serialize selected items
+		if v == true then
 			local serializedKey = SerializeValue(k)
-			-- ALWAYS use string keys for JSON compatibility
 			local keyString
 			if typeof(serializedKey) == "table" then
-				-- Create a string representation for the key
 				if serializedKey.type == "Instance" then
 					keyString = `<Instance> (${serializedKey.className})`
 				elseif serializedKey.type == "EnumItem" then
-					-- Replace $ with . for clean display
 					local cleanEnumType = serializedKey.enumType:gsub("%$", ".")
 					keyString = `<EnumItem> (${cleanEnumType}.${serializedKey.name})`
 				elseif serializedKey.type == "Enum" then
-					-- Replace $ with . for clean display
 					local cleanEnumType = serializedKey.enumType:gsub("%$", ".")
 					keyString = `<Enum> (${cleanEnumType})`
 				else
 					keyString = tostring(k)
 				end
 			else
-				-- Convert simple types to string keys
 				keyString = tostring(serializedKey)
 			end
 			serialized[keyString] = serializedKey
@@ -137,17 +132,20 @@ local function DeserializeValue(Value, AvailableValues)
 			end
 			return nil -- Enum not found
 		elseif Value.type == "Enum" then
-			-- Try to find matching enum from available values
 			for _, availableValue in next, AvailableValues do
 				if typeof(availableValue) == "Enum" then
 					local availableEnumType = tostring(availableValue):gsub("%$", ".")
-					-- Try both with and without "Enum." prefix
-					if availableEnumType == Value.enumType or availableEnumType == Value.enumType:gsub("^Enum%.", "") then
+					if not availableEnumType:find("^Enum%.") then
+						availableEnumType = "Enum." .. availableEnumType
+					end
+					local strippedValueType = Value.enumType:gsub("^Enum%.", "")
+					local strippedAvailableType = availableEnumType:gsub("^Enum%.", "")
+					if availableEnumType == Value.enumType or strippedAvailableType == strippedValueType then
 						return availableValue
 					end
 				end
 			end
-			return nil -- Enum not found
+			return nil
 		end
 	elseif valueType == "table" then
 		-- Check if this is a multi-dropdown value (table with serialized complex types as values)
@@ -308,19 +306,12 @@ local SaveManager = {} do
 					else
 						local deserializedValue = {}
 						for k, v in next, Value do
-							-- All keys are now strings, deserialize the value
 							if typeof(v) == "table" and v.type then
-								-- Deserialize the complex type (instance/enum)
 								local deserializedValueItem = DeserializeValue(v, DropdownElement.Values or {})
-								if idx == "MultiInstanceDropdown" then
-									print("Deserializing complex type:", k, "Result:", deserializedValueItem)
-								end
 								if deserializedValueItem then
 									deserializedValue[deserializedValueItem] = true
 								end
 							else
-								-- Simple value - the key was a simple type converted to string
-								-- Try to convert back to original type
 								local originalKey
 								if tonumber(k) then
 									originalKey = tonumber(k)
@@ -329,13 +320,10 @@ local SaveManager = {} do
 								elseif k == "false" then
 									originalKey = false
 								else
-									originalKey = k -- keep as string
+									originalKey = k
 								end
-								deserializedValue[originalKey] = v
+								deserializedValue[originalKey] = true
 							end
-						end
-						if idx == "MultiInstanceDropdown" then
-							print("Final deserialized value:", deserializedValue)
 						end
 						DropdownElement:SetValue(deserializedValue)
 					end
