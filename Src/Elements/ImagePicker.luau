@@ -233,8 +233,6 @@ function Element:New(Idx, Config)
 			},
 		})
 
-		Library.Utilities.Icons:SetIcon(SelectIcon, "check")
-
 		local SelectBack = New("Frame", {
 			Size = UDim2.fromScale(1, 1),
 			BackgroundTransparency = 1,
