@@ -96,6 +96,8 @@ function Element:New(Idx, Config)
 			MaxImageHeight = MaxImageWidth
 		end
 
+		ImagePicker.ImageAreaHeight = MaxImageHeight
+
 		local CellWidthScale = 1 / ImagePicker.Columns
 		local CellHeight = MaxImageHeight + ImageVerticalPadding + SelectButtonHeight + ContainerPadding
 
@@ -190,8 +192,7 @@ function Element:New(Idx, Config)
 		})
 
 		local ImageContainer = New("Frame", {
-			Size = UDim2.fromScale(1, 0),
-			AutomaticSize = Enum.AutomaticSize.Y,
+			Size = UDim2.new(1, 0, 0, ImagePicker.ImageAreaHeight),
 			BackgroundTransparency = 1,
 			LayoutOrder = 1,
 		}, {
@@ -200,7 +201,7 @@ function Element:New(Idx, Config)
 				PaddingBottom = UDim.new(0, 4),
 			}),
 			New("ImageLabel", {
-				Size = UDim2.fromScale(1, 0),
+				Size = UDim2.fromScale(1, 1),
 				BackgroundTransparency = 1,
 				Image = ImageUrl,
 				ScaleType = ImageData.ScaleType or Enum.ScaleType.Stretch,
