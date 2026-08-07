@@ -208,7 +208,7 @@ function Element:New(Idx, Config)
 			}, {
 				New("UIAspectRatioConstraint", {
 					AspectRatio = ImageAspectRatio,
-					AspectType = Enum.AspectType.FitWithinMaxSize,
+					AspectType = Enum.AspectType.ScaleWithParentSize,
 					DominantAxis = Enum.DominantAxis.Width,
 				}),
 				New("UICorner", {
