@@ -26,10 +26,8 @@ end
 local function SerializeValue(Value)
 	local valueType = typeof(Value)
 
-	-- Debug logging for Enum
-	if valueType == "Enum" then
-		print("SerializeValue detected Enum:", tostring(Value), "type:", valueType)
-	end
+	-- Debug logging for all types to see what Enum.JoinSource actually is
+	print("SerializeValue:", "Value:", tostring(Value), "Type:", valueType)
 
 	if valueType == "Instance" then
 		local fullName = Value:GetFullName()
