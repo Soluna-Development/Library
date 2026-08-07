@@ -137,6 +137,16 @@ local SaveManager = {} do
 				end
 			end,
 		},
+		Paragraph = {
+			Save = function(idx, object)
+				return { type = "Paragraph", idx = idx, value = object.Value, Timestamp = object.Instance.CreatedAt }
+			end,
+			Load = function(idx, data)
+				if SaveManager.Options[idx] and data.value ~= nil then
+					SaveManager.Options[idx]:SetValue(data.value)
+				end
+			end,
+		},
 		WindowSize = {
 			Save = function(idx, object)
 				local window = SaveManager.Library.CreatedWindow

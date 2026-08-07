@@ -145,6 +145,8 @@ function Element:New(Idx, Config)
 			end
 		end
 		ImagePicker.SelectedImages = Ids
+		-- Update Value property for SaveManager compatibility
+		ImagePicker.Value = Ids
 	end
 
 	local function SetButtonSelected(Data, IsSelected)
@@ -340,6 +342,9 @@ function Element:New(Idx, Config)
 			RefreshAllButtons()
 			SyncSelectedImages()
 
+			-- Update Value property for SaveManager compatibility
+			ImagePicker.Value = ImagePicker.SelectedImages
+
 			if typeof(ImagePicker.Callback) == "function" then
 				Library:SafeCallback(ImagePicker.Callback, ImagePicker.SelectedImages)
 			end
@@ -384,6 +389,9 @@ function Element:New(Idx, Config)
 		RefreshAllButtons()
 		SyncSelectedImages()
 
+		-- Update Value property for SaveManager compatibility
+		ImagePicker.Value = ImagePicker.SelectedImages
+
 		if typeof(ImagePicker.Callback) == "function" then
 			Library:SafeCallback(ImagePicker.Callback, ImagePicker.SelectedImages)
 		end
@@ -414,6 +422,9 @@ function Element:New(Idx, Config)
 	ImagePicker:BuildImageList()
 	SyncSelectedImages()
 	RefreshAllButtons()
+
+	-- Add Value property for SaveManager compatibility
+	ImagePicker.Value = ImagePicker.SelectedImages
 
 	Library.Options[Idx] = ImagePicker
 	ImagePicker.Instance = ImagePickerFrame
