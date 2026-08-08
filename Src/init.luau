@@ -259,7 +259,8 @@ function Library:Window(Config: {
 		Theme: string?,
 		Mobile: {
 			GetIcon: (IsMinimized: boolean) -> { Image: string, ImageRectOffset: Vector2, ImageRectSize: Vector2 },
-			Size: UDim2
+			Size: UDim2,
+			WindowSize: UDim2?
 		}?
 	})
 	assert(Library.CreatedWindow == nil, debug.traceback("You cannot create more than one window.", 2))
@@ -274,6 +275,10 @@ function Library:Window(Config: {
 
 	Config.Size = if Config.Resize ~= true then Config.Size else UDim2.fromOffset(Library.Utilities:Resize((Config.Size and Config.Size.X.Offset) or 470, (Config.Size and Config.Size.Y.Offset) or 380))
 	Config.MinSize = if Config.Resize ~= true then Config.MinSize else Vector2.new(Library.Utilities:Resize((Config.MinSize and Config.MinSize.X) or 470, (Config.MinSize and Config.MinSize.Y) or 380))
+
+	if typeof(Config.Mobile) == "table" and typeof(Config.Mobile.WindowSize) == "UDim2" and Config.Resize == true then
+		Config.Mobile.WindowSize = UDim2.fromOffset(Library.Utilities:Resize(Config.Mobile.WindowSize.X.Offset, Config.Mobile.WindowSize.Y.Offset))
+	end
 
 	Library.MinimizeKey = if typeof(Config.MinimizeKey) == "string" or typeof(Config.MinimizeKey) == "EnumItem" and Config.MinimizeKey.EnumType == Enum.KeyCode then Config.MinimizeKey else Enum.KeyCode.LeftControl
 	Library.UseAcrylic = if typeof(Config.Acrylic) == "boolean" then Config.Acrylic else false
@@ -295,11 +300,12 @@ function Library:Window(Config: {
 		SubTitle = Config.SubTitle or "Made with Fluent Renewed",
 
 		TabWidth = Config.TabWidth or 160,
-		Mobile = Config.Mobile or {
-			GetIcon = function(IsMinimized: boolean): { Image: string, ImageRectOffset: Vector2, ImageRectSize: Vector2 }
+		Mobile = {
+			GetIcon = (Config.Mobile and Config.Mobile.GetIcon) or function(IsMinimized: boolean): { Image: string, ImageRectOffset: Vector2, ImageRectSize: Vector2 }
 				return Library.Utilities:GetIcon(IsMinimized and "phosphor-eye" or "phosphor-eye-slash")
 			end,
-			Size = UDim2.fromOffset(30, 30)
+			Size = (Config.Mobile and Config.Mobile.Size) or UDim2.fromOffset(30, 30),
+			WindowSize = Config.Mobile and Config.Mobile.WindowSize
 		}
 	}
 

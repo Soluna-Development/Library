@@ -7,12 +7,14 @@ local Window = Library:CreateWindow{
     SubTitle = "by Soluna Development",
     TabWidth = 160,
     Size = UDim2.fromOffset(830, 525),
-    MobileSize = UDim2.fromOffset(1920, 1080), -- New size for only mobile users
     Resize = true, -- Resize this ^ Size according to a 1920x1080 screen, good for mobile users but may look weird on some devices
     MinSize = Vector2.new(470, 380),
     Acrylic = true, -- The blur may be detectable, setting this to false disables blur entirely
     Theme = "Darker",
     MinimizeKey = Enum.KeyCode.LeftShift, -- Used when theres no MinimizeKeybind
+    Mobile = {
+        WindowSize = UDim2.fromOffset(500, 340), -- Optional, overrides ^ Size only for Mobile users, omit to keep the same Size on Mobile
+    },
 }
 
 -- Fluent Renewed provides ALL 1544 Lucide 0.469.0 https://lucide.dev/icons/ Icons and ALL 9072 Phosphor 2.1.0 https://phosphoricons.com/ Icons for the tabs, icons are optional
