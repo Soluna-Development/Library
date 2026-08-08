@@ -2,12 +2,14 @@ local httpService = game:GetService("HttpService")
 
 local InterfaceManager = {} do
 	InterfaceManager.Folder = "FluentRenewedSettings"
+	InterfaceManager.ValidAlignments = { Left = true, Right = true, Top = true, Bottom = true }
 
     InterfaceManager.Settings = {
         Theme = "Dark",
         Acrylic = true,
         Transparency = true,
-        MenuKeybind = Enum.KeyCode.RightControl
+        MenuKeybind = Enum.KeyCode.RightControl,
+        Alignment = "Left"
     }
 
     function InterfaceManager:SetFolder(folder)
@@ -18,11 +20,14 @@ local InterfaceManager = {} do
     function InterfaceManager:SetLibrary(library)
 		self.Library = library
 
+		local WindowAlignment = self.Library.CreatedWindow and self.Library.CreatedWindow.Alignment
+
 		InterfaceManager.Settings = {
 			Theme = self.Library.Theme or "Dark",
 			Acrylic = self.Library.UseAcrylic or true,
 			Transparency = self.Library.Transparency or true,
-			MenuKeybind = self.Library.MinimizeKey or Enum.KeyCode.RightControl
+			MenuKeybind = self.Library.MinimizeKey or Enum.KeyCode.RightControl,
+			Alignment = InterfaceManager.ValidAlignments[WindowAlignment] and WindowAlignment or "Left"
 		}
 	end
 
@@ -62,6 +67,10 @@ local InterfaceManager = {} do
                     InterfaceManager.Settings[i] = v
                 end
             end
+        end
+
+        if not InterfaceManager.ValidAlignments[InterfaceManager.Settings.Alignment] then
+            InterfaceManager.Settings.Alignment = "Left"
         end
     end
 
@@ -113,6 +122,25 @@ local InterfaceManager = {} do
 			end
 		})
 	
+		local TabAlignment = section:AddDropdown("InterfaceManager_TabAlignment", {
+			Title = "Tab Alignment",
+			Description = "Changes where the tabs appear. Requires a reload.",
+			Values = {"Left", "Right", "Top", "Bottom"},
+			Default = Settings.Alignment,
+			Callback = function(Value)
+				Settings.Alignment = Value
+				InterfaceManager:SaveSettings()
+
+				Library:Notify({
+					Title = "Interface",
+					Content = "Tab alignment will apply the next time the interface is loaded.",
+					Duration = 6
+				})
+			end
+		})
+
+		TabAlignment:SetValue(Settings.Alignment)
+
 		local MenuKeybind = section:AddKeybind("InterfaceManager_MenuKeybind", {
 			Title = "Minimize Bind", 
 			Default = Settings.MenuKeybind,

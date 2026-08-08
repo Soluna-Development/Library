@@ -1,7 +1,10 @@
 local Library = loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/Soluna-Development/Library/refs/heads/main/Fluent.luau"))()
 local SaveManager = loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/Soluna-Development/Library/refs/heads/main/Addons/SaveManager.luau"))()
 local InterfaceManager = loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/Soluna-Development/Library/refs/heads/main/Addons/InterfaceManager.luau"))()
- 
+
+InterfaceManager:SetFolder("FluentScriptHub")
+InterfaceManager:LoadSettings()
+
 local Window = Library:CreateWindow{
     Title = `Fluent Renewed {Library.Version}`,
     SubTitle = "by Soluna Development",
@@ -12,6 +15,7 @@ local Window = Library:CreateWindow{
     Acrylic = true, -- The blur may be detectable, setting this to false disables blur entirely
     Theme = "Darker",
     MinimizeKey = Enum.KeyCode.LeftShift, -- Used when theres no MinimizeKeybind
+    Alignment = InterfaceManager.Settings.Alignment,
     Mobile = {
         WindowSize = UDim2.fromOffset(1920, 1080), -- Optional, overrides ^ Size only for Mobile users, omit to keep the same Size on Mobile
     },
@@ -369,12 +373,10 @@ SaveManager:SetIgnoreIndexes{}
 -- use case for doing it this way:
 -- a script hub could have themes in a global folder
 -- and game configs in a separate folder per game
-InterfaceManager:SetFolder("FluentScriptHub")
 SaveManager:SetFolder("FluentScriptHub/specific-game")
 
 InterfaceManager:BuildInterfaceSection(Tabs.Settings)
 SaveManager:BuildConfigSection(Tabs.Settings)
-
 
 Window:SelectTab(1)
 

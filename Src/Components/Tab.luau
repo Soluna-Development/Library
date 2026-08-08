@@ -20,10 +20,14 @@ function TabModule:Init(Window)
 	return TabModule
 end
 
+function TabModule:IsHorizontal()
+	local Alignment = TabModule.Window.Alignment
+	return Alignment == "Top" or Alignment == "Bottom"
+end
+
 function TabModule:GetCurrentTabPos()
-	local ItemHeight = 34
 	local ItemPadding = 4
-	local Step = ItemHeight + ItemPadding
+	local Horizontal = TabModule:IsHorizontal()
 
 	local Position = 0
 	for TabIndex = 1, TabModule.TabCount do
@@ -33,11 +37,22 @@ function TabModule:GetCurrentTabPos()
 
 		local TabObject = TabModule.Tabs[TabIndex]
 		if TabObject and TabObject.Frame.Visible then
-			Position += Step
+			Position += (Horizontal and TabObject.Frame.AbsoluteSize.X or 34) + ItemPadding
 		end
 	end
 
 	return Position
+end
+
+function TabModule:GetCurrentTabSize()
+	local Horizontal = TabModule:IsHorizontal()
+	local TabObject = TabModule.Tabs[TabModule.SelectedTab]
+
+	if not TabObject then
+		return Horizontal and 40 or 34
+	end
+
+	return Horizontal and TabObject.Frame.AbsoluteSize.X or 34
 end
 
 function TabModule:New(Title, Icon, Parent)
@@ -60,51 +75,87 @@ function TabModule:New(Title, Icon, Parent)
 		ImageRectSize = Vector2.zero
 	}
 
-	Tab.Frame = New("TextButton", {
-		Size = UDim2.new(1, 0, 0, 34),
+	local Alignment = Window.Alignment
+	local Horizontal = Alignment == "Top" or Alignment == "Bottom"
+	local RightAligned = Alignment == "Right"
+
+	local TextLabel = New("TextLabel", {
+		Name = "TabTitleLabel",
+		AnchorPoint = Vector2.new(0, 0.5),
+		Position = RightAligned and UDim2.new(0, 8, 0.5, 0) or UDim2.new(0, 30, 0.5, 0),
+		Text = Title,
+		RichText = true,
+		TextColor3 = Color3.fromRGB(255, 255, 255),
+		TextTransparency = 0,
+		FontFace = Font.new(
+			"rbxasset://fonts/families/GothamSSm.json",
+			Enum.FontWeight.Regular,
+			Enum.FontStyle.Normal
+		),
+		TextSize = 12,
+		TextXAlignment = RightAligned and "Right" or "Left",
+		TextYAlignment = "Center",
+		Size = UDim2.new(1, -38, 1, 0),
+		AutomaticSize = Horizontal and Enum.AutomaticSize.X or Enum.AutomaticSize.None,
 		BackgroundTransparency = 1,
-		Parent = Parent,
 		ThemeTag = {
-			BackgroundColor3 = "Tab",
+			TextColor3 = "Text",
 		},
-	}, {
-		New("UICorner", {
-			CornerRadius = UDim.new(0, 6),
-		}),
-		New("TextLabel", {
-			AnchorPoint = Vector2.new(0, 0.5),
-			Position = Icon ~= nil and UDim2.new(0, 30, 0.5, 0) or UDim2.new(0, 12, 0.5, 0),
-			Text = Title,
-			RichText = true,
-			TextColor3 = Color3.fromRGB(255, 255, 255),
-			TextTransparency = 0,
-			FontFace = Font.new(
-				"rbxasset://fonts/families/GothamSSm.json",
-				Enum.FontWeight.Regular,
-				Enum.FontStyle.Normal
-			),
-			TextSize = 12,
-			TextXAlignment = "Left",
-			TextYAlignment = "Center",
-			Size = UDim2.new(1, -12, 1, 0),
-			BackgroundTransparency = 1,
-			ThemeTag = {
-				TextColor3 = "Text",
-			},
-		}),
-		New("ImageLabel", {
-			AnchorPoint = Vector2.new(0, 0.5),
-			Size = UDim2.fromOffset(16, 16),
-			Position = UDim2.new(0, 8, 0.5, 0),
-			BackgroundTransparency = 1,
-			ImageRectOffset = Icon and Icon.ImageRectOffset or Vector2.zero,
-			ImageRectSize = Icon and Icon.ImageRectSize or Vector2.zero,
-			Image = Icon and Icon.Image or nil,
-			ThemeTag = {
-				ImageColor3 = "Text",
-			},
-		}),
 	})
+
+	local IconLabel = New("ImageLabel", {
+		AnchorPoint = Vector2.new(0, 0.5),
+		Size = UDim2.fromOffset(16, 16),
+		Position = RightAligned and UDim2.new(1, -24, 0.5, 0) or UDim2.new(0, 8, 0.5, 0),
+		BackgroundTransparency = 1,
+		ImageRectOffset = Icon and Icon.ImageRectOffset or Vector2.zero,
+		ImageRectSize = Icon and Icon.ImageRectSize or Vector2.zero,
+		Image = Icon and Icon.Image or nil,
+		ThemeTag = {
+			ImageColor3 = "Text",
+		},
+	})
+
+	if Horizontal then
+		TextLabel.Position = UDim2.new(0, 28, 0.5, 0)
+		TextLabel.Size = UDim2.new(0, 0, 1, 0)
+		IconLabel.Position = UDim2.new(0, 10, 0.5, 0)
+
+		Tab.Frame = New("TextButton", {
+			Size = UDim2.new(0, 40, 1, 0),
+			AutomaticSize = Enum.AutomaticSize.X,
+			BackgroundTransparency = 1,
+			Parent = Parent,
+			ThemeTag = {
+				BackgroundColor3 = "Tab",
+			},
+		}, {
+			New("UICorner", {
+				CornerRadius = UDim.new(0, 6),
+			}),
+			New("UIPadding", {
+				PaddingLeft = UDim.new(0, 4),
+				PaddingRight = UDim.new(0, 16),
+			}),
+			TextLabel,
+			IconLabel,
+		})
+	else
+		Tab.Frame = New("TextButton", {
+			Size = UDim2.new(1, 0, 0, 34),
+			BackgroundTransparency = 1,
+			Parent = Parent,
+			ThemeTag = {
+				BackgroundColor3 = "Tab",
+			},
+		}, {
+			New("UICorner", {
+				CornerRadius = UDim.new(0, 6),
+			}),
+			TextLabel,
+			IconLabel,
+		})
+	end
 
 	local ContainerLayout = New("UIListLayout", {
 		Padding = UDim.new(0, 5),
@@ -200,6 +251,10 @@ function TabModule:SelectTab(Tab)
 
 	Window.TabDisplay.Text = TabModule.Tabs[Tab].Name
 	Window.SelectorPosMotor:setGoal(Spring(TabModule:GetCurrentTabPos(), { frequency = 6 }))
+
+	if TabModule:IsHorizontal() then
+		Window.SelectorSizeMotor:setGoal(Spring(TabModule:GetCurrentTabSize(), { frequency = 6 }))
+	end
 
 	task.spawn(function()
 		Window.ContainerHolder.Parent = Window.ContainerAnim

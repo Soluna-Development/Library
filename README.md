@@ -29,3 +29,5 @@ lune run Lune/Build/init.luau bundle input=default.project.json script-output=Fl
 - [7kayoh/Acrylic](https://github.com/7kayoh/Acrylic) - Porting richie0866's acrylic module to lua
 - [Latte Softworks & Kotera](https://github.com/latte-soft/wax/) - Bundler
 - [Pepsied-5229/Pepsi-UI-Library](https://github.com/Pepsied-5229/Pepsi-UI-Library) - Inspiration for new features, some of the code
+
+[![Fluent Renewed - Soluna Development](https://uibin.orqan.xyz/api/card?id=699e1db4-f5b3-4616-9973-417f92fdae91&theme=orange)](https://uibin.orqan.xyz/library/699e1db4-f5b3-4616-9973-417f92fdae91)
