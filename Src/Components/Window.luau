@@ -47,6 +47,9 @@ return function(Config)
 	local IsDraggingHideButton, DragInputHideButton, DragStart, DragStartPos = false
 
 	Window.AcrylicPaint = Acrylic.AcrylicPaint()
+	Window.AcrylicPaint.Frame.AnchorPoint = Vector2.new(0, 0)
+	Window.AcrylicPaint.Frame.Position = UDim2.fromScale(0, 0)
+	Window.AcrylicPaint.Frame.Size = UDim2.fromScale(1, 1)
 	Window.TabWidth = Config.TabWidth
 
 	local Alignment = Window.Alignment
@@ -55,6 +58,7 @@ return function(Config)
 
 	local TitleBarHeight = 42
 	local OuterPadding = 12
+	local EdgeInset = 6
 	local RowHeight = 44
 	local SearchBoxSize = Horizontal and 34 or 28
 	local SearchRowWidth = 170
@@ -70,7 +74,7 @@ return function(Config)
 			TabFramePos = IsReversed and UDim2.new(0, OuterPadding, 1, -RowHeight - 8) or UDim2.new(0, OuterPadding, 0, TitleBarHeight + 12)
 		else
 			TabFrameSize = UDim2.new(0, Window.TabWidth, 1, -66)
-			TabFramePos = ForAlignment == "Right" and UDim2.new(1, -OuterPadding - Window.TabWidth, 0, 54) or UDim2.new(0, OuterPadding, 0, 54)
+			TabFramePos = ForAlignment == "Right" and UDim2.new(1, -OuterPadding - EdgeInset - Window.TabWidth, 0, 54) or UDim2.new(0, OuterPadding, 0, 54)
 		end
 
 		local TabDisplayPos, TabDisplaySize, ContainerPos, ContainerSize
@@ -82,9 +86,9 @@ return function(Config)
 			ContainerSize = UDim2.new(1, -Window.TabWidth - 32, 1, -102)
 		elseif ForAlignment == "Right" then
 			TabDisplayPos = UDim2.fromOffset(26, 56)
-			TabDisplaySize = UDim2.new(1, -Window.TabWidth - 42, 0, 28)
+			TabDisplaySize = UDim2.new(1, -Window.TabWidth - 42 - EdgeInset, 0, 28)
 			ContainerPos = UDim2.fromOffset(26, 90)
-			ContainerSize = UDim2.new(1, -Window.TabWidth - 32, 1, -102)
+			ContainerSize = UDim2.new(1, -Window.TabWidth - 32 - EdgeInset, 1, -102)
 		elseif ForAlignment == "Top" then
 			TabDisplayPos = UDim2.fromOffset(26, TitleBarHeight + RowHeight + 24)
 			TabDisplaySize = UDim2.new(1, -42, 0, 28)
@@ -184,7 +188,7 @@ return function(Config)
 	})
 
 	Window.TabHolder = New("ScrollingFrame", {
-		Size = Horizontal and UDim2.new(1, -SearchRowWidth - 10, 1, 0) or UDim2.new(1, 0, 1, -(Layout.SearchBoxSize + 4)),
+		Size = Horizontal and UDim2.new(1, -SearchRowWidth - 10 - EdgeInset, 1, 0) or UDim2.new(1, 0, 1, -(Layout.SearchBoxSize + 4)),
 		Position = Horizontal and UDim2.fromOffset(SearchRowWidth + 10, 0) or UDim2.fromOffset(0, Layout.SearchBoxSize + 4),
 		BackgroundTransparency = 1,
 		ScrollBarImageTransparency = 1,
@@ -635,7 +639,7 @@ return function(Config)
 		Window.NoResultsLabel.Size = Horizontal and UDim2.new(0, 160, 1, 0) or UDim2.new(1, 0, 0, 28)
 		Window.NoResultsLabel.Position = Horizontal and UDim2.fromOffset(0, 0) or UDim2.fromOffset(0, 4)
 
-		Window.TabHolder.Size = Horizontal and UDim2.new(1, -SearchRowWidth - 10, 1, 0) or UDim2.new(1, 0, 1, -(Layout.SearchBoxSize + 4))
+		Window.TabHolder.Size = Horizontal and UDim2.new(1, -SearchRowWidth - 10 - EdgeInset, 1, 0) or UDim2.new(1, 0, 1, -(Layout.SearchBoxSize + 4))
 		Window.TabHolder.Position = Horizontal and UDim2.fromOffset(SearchRowWidth + 10, 0) or UDim2.fromOffset(0, Layout.SearchBoxSize + 4)
 		Window.TabHolder.ScrollingDirection = Horizontal and Enum.ScrollingDirection.X or Enum.ScrollingDirection.Y
 		Window.TabHolder.CanvasPosition = Vector2.new(0, 0)
