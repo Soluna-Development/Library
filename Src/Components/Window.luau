@@ -48,10 +48,13 @@ return function(Config)
 	Window.AcrylicPaint = Acrylic.AcrylicPaint()
 	Window.TabWidth = Config.TabWidth
 
+	local SearchBoxHeight = 32
+	local SelectorTopOffset = 17 + SearchBoxHeight
+
 	local Selector = New("Frame", {
 		Size = UDim2.fromOffset(4, 0),
 		BackgroundColor3 = Color3.fromRGB(76, 194, 255),
-		Position = UDim2.fromOffset(0, 17),
+		Position = UDim2.fromOffset(0, SelectorTopOffset),
 		AnchorPoint = Vector2.new(0, 0.5),
 		ThemeTag = {
 			BackgroundColor3 = "Accent",
@@ -209,7 +212,7 @@ return function(Config)
 		Y = Window.Position.Y.Offset,
 	})
 
-	Window.SelectorPosMotor = Flipper.SingleMotor.new(17)
+	Window.SelectorPosMotor = Flipper.SingleMotor.new(0)
 	Window.SelectorSizeMotor = Flipper.SingleMotor.new(0)
 	Window.ContainerBackMotor = Flipper.SingleMotor.new(0)
 	Window.ContainerPosMotor = Flipper.SingleMotor.new(94)
@@ -225,7 +228,7 @@ return function(Config)
 	local LastValue = 0
 	local LastTime = 0
 	Window.SelectorPosMotor:onStep(function(Value)
-		Selector.Position = UDim2.new(0, 0, 0, Value + 17)
+		Selector.Position = UDim2.new(0, 0, 0, Value + SelectorTopOffset)
 		local Now = tick()
 		local DeltaTime = Now - LastTime
 
