@@ -57,7 +57,6 @@ end
 
 function TabModule:ApplyPillShape(Tab, Alignment)
 	local Horizontal = Alignment == "Top" or Alignment == "Bottom"
-	local RightAligned = Alignment == "Right"
 
 	local TextLabel = Tab.Frame:FindFirstChild("TabTitleLabel")
 	local IconLabel = Tab.Frame:FindFirstChild("IconLabel")
@@ -81,12 +80,12 @@ function TabModule:ApplyPillShape(Tab, Alignment)
 			})
 		end
 	else
-		TextLabel.Position = RightAligned and UDim2.new(0, 8, 0.5, 0) or UDim2.new(0, 30, 0.5, 0)
+		TextLabel.Position = UDim2.new(0, 30, 0.5, 0)
 		TextLabel.Size = UDim2.new(1, -38, 1, 0)
 		TextLabel.AutomaticSize = Enum.AutomaticSize.None
-		TextLabel.TextXAlignment = RightAligned and "Right" or "Left"
+		TextLabel.TextXAlignment = "Left"
 
-		IconLabel.Position = RightAligned and UDim2.new(1, -24, 0.5, 0) or UDim2.new(0, 8, 0.5, 0)
+		IconLabel.Position = UDim2.new(0, 8, 0.5, 0)
 
 		Tab.Frame.Size = UDim2.new(1, 0, 0, 34)
 		Tab.Frame.AutomaticSize = Enum.AutomaticSize.None
@@ -128,12 +127,11 @@ function TabModule:New(Title, Icon, Parent)
 
 	local Alignment = Window.Alignment
 	local Horizontal = Alignment == "Top" or Alignment == "Bottom"
-	local RightAligned = Alignment == "Right"
 
 	local TextLabel = New("TextLabel", {
 		Name = "TabTitleLabel",
 		AnchorPoint = Vector2.new(0, 0.5),
-		Position = RightAligned and UDim2.new(0, 8, 0.5, 0) or UDim2.new(0, 30, 0.5, 0),
+		Position = UDim2.new(0, 30, 0.5, 0),
 		Text = Title,
 		RichText = true,
 		TextColor3 = Color3.fromRGB(255, 255, 255),
@@ -144,7 +142,7 @@ function TabModule:New(Title, Icon, Parent)
 			Enum.FontStyle.Normal
 		),
 		TextSize = 12,
-		TextXAlignment = RightAligned and "Right" or "Left",
+		TextXAlignment = "Left",
 		TextYAlignment = "Center",
 		Size = UDim2.new(1, -38, 1, 0),
 		AutomaticSize = Horizontal and Enum.AutomaticSize.X or Enum.AutomaticSize.None,
@@ -158,7 +156,7 @@ function TabModule:New(Title, Icon, Parent)
 		Name = "IconLabel",
 		AnchorPoint = Vector2.new(0, 0.5),
 		Size = UDim2.fromOffset(16, 16),
-		Position = RightAligned and UDim2.new(1, -24, 0.5, 0) or UDim2.new(0, 8, 0.5, 0),
+		Position = UDim2.new(0, 8, 0.5, 0),
 		BackgroundTransparency = 1,
 		ImageRectOffset = Icon and Icon.ImageRectOffset or Vector2.zero,
 		ImageRectSize = Icon and Icon.ImageRectSize or Vector2.zero,

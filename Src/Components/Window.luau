@@ -67,7 +67,7 @@ return function(Config)
 		local TabFramePos, TabFrameSize
 		if IsHorizontal then
 			TabFrameSize = UDim2.new(1, -OuterPadding * 2, 0, RowHeight)
-			TabFramePos = IsReversed and UDim2.new(0, OuterPadding, 1, -RowHeight - 12) or UDim2.new(0, OuterPadding, 0, TitleBarHeight + 12)
+			TabFramePos = IsReversed and UDim2.new(0, OuterPadding, 1, -RowHeight - 8) or UDim2.new(0, OuterPadding, 0, TitleBarHeight + 12)
 		else
 			TabFrameSize = UDim2.new(0, Window.TabWidth, 1, -66)
 			TabFramePos = ForAlignment == "Right" and UDim2.new(1, -OuterPadding - Window.TabWidth, 0, 54) or UDim2.new(0, OuterPadding, 0, 54)
@@ -134,8 +134,9 @@ return function(Config)
 	})
 
 	Window.TabSearchBox = New("TextBox", {
-		Size = Horizontal and UDim2.fromOffset(SearchRowWidth, Layout.SearchBoxSize) or UDim2.new(1, 0, 0, Layout.SearchBoxSize),
-		Position = UDim2.fromOffset(0, 0),
+		Size = Horizontal and UDim2.new(0, SearchRowWidth, 1, 0) or UDim2.new(1, 0, 0, Layout.SearchBoxSize),
+		AnchorPoint = Horizontal and Vector2.new(0, 0.5) or Vector2.new(0, 0),
+		Position = Horizontal and UDim2.new(0, 0, 0.5, 0) or UDim2.fromOffset(0, 0),
 		BackgroundTransparency = 0.89,
 		BackgroundColor3 = Color3.fromRGB(130, 130, 130),
 		PlaceholderText = "Search",
@@ -627,7 +628,9 @@ return function(Config)
 		Reversed = Layout.Reversed
 		SelectorInset = Layout.SelectorInset
 
-		Window.TabSearchBox.Size = Horizontal and UDim2.fromOffset(SearchRowWidth, Layout.SearchBoxSize) or UDim2.new(1, 0, 0, Layout.SearchBoxSize)
+		Window.TabSearchBox.Size = Horizontal and UDim2.new(0, SearchRowWidth, 1, 0) or UDim2.new(1, 0, 0, Layout.SearchBoxSize)
+		Window.TabSearchBox.AnchorPoint = Horizontal and Vector2.new(0, 0.5) or Vector2.new(0, 0)
+		Window.TabSearchBox.Position = Horizontal and UDim2.new(0, 0, 0.5, 0) or UDim2.fromOffset(0, 0)
 
 		Window.NoResultsLabel.Size = Horizontal and UDim2.new(0, 160, 1, 0) or UDim2.new(1, 0, 0, 28)
 		Window.NoResultsLabel.Position = Horizontal and UDim2.fromOffset(0, 0) or UDim2.fromOffset(0, 4)
