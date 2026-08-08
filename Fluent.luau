@@ -58821,65 +58821,126 @@ return {
 end)() end,
     [31] = function()local wax,script,require=ImportGlobals(31)local ImportGlobals return (function(...)local Themes = {
 	Names = {
-		"Vynixu",
-		"Dark",
-		"Darker",
-		"Darkest",
-		"Light",
-		"Quiet Light",
-		"Aqua",
-		"Tomorrow Night Blue",
 		"Abyss",
+		"Adapta Nokto",
+		"Amaranth",
+		"Amber Glow",
+		"Ambiance",
 		"Amethyst",
 		"Amethyst Dark",
-		"Rose",
-		"Yaru",
-		"United Ubuntu",
-		"Elementary",
-		"Yaru Dark",
-		"United GNOME",
+		"Aqua",
 		"Arc Dark",
-		"Ambiance",
-		"Adapta Nokto",
-		"Monokai",
-		"Monokai Classic",
-		"Monokai Vibrant",
-		"Monokai Dimmed",
-		"Typewriter",
-        "Dark Typewriter",
-		"Kimbie Dark",
-		"Solarized Dark",
-		"Solarized Light",
+		"Ashfall",
+		"Aurora",
+		"Blackberry",
+		"Blood Moon",
+		"Blush",
+		"Bronze",
+		"Bubblegum",
+		"Charcoal Lime",
+		"Cherry Cola",
+		"Cobalt",
+		"Cocoa",
+		"Copper",
+		"Copperfield",
+		"Cotton Candy",
+		"Crimson Night",
+		"Cyberpunk",
+		"Dark",
+		"Dark Typewriter",
+		"Darker",
+		"Deep Ocean",
+		"Deep Space",
+		"DuoTone Dark Earth",
+		"DuoTone Dark Forest",
 		"DuoTone Dark Sea",
 		"DuoTone Dark Sky",
 		"DuoTone Dark Space",
-		"DuoTone Dark Forest",
-		"DuoTone Dark Earth",
-		"VSC Dark+",
-		"VSC Dark Modern",
-		"VSC Dark High Contrast",
-		"VSC Light+",
-		"VSC Light Modern",
-		"VSC Light High Contrast",
-		"VSC Red",
-		"VS Dark",
-		"VS Light",
+		"Dusk",
+		"Elementary",
+		"Emerald Deep",
+		"Forest Night",
+		"Frostbyte",
 		"GitHub Dark",
-		"GitHub Dark Dimmed",
-		"GitHub Dark Default",
-		"GitHub Dark High Contrast",
 		"GitHub Dark Colorblind",
+		"GitHub Dark Default",
+		"GitHub Dark Dimmed",
+		"GitHub Dark High Contrast",
 		"GitHub Light",
+		"GitHub Light Colorblind",
 		"GitHub Light Default",
 		"GitHub Light High Contrast",
-		"GitHub Light Colorblind",
+		"Graphene",
+		"Ink Blue",
+		"Iron Rust",
+		"Ivory Gold",
+		"Jade",
+		"Kimbie Dark",
+		"Lavender Night",
+		"Light",
+		"Lilac",
+		"Linen",
+		"Magma",
+		"Midnight Teal",
+		"Mint Chocolate",
+		"Mint Light",
+		"Monokai",
+		"Monokai Classic",
+		"Monokai Dimmed",
+		"Monokai Vibrant",
+		"Nebula",
+		"Neon Sign",
+		"Obsidian Gold",
+		"Onyx Red",
+		"Peach",
+		"Plum",
+		"Porcelain",
+		"Quiet Light",
+		"Rose",
+		"Rosewood",
+		"Royal Purple",
+		"Sage",
+		"Sakura",
+		"Sky Light",
+		"Slate Violet",
+		"Snowbank",
+		"Solaris",
+		"Solarized Dark",
+		"Solarized Light",
+		"Steel Blue",
+		"Storm",
+		"Sunset Ember",
+		"Tidal",
+		"Tomorrow Night Blue",
+		"Toxic Slime",
+		"Typewriter",
+		"United GNOME",
+		"United Ubuntu",
+		"Vampire",
+		"Vanilla Cream",
+		"Verdigris",
 		"Viow Arabian",
 		"Viow Arabian Mix",
 		"Viow Darker",
 		"Viow Flat",
 		"Viow Light",
 		"Viow Mars",
-		"Viow Neon"
+		"Viow Neon",
+		"Void",
+		"Volt",
+		"VS Dark",
+		"VS Light",
+		"VSC Dark High Contrast",
+		"VSC Dark Modern",
+		"VSC Dark+",
+		"VSC Light High Contrast",
+		"VSC Light Modern",
+		"VSC Light+",
+		"VSC Red",
+		"Vynixu",
+		"Wine",
+		"Yaru",
+		"Yaru Dark"
 	}
 }
 
@@ -58991,6 +59052,102 @@ end)() end,
 }
 end)() end,
     [34] = function()local wax,script,require=ImportGlobals(34)local ImportGlobals return (function(...)return {
+	Accent = Color3.fromRGB(230, 50, 100),
+
+	AcrylicMain = Color3.fromRGB(18, 10, 15),
+	AcrylicBorder = Color3.fromRGB(155, 79, 107),
+	AcrylicGradient = ColorSequence.new(Color3.fromRGB(92, 24, 44), Color3.fromRGB(11, 6, 9)),
+	AcrylicNoise = 0.9,
+
+	TitleBarLine = Color3.fromRGB(103, 49, 70),
+	Tab = Color3.fromRGB(162, 92, 118),
+
+	Element = Color3.fromRGB(150, 70, 100),
+	ElementBorder = Color3.fromRGB(15, 8, 12),
+	InElementBorder = Color3.fromRGB(155, 79, 107),
+	ElementTransparency = 0.87,
+
+	ToggleSlider = Color3.fromRGB(150, 70, 100),
+	ToggleToggled = Color3.fromRGB(0, 0, 0),
+
+	SliderRail = Color3.fromRGB(150, 70, 100),
+
+	DropdownFrame = Color3.fromRGB(171, 107, 131),
+	DropdownHolder = Color3.fromRGB(17, 9, 14),
+	DropdownBorder = Color3.fromRGB(14, 8, 12),
+	DropdownOption = Color3.fromRGB(150, 70, 100),
+
+	Keybind = Color3.fromRGB(150, 70, 100),
+
+	Input = Color3.fromRGB(165, 97, 123),
+	InputFocused = Color3.fromRGB(11, 6, 9),
+	InputIndicator = Color3.fromRGB(176, 116, 138),
+
+	Dialog = Color3.fromRGB(17, 9, 14),
+	DialogHolder = Color3.fromRGB(15, 8, 12),
+	DialogHolderLine = Color3.fromRGB(13, 7, 11),
+	DialogButton = Color3.fromRGB(17, 9, 14),
+	DialogButtonBorder = Color3.fromRGB(158, 84, 112),
+	DialogBorder = Color3.fromRGB(150, 70, 100),
+	DialogInput = Color3.fromRGB(36, 28, 33),
+	DialogInputLine = Color3.fromRGB(176, 116, 138),
+
+	Text = Color3.fromRGB(240, 240, 240),
+	SubText = Color3.fromRGB(170, 170, 170),
+	Hover = Color3.fromRGB(150, 70, 100),
+	HoverChange = 0.06
+}
+
+end)() end,
+    [35] = function()local wax,script,require=ImportGlobals(35)local ImportGlobals return (function(...)return {
+	Accent = Color3.fromRGB(250, 170, 60),
+
+	AcrylicMain = Color3.fromRGB(18, 14, 10),
+	AcrylicBorder = Color3.fromRGB(155, 126, 88),
+	AcrylicGradient = ColorSequence.new(Color3.fromRGB(99, 68, 27), Color3.fromRGB(11, 9, 6)),
+	AcrylicNoise = 0.9,
+
+	TitleBarLine = Color3.fromRGB(103, 82, 55),
+	Tab = Color3.fromRGB(162, 136, 101),
+
+	Element = Color3.fromRGB(150, 120, 80),
+	ElementBorder = Color3.fromRGB(15, 11, 8),
+	InElementBorder = Color3.fromRGB(155, 126, 88),
+	ElementTransparency = 0.87,
+
+	ToggleSlider = Color3.fromRGB(150, 120, 80),
+	ToggleToggled = Color3.fromRGB(0, 0, 0),
+
+	SliderRail = Color3.fromRGB(150, 120, 80),
+
+	DropdownFrame = Color3.fromRGB(171, 147, 115),
+	DropdownHolder = Color3.fromRGB(17, 13, 9),
+	DropdownBorder = Color3.fromRGB(14, 11, 8),
+	DropdownOption = Color3.fromRGB(150, 120, 80),
+
+	Keybind = Color3.fromRGB(150, 120, 80),
+
+	Input = Color3.fromRGB(165, 140, 106),
+	InputFocused = Color3.fromRGB(11, 9, 6),
+	InputIndicator = Color3.fromRGB(176, 153, 123),
+
+	Dialog = Color3.fromRGB(17, 13, 9),
+	DialogHolder = Color3.fromRGB(15, 11, 8),
+	DialogHolderLine = Color3.fromRGB(13, 10, 7),
+	DialogButton = Color3.fromRGB(17, 13, 9),
+	DialogButtonBorder = Color3.fromRGB(158, 130, 94),
+	DialogBorder = Color3.fromRGB(150, 120, 80),
+	DialogInput = Color3.fromRGB(36, 32, 28),
+	DialogInputLine = Color3.fromRGB(176, 153, 123),
+
+	Text = Color3.fromRGB(240, 240, 240),
+	SubText = Color3.fromRGB(170, 170, 170),
+	Hover = Color3.fromRGB(150, 120, 80),
+	HoverChange = 0.06
+}
+
+end)() end,
+    [36] = function()local wax,script,require=ImportGlobals(36)local ImportGlobals return (function(...)return {
     Accent = Color3.fromHex("#00BCD4"),
 
     AcrylicMain = Color3.fromHex("#29353b"),
@@ -59037,7 +59194,7 @@ end)() end,
     HoverChange = 0.1
 }
 end)() end,
-    [35] = function()local wax,script,require=ImportGlobals(35)local ImportGlobals return (function(...)return {
+    [37] = function()local wax,script,require=ImportGlobals(37)local ImportGlobals return (function(...)return {
     Accent = Color3.fromHex("#b133ff"),
 
     AcrylicMain = Color3.fromHex("#120024"),
@@ -59084,7 +59241,7 @@ end)() end,
     HoverChange = 0.1
 }
 end)() end,
-    [36] = function()local wax,script,require=ImportGlobals(36)local ImportGlobals return (function(...)return {
+    [38] = function()local wax,script,require=ImportGlobals(38)local ImportGlobals return (function(...)return {
 	Accent = Color3.fromRGB(97, 62, 167),
 
 	AcrylicMain = Color3.fromRGB(20, 20, 20),
@@ -59132,7 +59289,7 @@ end)() end,
 }
 
 end)() end,
-    [37] = function()local wax,script,require=ImportGlobals(37)local ImportGlobals return (function(...)return {
+    [39] = function()local wax,script,require=ImportGlobals(39)local ImportGlobals return (function(...)return {
 	Accent = Color3.fromRGB(60, 165, 165),
 
 	AcrylicMain = Color3.fromRGB(20, 20, 20),
@@ -59180,7 +59337,7 @@ end)() end,
 }
 
 end)() end,
-    [38] = function()local wax,script,require=ImportGlobals(38)local ImportGlobals return (function(...)return {
+    [40] = function()local wax,script,require=ImportGlobals(40)local ImportGlobals return (function(...)return {
     Accent = Color3.fromHex("#5294e2"),
 
     AcrylicMain = Color3.fromHex("#383c4a"),
@@ -59227,7 +59384,775 @@ end)() end,
     HoverChange = 0.1
 }
 end)() end,
-    [39] = function()local wax,script,require=ImportGlobals(39)local ImportGlobals return (function(...)return {
+    [41] = function()local wax,script,require=ImportGlobals(41)local ImportGlobals return (function(...)return {
+	Accent = Color3.fromRGB(180, 180, 190),
+
+	AcrylicMain = Color3.fromRGB(15, 15, 16),
+	AcrylicBorder = Color3.fromRGB(107, 107, 112),
+	AcrylicGradient = ColorSequence.new(Color3.fromRGB(72, 72, 76), Color3.fromRGB(9, 9, 10)),
+	AcrylicNoise = 0.9,
+
+	TitleBarLine = Color3.fromRGB(70, 70, 73),
+	Tab = Color3.fromRGB(118, 118, 123),
+
+	Element = Color3.fromRGB(100, 100, 105),
+	ElementBorder = Color3.fromRGB(12, 12, 13),
+	InElementBorder = Color3.fromRGB(107, 107, 112),
+	ElementTransparency = 0.87,
+
+	ToggleSlider = Color3.fromRGB(100, 100, 105),
+	ToggleToggled = Color3.fromRGB(0, 0, 0),
+
+	SliderRail = Color3.fromRGB(100, 100, 105),
+
+	DropdownFrame = Color3.fromRGB(131, 131, 135),
+	DropdownHolder = Color3.fromRGB(14, 14, 15),
+	DropdownBorder = Color3.fromRGB(12, 12, 12),
+	DropdownOption = Color3.fromRGB(100, 100, 105),
+
+	Keybind = Color3.fromRGB(100, 100, 105),
+
+	Input = Color3.fromRGB(123, 123, 127),
+	InputFocused = Color3.fromRGB(9, 9, 10),
+	InputIndicator = Color3.fromRGB(138, 138, 142),
+
+	Dialog = Color3.fromRGB(14, 14, 15),
+	DialogHolder = Color3.fromRGB(12, 12, 13),
+	DialogHolderLine = Color3.fromRGB(11, 11, 12),
+	DialogButton = Color3.fromRGB(14, 14, 15),
+	DialogButtonBorder = Color3.fromRGB(112, 112, 117),
+	DialogBorder = Color3.fromRGB(100, 100, 105),
+	DialogInput = Color3.fromRGB(33, 33, 34),
+	DialogInputLine = Color3.fromRGB(138, 138, 142),
+
+	Text = Color3.fromRGB(240, 240, 240),
+	SubText = Color3.fromRGB(170, 170, 170),
+	Hover = Color3.fromRGB(100, 100, 105),
+	HoverChange = 0.06
+}
+
+end)() end,
+    [42] = function()local wax,script,require=ImportGlobals(42)local ImportGlobals return (function(...)return {
+	Accent = Color3.fromRGB(80, 230, 180),
+
+	AcrylicMain = Color3.fromRGB(10, 15, 18),
+	AcrylicBorder = Color3.fromRGB(88, 145, 136),
+	AcrylicGradient = ColorSequence.new(Color3.fromRGB(34, 90, 74), Color3.fromRGB(6, 9, 11)),
+	AcrylicNoise = 0.9,
+
+	TitleBarLine = Color3.fromRGB(55, 96, 90),
+	Tab = Color3.fromRGB(101, 153, 145),
+
+	Element = Color3.fromRGB(80, 140, 130),
+	ElementBorder = Color3.fromRGB(8, 12, 15),
+	InElementBorder = Color3.fromRGB(88, 145, 136),
+	ElementTransparency = 0.87,
+
+	ToggleSlider = Color3.fromRGB(80, 140, 130),
+	ToggleToggled = Color3.fromRGB(0, 0, 0),
+
+	SliderRail = Color3.fromRGB(80, 140, 130),
+
+	DropdownFrame = Color3.fromRGB(115, 163, 155),
+	DropdownHolder = Color3.fromRGB(9, 14, 17),
+	DropdownBorder = Color3.fromRGB(8, 12, 14),
+	DropdownOption = Color3.fromRGB(80, 140, 130),
+
+	Keybind = Color3.fromRGB(80, 140, 130),
+
+	Input = Color3.fromRGB(106, 157, 148),
+	InputFocused = Color3.fromRGB(6, 9, 11),
+	InputIndicator = Color3.fromRGB(123, 168, 161),
+
+	Dialog = Color3.fromRGB(9, 14, 17),
+	DialogHolder = Color3.fromRGB(8, 12, 15),
+	DialogHolderLine = Color3.fromRGB(7, 11, 13),
+	DialogButton = Color3.fromRGB(9, 14, 17),
+	DialogButtonBorder = Color3.fromRGB(94, 149, 140),
+	DialogBorder = Color3.fromRGB(80, 140, 130),
+	DialogInput = Color3.fromRGB(28, 33, 36),
+	DialogInputLine = Color3.fromRGB(123, 168, 161),
+
+	Text = Color3.fromRGB(240, 240, 240),
+	SubText = Color3.fromRGB(170, 170, 170),
+	Hover = Color3.fromRGB(80, 140, 130),
+	HoverChange = 0.06
+}
+
+end)() end,
+    [43] = function()local wax,script,require=ImportGlobals(43)local ImportGlobals return (function(...)return {
+	Accent = Color3.fromRGB(150, 70, 180),
+
+	AcrylicMain = Color3.fromRGB(14, 10, 18),
+	AcrylicBorder = Color3.fromRGB(112, 84, 126),
+	AcrylicGradient = ColorSequence.new(Color3.fromRGB(61, 31, 74), Color3.fromRGB(9, 6, 11)),
+	AcrylicNoise = 0.9,
+
+	TitleBarLine = Color3.fromRGB(73, 52, 84),
+	Tab = Color3.fromRGB(123, 96, 136),
+
+	Element = Color3.fromRGB(105, 75, 120),
+	ElementBorder = Color3.fromRGB(11, 8, 15),
+	InElementBorder = Color3.fromRGB(112, 84, 126),
+	ElementTransparency = 0.87,
+
+	ToggleSlider = Color3.fromRGB(105, 75, 120),
+	ToggleToggled = Color3.fromRGB(0, 0, 0),
+
+	SliderRail = Color3.fromRGB(105, 75, 120),
+
+	DropdownFrame = Color3.fromRGB(135, 111, 147),
+	DropdownHolder = Color3.fromRGB(13, 9, 17),
+	DropdownBorder = Color3.fromRGB(11, 8, 14),
+	DropdownOption = Color3.fromRGB(105, 75, 120),
+
+	Keybind = Color3.fromRGB(105, 75, 120),
+
+	Input = Color3.fromRGB(127, 102, 140),
+	InputFocused = Color3.fromRGB(9, 6, 11),
+	InputIndicator = Color3.fromRGB(142, 120, 153),
+
+	Dialog = Color3.fromRGB(13, 9, 17),
+	DialogHolder = Color3.fromRGB(11, 8, 15),
+	DialogHolderLine = Color3.fromRGB(10, 7, 13),
+	DialogButton = Color3.fromRGB(13, 9, 17),
+	DialogButtonBorder = Color3.fromRGB(117, 89, 130),
+	DialogBorder = Color3.fromRGB(105, 75, 120),
+	DialogInput = Color3.fromRGB(32, 28, 36),
+	DialogInputLine = Color3.fromRGB(142, 120, 153),
+
+	Text = Color3.fromRGB(240, 240, 240),
+	SubText = Color3.fromRGB(170, 170, 170),
+	Hover = Color3.fromRGB(105, 75, 120),
+	HoverChange = 0.06
+}
+
+end)() end,
+    [44] = function()local wax,script,require=ImportGlobals(44)local ImportGlobals return (function(...)return {
+	Accent = Color3.fromRGB(200, 40, 60),
+
+	AcrylicMain = Color3.fromRGB(18, 10, 12),
+	AcrylicBorder = Color3.fromRGB(145, 79, 88),
+	AcrylicGradient = ColorSequence.new(Color3.fromRGB(81, 20, 28), Color3.fromRGB(11, 6, 7)),
+	AcrylicNoise = 0.9,
+
+	TitleBarLine = Color3.fromRGB(97, 49, 56),
+	Tab = Color3.fromRGB(153, 92, 101),
+
+	Element = Color3.fromRGB(140, 70, 80),
+	ElementBorder = Color3.fromRGB(15, 8, 10),
+	InElementBorder = Color3.fromRGB(145, 79, 88),
+	ElementTransparency = 0.87,
+
+	ToggleSlider = Color3.fromRGB(140, 70, 80),
+	ToggleToggled = Color3.fromRGB(0, 0, 0),
+
+	SliderRail = Color3.fromRGB(140, 70, 80),
+
+	DropdownFrame = Color3.fromRGB(163, 107, 115),
+	DropdownHolder = Color3.fromRGB(17, 9, 11),
+	DropdownBorder = Color3.fromRGB(14, 8, 9),
+	DropdownOption = Color3.fromRGB(140, 70, 80),
+
+	Keybind = Color3.fromRGB(140, 70, 80),
+
+	Input = Color3.fromRGB(157, 97, 106),
+	InputFocused = Color3.fromRGB(11, 6, 7),
+	InputIndicator = Color3.fromRGB(168, 116, 123),
+
+	Dialog = Color3.fromRGB(17, 9, 11),
+	DialogHolder = Color3.fromRGB(15, 8, 10),
+	DialogHolderLine = Color3.fromRGB(13, 7, 9),
+	DialogButton = Color3.fromRGB(17, 9, 11),
+	DialogButtonBorder = Color3.fromRGB(149, 84, 94),
+	DialogBorder = Color3.fromRGB(140, 70, 80),
+	DialogInput = Color3.fromRGB(36, 28, 30),
+	DialogInputLine = Color3.fromRGB(168, 116, 123),
+
+	Text = Color3.fromRGB(240, 240, 240),
+	SubText = Color3.fromRGB(170, 170, 170),
+	Hover = Color3.fromRGB(140, 70, 80),
+	HoverChange = 0.06
+}
+
+end)() end,
+    [45] = function()local wax,script,require=ImportGlobals(45)local ImportGlobals return (function(...)return {
+	Accent = Color3.fromRGB(220, 90, 120),
+
+	AcrylicMain = Color3.fromRGB(250, 240, 242),
+	AcrylicBorder = Color3.fromRGB(216, 194, 199),
+	AcrylicGradient = ColorSequence.new(Color3.fromRGB(245, 217, 223), Color3.fromRGB(250, 241, 243)),
+	AcrylicNoise = 0.9,
+
+	TitleBarLine = Color3.fromRGB(212, 204, 205),
+	Tab = Color3.fromRGB(216, 194, 199),
+
+	Element = Color3.fromRGB(228, 205, 210),
+	ElementBorder = Color3.fromRGB(187, 180, 181),
+	InElementBorder = Color3.fromRGB(205, 184, 189),
+	ElementTransparency = 0.87,
+
+	ToggleSlider = Color3.fromRGB(228, 205, 210),
+	ToggleToggled = Color3.fromRGB(220, 90, 120),
+
+	SliderRail = Color3.fromRGB(228, 205, 210),
+
+	DropdownFrame = Color3.fromRGB(193, 174, 178),
+	DropdownHolder = Color3.fromRGB(250, 240, 242),
+	DropdownBorder = Color3.fromRGB(200, 192, 193),
+	DropdownOption = Color3.fromRGB(228, 205, 210),
+
+	Keybind = Color3.fromRGB(228, 205, 210),
+
+	Input = Color3.fromRGB(205, 184, 189),
+	InputFocused = Color3.fromRGB(250, 242, 243),
+	InputIndicator = Color3.fromRGB(159, 143, 147),
+
+	Dialog = Color3.fromRGB(250, 240, 242),
+	DialogHolder = Color3.fromRGB(237, 228, 229),
+	DialogHolderLine = Color3.fromRGB(220, 211, 212),
+	DialogButton = Color3.fromRGB(250, 240, 242),
+	DialogButtonBorder = Color3.fromRGB(209, 188, 193),
+	DialogBorder = Color3.fromRGB(228, 205, 210),
+	DialogInput = Color3.fromRGB(237, 228, 229),
+	DialogInputLine = Color3.fromRGB(171, 153, 157),
+
+	Text = Color3.fromRGB(30, 30, 30),
+	SubText = Color3.fromRGB(90, 90, 90),
+	Hover = Color3.fromRGB(228, 205, 210),
+	HoverChange = 0.06
+}
+
+end)() end,
+    [46] = function()local wax,script,require=ImportGlobals(46)local ImportGlobals return (function(...)return {
+	Accent = Color3.fromRGB(200, 150, 90),
+
+	AcrylicMain = Color3.fromRGB(16, 14, 11),
+	AcrylicBorder = Color3.fromRGB(136, 117, 93),
+	AcrylicGradient = ColorSequence.new(Color3.fromRGB(80, 61, 38), Color3.fromRGB(10, 9, 7)),
+	AcrylicNoise = 0.9,
+
+	TitleBarLine = Color3.fromRGB(90, 76, 59),
+	Tab = Color3.fromRGB(145, 127, 105),
+
+	Element = Color3.fromRGB(130, 110, 85),
+	ElementBorder = Color3.fromRGB(13, 11, 9),
+	InElementBorder = Color3.fromRGB(136, 117, 93),
+	ElementTransparency = 0.87,
+
+	ToggleSlider = Color3.fromRGB(130, 110, 85),
+	ToggleToggled = Color3.fromRGB(0, 0, 0),
+
+	SliderRail = Color3.fromRGB(130, 110, 85),
+
+	DropdownFrame = Color3.fromRGB(155, 139, 119),
+	DropdownHolder = Color3.fromRGB(15, 13, 10),
+	DropdownBorder = Color3.fromRGB(12, 11, 8),
+	DropdownOption = Color3.fromRGB(130, 110, 85),
+
+	Keybind = Color3.fromRGB(130, 110, 85),
+
+	Input = Color3.fromRGB(148, 131, 110),
+	InputFocused = Color3.fromRGB(10, 9, 7),
+	InputIndicator = Color3.fromRGB(161, 146, 127),
+
+	Dialog = Color3.fromRGB(15, 13, 10),
+	DialogHolder = Color3.fromRGB(13, 11, 9),
+	DialogHolderLine = Color3.fromRGB(12, 10, 8),
+	DialogButton = Color3.fromRGB(15, 13, 10),
+	DialogButtonBorder = Color3.fromRGB(140, 121, 98),
+	DialogBorder = Color3.fromRGB(130, 110, 85),
+	DialogInput = Color3.fromRGB(34, 32, 29),
+	DialogInputLine = Color3.fromRGB(161, 146, 127),
+
+	Text = Color3.fromRGB(240, 240, 240),
+	SubText = Color3.fromRGB(170, 170, 170),
+	Hover = Color3.fromRGB(130, 110, 85),
+	HoverChange = 0.06
+}
+
+end)() end,
+    [47] = function()local wax,script,require=ImportGlobals(47)local ImportGlobals return (function(...)return {
+	Accent = Color3.fromRGB(255, 110, 200),
+
+	AcrylicMain = Color3.fromRGB(18, 12, 16),
+	AcrylicBorder = Color3.fromRGB(155, 98, 145),
+	AcrylicGradient = ColorSequence.new(Color3.fromRGB(100, 46, 80), Color3.fromRGB(11, 7, 10)),
+	AcrylicNoise = 0.9,
+
+	TitleBarLine = Color3.fromRGB(103, 62, 96),
+	Tab = Color3.fromRGB(162, 109, 153),
+
+	Element = Color3.fromRGB(150, 90, 140),
+	ElementBorder = Color3.fromRGB(15, 10, 13),
+	InElementBorder = Color3.fromRGB(155, 98, 145),
+	ElementTransparency = 0.87,
+
+	ToggleSlider = Color3.fromRGB(150, 90, 140),
+	ToggleToggled = Color3.fromRGB(0, 0, 0),
+
+	SliderRail = Color3.fromRGB(150, 90, 140),
+
+	DropdownFrame = Color3.fromRGB(171, 123, 163),
+	DropdownHolder = Color3.fromRGB(17, 11, 15),
+	DropdownBorder = Color3.fromRGB(14, 9, 12),
+	DropdownOption = Color3.fromRGB(150, 90, 140),
+
+	Keybind = Color3.fromRGB(150, 90, 140),
+
+	Input = Color3.fromRGB(165, 114, 157),
+	InputFocused = Color3.fromRGB(11, 7, 10),
+	InputIndicator = Color3.fromRGB(176, 131, 168),
+
+	Dialog = Color3.fromRGB(17, 11, 15),
+	DialogHolder = Color3.fromRGB(15, 10, 13),
+	DialogHolderLine = Color3.fromRGB(13, 9, 12),
+	DialogButton = Color3.fromRGB(17, 11, 15),
+	DialogButtonBorder = Color3.fromRGB(158, 103, 149),
+	DialogBorder = Color3.fromRGB(150, 90, 140),
+	DialogInput = Color3.fromRGB(36, 30, 34),
+	DialogInputLine = Color3.fromRGB(176, 131, 168),
+
+	Text = Color3.fromRGB(240, 240, 240),
+	SubText = Color3.fromRGB(170, 170, 170),
+	Hover = Color3.fromRGB(150, 90, 140),
+	HoverChange = 0.06
+}
+
+end)() end,
+    [48] = function()local wax,script,require=ImportGlobals(48)local ImportGlobals return (function(...)return {
+	Accent = Color3.fromRGB(180, 220, 70),
+
+	AcrylicMain = Color3.fromRGB(14, 15, 12),
+	AcrylicBorder = Color3.fromRGB(117, 136, 88),
+	AcrylicGradient = ColorSequence.new(Color3.fromRGB(72, 86, 32), Color3.fromRGB(9, 9, 7)),
+	AcrylicNoise = 0.9,
+
+	TitleBarLine = Color3.fromRGB(76, 89, 56),
+	Tab = Color3.fromRGB(127, 145, 101),
+
+	Element = Color3.fromRGB(110, 130, 80),
+	ElementBorder = Color3.fromRGB(11, 12, 10),
+	InElementBorder = Color3.fromRGB(117, 136, 88),
+	ElementTransparency = 0.87,
+
+	ToggleSlider = Color3.fromRGB(110, 130, 80),
+	ToggleToggled = Color3.fromRGB(0, 0, 0),
+
+	SliderRail = Color3.fromRGB(110, 130, 80),
+
+	DropdownFrame = Color3.fromRGB(139, 155, 115),
+	DropdownHolder = Color3.fromRGB(13, 14, 11),
+	DropdownBorder = Color3.fromRGB(11, 12, 9),
+	DropdownOption = Color3.fromRGB(110, 130, 80),
+
+	Keybind = Color3.fromRGB(110, 130, 80),
+
+	Input = Color3.fromRGB(131, 148, 106),
+	InputFocused = Color3.fromRGB(9, 9, 7),
+	InputIndicator = Color3.fromRGB(146, 161, 123),
+
+	Dialog = Color3.fromRGB(13, 14, 11),
+	DialogHolder = Color3.fromRGB(11, 12, 10),
+	DialogHolderLine = Color3.fromRGB(10, 11, 9),
+	DialogButton = Color3.fromRGB(13, 14, 11),
+	DialogButtonBorder = Color3.fromRGB(121, 140, 94),
+	DialogBorder = Color3.fromRGB(110, 130, 80),
+	DialogInput = Color3.fromRGB(32, 33, 30),
+	DialogInputLine = Color3.fromRGB(146, 161, 123),
+
+	Text = Color3.fromRGB(240, 240, 240),
+	SubText = Color3.fromRGB(170, 170, 170),
+	Hover = Color3.fromRGB(110, 130, 80),
+	HoverChange = 0.06
+}
+
+end)() end,
+    [49] = function()local wax,script,require=ImportGlobals(49)local ImportGlobals return (function(...)return {
+	Accent = Color3.fromRGB(220, 60, 90),
+
+	AcrylicMain = Color3.fromRGB(20, 12, 14),
+	AcrylicBorder = Color3.fromRGB(145, 88, 98),
+	AcrylicGradient = ColorSequence.new(Color3.fromRGB(90, 28, 40), Color3.fromRGB(13, 7, 9)),
+	AcrylicNoise = 0.9,
+
+	TitleBarLine = Color3.fromRGB(98, 56, 63),
+	Tab = Color3.fromRGB(153, 101, 109),
+
+	Element = Color3.fromRGB(140, 80, 90),
+	ElementBorder = Color3.fromRGB(17, 10, 11),
+	InElementBorder = Color3.fromRGB(145, 88, 98),
+	ElementTransparency = 0.87,
+
+	ToggleSlider = Color3.fromRGB(140, 80, 90),
+	ToggleToggled = Color3.fromRGB(0, 0, 0),
+
+	SliderRail = Color3.fromRGB(140, 80, 90),
+
+	DropdownFrame = Color3.fromRGB(163, 115, 123),
+	DropdownHolder = Color3.fromRGB(19, 11, 13),
+	DropdownBorder = Color3.fromRGB(16, 9, 11),
+	DropdownOption = Color3.fromRGB(140, 80, 90),
+
+	Keybind = Color3.fromRGB(140, 80, 90),
+
+	Input = Color3.fromRGB(157, 106, 114),
+	InputFocused = Color3.fromRGB(13, 7, 9),
+	InputIndicator = Color3.fromRGB(168, 123, 131),
+
+	Dialog = Color3.fromRGB(19, 11, 13),
+	DialogHolder = Color3.fromRGB(17, 10, 11),
+	DialogHolderLine = Color3.fromRGB(15, 9, 10),
+	DialogButton = Color3.fromRGB(19, 11, 13),
+	DialogButtonBorder = Color3.fromRGB(149, 94, 103),
+	DialogBorder = Color3.fromRGB(140, 80, 90),
+	DialogInput = Color3.fromRGB(37, 30, 32),
+	DialogInputLine = Color3.fromRGB(168, 123, 131),
+
+	Text = Color3.fromRGB(240, 240, 240),
+	SubText = Color3.fromRGB(170, 170, 170),
+	Hover = Color3.fromRGB(140, 80, 90),
+	HoverChange = 0.06
+}
+
+end)() end,
+    [50] = function()local wax,script,require=ImportGlobals(50)local ImportGlobals return (function(...)return {
+	Accent = Color3.fromRGB(70, 120, 230),
+
+	AcrylicMain = Color3.fromRGB(12, 15, 25),
+	AcrylicBorder = Color3.fromRGB(98, 117, 164),
+	AcrylicGradient = ColorSequence.new(Color3.fromRGB(32, 51, 96), Color3.fromRGB(7, 9, 16)),
+	AcrylicNoise = 0.9,
+
+	TitleBarLine = Color3.fromRGB(62, 76, 112),
+	Tab = Color3.fromRGB(109, 127, 171),
+
+	Element = Color3.fromRGB(90, 110, 160),
+	ElementBorder = Color3.fromRGB(10, 12, 21),
+	InElementBorder = Color3.fromRGB(98, 117, 164),
+	ElementTransparency = 0.87,
+
+	ToggleSlider = Color3.fromRGB(90, 110, 160),
+	ToggleToggled = Color3.fromRGB(0, 0, 0),
+
+	SliderRail = Color3.fromRGB(90, 110, 160),
+
+	DropdownFrame = Color3.fromRGB(123, 139, 179),
+	DropdownHolder = Color3.fromRGB(11, 14, 23),
+	DropdownBorder = Color3.fromRGB(9, 12, 20),
+	DropdownOption = Color3.fromRGB(90, 110, 160),
+
+	Keybind = Color3.fromRGB(90, 110, 160),
+
+	Input = Color3.fromRGB(114, 131, 174),
+	InputFocused = Color3.fromRGB(7, 9, 16),
+	InputIndicator = Color3.fromRGB(131, 146, 183),
+
+	Dialog = Color3.fromRGB(11, 14, 23),
+	DialogHolder = Color3.fromRGB(10, 12, 21),
+	DialogHolderLine = Color3.fromRGB(9, 11, 18),
+	DialogButton = Color3.fromRGB(11, 14, 23),
+	DialogButtonBorder = Color3.fromRGB(103, 121, 167),
+	DialogBorder = Color3.fromRGB(90, 110, 160),
+	DialogInput = Color3.fromRGB(30, 33, 41),
+	DialogInputLine = Color3.fromRGB(131, 146, 183),
+
+	Text = Color3.fromRGB(240, 240, 240),
+	SubText = Color3.fromRGB(170, 170, 170),
+	Hover = Color3.fromRGB(90, 110, 160),
+	HoverChange = 0.06
+}
+
+end)() end,
+    [51] = function()local wax,script,require=ImportGlobals(51)local ImportGlobals return (function(...)return {
+	Accent = Color3.fromRGB(180, 120, 80),
+
+	AcrylicMain = Color3.fromRGB(16, 13, 11),
+	AcrylicBorder = Color3.fromRGB(126, 103, 84),
+	AcrylicGradient = ColorSequence.new(Color3.fromRGB(73, 50, 35), Color3.fromRGB(10, 8, 7)),
+	AcrylicNoise = 0.9,
+
+	TitleBarLine = Color3.fromRGB(83, 66, 52),
+	Tab = Color3.fromRGB(136, 114, 96),
+
+	Element = Color3.fromRGB(120, 95, 75),
+	ElementBorder = Color3.fromRGB(13, 11, 9),
+	InElementBorder = Color3.fromRGB(126, 103, 84),
+	ElementTransparency = 0.87,
+
+	ToggleSlider = Color3.fromRGB(120, 95, 75),
+	ToggleToggled = Color3.fromRGB(0, 0, 0),
+
+	SliderRail = Color3.fromRGB(120, 95, 75),
+
+	DropdownFrame = Color3.fromRGB(147, 127, 111),
+	DropdownHolder = Color3.fromRGB(15, 12, 10),
+	DropdownBorder = Color3.fromRGB(12, 10, 8),
+	DropdownOption = Color3.fromRGB(120, 95, 75),
+
+	Keybind = Color3.fromRGB(120, 95, 75),
+
+	Input = Color3.fromRGB(140, 119, 102),
+	InputFocused = Color3.fromRGB(10, 8, 7),
+	InputIndicator = Color3.fromRGB(153, 135, 120),
+
+	Dialog = Color3.fromRGB(15, 12, 10),
+	DialogHolder = Color3.fromRGB(13, 11, 9),
+	DialogHolderLine = Color3.fromRGB(12, 9, 8),
+	DialogButton = Color3.fromRGB(15, 12, 10),
+	DialogButtonBorder = Color3.fromRGB(130, 107, 89),
+	DialogBorder = Color3.fromRGB(120, 95, 75),
+	DialogInput = Color3.fromRGB(34, 31, 29),
+	DialogInputLine = Color3.fromRGB(153, 135, 120),
+
+	Text = Color3.fromRGB(240, 240, 240),
+	SubText = Color3.fromRGB(170, 170, 170),
+	Hover = Color3.fromRGB(120, 95, 75),
+	HoverChange = 0.06
+}
+
+end)() end,
+    [52] = function()local wax,script,require=ImportGlobals(52)local ImportGlobals return (function(...)return {
+	Accent = Color3.fromRGB(220, 130, 80),
+
+	AcrylicMain = Color3.fromRGB(18, 14, 12),
+	AcrylicBorder = Color3.fromRGB(155, 117, 93),
+	AcrylicGradient = ColorSequence.new(Color3.fromRGB(88, 54, 35), Color3.fromRGB(11, 9, 7)),
+	AcrylicNoise = 0.9,
+
+	TitleBarLine = Color3.fromRGB(103, 76, 59),
+	Tab = Color3.fromRGB(162, 127, 105),
+
+	Element = Color3.fromRGB(150, 110, 85),
+	ElementBorder = Color3.fromRGB(15, 11, 10),
+	InElementBorder = Color3.fromRGB(155, 117, 93),
+	ElementTransparency = 0.87,
+
+	ToggleSlider = Color3.fromRGB(150, 110, 85),
+	ToggleToggled = Color3.fromRGB(0, 0, 0),
+
+	SliderRail = Color3.fromRGB(150, 110, 85),
+
+	DropdownFrame = Color3.fromRGB(171, 139, 119),
+	DropdownHolder = Color3.fromRGB(17, 13, 11),
+	DropdownBorder = Color3.fromRGB(14, 11, 9),
+	DropdownOption = Color3.fromRGB(150, 110, 85),
+
+	Keybind = Color3.fromRGB(150, 110, 85),
+
+	Input = Color3.fromRGB(165, 131, 110),
+	InputFocused = Color3.fromRGB(11, 9, 7),
+	InputIndicator = Color3.fromRGB(176, 146, 127),
+
+	Dialog = Color3.fromRGB(17, 13, 11),
+	DialogHolder = Color3.fromRGB(15, 11, 10),
+	DialogHolderLine = Color3.fromRGB(13, 10, 9),
+	DialogButton = Color3.fromRGB(17, 13, 11),
+	DialogButtonBorder = Color3.fromRGB(158, 121, 98),
+	DialogBorder = Color3.fromRGB(150, 110, 85),
+	DialogInput = Color3.fromRGB(36, 32, 30),
+	DialogInputLine = Color3.fromRGB(176, 146, 127),
+
+	Text = Color3.fromRGB(240, 240, 240),
+	SubText = Color3.fromRGB(170, 170, 170),
+	Hover = Color3.fromRGB(150, 110, 85),
+	HoverChange = 0.06
+}
+
+end)() end,
+    [53] = function()local wax,script,require=ImportGlobals(53)local ImportGlobals return (function(...)return {
+	Accent = Color3.fromRGB(200, 110, 70),
+
+	AcrylicMain = Color3.fromRGB(16, 13, 11),
+	AcrylicBorder = Color3.fromRGB(136, 107, 88),
+	AcrylicGradient = ColorSequence.new(Color3.fromRGB(80, 46, 31), Color3.fromRGB(10, 8, 7)),
+	AcrylicNoise = 0.9,
+
+	TitleBarLine = Color3.fromRGB(90, 69, 55),
+	Tab = Color3.fromRGB(145, 118, 101),
+
+	Element = Color3.fromRGB(130, 100, 80),
+	ElementBorder = Color3.fromRGB(13, 11, 9),
+	InElementBorder = Color3.fromRGB(136, 107, 88),
+	ElementTransparency = 0.87,
+
+	ToggleSlider = Color3.fromRGB(130, 100, 80),
+	ToggleToggled = Color3.fromRGB(0, 0, 0),
+
+	SliderRail = Color3.fromRGB(130, 100, 80),
+
+	DropdownFrame = Color3.fromRGB(155, 131, 115),
+	DropdownHolder = Color3.fromRGB(15, 12, 10),
+	DropdownBorder = Color3.fromRGB(12, 10, 8),
+	DropdownOption = Color3.fromRGB(130, 100, 80),
+
+	Keybind = Color3.fromRGB(130, 100, 80),
+
+	Input = Color3.fromRGB(148, 123, 106),
+	InputFocused = Color3.fromRGB(10, 8, 7),
+	InputIndicator = Color3.fromRGB(161, 138, 123),
+
+	Dialog = Color3.fromRGB(15, 12, 10),
+	DialogHolder = Color3.fromRGB(13, 11, 9),
+	DialogHolderLine = Color3.fromRGB(12, 9, 8),
+	DialogButton = Color3.fromRGB(15, 12, 10),
+	DialogButtonBorder = Color3.fromRGB(140, 112, 94),
+	DialogBorder = Color3.fromRGB(130, 100, 80),
+	DialogInput = Color3.fromRGB(34, 31, 29),
+	DialogInputLine = Color3.fromRGB(161, 138, 123),
+
+	Text = Color3.fromRGB(240, 240, 240),
+	SubText = Color3.fromRGB(170, 170, 170),
+	Hover = Color3.fromRGB(130, 100, 80),
+	HoverChange = 0.06
+}
+
+end)() end,
+    [54] = function()local wax,script,require=ImportGlobals(54)local ImportGlobals return (function(...)return {
+	Accent = Color3.fromRGB(230, 100, 170),
+
+	AcrylicMain = Color3.fromRGB(250, 240, 246),
+	AcrylicBorder = Color3.fromRGB(213, 194, 209),
+	AcrylicGradient = ColorSequence.new(Color3.fromRGB(247, 219, 234), Color3.fromRGB(250, 241, 246)),
+	AcrylicNoise = 0.9,
+
+	TitleBarLine = Color3.fromRGB(212, 204, 209),
+	Tab = Color3.fromRGB(213, 194, 209),
+
+	Element = Color3.fromRGB(225, 205, 220),
+	ElementBorder = Color3.fromRGB(187, 180, 184),
+	InElementBorder = Color3.fromRGB(202, 184, 198),
+	ElementTransparency = 0.87,
+
+	ToggleSlider = Color3.fromRGB(225, 205, 220),
+	ToggleToggled = Color3.fromRGB(230, 100, 170),
+
+	SliderRail = Color3.fromRGB(225, 205, 220),
+
+	DropdownFrame = Color3.fromRGB(191, 174, 187),
+	DropdownHolder = Color3.fromRGB(250, 240, 246),
+	DropdownBorder = Color3.fromRGB(200, 192, 196),
+	DropdownOption = Color3.fromRGB(225, 205, 220),
+
+	Keybind = Color3.fromRGB(225, 205, 220),
+
+	Input = Color3.fromRGB(202, 184, 198),
+	InputFocused = Color3.fromRGB(250, 242, 247),
+	InputIndicator = Color3.fromRGB(157, 143, 154),
+
+	Dialog = Color3.fromRGB(250, 240, 246),
+	DialogHolder = Color3.fromRGB(237, 228, 233),
+	DialogHolderLine = Color3.fromRGB(220, 211, 216),
+	DialogButton = Color3.fromRGB(250, 240, 246),
+	DialogButtonBorder = Color3.fromRGB(207, 188, 202),
+	DialogBorder = Color3.fromRGB(225, 205, 220),
+	DialogInput = Color3.fromRGB(237, 228, 233),
+	DialogInputLine = Color3.fromRGB(168, 153, 165),
+
+	Text = Color3.fromRGB(30, 30, 30),
+	SubText = Color3.fromRGB(90, 90, 90),
+	Hover = Color3.fromRGB(225, 205, 220),
+	HoverChange = 0.06
+}
+
+end)() end,
+    [55] = function()local wax,script,require=ImportGlobals(55)local ImportGlobals return (function(...)return {
+	Accent = Color3.fromRGB(230, 70, 70),
+
+	AcrylicMain = Color3.fromRGB(20, 15, 15),
+	AcrylicBorder = Color3.fromRGB(155, 98, 98),
+	AcrylicGradient = ColorSequence.new(Color3.fromRGB(93, 34, 34), Color3.fromRGB(13, 9, 9)),
+	AcrylicNoise = 0.9,
+
+	TitleBarLine = Color3.fromRGB(104, 63, 63),
+	Tab = Color3.fromRGB(162, 109, 109),
+
+	Element = Color3.fromRGB(150, 90, 90),
+	ElementBorder = Color3.fromRGB(17, 12, 12),
+	InElementBorder = Color3.fromRGB(155, 98, 98),
+	ElementTransparency = 0.87,
+
+	ToggleSlider = Color3.fromRGB(150, 90, 90),
+	ToggleToggled = Color3.fromRGB(0, 0, 0),
+
+	SliderRail = Color3.fromRGB(150, 90, 90),
+
+	DropdownFrame = Color3.fromRGB(171, 123, 123),
+	DropdownHolder = Color3.fromRGB(19, 14, 14),
+	DropdownBorder = Color3.fromRGB(16, 12, 12),
+	DropdownOption = Color3.fromRGB(150, 90, 90),
+
+	Keybind = Color3.fromRGB(150, 90, 90),
+
+	Input = Color3.fromRGB(165, 114, 114),
+	InputFocused = Color3.fromRGB(13, 9, 9),
+	InputIndicator = Color3.fromRGB(176, 131, 131),
+
+	Dialog = Color3.fromRGB(19, 14, 14),
+	DialogHolder = Color3.fromRGB(17, 12, 12),
+	DialogHolderLine = Color3.fromRGB(15, 11, 11),
+	DialogButton = Color3.fromRGB(19, 14, 14),
+	DialogButtonBorder = Color3.fromRGB(158, 103, 103),
+	DialogBorder = Color3.fromRGB(150, 90, 90),
+	DialogInput = Color3.fromRGB(37, 33, 33),
+	DialogInputLine = Color3.fromRGB(176, 131, 131),
+
+	Text = Color3.fromRGB(240, 240, 240),
+	SubText = Color3.fromRGB(170, 170, 170),
+	Hover = Color3.fromRGB(150, 90, 90),
+	HoverChange = 0.06
+}
+
+end)() end,
+    [56] = function()local wax,script,require=ImportGlobals(56)local ImportGlobals return (function(...)return {
+	Accent = Color3.fromRGB(255, 50, 180),
+
+	AcrylicMain = Color3.fromRGB(12, 8, 18),
+	AcrylicBorder = Color3.fromRGB(145, 79, 155),
+	AcrylicGradient = ColorSequence.new(Color3.fromRGB(97, 22, 74), Color3.fromRGB(7, 5, 11)),
+	AcrylicNoise = 0.9,
+
+	TitleBarLine = Color3.fromRGB(95, 48, 103),
+	Tab = Color3.fromRGB(153, 92, 162),
+
+	Element = Color3.fromRGB(140, 70, 150),
+	ElementBorder = Color3.fromRGB(10, 6, 15),
+	InElementBorder = Color3.fromRGB(145, 79, 155),
+	ElementTransparency = 0.87,
+
+	ToggleSlider = Color3.fromRGB(140, 70, 150),
+	ToggleToggled = Color3.fromRGB(0, 0, 0),
+
+	SliderRail = Color3.fromRGB(140, 70, 150),
+
+	DropdownFrame = Color3.fromRGB(163, 107, 171),
+	DropdownHolder = Color3.fromRGB(11, 7, 17),
+	DropdownBorder = Color3.fromRGB(9, 6, 14),
+	DropdownOption = Color3.fromRGB(140, 70, 150),
+
+	Keybind = Color3.fromRGB(140, 70, 150),
+
+	Input = Color3.fromRGB(157, 97, 165),
+	InputFocused = Color3.fromRGB(7, 5, 11),
+	InputIndicator = Color3.fromRGB(168, 116, 176),
+
+	Dialog = Color3.fromRGB(11, 7, 17),
+	DialogHolder = Color3.fromRGB(10, 6, 15),
+	DialogHolderLine = Color3.fromRGB(9, 6, 13),
+	DialogButton = Color3.fromRGB(11, 7, 17),
+	DialogButtonBorder = Color3.fromRGB(149, 84, 158),
+	DialogBorder = Color3.fromRGB(140, 70, 150),
+	DialogInput = Color3.fromRGB(30, 26, 36),
+	DialogInputLine = Color3.fromRGB(168, 116, 176),
+
+	Text = Color3.fromRGB(240, 240, 240),
+	SubText = Color3.fromRGB(170, 170, 170),
+	Hover = Color3.fromRGB(140, 70, 150),
+	HoverChange = 0.06
+}
+
+end)() end,
+    [57] = function()local wax,script,require=ImportGlobals(57)local ImportGlobals return (function(...)return {
     Accent = Color3.fromRGB(109, 180, 120),
 
     AcrylicMain = Color3.fromRGB(38, 38, 38),
@@ -59274,7 +60199,7 @@ end)() end,
     HoverChange = 0.04
 }
 end)() end,
-    [40] = function()local wax,script,require=ImportGlobals(40)local ImportGlobals return (function(...)return {
+    [58] = function()local wax,script,require=ImportGlobals(58)local ImportGlobals return (function(...)return {
 	Accent = Color3.fromRGB(96, 205, 255),
 
 	AcrylicMain = Color3.fromRGB(60, 60, 60),
@@ -59322,7 +60247,7 @@ end)() end,
 }
 
 end)() end,
-    [41] = function()local wax,script,require=ImportGlobals(41)local ImportGlobals return (function(...)return {
+    [59] = function()local wax,script,require=ImportGlobals(59)local ImportGlobals return (function(...)return {
 	Accent = Color3.fromRGB(72, 138, 182),
 
 	AcrylicMain = Color3.fromRGB(30, 30, 30),
@@ -59352,37 +60277,103 @@ end)() end,
 	DialogInputLine = Color3.fromRGB(120, 120, 120)
 }
 end)() end,
-    [42] = function()local wax,script,require=ImportGlobals(42)local ImportGlobals return (function(...)return {
-    Accent = Color3.fromRGB(72, 138, 182),
+    [60] = function()local wax,script,require=ImportGlobals(60)local ImportGlobals return (function(...)return {
+	Accent = Color3.fromRGB(60, 140, 220),
 
-    AcrylicMain = Color3.fromRGB(8, 8, 8),
-    AcrylicBorder = Color3.fromRGB(150, 150, 150),
-    AcrylicGradient = ColorSequence.new(Color3.fromRGB(10, 10, 10), Color3.fromRGB(4, 4, 4)),
-    AcrylicNoise = 0.98,
+	AcrylicMain = Color3.fromRGB(8, 14, 22),
+	AcrylicBorder = Color3.fromRGB(79, 107, 145),
+	AcrylicGradient = ColorSequence.new(Color3.fromRGB(26, 58, 91), Color3.fromRGB(5, 9, 14)),
+	AcrylicNoise = 0.9,
 
-    TitleBarLine = Color3.fromRGB(145, 145, 145),
-    Tab = Color3.fromRGB(100, 100, 100),
+	TitleBarLine = Color3.fromRGB(48, 69, 98),
+	Tab = Color3.fromRGB(92, 118, 153),
 
-    Element = Color3.fromRGB(25, 25, 25),
-    ElementBorder = Color3.fromRGB(145, 145, 145),
-    InElementBorder = Color3.fromRGB(135, 135, 135),
-    ElementTransparency = 0.88,
+	Element = Color3.fromRGB(70, 100, 140),
+	ElementBorder = Color3.fromRGB(6, 11, 18),
+	InElementBorder = Color3.fromRGB(79, 107, 145),
+	ElementTransparency = 0.87,
 
-    DropdownFrame = Color3.fromRGB(120, 120, 120),
-    DropdownHolder = Color3.fromRGB(12, 12, 12),
-    DropdownBorder = Color3.fromRGB(140, 140, 140),
+	ToggleSlider = Color3.fromRGB(70, 100, 140),
+	ToggleToggled = Color3.fromRGB(0, 0, 0),
 
-    Dialog = Color3.fromRGB(14, 14, 14),
-    DialogHolder = Color3.fromRGB(9, 9, 9),
-    DialogHolderLine = Color3.fromRGB(140, 140, 140),
-    DialogButton = Color3.fromRGB(15, 15, 15),
-    DialogButtonBorder = Color3.fromRGB(145, 145, 145),
-    DialogBorder = Color3.fromRGB(150, 150, 150),
-    DialogInput = Color3.fromRGB(18, 18, 18),
-    DialogInputLine = Color3.fromRGB(155, 155, 155)
+	SliderRail = Color3.fromRGB(70, 100, 140),
+
+	DropdownFrame = Color3.fromRGB(107, 131, 163),
+	DropdownHolder = Color3.fromRGB(7, 13, 20),
+	DropdownBorder = Color3.fromRGB(6, 11, 17),
+	DropdownOption = Color3.fromRGB(70, 100, 140),
+
+	Keybind = Color3.fromRGB(70, 100, 140),
+
+	Input = Color3.fromRGB(97, 123, 157),
+	InputFocused = Color3.fromRGB(5, 9, 14),
+	InputIndicator = Color3.fromRGB(116, 138, 168),
+
+	Dialog = Color3.fromRGB(7, 13, 20),
+	DialogHolder = Color3.fromRGB(6, 11, 18),
+	DialogHolderLine = Color3.fromRGB(6, 10, 16),
+	DialogButton = Color3.fromRGB(7, 13, 20),
+	DialogButtonBorder = Color3.fromRGB(84, 112, 149),
+	DialogBorder = Color3.fromRGB(70, 100, 140),
+	DialogInput = Color3.fromRGB(26, 32, 38),
+	DialogInputLine = Color3.fromRGB(116, 138, 168),
+
+	Text = Color3.fromRGB(240, 240, 240),
+	SubText = Color3.fromRGB(170, 170, 170),
+	Hover = Color3.fromRGB(70, 100, 140),
+	HoverChange = 0.06
 }
+
 end)() end,
-    [43] = function()local wax,script,require=ImportGlobals(43)local ImportGlobals return (function(...)return {
+    [61] = function()local wax,script,require=ImportGlobals(61)local ImportGlobals return (function(...)return {
+	Accent = Color3.fromRGB(90, 100, 220),
+
+	AcrylicMain = Color3.fromRGB(8, 8, 16),
+	AcrylicBorder = Color3.fromRGB(79, 84, 136),
+	AcrylicGradient = ColorSequence.new(Color3.fromRGB(36, 40, 87), Color3.fromRGB(5, 5, 10)),
+	AcrylicNoise = 0.9,
+
+	TitleBarLine = Color3.fromRGB(48, 51, 90),
+	Tab = Color3.fromRGB(92, 96, 145),
+
+	Element = Color3.fromRGB(70, 75, 130),
+	ElementBorder = Color3.fromRGB(6, 6, 13),
+	InElementBorder = Color3.fromRGB(79, 84, 136),
+	ElementTransparency = 0.87,
+
+	ToggleSlider = Color3.fromRGB(70, 75, 130),
+	ToggleToggled = Color3.fromRGB(0, 0, 0),
+
+	SliderRail = Color3.fromRGB(70, 75, 130),
+
+	DropdownFrame = Color3.fromRGB(107, 111, 155),
+	DropdownHolder = Color3.fromRGB(7, 7, 15),
+	DropdownBorder = Color3.fromRGB(6, 6, 12),
+	DropdownOption = Color3.fromRGB(70, 75, 130),
+
+	Keybind = Color3.fromRGB(70, 75, 130),
+
+	Input = Color3.fromRGB(97, 102, 148),
+	InputFocused = Color3.fromRGB(5, 5, 10),
+	InputIndicator = Color3.fromRGB(116, 120, 161),
+
+	Dialog = Color3.fromRGB(7, 7, 15),
+	DialogHolder = Color3.fromRGB(6, 6, 13),
+	DialogHolderLine = Color3.fromRGB(6, 6, 12),
+	DialogButton = Color3.fromRGB(7, 7, 15),
+	DialogButtonBorder = Color3.fromRGB(84, 89, 140),
+	DialogBorder = Color3.fromRGB(70, 75, 130),
+	DialogInput = Color3.fromRGB(26, 26, 34),
+	DialogInputLine = Color3.fromRGB(116, 120, 161),
+
+	Text = Color3.fromRGB(240, 240, 240),
+	SubText = Color3.fromRGB(170, 170, 170),
+	Hover = Color3.fromRGB(70, 75, 130),
+	HoverChange = 0.06
+}
+
+end)() end,
+    [62] = function()local wax,script,require=ImportGlobals(62)local ImportGlobals return (function(...)return {
     Accent = Color3.fromHex("#fecb52"),
 
     AcrylicMain = Color3.fromHex("#2c2826"),
@@ -59429,7 +60420,7 @@ end)() end,
     HoverChange = 0.1
 }
 end)() end,
-    [44] = function()local wax,script,require=ImportGlobals(44)local ImportGlobals return (function(...)return {
+    [63] = function()local wax,script,require=ImportGlobals(63)local ImportGlobals return (function(...)return {
     Accent = Color3.fromHex("#e7f98b"),
 
     AcrylicMain = Color3.fromHex("#2a2d2a"),
@@ -59476,7 +60467,7 @@ end)() end,
     HoverChange = 0.1
 }
 end)() end,
-    [45] = function()local wax,script,require=ImportGlobals(45)local ImportGlobals return (function(...)return {
+    [64] = function()local wax,script,require=ImportGlobals(64)local ImportGlobals return (function(...)return {
     Accent = Color3.fromHex("#34FEBB"),
 
     AcrylicMain = Color3.fromHex("#1D262F"),
@@ -59523,7 +60514,7 @@ end)() end,
     HoverChange = 0.1
 }
 end)() end,
-    [46] = function()local wax,script,require=ImportGlobals(46)local ImportGlobals return (function(...)return {
+    [65] = function()local wax,script,require=ImportGlobals(65)local ImportGlobals return (function(...)return {
     Accent = Color3.fromHex("#fec38f"),
 
     AcrylicMain = Color3.fromHex("#2c2734"),
@@ -59570,7 +60561,7 @@ end)() end,
     HoverChange = 0.1
 }
 end)() end,
-    [47] = function()local wax,script,require=ImportGlobals(47)local ImportGlobals return (function(...)return {
+    [66] = function()local wax,script,require=ImportGlobals(66)local ImportGlobals return (function(...)return {
     Accent = Color3.fromHex("#fe7734"),
 
     AcrylicMain = Color3.fromHex("#24242e"),
@@ -59617,7 +60608,55 @@ end)() end,
     HoverChange = 0.1
 }
 end)() end,
-    [48] = function()local wax,script,require=ImportGlobals(48)local ImportGlobals return (function(...)return {
+    [67] = function()local wax,script,require=ImportGlobals(67)local ImportGlobals return (function(...)return {
+	Accent = Color3.fromRGB(200, 110, 160),
+
+	AcrylicMain = Color3.fromRGB(16, 13, 18),
+	AcrylicBorder = Color3.fromRGB(126, 103, 126),
+	AcrylicGradient = ColorSequence.new(Color3.fromRGB(80, 46, 67), Color3.fromRGB(10, 8, 11)),
+	AcrylicNoise = 0.9,
+
+	TitleBarLine = Color3.fromRGB(83, 66, 84),
+	Tab = Color3.fromRGB(136, 114, 136),
+
+	Element = Color3.fromRGB(120, 95, 120),
+	ElementBorder = Color3.fromRGB(13, 11, 15),
+	InElementBorder = Color3.fromRGB(126, 103, 126),
+	ElementTransparency = 0.87,
+
+	ToggleSlider = Color3.fromRGB(120, 95, 120),
+	ToggleToggled = Color3.fromRGB(0, 0, 0),
+
+	SliderRail = Color3.fromRGB(120, 95, 120),
+
+	DropdownFrame = Color3.fromRGB(147, 127, 147),
+	DropdownHolder = Color3.fromRGB(15, 12, 17),
+	DropdownBorder = Color3.fromRGB(12, 10, 14),
+	DropdownOption = Color3.fromRGB(120, 95, 120),
+
+	Keybind = Color3.fromRGB(120, 95, 120),
+
+	Input = Color3.fromRGB(140, 119, 140),
+	InputFocused = Color3.fromRGB(10, 8, 11),
+	InputIndicator = Color3.fromRGB(153, 135, 153),
+
+	Dialog = Color3.fromRGB(15, 12, 17),
+	DialogHolder = Color3.fromRGB(13, 11, 15),
+	DialogHolderLine = Color3.fromRGB(12, 9, 13),
+	DialogButton = Color3.fromRGB(15, 12, 17),
+	DialogButtonBorder = Color3.fromRGB(130, 107, 130),
+	DialogBorder = Color3.fromRGB(120, 95, 120),
+	DialogInput = Color3.fromRGB(34, 31, 36),
+	DialogInputLine = Color3.fromRGB(153, 135, 153),
+
+	Text = Color3.fromRGB(240, 240, 240),
+	SubText = Color3.fromRGB(170, 170, 170),
+	Hover = Color3.fromRGB(120, 95, 120),
+	HoverChange = 0.06
+}
+
+end)() end,
+    [68] = function()local wax,script,require=ImportGlobals(68)local ImportGlobals return (function(...)return {
     Accent = Color3.fromHex("#cb5226"),
 
     AcrylicMain = Color3.fromHex("#eff0f1"),
@@ -59664,7 +60703,151 @@ end)() end,
     HoverChange = 0.1
 }
 end)() end,
-    [49] = function()local wax,script,require=ImportGlobals(49)local ImportGlobals return (function(...)return {
+    [69] = function()local wax,script,require=ImportGlobals(69)local ImportGlobals return (function(...)return {
+	Accent = Color3.fromRGB(60, 200, 140),
+
+	AcrylicMain = Color3.fromRGB(12, 20, 17),
+	AcrylicBorder = Color3.fromRGB(98, 155, 126),
+	AcrylicGradient = ColorSequence.new(Color3.fromRGB(28, 83, 60), Color3.fromRGB(7, 13, 11)),
+	AcrylicNoise = 0.9,
+
+	TitleBarLine = Color3.fromRGB(62, 104, 83),
+	Tab = Color3.fromRGB(109, 162, 136),
+
+	Element = Color3.fromRGB(90, 150, 120),
+	ElementBorder = Color3.fromRGB(10, 17, 14),
+	InElementBorder = Color3.fromRGB(98, 155, 126),
+	ElementTransparency = 0.87,
+
+	ToggleSlider = Color3.fromRGB(90, 150, 120),
+	ToggleToggled = Color3.fromRGB(0, 0, 0),
+
+	SliderRail = Color3.fromRGB(90, 150, 120),
+
+	DropdownFrame = Color3.fromRGB(123, 171, 147),
+	DropdownHolder = Color3.fromRGB(11, 19, 16),
+	DropdownBorder = Color3.fromRGB(9, 16, 13),
+	DropdownOption = Color3.fromRGB(90, 150, 120),
+
+	Keybind = Color3.fromRGB(90, 150, 120),
+
+	Input = Color3.fromRGB(114, 165, 140),
+	InputFocused = Color3.fromRGB(7, 13, 11),
+	InputIndicator = Color3.fromRGB(131, 176, 153),
+
+	Dialog = Color3.fromRGB(11, 19, 16),
+	DialogHolder = Color3.fromRGB(10, 17, 14),
+	DialogHolderLine = Color3.fromRGB(9, 15, 12),
+	DialogButton = Color3.fromRGB(11, 19, 16),
+	DialogButtonBorder = Color3.fromRGB(103, 158, 130),
+	DialogBorder = Color3.fromRGB(90, 150, 120),
+	DialogInput = Color3.fromRGB(30, 37, 35),
+	DialogInputLine = Color3.fromRGB(131, 176, 153),
+
+	Text = Color3.fromRGB(240, 240, 240),
+	SubText = Color3.fromRGB(170, 170, 170),
+	Hover = Color3.fromRGB(90, 150, 120),
+	HoverChange = 0.06
+}
+
+end)() end,
+    [70] = function()local wax,script,require=ImportGlobals(70)local ImportGlobals return (function(...)return {
+	Accent = Color3.fromRGB(90, 180, 90),
+
+	AcrylicMain = Color3.fromRGB(12, 16, 12),
+	AcrylicBorder = Color3.fromRGB(93, 126, 93),
+	AcrylicGradient = ColorSequence.new(Color3.fromRGB(39, 73, 39), Color3.fromRGB(7, 10, 7)),
+	AcrylicNoise = 0.9,
+
+	TitleBarLine = Color3.fromRGB(59, 83, 59),
+	Tab = Color3.fromRGB(105, 136, 105),
+
+	Element = Color3.fromRGB(85, 120, 85),
+	ElementBorder = Color3.fromRGB(10, 13, 10),
+	InElementBorder = Color3.fromRGB(93, 126, 93),
+	ElementTransparency = 0.87,
+
+	ToggleSlider = Color3.fromRGB(85, 120, 85),
+	ToggleToggled = Color3.fromRGB(0, 0, 0),
+
+	SliderRail = Color3.fromRGB(85, 120, 85),
+
+	DropdownFrame = Color3.fromRGB(119, 147, 119),
+	DropdownHolder = Color3.fromRGB(11, 15, 11),
+	DropdownBorder = Color3.fromRGB(9, 12, 9),
+	DropdownOption = Color3.fromRGB(85, 120, 85),
+
+	Keybind = Color3.fromRGB(85, 120, 85),
+
+	Input = Color3.fromRGB(110, 140, 110),
+	InputFocused = Color3.fromRGB(7, 10, 7),
+	InputIndicator = Color3.fromRGB(127, 153, 127),
+
+	Dialog = Color3.fromRGB(11, 15, 11),
+	DialogHolder = Color3.fromRGB(10, 13, 10),
+	DialogHolderLine = Color3.fromRGB(9, 12, 9),
+	DialogButton = Color3.fromRGB(11, 15, 11),
+	DialogButtonBorder = Color3.fromRGB(98, 130, 98),
+	DialogBorder = Color3.fromRGB(85, 120, 85),
+	DialogInput = Color3.fromRGB(30, 34, 30),
+	DialogInputLine = Color3.fromRGB(127, 153, 127),
+
+	Text = Color3.fromRGB(240, 240, 240),
+	SubText = Color3.fromRGB(170, 170, 170),
+	Hover = Color3.fromRGB(85, 120, 85),
+	HoverChange = 0.06
+}
+
+end)() end,
+    [71] = function()local wax,script,require=ImportGlobals(71)local ImportGlobals return (function(...)return {
+	Accent = Color3.fromRGB(120, 200, 240),
+
+	AcrylicMain = Color3.fromRGB(12, 18, 22),
+	AcrylicBorder = Color3.fromRGB(107, 145, 164),
+	AcrylicGradient = ColorSequence.new(Color3.fromRGB(49, 81, 98), Color3.fromRGB(7, 11, 14)),
+	AcrylicNoise = 0.9,
+
+	TitleBarLine = Color3.fromRGB(69, 97, 111),
+	Tab = Color3.fromRGB(118, 153, 171),
+
+	Element = Color3.fromRGB(100, 140, 160),
+	ElementBorder = Color3.fromRGB(10, 15, 18),
+	InElementBorder = Color3.fromRGB(107, 145, 164),
+	ElementTransparency = 0.87,
+
+	ToggleSlider = Color3.fromRGB(100, 140, 160),
+	ToggleToggled = Color3.fromRGB(0, 0, 0),
+
+	SliderRail = Color3.fromRGB(100, 140, 160),
+
+	DropdownFrame = Color3.fromRGB(131, 163, 179),
+	DropdownHolder = Color3.fromRGB(11, 17, 20),
+	DropdownBorder = Color3.fromRGB(9, 14, 17),
+	DropdownOption = Color3.fromRGB(100, 140, 160),
+
+	Keybind = Color3.fromRGB(100, 140, 160),
+
+	Input = Color3.fromRGB(123, 157, 174),
+	InputFocused = Color3.fromRGB(7, 11, 14),
+	InputIndicator = Color3.fromRGB(138, 168, 183),
+
+	Dialog = Color3.fromRGB(11, 17, 20),
+	DialogHolder = Color3.fromRGB(10, 15, 18),
+	DialogHolderLine = Color3.fromRGB(9, 13, 16),
+	DialogButton = Color3.fromRGB(11, 17, 20),
+	DialogButtonBorder = Color3.fromRGB(112, 149, 167),
+	DialogBorder = Color3.fromRGB(100, 140, 160),
+	DialogInput = Color3.fromRGB(30, 36, 38),
+	DialogInputLine = Color3.fromRGB(138, 168, 183),
+
+	Text = Color3.fromRGB(240, 240, 240),
+	SubText = Color3.fromRGB(170, 170, 170),
+	Hover = Color3.fromRGB(100, 140, 160),
+	HoverChange = 0.06
+}
+
+end)() end,
+    [72] = function()local wax,script,require=ImportGlobals(72)local ImportGlobals return (function(...)return {
     Accent = Color3.fromHex("#1f6feb"), -- focusBorder
 
     AcrylicMain = Color3.fromHex("#010409"), -- sideBar.background
@@ -59711,7 +60894,7 @@ end)() end,
     HoverChange = 0.1
 }
 end)() end,
-    [50] = function()local wax,script,require=ImportGlobals(50)local ImportGlobals return (function(...)return {
+    [73] = function()local wax,script,require=ImportGlobals(73)local ImportGlobals return (function(...)return {
     Accent = Color3.fromHex("#1f6feb"),  -- focusBorder
 
     AcrylicMain = Color3.fromHex("#010409"), -- sideBar.background
@@ -59758,7 +60941,7 @@ end)() end,
     HoverChange = 0.1 
 }
 end)() end,
-    [51] = function()local wax,script,require=ImportGlobals(51)local ImportGlobals return (function(...)return {
+    [74] = function()local wax,script,require=ImportGlobals(74)local ImportGlobals return (function(...)return {
     Accent = Color3.fromHex("#316dca"), -- focusBorder
 
     AcrylicMain = Color3.fromHex("#1c2128"), -- sideBar.background
@@ -59805,7 +60988,7 @@ end)() end,
     HoverChange = 0.1 
 }
 end)() end,
-    [52] = function()local wax,script,require=ImportGlobals(52)local ImportGlobals return (function(...)return {
+    [75] = function()local wax,script,require=ImportGlobals(75)local ImportGlobals return (function(...)return {
     Accent = Color3.fromHex("#409eff"), -- focusBorder
 
     AcrylicMain = Color3.fromHex("#010409"), -- sideBar.background
@@ -59854,7 +61037,7 @@ end)() end,
     HoverChange = 0.1
 }
 end)() end,
-    [53] = function()local wax,script,require=ImportGlobals(53)local ImportGlobals return (function(...)return {
+    [76] = function()local wax,script,require=ImportGlobals(76)local ImportGlobals return (function(...)return {
     Accent = Color3.fromHex("#005cc5"), -- focusBorder
 
     AcrylicMain = Color3.fromHex("#1f2428"), -- sideBar.background
@@ -59901,7 +61084,7 @@ end)() end,
     HoverChange = 0.1
 }
 end)() end,
-    [54] = function()local wax,script,require=ImportGlobals(54)local ImportGlobals return (function(...)return {
+    [77] = function()local wax,script,require=ImportGlobals(77)local ImportGlobals return (function(...)return {
     Accent = Color3.fromHex("#0969da"), -- focusBorder
 
     AcrylicMain = Color3.fromHex("#f6f8fa"), -- textBlockQuote.background
@@ -59948,7 +61131,7 @@ end)() end,
     HoverChange = 0.1
 }
 end)() end,
-    [55] = function()local wax,script,require=ImportGlobals(55)local ImportGlobals return (function(...)return {
+    [78] = function()local wax,script,require=ImportGlobals(78)local ImportGlobals return (function(...)return {
     Accent = Color3.fromHex("#0969da"), -- focusBorder
 
     AcrylicMain = Color3.fromHex("#f6f8fa"), -- sideBar.background
@@ -59996,7 +61179,7 @@ end)() end,
     HoverChange = 0.1  -- A subtle hover effect
 }
 end)() end,
-    [56] = function()local wax,script,require=ImportGlobals(56)local ImportGlobals return (function(...)return {
+    [79] = function()local wax,script,require=ImportGlobals(79)local ImportGlobals return (function(...)return {
     Accent = Color3.fromHex("#0349b4"), -- focusBorder
 
     AcrylicMain = Color3.fromHex("#ffffff"), -- sideBar.background
@@ -60043,7 +61226,7 @@ end)() end,
     HoverChange = 0.1 -- Slightly more pronounced hover effect
 }
 end)() end,
-    [57] = function()local wax,script,require=ImportGlobals(57)local ImportGlobals return (function(...)return {
+    [80] = function()local wax,script,require=ImportGlobals(80)local ImportGlobals return (function(...)return {
     Accent = Color3.fromHex("2188ff"), -- focusBorder
 
     AcrylicMain = Color3.fromHex("f6f8fa"), -- sideBar.background
@@ -60090,7 +61273,247 @@ end)() end,
     HoverChange = 0.1 -- Slightly more pronounced hover effect
 }
 end)() end,
-    [58] = function()local wax,script,require=ImportGlobals(58)local ImportGlobals return (function(...)return {
+    [81] = function()local wax,script,require=ImportGlobals(81)local ImportGlobals return (function(...)return {
+	Accent = Color3.fromRGB(140, 140, 150),
+
+	AcrylicMain = Color3.fromRGB(14, 14, 15),
+	AcrylicBorder = Color3.fromRGB(98, 98, 103),
+	AcrylicGradient = ColorSequence.new(Color3.fromRGB(58, 58, 62), Color3.fromRGB(9, 9, 9)),
+	AcrylicNoise = 0.9,
+
+	TitleBarLine = Color3.fromRGB(63, 63, 67),
+	Tab = Color3.fromRGB(109, 109, 114),
+
+	Element = Color3.fromRGB(90, 90, 95),
+	ElementBorder = Color3.fromRGB(11, 11, 12),
+	InElementBorder = Color3.fromRGB(98, 98, 103),
+	ElementTransparency = 0.87,
+
+	ToggleSlider = Color3.fromRGB(90, 90, 95),
+	ToggleToggled = Color3.fromRGB(0, 0, 0),
+
+	SliderRail = Color3.fromRGB(90, 90, 95),
+
+	DropdownFrame = Color3.fromRGB(123, 123, 127),
+	DropdownHolder = Color3.fromRGB(13, 13, 14),
+	DropdownBorder = Color3.fromRGB(11, 11, 12),
+	DropdownOption = Color3.fromRGB(90, 90, 95),
+
+	Keybind = Color3.fromRGB(90, 90, 95),
+
+	Input = Color3.fromRGB(114, 114, 119),
+	InputFocused = Color3.fromRGB(9, 9, 9),
+	InputIndicator = Color3.fromRGB(131, 131, 135),
+
+	Dialog = Color3.fromRGB(13, 13, 14),
+	DialogHolder = Color3.fromRGB(11, 11, 12),
+	DialogHolderLine = Color3.fromRGB(10, 10, 11),
+	DialogButton = Color3.fromRGB(13, 13, 14),
+	DialogButtonBorder = Color3.fromRGB(103, 103, 107),
+	DialogBorder = Color3.fromRGB(90, 90, 95),
+	DialogInput = Color3.fromRGB(32, 32, 33),
+	DialogInputLine = Color3.fromRGB(131, 131, 135),
+
+	Text = Color3.fromRGB(240, 240, 240),
+	SubText = Color3.fromRGB(170, 170, 170),
+	Hover = Color3.fromRGB(90, 90, 95),
+	HoverChange = 0.06
+}
+
+end)() end,
+    [82] = function()local wax,script,require=ImportGlobals(82)local ImportGlobals return (function(...)return {
+	Accent = Color3.fromRGB(80, 110, 230),
+
+	AcrylicMain = Color3.fromRGB(8, 10, 18),
+	AcrylicBorder = Color3.fromRGB(79, 93, 145),
+	AcrylicGradient = ColorSequence.new(Color3.fromRGB(33, 45, 92), Color3.fromRGB(5, 6, 11)),
+	AcrylicNoise = 0.9,
+
+	TitleBarLine = Color3.fromRGB(48, 58, 97),
+	Tab = Color3.fromRGB(92, 105, 153),
+
+	Element = Color3.fromRGB(70, 85, 140),
+	ElementBorder = Color3.fromRGB(6, 8, 15),
+	InElementBorder = Color3.fromRGB(79, 93, 145),
+	ElementTransparency = 0.87,
+
+	ToggleSlider = Color3.fromRGB(70, 85, 140),
+	ToggleToggled = Color3.fromRGB(0, 0, 0),
+
+	SliderRail = Color3.fromRGB(70, 85, 140),
+
+	DropdownFrame = Color3.fromRGB(107, 119, 163),
+	DropdownHolder = Color3.fromRGB(7, 9, 17),
+	DropdownBorder = Color3.fromRGB(6, 8, 14),
+	DropdownOption = Color3.fromRGB(70, 85, 140),
+
+	Keybind = Color3.fromRGB(70, 85, 140),
+
+	Input = Color3.fromRGB(97, 110, 157),
+	InputFocused = Color3.fromRGB(5, 6, 11),
+	InputIndicator = Color3.fromRGB(116, 127, 168),
+
+	Dialog = Color3.fromRGB(7, 9, 17),
+	DialogHolder = Color3.fromRGB(6, 8, 15),
+	DialogHolderLine = Color3.fromRGB(6, 7, 13),
+	DialogButton = Color3.fromRGB(7, 9, 17),
+	DialogButtonBorder = Color3.fromRGB(84, 98, 149),
+	DialogBorder = Color3.fromRGB(70, 85, 140),
+	DialogInput = Color3.fromRGB(26, 28, 36),
+	DialogInputLine = Color3.fromRGB(116, 127, 168),
+
+	Text = Color3.fromRGB(240, 240, 240),
+	SubText = Color3.fromRGB(170, 170, 170),
+	Hover = Color3.fromRGB(70, 85, 140),
+	HoverChange = 0.06
+}
+
+end)() end,
+    [83] = function()local wax,script,require=ImportGlobals(83)local ImportGlobals return (function(...)return {
+	Accent = Color3.fromRGB(200, 90, 50),
+
+	AcrylicMain = Color3.fromRGB(16, 13, 11),
+	AcrylicBorder = Color3.fromRGB(136, 98, 79),
+	AcrylicGradient = ColorSequence.new(Color3.fromRGB(80, 39, 24), Color3.fromRGB(10, 8, 7)),
+	AcrylicNoise = 0.9,
+
+	TitleBarLine = Color3.fromRGB(90, 63, 49),
+	Tab = Color3.fromRGB(145, 109, 92),
+
+	Element = Color3.fromRGB(130, 90, 70),
+	ElementBorder = Color3.fromRGB(13, 11, 9),
+	InElementBorder = Color3.fromRGB(136, 98, 79),
+	ElementTransparency = 0.87,
+
+	ToggleSlider = Color3.fromRGB(130, 90, 70),
+	ToggleToggled = Color3.fromRGB(0, 0, 0),
+
+	SliderRail = Color3.fromRGB(130, 90, 70),
+
+	DropdownFrame = Color3.fromRGB(155, 123, 107),
+	DropdownHolder = Color3.fromRGB(15, 12, 10),
+	DropdownBorder = Color3.fromRGB(12, 10, 8),
+	DropdownOption = Color3.fromRGB(130, 90, 70),
+
+	Keybind = Color3.fromRGB(130, 90, 70),
+
+	Input = Color3.fromRGB(148, 114, 97),
+	InputFocused = Color3.fromRGB(10, 8, 7),
+	InputIndicator = Color3.fromRGB(161, 131, 116),
+
+	Dialog = Color3.fromRGB(15, 12, 10),
+	DialogHolder = Color3.fromRGB(13, 11, 9),
+	DialogHolderLine = Color3.fromRGB(12, 9, 8),
+	DialogButton = Color3.fromRGB(15, 12, 10),
+	DialogButtonBorder = Color3.fromRGB(140, 103, 84),
+	DialogBorder = Color3.fromRGB(130, 90, 70),
+	DialogInput = Color3.fromRGB(34, 31, 29),
+	DialogInputLine = Color3.fromRGB(161, 131, 116),
+
+	Text = Color3.fromRGB(240, 240, 240),
+	SubText = Color3.fromRGB(170, 170, 170),
+	Hover = Color3.fromRGB(130, 90, 70),
+	HoverChange = 0.06
+}
+
+end)() end,
+    [84] = function()local wax,script,require=ImportGlobals(84)local ImportGlobals return (function(...)return {
+	Accent = Color3.fromRGB(200, 160, 60),
+
+	AcrylicMain = Color3.fromRGB(250, 248, 238),
+	AcrylicBorder = Color3.fromRGB(213, 207, 185),
+	AcrylicGradient = ColorSequence.new(Color3.fromRGB(242, 234, 211), Color3.fromRGB(250, 248, 239)),
+	AcrylicNoise = 0.9,
+
+	TitleBarLine = Color3.fromRGB(212, 210, 202),
+	Tab = Color3.fromRGB(213, 207, 185),
+
+	Element = Color3.fromRGB(225, 218, 195),
+	ElementBorder = Color3.fromRGB(187, 186, 178),
+	InElementBorder = Color3.fromRGB(202, 196, 175),
+	ElementTransparency = 0.87,
+
+	ToggleSlider = Color3.fromRGB(225, 218, 195),
+	ToggleToggled = Color3.fromRGB(200, 160, 60),
+
+	SliderRail = Color3.fromRGB(225, 218, 195),
+
+	DropdownFrame = Color3.fromRGB(191, 185, 165),
+	DropdownHolder = Color3.fromRGB(250, 248, 238),
+	DropdownBorder = Color3.fromRGB(200, 198, 190),
+	DropdownOption = Color3.fromRGB(225, 218, 195),
+
+	Keybind = Color3.fromRGB(225, 218, 195),
+
+	Input = Color3.fromRGB(202, 196, 175),
+	InputFocused = Color3.fromRGB(250, 249, 240),
+	InputIndicator = Color3.fromRGB(157, 152, 136),
+
+	Dialog = Color3.fromRGB(250, 248, 238),
+	DialogHolder = Color3.fromRGB(237, 235, 226),
+	DialogHolderLine = Color3.fromRGB(220, 218, 209),
+	DialogButton = Color3.fromRGB(250, 248, 238),
+	DialogButtonBorder = Color3.fromRGB(207, 200, 179),
+	DialogBorder = Color3.fromRGB(225, 218, 195),
+	DialogInput = Color3.fromRGB(237, 235, 226),
+	DialogInputLine = Color3.fromRGB(168, 163, 146),
+
+	Text = Color3.fromRGB(30, 30, 30),
+	SubText = Color3.fromRGB(90, 90, 90),
+	Hover = Color3.fromRGB(225, 218, 195),
+	HoverChange = 0.06
+}
+
+end)() end,
+    [85] = function()local wax,script,require=ImportGlobals(85)local ImportGlobals return (function(...)return {
+	Accent = Color3.fromRGB(70, 190, 130),
+
+	AcrylicMain = Color3.fromRGB(10, 16, 14),
+	AcrylicBorder = Color3.fromRGB(88, 136, 112),
+	AcrylicGradient = ColorSequence.new(Color3.fromRGB(31, 76, 54), Color3.fromRGB(6, 10, 9)),
+	AcrylicNoise = 0.9,
+
+	TitleBarLine = Color3.fromRGB(55, 90, 73),
+	Tab = Color3.fromRGB(101, 145, 123),
+
+	Element = Color3.fromRGB(80, 130, 105),
+	ElementBorder = Color3.fromRGB(8, 13, 11),
+	InElementBorder = Color3.fromRGB(88, 136, 112),
+	ElementTransparency = 0.87,
+
+	ToggleSlider = Color3.fromRGB(80, 130, 105),
+	ToggleToggled = Color3.fromRGB(0, 0, 0),
+
+	SliderRail = Color3.fromRGB(80, 130, 105),
+
+	DropdownFrame = Color3.fromRGB(115, 155, 135),
+	DropdownHolder = Color3.fromRGB(9, 15, 13),
+	DropdownBorder = Color3.fromRGB(8, 12, 11),
+	DropdownOption = Color3.fromRGB(80, 130, 105),
+
+	Keybind = Color3.fromRGB(80, 130, 105),
+
+	Input = Color3.fromRGB(106, 148, 127),
+	InputFocused = Color3.fromRGB(6, 10, 9),
+	InputIndicator = Color3.fromRGB(123, 161, 142),
+
+	Dialog = Color3.fromRGB(9, 15, 13),
+	DialogHolder = Color3.fromRGB(8, 13, 11),
+	DialogHolderLine = Color3.fromRGB(7, 12, 10),
+	DialogButton = Color3.fromRGB(9, 15, 13),
+	DialogButtonBorder = Color3.fromRGB(94, 140, 117),
+	DialogBorder = Color3.fromRGB(80, 130, 105),
+	DialogInput = Color3.fromRGB(28, 34, 32),
+	DialogInputLine = Color3.fromRGB(123, 161, 142),
+
+	Text = Color3.fromRGB(240, 240, 240),
+	SubText = Color3.fromRGB(170, 170, 170),
+	Hover = Color3.fromRGB(80, 130, 105),
+	HoverChange = 0.06
+}
+
+end)() end,
+    [86] = function()local wax,script,require=ImportGlobals(86)local ImportGlobals return (function(...)return {
     Accent = Color3.fromHex("#a57a4c"), -- focusBorder
 
     AcrylicMain = Color3.fromHex("#221a0f"), -- editor.background
@@ -60137,7 +61560,55 @@ end)() end,
     HoverChange = 0.1
 }
 end)() end,
-    [59] = function()local wax,script,require=ImportGlobals(59)local ImportGlobals return (function(...)return {
+    [87] = function()local wax,script,require=ImportGlobals(87)local ImportGlobals return (function(...)return {
+	Accent = Color3.fromRGB(180, 150, 230),
+
+	AcrylicMain = Color3.fromRGB(16, 14, 20),
+	AcrylicBorder = Color3.fromRGB(126, 117, 155),
+	AcrylicGradient = ColorSequence.new(Color3.fromRGB(73, 61, 93), Color3.fromRGB(10, 9, 13)),
+	AcrylicNoise = 0.9,
+
+	TitleBarLine = Color3.fromRGB(83, 76, 104),
+	Tab = Color3.fromRGB(136, 127, 162),
+
+	Element = Color3.fromRGB(120, 110, 150),
+	ElementBorder = Color3.fromRGB(13, 11, 17),
+	InElementBorder = Color3.fromRGB(126, 117, 155),
+	ElementTransparency = 0.87,
+
+	ToggleSlider = Color3.fromRGB(120, 110, 150),
+	ToggleToggled = Color3.fromRGB(0, 0, 0),
+
+	SliderRail = Color3.fromRGB(120, 110, 150),
+
+	DropdownFrame = Color3.fromRGB(147, 139, 171),
+	DropdownHolder = Color3.fromRGB(15, 13, 19),
+	DropdownBorder = Color3.fromRGB(12, 11, 16),
+	DropdownOption = Color3.fromRGB(120, 110, 150),
+
+	Keybind = Color3.fromRGB(120, 110, 150),
+
+	Input = Color3.fromRGB(140, 131, 165),
+	InputFocused = Color3.fromRGB(10, 9, 13),
+	InputIndicator = Color3.fromRGB(153, 146, 176),
+
+	Dialog = Color3.fromRGB(15, 13, 19),
+	DialogHolder = Color3.fromRGB(13, 11, 17),
+	DialogHolderLine = Color3.fromRGB(12, 10, 15),
+	DialogButton = Color3.fromRGB(15, 13, 19),
+	DialogButtonBorder = Color3.fromRGB(130, 121, 158),
+	DialogBorder = Color3.fromRGB(120, 110, 150),
+	DialogInput = Color3.fromRGB(34, 32, 37),
+	DialogInputLine = Color3.fromRGB(153, 146, 176),
+
+	Text = Color3.fromRGB(240, 240, 240),
+	SubText = Color3.fromRGB(170, 170, 170),
+	Hover = Color3.fromRGB(120, 110, 150),
+	HoverChange = 0.06
+}
+
+end)() end,
+    [88] = function()local wax,script,require=ImportGlobals(88)local ImportGlobals return (function(...)return {
 	Accent = Color3.fromRGB(0, 103, 192),
 
 	AcrylicMain = Color3.fromRGB(200, 200, 200),
@@ -60185,7 +61656,295 @@ end)() end,
 }
 
 end)() end,
-    [60] = function()local wax,script,require=ImportGlobals(60)local ImportGlobals return (function(...)return {
+    [89] = function()local wax,script,require=ImportGlobals(89)local ImportGlobals return (function(...)return {
+	Accent = Color3.fromRGB(150, 110, 220),
+
+	AcrylicMain = Color3.fromRGB(247, 244, 250),
+	AcrylicBorder = Color3.fromRGB(207, 199, 218),
+	AcrylicGradient = ColorSequence.new(Color3.fromRGB(232, 223, 245), Color3.fromRGB(247, 245, 250)),
+	AcrylicNoise = 0.9,
+
+	TitleBarLine = Color3.fromRGB(209, 207, 212),
+	Tab = Color3.fromRGB(207, 199, 218),
+
+	Element = Color3.fromRGB(218, 210, 230),
+	ElementBorder = Color3.fromRGB(185, 183, 187),
+	InElementBorder = Color3.fromRGB(196, 189, 207),
+	ElementTransparency = 0.87,
+
+	ToggleSlider = Color3.fromRGB(218, 210, 230),
+	ToggleToggled = Color3.fromRGB(150, 110, 220),
+
+	SliderRail = Color3.fromRGB(218, 210, 230),
+
+	DropdownFrame = Color3.fromRGB(185, 178, 195),
+	DropdownHolder = Color3.fromRGB(247, 244, 250),
+	DropdownBorder = Color3.fromRGB(197, 195, 200),
+	DropdownOption = Color3.fromRGB(218, 210, 230),
+
+	Keybind = Color3.fromRGB(218, 210, 230),
+
+	Input = Color3.fromRGB(196, 189, 207),
+	InputFocused = Color3.fromRGB(248, 245, 250),
+	InputIndicator = Color3.fromRGB(152, 147, 161),
+
+	Dialog = Color3.fromRGB(247, 244, 250),
+	DialogHolder = Color3.fromRGB(234, 231, 237),
+	DialogHolderLine = Color3.fromRGB(217, 214, 220),
+	DialogButton = Color3.fromRGB(247, 244, 250),
+	DialogButtonBorder = Color3.fromRGB(200, 193, 211),
+	DialogBorder = Color3.fromRGB(218, 210, 230),
+	DialogInput = Color3.fromRGB(234, 231, 237),
+	DialogInputLine = Color3.fromRGB(163, 157, 172),
+
+	Text = Color3.fromRGB(30, 30, 30),
+	SubText = Color3.fromRGB(90, 90, 90),
+	Hover = Color3.fromRGB(218, 210, 230),
+	HoverChange = 0.06
+}
+
+end)() end,
+    [90] = function()local wax,script,require=ImportGlobals(90)local ImportGlobals return (function(...)return {
+	Accent = Color3.fromRGB(160, 130, 90),
+
+	AcrylicMain = Color3.fromRGB(248, 244, 236),
+	AcrylicBorder = Color3.fromRGB(209, 201, 188),
+	AcrylicGradient = ColorSequence.new(Color3.fromRGB(234, 226, 214), Color3.fromRGB(248, 245, 237)),
+	AcrylicNoise = 0.9,
+
+	TitleBarLine = Color3.fromRGB(210, 207, 200),
+	Tab = Color3.fromRGB(209, 201, 188),
+
+	Element = Color3.fromRGB(220, 212, 198),
+	ElementBorder = Color3.fromRGB(186, 183, 177),
+	InElementBorder = Color3.fromRGB(198, 190, 178),
+	ElementTransparency = 0.87,
+
+	ToggleSlider = Color3.fromRGB(220, 212, 198),
+	ToggleToggled = Color3.fromRGB(160, 130, 90),
+
+	SliderRail = Color3.fromRGB(220, 212, 198),
+
+	DropdownFrame = Color3.fromRGB(187, 180, 168),
+	DropdownHolder = Color3.fromRGB(248, 244, 236),
+	DropdownBorder = Color3.fromRGB(198, 195, 188),
+	DropdownOption = Color3.fromRGB(220, 212, 198),
+
+	Keybind = Color3.fromRGB(220, 212, 198),
+
+	Input = Color3.fromRGB(198, 190, 178),
+	InputFocused = Color3.fromRGB(249, 245, 238),
+	InputIndicator = Color3.fromRGB(154, 148, 138),
+
+	Dialog = Color3.fromRGB(248, 244, 236),
+	DialogHolder = Color3.fromRGB(235, 231, 224),
+	DialogHolderLine = Color3.fromRGB(218, 214, 207),
+	DialogButton = Color3.fromRGB(248, 244, 236),
+	DialogButtonBorder = Color3.fromRGB(202, 195, 182),
+	DialogBorder = Color3.fromRGB(220, 212, 198),
+	DialogInput = Color3.fromRGB(235, 231, 224),
+	DialogInputLine = Color3.fromRGB(165, 159, 148),
+
+	Text = Color3.fromRGB(30, 30, 30),
+	SubText = Color3.fromRGB(90, 90, 90),
+	Hover = Color3.fromRGB(220, 212, 198),
+	HoverChange = 0.06
+}
+
+end)() end,
+    [91] = function()local wax,script,require=ImportGlobals(91)local ImportGlobals return (function(...)return {
+	Accent = Color3.fromRGB(250, 90, 40),
+
+	AcrylicMain = Color3.fromRGB(20, 12, 10),
+	AcrylicBorder = Color3.fromRGB(155, 98, 79),
+	AcrylicGradient = ColorSequence.new(Color3.fromRGB(100, 39, 20), Color3.fromRGB(13, 7, 6)),
+	AcrylicNoise = 0.9,
+
+	TitleBarLine = Color3.fromRGB(104, 62, 49),
+	Tab = Color3.fromRGB(162, 109, 92),
+
+	Element = Color3.fromRGB(150, 90, 70),
+	ElementBorder = Color3.fromRGB(17, 10, 8),
+	InElementBorder = Color3.fromRGB(155, 98, 79),
+	ElementTransparency = 0.87,
+
+	ToggleSlider = Color3.fromRGB(150, 90, 70),
+	ToggleToggled = Color3.fromRGB(0, 0, 0),
+
+	SliderRail = Color3.fromRGB(150, 90, 70),
+
+	DropdownFrame = Color3.fromRGB(171, 123, 107),
+	DropdownHolder = Color3.fromRGB(19, 11, 9),
+	DropdownBorder = Color3.fromRGB(16, 9, 8),
+	DropdownOption = Color3.fromRGB(150, 90, 70),
+
+	Keybind = Color3.fromRGB(150, 90, 70),
+
+	Input = Color3.fromRGB(165, 114, 97),
+	InputFocused = Color3.fromRGB(13, 7, 6),
+	InputIndicator = Color3.fromRGB(176, 131, 116),
+
+	Dialog = Color3.fromRGB(19, 11, 9),
+	DialogHolder = Color3.fromRGB(17, 10, 8),
+	DialogHolderLine = Color3.fromRGB(15, 9, 7),
+	DialogButton = Color3.fromRGB(19, 11, 9),
+	DialogButtonBorder = Color3.fromRGB(158, 103, 84),
+	DialogBorder = Color3.fromRGB(150, 90, 70),
+	DialogInput = Color3.fromRGB(37, 30, 28),
+	DialogInputLine = Color3.fromRGB(176, 131, 116),
+
+	Text = Color3.fromRGB(240, 240, 240),
+	SubText = Color3.fromRGB(170, 170, 170),
+	Hover = Color3.fromRGB(150, 90, 70),
+	HoverChange = 0.06
+}
+
+end)() end,
+    [92] = function()local wax,script,require=ImportGlobals(92)local ImportGlobals return (function(...)return {
+	Accent = Color3.fromRGB(50, 200, 190),
+
+	AcrylicMain = Color3.fromRGB(10, 20, 20),
+	AcrylicBorder = Color3.fromRGB(88, 145, 141),
+	AcrylicGradient = ColorSequence.new(Color3.fromRGB(24, 83, 79), Color3.fromRGB(6, 13, 13)),
+	AcrylicNoise = 0.9,
+
+	TitleBarLine = Color3.fromRGB(55, 98, 94),
+	Tab = Color3.fromRGB(101, 153, 149),
+
+	Element = Color3.fromRGB(80, 140, 135),
+	ElementBorder = Color3.fromRGB(8, 17, 17),
+	InElementBorder = Color3.fromRGB(88, 145, 141),
+	ElementTransparency = 0.87,
+
+	ToggleSlider = Color3.fromRGB(80, 140, 135),
+	ToggleToggled = Color3.fromRGB(0, 0, 0),
+
+	SliderRail = Color3.fromRGB(80, 140, 135),
+
+	DropdownFrame = Color3.fromRGB(115, 163, 159),
+	DropdownHolder = Color3.fromRGB(9, 19, 19),
+	DropdownBorder = Color3.fromRGB(8, 16, 16),
+	DropdownOption = Color3.fromRGB(80, 140, 135),
+
+	Keybind = Color3.fromRGB(80, 140, 135),
+
+	Input = Color3.fromRGB(106, 157, 153),
+	InputFocused = Color3.fromRGB(6, 13, 13),
+	InputIndicator = Color3.fromRGB(123, 168, 165),
+
+	Dialog = Color3.fromRGB(9, 19, 19),
+	DialogHolder = Color3.fromRGB(8, 17, 17),
+	DialogHolderLine = Color3.fromRGB(7, 15, 15),
+	DialogButton = Color3.fromRGB(9, 19, 19),
+	DialogButtonBorder = Color3.fromRGB(94, 149, 144),
+	DialogBorder = Color3.fromRGB(80, 140, 135),
+	DialogInput = Color3.fromRGB(28, 37, 37),
+	DialogInputLine = Color3.fromRGB(123, 168, 165),
+
+	Text = Color3.fromRGB(240, 240, 240),
+	SubText = Color3.fromRGB(170, 170, 170),
+	Hover = Color3.fromRGB(80, 140, 135),
+	HoverChange = 0.06
+}
+
+end)() end,
+    [93] = function()local wax,script,require=ImportGlobals(93)local ImportGlobals return (function(...)return {
+	Accent = Color3.fromRGB(90, 220, 170),
+
+	AcrylicMain = Color3.fromRGB(18, 14, 12),
+	AcrylicBorder = Color3.fromRGB(107, 145, 126),
+	AcrylicGradient = ColorSequence.new(Color3.fromRGB(43, 86, 67), Color3.fromRGB(11, 9, 7)),
+	AcrylicNoise = 0.9,
+
+	TitleBarLine = Color3.fromRGB(71, 95, 82),
+	Tab = Color3.fromRGB(118, 153, 136),
+
+	Element = Color3.fromRGB(100, 140, 120),
+	ElementBorder = Color3.fromRGB(15, 11, 10),
+	InElementBorder = Color3.fromRGB(107, 145, 126),
+	ElementTransparency = 0.87,
+
+	ToggleSlider = Color3.fromRGB(100, 140, 120),
+	ToggleToggled = Color3.fromRGB(0, 0, 0),
+
+	SliderRail = Color3.fromRGB(100, 140, 120),
+
+	DropdownFrame = Color3.fromRGB(131, 163, 147),
+	DropdownHolder = Color3.fromRGB(17, 13, 11),
+	DropdownBorder = Color3.fromRGB(14, 11, 9),
+	DropdownOption = Color3.fromRGB(100, 140, 120),
+
+	Keybind = Color3.fromRGB(100, 140, 120),
+
+	Input = Color3.fromRGB(123, 157, 140),
+	InputFocused = Color3.fromRGB(11, 9, 7),
+	InputIndicator = Color3.fromRGB(138, 168, 153),
+
+	Dialog = Color3.fromRGB(17, 13, 11),
+	DialogHolder = Color3.fromRGB(15, 11, 10),
+	DialogHolderLine = Color3.fromRGB(13, 10, 9),
+	DialogButton = Color3.fromRGB(17, 13, 11),
+	DialogButtonBorder = Color3.fromRGB(112, 149, 130),
+	DialogBorder = Color3.fromRGB(100, 140, 120),
+	DialogInput = Color3.fromRGB(36, 32, 30),
+	DialogInputLine = Color3.fromRGB(138, 168, 153),
+
+	Text = Color3.fromRGB(240, 240, 240),
+	SubText = Color3.fromRGB(170, 170, 170),
+	Hover = Color3.fromRGB(100, 140, 120),
+	HoverChange = 0.06
+}
+
+end)() end,
+    [94] = function()local wax,script,require=ImportGlobals(94)local ImportGlobals return (function(...)return {
+	Accent = Color3.fromRGB(60, 190, 150),
+
+	AcrylicMain = Color3.fromRGB(240, 250, 246),
+	AcrylicBorder = Color3.fromRGB(190, 213, 204),
+	AcrylicGradient = ColorSequence.new(Color3.fromRGB(213, 241, 231), Color3.fromRGB(241, 250, 246)),
+	AcrylicNoise = 0.9,
+
+	TitleBarLine = Color3.fromRGB(204, 212, 209),
+	Tab = Color3.fromRGB(190, 213, 204),
+
+	Element = Color3.fromRGB(200, 225, 215),
+	ElementBorder = Color3.fromRGB(180, 187, 184),
+	InElementBorder = Color3.fromRGB(180, 202, 193),
+	ElementTransparency = 0.87,
+
+	ToggleSlider = Color3.fromRGB(200, 225, 215),
+	ToggleToggled = Color3.fromRGB(60, 190, 150),
+
+	SliderRail = Color3.fromRGB(200, 225, 215),
+
+	DropdownFrame = Color3.fromRGB(170, 191, 182),
+	DropdownHolder = Color3.fromRGB(240, 250, 246),
+	DropdownBorder = Color3.fromRGB(192, 200, 196),
+	DropdownOption = Color3.fromRGB(200, 225, 215),
+
+	Keybind = Color3.fromRGB(200, 225, 215),
+
+	Input = Color3.fromRGB(180, 202, 193),
+	InputFocused = Color3.fromRGB(242, 250, 247),
+	InputIndicator = Color3.fromRGB(140, 157, 150),
+
+	Dialog = Color3.fromRGB(240, 250, 246),
+	DialogHolder = Color3.fromRGB(228, 237, 233),
+	DialogHolderLine = Color3.fromRGB(211, 220, 216),
+	DialogButton = Color3.fromRGB(240, 250, 246),
+	DialogButtonBorder = Color3.fromRGB(184, 207, 197),
+	DialogBorder = Color3.fromRGB(200, 225, 215),
+	DialogInput = Color3.fromRGB(228, 237, 233),
+	DialogInputLine = Color3.fromRGB(150, 168, 161),
+
+	Text = Color3.fromRGB(30, 30, 30),
+	SubText = Color3.fromRGB(90, 90, 90),
+	Hover = Color3.fromRGB(200, 225, 215),
+	HoverChange = 0.06
+}
+
+end)() end,
+    [95] = function()local wax,script,require=ImportGlobals(95)local ImportGlobals return (function(...)return {
     Accent = Color3.fromHex("#75715E"), -- focusBorder
 
     AcrylicMain = Color3.fromHex("#272822"), -- editor.background
@@ -60232,7 +61991,7 @@ end)() end,
     HoverChange = 0.1
 }
 end)() end,
-    [61] = function()local wax,script,require=ImportGlobals(61)local ImportGlobals return (function(...)return {
+    [96] = function()local wax,script,require=ImportGlobals(96)local ImportGlobals return (function(...)return {
     Accent = Color3.fromHex("#3655b5"), -- focusBorder
 
     AcrylicMain = Color3.fromHex("#1e1e1e"), -- editor.background
@@ -60279,7 +62038,7 @@ end)() end,
     HoverChange = 0.1
 }
 end)() end,
-    [62] = function()local wax,script,require=ImportGlobals(62)local ImportGlobals return (function(...)return {
+    [97] = function()local wax,script,require=ImportGlobals(97)local ImportGlobals return (function(...)return {
     Accent = Color3.fromHex("#528bff"), -- activityBarBadge.background
 
     AcrylicMain = Color3.fromHex("#16171D"), -- editor.background
@@ -60326,7 +62085,7 @@ end)() end,
     HoverChange = 0.1
 }
 end)() end,
-    [63] = function()local wax,script,require=ImportGlobals(63)local ImportGlobals return (function(...)return {
+    [98] = function()local wax,script,require=ImportGlobals(98)local ImportGlobals return (function(...)return {
     Accent = Color3.fromHex("#F92672"), -- Using the keyword color as accent
 
     AcrylicMain = Color3.fromHex("#272822"), -- editor.background
@@ -60373,7 +62132,343 @@ end)() end,
     HoverChange = 0.1
 }
 end)() end,
-    [64] = function()local wax,script,require=ImportGlobals(64)local ImportGlobals return (function(...)return {
+    [99] = function()local wax,script,require=ImportGlobals(99)local ImportGlobals return (function(...)return {
+	Accent = Color3.fromRGB(170, 90, 230),
+
+	AcrylicMain = Color3.fromRGB(16, 12, 25),
+	AcrylicBorder = Color3.fromRGB(136, 107, 164),
+	AcrylicGradient = ColorSequence.new(Color3.fromRGB(69, 39, 96), Color3.fromRGB(10, 7, 16)),
+	AcrylicNoise = 0.9,
+
+	TitleBarLine = Color3.fromRGB(90, 69, 112),
+	Tab = Color3.fromRGB(145, 118, 171),
+
+	Element = Color3.fromRGB(130, 100, 160),
+	ElementBorder = Color3.fromRGB(13, 10, 21),
+	InElementBorder = Color3.fromRGB(136, 107, 164),
+	ElementTransparency = 0.87,
+
+	ToggleSlider = Color3.fromRGB(130, 100, 160),
+	ToggleToggled = Color3.fromRGB(0, 0, 0),
+
+	SliderRail = Color3.fromRGB(130, 100, 160),
+
+	DropdownFrame = Color3.fromRGB(155, 131, 179),
+	DropdownHolder = Color3.fromRGB(15, 11, 23),
+	DropdownBorder = Color3.fromRGB(12, 9, 20),
+	DropdownOption = Color3.fromRGB(130, 100, 160),
+
+	Keybind = Color3.fromRGB(130, 100, 160),
+
+	Input = Color3.fromRGB(148, 123, 174),
+	InputFocused = Color3.fromRGB(10, 7, 16),
+	InputIndicator = Color3.fromRGB(161, 138, 183),
+
+	Dialog = Color3.fromRGB(15, 11, 23),
+	DialogHolder = Color3.fromRGB(13, 10, 21),
+	DialogHolderLine = Color3.fromRGB(12, 9, 18),
+	DialogButton = Color3.fromRGB(15, 11, 23),
+	DialogButtonBorder = Color3.fromRGB(140, 112, 167),
+	DialogBorder = Color3.fromRGB(130, 100, 160),
+	DialogInput = Color3.fromRGB(34, 30, 41),
+	DialogInputLine = Color3.fromRGB(161, 138, 183),
+
+	Text = Color3.fromRGB(240, 240, 240),
+	SubText = Color3.fromRGB(170, 170, 170),
+	Hover = Color3.fromRGB(130, 100, 160),
+	HoverChange = 0.06
+}
+
+end)() end,
+    [100] = function()local wax,script,require=ImportGlobals(100)local ImportGlobals return (function(...)return {
+	Accent = Color3.fromRGB(60, 255, 220),
+
+	AcrylicMain = Color3.fromRGB(10, 12, 14),
+	AcrylicBorder = Color3.fromRGB(79, 145, 136),
+	AcrylicGradient = ColorSequence.new(Color3.fromRGB(27, 97, 86), Color3.fromRGB(6, 7, 9)),
+	AcrylicNoise = 0.9,
+
+	TitleBarLine = Color3.fromRGB(49, 95, 89),
+	Tab = Color3.fromRGB(92, 153, 145),
+
+	Element = Color3.fromRGB(70, 140, 130),
+	ElementBorder = Color3.fromRGB(8, 10, 11),
+	InElementBorder = Color3.fromRGB(79, 145, 136),
+	ElementTransparency = 0.87,
+
+	ToggleSlider = Color3.fromRGB(70, 140, 130),
+	ToggleToggled = Color3.fromRGB(0, 0, 0),
+
+	SliderRail = Color3.fromRGB(70, 140, 130),
+
+	DropdownFrame = Color3.fromRGB(107, 163, 155),
+	DropdownHolder = Color3.fromRGB(9, 11, 13),
+	DropdownBorder = Color3.fromRGB(8, 9, 11),
+	DropdownOption = Color3.fromRGB(70, 140, 130),
+
+	Keybind = Color3.fromRGB(70, 140, 130),
+
+	Input = Color3.fromRGB(97, 157, 148),
+	InputFocused = Color3.fromRGB(6, 7, 9),
+	InputIndicator = Color3.fromRGB(116, 168, 161),
+
+	Dialog = Color3.fromRGB(9, 11, 13),
+	DialogHolder = Color3.fromRGB(8, 10, 11),
+	DialogHolderLine = Color3.fromRGB(7, 9, 10),
+	DialogButton = Color3.fromRGB(9, 11, 13),
+	DialogButtonBorder = Color3.fromRGB(84, 149, 140),
+	DialogBorder = Color3.fromRGB(70, 140, 130),
+	DialogInput = Color3.fromRGB(28, 30, 32),
+	DialogInputLine = Color3.fromRGB(116, 168, 161),
+
+	Text = Color3.fromRGB(240, 240, 240),
+	SubText = Color3.fromRGB(170, 170, 170),
+	Hover = Color3.fromRGB(70, 140, 130),
+	HoverChange = 0.06
+}
+
+end)() end,
+    [101] = function()local wax,script,require=ImportGlobals(101)local ImportGlobals return (function(...)return {
+	Accent = Color3.fromRGB(230, 180, 80),
+
+	AcrylicMain = Color3.fromRGB(15, 13, 10),
+	AcrylicBorder = Color3.fromRGB(155, 136, 98),
+	AcrylicGradient = ColorSequence.new(Color3.fromRGB(90, 71, 34), Color3.fromRGB(9, 8, 6)),
+	AcrylicNoise = 0.9,
+
+	TitleBarLine = Color3.fromRGB(102, 89, 62),
+	Tab = Color3.fromRGB(162, 145, 109),
+
+	Element = Color3.fromRGB(150, 130, 90),
+	ElementBorder = Color3.fromRGB(12, 11, 8),
+	InElementBorder = Color3.fromRGB(155, 136, 98),
+	ElementTransparency = 0.87,
+
+	ToggleSlider = Color3.fromRGB(150, 130, 90),
+	ToggleToggled = Color3.fromRGB(0, 0, 0),
+
+	SliderRail = Color3.fromRGB(150, 130, 90),
+
+	DropdownFrame = Color3.fromRGB(171, 155, 123),
+	DropdownHolder = Color3.fromRGB(14, 12, 9),
+	DropdownBorder = Color3.fromRGB(12, 10, 8),
+	DropdownOption = Color3.fromRGB(150, 130, 90),
+
+	Keybind = Color3.fromRGB(150, 130, 90),
+
+	Input = Color3.fromRGB(165, 148, 114),
+	InputFocused = Color3.fromRGB(9, 8, 6),
+	InputIndicator = Color3.fromRGB(176, 161, 131),
+
+	Dialog = Color3.fromRGB(14, 12, 9),
+	DialogHolder = Color3.fromRGB(12, 11, 8),
+	DialogHolderLine = Color3.fromRGB(11, 9, 7),
+	DialogButton = Color3.fromRGB(14, 12, 9),
+	DialogButtonBorder = Color3.fromRGB(158, 140, 103),
+	DialogBorder = Color3.fromRGB(150, 130, 90),
+	DialogInput = Color3.fromRGB(33, 31, 28),
+	DialogInputLine = Color3.fromRGB(176, 161, 131),
+
+	Text = Color3.fromRGB(240, 240, 240),
+	SubText = Color3.fromRGB(170, 170, 170),
+	Hover = Color3.fromRGB(150, 130, 90),
+	HoverChange = 0.06
+}
+
+end)() end,
+    [102] = function()local wax,script,require=ImportGlobals(102)local ImportGlobals return (function(...)return {
+	Accent = Color3.fromRGB(210, 60, 60),
+
+	AcrylicMain = Color3.fromRGB(12, 10, 10),
+	AcrylicBorder = Color3.fromRGB(126, 79, 79),
+	AcrylicGradient = ColorSequence.new(Color3.fromRGB(81, 27, 27), Color3.fromRGB(7, 6, 6)),
+	AcrylicNoise = 0.9,
+
+	TitleBarLine = Color3.fromRGB(82, 49, 49),
+	Tab = Color3.fromRGB(136, 92, 92),
+
+	Element = Color3.fromRGB(120, 70, 70),
+	ElementBorder = Color3.fromRGB(10, 8, 8),
+	InElementBorder = Color3.fromRGB(126, 79, 79),
+	ElementTransparency = 0.87,
+
+	ToggleSlider = Color3.fromRGB(120, 70, 70),
+	ToggleToggled = Color3.fromRGB(0, 0, 0),
+
+	SliderRail = Color3.fromRGB(120, 70, 70),
+
+	DropdownFrame = Color3.fromRGB(147, 107, 107),
+	DropdownHolder = Color3.fromRGB(11, 9, 9),
+	DropdownBorder = Color3.fromRGB(9, 8, 8),
+	DropdownOption = Color3.fromRGB(120, 70, 70),
+
+	Keybind = Color3.fromRGB(120, 70, 70),
+
+	Input = Color3.fromRGB(140, 97, 97),
+	InputFocused = Color3.fromRGB(7, 6, 6),
+	InputIndicator = Color3.fromRGB(153, 116, 116),
+
+	Dialog = Color3.fromRGB(11, 9, 9),
+	DialogHolder = Color3.fromRGB(10, 8, 8),
+	DialogHolderLine = Color3.fromRGB(9, 7, 7),
+	DialogButton = Color3.fromRGB(11, 9, 9),
+	DialogButtonBorder = Color3.fromRGB(130, 84, 84),
+	DialogBorder = Color3.fromRGB(120, 70, 70),
+	DialogInput = Color3.fromRGB(30, 28, 28),
+	DialogInputLine = Color3.fromRGB(153, 116, 116),
+
+	Text = Color3.fromRGB(240, 240, 240),
+	SubText = Color3.fromRGB(170, 170, 170),
+	Hover = Color3.fromRGB(120, 70, 70),
+	HoverChange = 0.06
+}
+
+end)() end,
+    [103] = function()local wax,script,require=ImportGlobals(103)local ImportGlobals return (function(...)return {
+	Accent = Color3.fromRGB(240, 140, 90),
+
+	AcrylicMain = Color3.fromRGB(250, 242, 235),
+	AcrylicBorder = Color3.fromRGB(216, 199, 188),
+	AcrylicGradient = ColorSequence.new(Color3.fromRGB(248, 226, 213), Color3.fromRGB(250, 243, 237)),
+	AcrylicNoise = 0.9,
+
+	TitleBarLine = Color3.fromRGB(212, 205, 199),
+	Tab = Color3.fromRGB(216, 199, 188),
+
+	Element = Color3.fromRGB(228, 210, 198),
+	ElementBorder = Color3.fromRGB(187, 181, 176),
+	InElementBorder = Color3.fromRGB(205, 189, 178),
+	ElementTransparency = 0.87,
+
+	ToggleSlider = Color3.fromRGB(228, 210, 198),
+	ToggleToggled = Color3.fromRGB(240, 140, 90),
+
+	SliderRail = Color3.fromRGB(228, 210, 198),
+
+	DropdownFrame = Color3.fromRGB(193, 178, 168),
+	DropdownHolder = Color3.fromRGB(250, 242, 235),
+	DropdownBorder = Color3.fromRGB(200, 193, 188),
+	DropdownOption = Color3.fromRGB(228, 210, 198),
+
+	Keybind = Color3.fromRGB(228, 210, 198),
+
+	Input = Color3.fromRGB(205, 189, 178),
+	InputFocused = Color3.fromRGB(250, 243, 238),
+	InputIndicator = Color3.fromRGB(159, 147, 138),
+
+	Dialog = Color3.fromRGB(250, 242, 235),
+	DialogHolder = Color3.fromRGB(237, 229, 223),
+	DialogHolderLine = Color3.fromRGB(220, 212, 206),
+	DialogButton = Color3.fromRGB(250, 242, 235),
+	DialogButtonBorder = Color3.fromRGB(209, 193, 182),
+	DialogBorder = Color3.fromRGB(228, 210, 198),
+	DialogInput = Color3.fromRGB(237, 229, 223),
+	DialogInputLine = Color3.fromRGB(171, 157, 148),
+
+	Text = Color3.fromRGB(30, 30, 30),
+	SubText = Color3.fromRGB(90, 90, 90),
+	Hover = Color3.fromRGB(228, 210, 198),
+	HoverChange = 0.06
+}
+
+end)() end,
+    [104] = function()local wax,script,require=ImportGlobals(104)local ImportGlobals return (function(...)return {
+	Accent = Color3.fromRGB(180, 90, 170),
+
+	AcrylicMain = Color3.fromRGB(18, 12, 20),
+	AcrylicBorder = Color3.fromRGB(126, 98, 126),
+	AcrylicGradient = ColorSequence.new(Color3.fromRGB(74, 39, 72), Color3.fromRGB(11, 7, 13)),
+	AcrylicNoise = 0.9,
+
+	TitleBarLine = Color3.fromRGB(84, 62, 85),
+	Tab = Color3.fromRGB(136, 109, 136),
+
+	Element = Color3.fromRGB(120, 90, 120),
+	ElementBorder = Color3.fromRGB(15, 10, 17),
+	InElementBorder = Color3.fromRGB(126, 98, 126),
+	ElementTransparency = 0.87,
+
+	ToggleSlider = Color3.fromRGB(120, 90, 120),
+	ToggleToggled = Color3.fromRGB(0, 0, 0),
+
+	SliderRail = Color3.fromRGB(120, 90, 120),
+
+	DropdownFrame = Color3.fromRGB(147, 123, 147),
+	DropdownHolder = Color3.fromRGB(17, 11, 19),
+	DropdownBorder = Color3.fromRGB(14, 9, 16),
+	DropdownOption = Color3.fromRGB(120, 90, 120),
+
+	Keybind = Color3.fromRGB(120, 90, 120),
+
+	Input = Color3.fromRGB(140, 114, 140),
+	InputFocused = Color3.fromRGB(11, 7, 13),
+	InputIndicator = Color3.fromRGB(153, 131, 153),
+
+	Dialog = Color3.fromRGB(17, 11, 19),
+	DialogHolder = Color3.fromRGB(15, 10, 17),
+	DialogHolderLine = Color3.fromRGB(13, 9, 15),
+	DialogButton = Color3.fromRGB(17, 11, 19),
+	DialogButtonBorder = Color3.fromRGB(130, 103, 130),
+	DialogBorder = Color3.fromRGB(120, 90, 120),
+	DialogInput = Color3.fromRGB(36, 30, 37),
+	DialogInputLine = Color3.fromRGB(153, 131, 153),
+
+	Text = Color3.fromRGB(240, 240, 240),
+	SubText = Color3.fromRGB(170, 170, 170),
+	Hover = Color3.fromRGB(120, 90, 120),
+	HoverChange = 0.06
+}
+
+end)() end,
+    [105] = function()local wax,script,require=ImportGlobals(105)local ImportGlobals return (function(...)return {
+	Accent = Color3.fromRGB(90, 110, 220),
+
+	AcrylicMain = Color3.fromRGB(248, 248, 250),
+	AcrylicBorder = Color3.fromRGB(204, 206, 213),
+	AcrylicGradient = ColorSequence.new(Color3.fromRGB(224, 227, 245), Color3.fromRGB(248, 248, 250)),
+	AcrylicNoise = 0.9,
+
+	TitleBarLine = Color3.fromRGB(210, 210, 212),
+	Tab = Color3.fromRGB(204, 206, 213),
+
+	Element = Color3.fromRGB(215, 217, 225),
+	ElementBorder = Color3.fromRGB(186, 186, 187),
+	InElementBorder = Color3.fromRGB(193, 195, 202),
+	ElementTransparency = 0.87,
+
+	ToggleSlider = Color3.fromRGB(215, 217, 225),
+	ToggleToggled = Color3.fromRGB(90, 110, 220),
+
+	SliderRail = Color3.fromRGB(215, 217, 225),
+
+	DropdownFrame = Color3.fromRGB(182, 184, 191),
+	DropdownHolder = Color3.fromRGB(248, 248, 250),
+	DropdownBorder = Color3.fromRGB(198, 198, 200),
+	DropdownOption = Color3.fromRGB(215, 217, 225),
+
+	Keybind = Color3.fromRGB(215, 217, 225),
+
+	Input = Color3.fromRGB(193, 195, 202),
+	InputFocused = Color3.fromRGB(249, 249, 250),
+	InputIndicator = Color3.fromRGB(150, 151, 157),
+
+	Dialog = Color3.fromRGB(248, 248, 250),
+	DialogHolder = Color3.fromRGB(235, 235, 237),
+	DialogHolderLine = Color3.fromRGB(218, 218, 220),
+	DialogButton = Color3.fromRGB(248, 248, 250),
+	DialogButtonBorder = Color3.fromRGB(197, 199, 207),
+	DialogBorder = Color3.fromRGB(215, 217, 225),
+	DialogInput = Color3.fromRGB(235, 235, 237),
+	DialogInputLine = Color3.fromRGB(161, 162, 168),
+
+	Text = Color3.fromRGB(30, 30, 30),
+	SubText = Color3.fromRGB(90, 90, 90),
+	Hover = Color3.fromRGB(215, 217, 225),
+	HoverChange = 0.06
+}
+
+end)() end,
+    [106] = function()local wax,script,require=ImportGlobals(106)local ImportGlobals return (function(...)return {
     Accent = Color3.fromHex("#9769dc"), -- focusBorder
 
     AcrylicMain = Color3.fromHex("#F5F5F5"), -- editor.background
@@ -60420,7 +62515,7 @@ end)() end,
     HoverChange = 0.1
 }
 end)() end,
-    [65] = function()local wax,script,require=ImportGlobals(65)local ImportGlobals return (function(...)return {
+    [107] = function()local wax,script,require=ImportGlobals(107)local ImportGlobals return (function(...)return {
 	Accent = Color3.fromRGB(180, 55, 90),
 
 	AcrylicMain = Color3.fromRGB(40, 40, 40),
@@ -60468,7 +62563,391 @@ end)() end,
 }
 
 end)() end,
-    [66] = function()local wax,script,require=ImportGlobals(66)local ImportGlobals return (function(...)return {
+    [108] = function()local wax,script,require=ImportGlobals(108)local ImportGlobals return (function(...)return {
+	Accent = Color3.fromRGB(210, 110, 130),
+
+	AcrylicMain = Color3.fromRGB(20, 14, 16),
+	AcrylicBorder = Color3.fromRGB(155, 107, 117),
+	AcrylicGradient = ColorSequence.new(Color3.fromRGB(86, 47, 55), Color3.fromRGB(13, 9, 10)),
+	AcrylicNoise = 0.9,
+
+	TitleBarLine = Color3.fromRGB(104, 69, 77),
+	Tab = Color3.fromRGB(162, 118, 127),
+
+	Element = Color3.fromRGB(150, 100, 110),
+	ElementBorder = Color3.fromRGB(17, 11, 13),
+	InElementBorder = Color3.fromRGB(155, 107, 117),
+	ElementTransparency = 0.87,
+
+	ToggleSlider = Color3.fromRGB(150, 100, 110),
+	ToggleToggled = Color3.fromRGB(0, 0, 0),
+
+	SliderRail = Color3.fromRGB(150, 100, 110),
+
+	DropdownFrame = Color3.fromRGB(171, 131, 139),
+	DropdownHolder = Color3.fromRGB(19, 13, 15),
+	DropdownBorder = Color3.fromRGB(16, 11, 12),
+	DropdownOption = Color3.fromRGB(150, 100, 110),
+
+	Keybind = Color3.fromRGB(150, 100, 110),
+
+	Input = Color3.fromRGB(165, 123, 131),
+	InputFocused = Color3.fromRGB(13, 9, 10),
+	InputIndicator = Color3.fromRGB(176, 138, 146),
+
+	Dialog = Color3.fromRGB(19, 13, 15),
+	DialogHolder = Color3.fromRGB(17, 11, 13),
+	DialogHolderLine = Color3.fromRGB(15, 10, 12),
+	DialogButton = Color3.fromRGB(19, 13, 15),
+	DialogButtonBorder = Color3.fromRGB(158, 112, 121),
+	DialogBorder = Color3.fromRGB(150, 100, 110),
+	DialogInput = Color3.fromRGB(37, 32, 34),
+	DialogInputLine = Color3.fromRGB(176, 138, 146),
+
+	Text = Color3.fromRGB(240, 240, 240),
+	SubText = Color3.fromRGB(170, 170, 170),
+	Hover = Color3.fromRGB(150, 100, 110),
+	HoverChange = 0.06
+}
+
+end)() end,
+    [109] = function()local wax,script,require=ImportGlobals(109)local ImportGlobals return (function(...)return {
+	Accent = Color3.fromRGB(140, 60, 220),
+
+	AcrylicMain = Color3.fromRGB(14, 10, 22),
+	AcrylicBorder = Color3.fromRGB(107, 79, 155),
+	AcrylicGradient = ColorSequence.new(Color3.fromRGB(58, 27, 91), Color3.fromRGB(9, 6, 14)),
+	AcrylicNoise = 0.9,
+
+	TitleBarLine = Color3.fromRGB(69, 49, 105),
+	Tab = Color3.fromRGB(118, 92, 162),
+
+	Element = Color3.fromRGB(100, 70, 150),
+	ElementBorder = Color3.fromRGB(11, 8, 18),
+	InElementBorder = Color3.fromRGB(107, 79, 155),
+	ElementTransparency = 0.87,
+
+	ToggleSlider = Color3.fromRGB(100, 70, 150),
+	ToggleToggled = Color3.fromRGB(0, 0, 0),
+
+	SliderRail = Color3.fromRGB(100, 70, 150),
+
+	DropdownFrame = Color3.fromRGB(131, 107, 171),
+	DropdownHolder = Color3.fromRGB(13, 9, 20),
+	DropdownBorder = Color3.fromRGB(11, 8, 17),
+	DropdownOption = Color3.fromRGB(100, 70, 150),
+
+	Keybind = Color3.fromRGB(100, 70, 150),
+
+	Input = Color3.fromRGB(123, 97, 165),
+	InputFocused = Color3.fromRGB(9, 6, 14),
+	InputIndicator = Color3.fromRGB(138, 116, 176),
+
+	Dialog = Color3.fromRGB(13, 9, 20),
+	DialogHolder = Color3.fromRGB(11, 8, 18),
+	DialogHolderLine = Color3.fromRGB(10, 7, 16),
+	DialogButton = Color3.fromRGB(13, 9, 20),
+	DialogButtonBorder = Color3.fromRGB(112, 84, 158),
+	DialogBorder = Color3.fromRGB(100, 70, 150),
+	DialogInput = Color3.fromRGB(32, 28, 38),
+	DialogInputLine = Color3.fromRGB(138, 116, 176),
+
+	Text = Color3.fromRGB(240, 240, 240),
+	SubText = Color3.fromRGB(170, 170, 170),
+	Hover = Color3.fromRGB(100, 70, 150),
+	HoverChange = 0.06
+}
+
+end)() end,
+    [110] = function()local wax,script,require=ImportGlobals(110)local ImportGlobals return (function(...)return {
+	Accent = Color3.fromRGB(100, 150, 100),
+
+	AcrylicMain = Color3.fromRGB(244, 247, 242),
+	AcrylicBorder = Color3.fromRGB(199, 209, 194),
+	AcrylicGradient = ColorSequence.new(Color3.fromRGB(222, 232, 220), Color3.fromRGB(245, 247, 243)),
+	AcrylicNoise = 0.9,
+
+	TitleBarLine = Color3.fromRGB(207, 209, 205),
+	Tab = Color3.fromRGB(199, 209, 194),
+
+	Element = Color3.fromRGB(210, 220, 205),
+	ElementBorder = Color3.fromRGB(183, 185, 181),
+	InElementBorder = Color3.fromRGB(189, 198, 184),
+	ElementTransparency = 0.87,
+
+	ToggleSlider = Color3.fromRGB(210, 220, 205),
+	ToggleToggled = Color3.fromRGB(100, 150, 100),
+
+	SliderRail = Color3.fromRGB(210, 220, 205),
+
+	DropdownFrame = Color3.fromRGB(178, 187, 174),
+	DropdownHolder = Color3.fromRGB(244, 247, 242),
+	DropdownBorder = Color3.fromRGB(195, 197, 193),
+	DropdownOption = Color3.fromRGB(210, 220, 205),
+
+	Keybind = Color3.fromRGB(210, 220, 205),
+
+	Input = Color3.fromRGB(189, 198, 184),
+	InputFocused = Color3.fromRGB(245, 248, 243),
+	InputIndicator = Color3.fromRGB(147, 154, 143),
+
+	Dialog = Color3.fromRGB(244, 247, 242),
+	DialogHolder = Color3.fromRGB(231, 234, 229),
+	DialogHolderLine = Color3.fromRGB(214, 217, 212),
+	DialogButton = Color3.fromRGB(244, 247, 242),
+	DialogButtonBorder = Color3.fromRGB(193, 202, 188),
+	DialogBorder = Color3.fromRGB(210, 220, 205),
+	DialogInput = Color3.fromRGB(231, 234, 229),
+	DialogInputLine = Color3.fromRGB(157, 165, 153),
+
+	Text = Color3.fromRGB(30, 30, 30),
+	SubText = Color3.fromRGB(90, 90, 90),
+	Hover = Color3.fromRGB(210, 220, 205),
+	HoverChange = 0.06
+}
+
+end)() end,
+    [111] = function()local wax,script,require=ImportGlobals(111)local ImportGlobals return (function(...)return {
+	Accent = Color3.fromRGB(240, 150, 190),
+
+	AcrylicMain = Color3.fromRGB(20, 14, 18),
+	AcrylicBorder = Color3.fromRGB(164, 117, 136),
+	AcrylicGradient = ColorSequence.new(Color3.fromRGB(97, 61, 78), Color3.fromRGB(13, 9, 11)),
+	AcrylicNoise = 0.9,
+
+	TitleBarLine = Color3.fromRGB(111, 76, 90),
+	Tab = Color3.fromRGB(171, 127, 145),
+
+	Element = Color3.fromRGB(160, 110, 130),
+	ElementBorder = Color3.fromRGB(17, 11, 15),
+	InElementBorder = Color3.fromRGB(164, 117, 136),
+	ElementTransparency = 0.87,
+
+	ToggleSlider = Color3.fromRGB(160, 110, 130),
+	ToggleToggled = Color3.fromRGB(0, 0, 0),
+
+	SliderRail = Color3.fromRGB(160, 110, 130),
+
+	DropdownFrame = Color3.fromRGB(179, 139, 155),
+	DropdownHolder = Color3.fromRGB(19, 13, 17),
+	DropdownBorder = Color3.fromRGB(16, 11, 14),
+	DropdownOption = Color3.fromRGB(160, 110, 130),
+
+	Keybind = Color3.fromRGB(160, 110, 130),
+
+	Input = Color3.fromRGB(174, 131, 148),
+	InputFocused = Color3.fromRGB(13, 9, 11),
+	InputIndicator = Color3.fromRGB(183, 146, 161),
+
+	Dialog = Color3.fromRGB(19, 13, 17),
+	DialogHolder = Color3.fromRGB(17, 11, 15),
+	DialogHolderLine = Color3.fromRGB(15, 10, 13),
+	DialogButton = Color3.fromRGB(19, 13, 17),
+	DialogButtonBorder = Color3.fromRGB(167, 121, 140),
+	DialogBorder = Color3.fromRGB(160, 110, 130),
+	DialogInput = Color3.fromRGB(37, 32, 36),
+	DialogInputLine = Color3.fromRGB(183, 146, 161),
+
+	Text = Color3.fromRGB(240, 240, 240),
+	SubText = Color3.fromRGB(170, 170, 170),
+	Hover = Color3.fromRGB(160, 110, 130),
+	HoverChange = 0.06
+}
+
+end)() end,
+    [112] = function()local wax,script,require=ImportGlobals(112)local ImportGlobals return (function(...)return {
+	Accent = Color3.fromRGB(60, 160, 230),
+
+	AcrylicMain = Color3.fromRGB(240, 247, 252),
+	AcrylicBorder = Color3.fromRGB(190, 209, 223),
+	AcrylicGradient = ColorSequence.new(Color3.fromRGB(213, 233, 248), Color3.fromRGB(241, 247, 252)),
+	AcrylicNoise = 0.9,
+
+	TitleBarLine = Color3.fromRGB(204, 209, 214),
+	Tab = Color3.fromRGB(190, 209, 223),
+
+	Element = Color3.fromRGB(200, 220, 235),
+	ElementBorder = Color3.fromRGB(180, 185, 189),
+	InElementBorder = Color3.fromRGB(180, 198, 211),
+	ElementTransparency = 0.87,
+
+	ToggleSlider = Color3.fromRGB(200, 220, 235),
+	ToggleToggled = Color3.fromRGB(60, 160, 230),
+
+	SliderRail = Color3.fromRGB(200, 220, 235),
+
+	DropdownFrame = Color3.fromRGB(170, 187, 199),
+	DropdownHolder = Color3.fromRGB(240, 247, 252),
+	DropdownBorder = Color3.fromRGB(192, 197, 201),
+	DropdownOption = Color3.fromRGB(200, 220, 235),
+
+	Keybind = Color3.fromRGB(200, 220, 235),
+
+	Input = Color3.fromRGB(180, 198, 211),
+	InputFocused = Color3.fromRGB(242, 248, 252),
+	InputIndicator = Color3.fromRGB(140, 154, 164),
+
+	Dialog = Color3.fromRGB(240, 247, 252),
+	DialogHolder = Color3.fromRGB(228, 234, 239),
+	DialogHolderLine = Color3.fromRGB(211, 217, 221),
+	DialogButton = Color3.fromRGB(240, 247, 252),
+	DialogButtonBorder = Color3.fromRGB(184, 202, 216),
+	DialogBorder = Color3.fromRGB(200, 220, 235),
+	DialogInput = Color3.fromRGB(228, 234, 239),
+	DialogInputLine = Color3.fromRGB(150, 165, 176),
+
+	Text = Color3.fromRGB(30, 30, 30),
+	SubText = Color3.fromRGB(90, 90, 90),
+	Hover = Color3.fromRGB(200, 220, 235),
+	HoverChange = 0.06
+}
+
+end)() end,
+    [113] = function()local wax,script,require=ImportGlobals(113)local ImportGlobals return (function(...)return {
+	Accent = Color3.fromRGB(140, 120, 220),
+
+	AcrylicMain = Color3.fromRGB(15, 14, 20),
+	AcrylicBorder = Color3.fromRGB(107, 103, 145),
+	AcrylicGradient = ColorSequence.new(Color3.fromRGB(58, 51, 90), Color3.fromRGB(9, 9, 13)),
+	AcrylicNoise = 0.9,
+
+	TitleBarLine = Color3.fromRGB(70, 66, 98),
+	Tab = Color3.fromRGB(118, 114, 153),
+
+	Element = Color3.fromRGB(100, 95, 140),
+	ElementBorder = Color3.fromRGB(12, 11, 17),
+	InElementBorder = Color3.fromRGB(107, 103, 145),
+	ElementTransparency = 0.87,
+
+	ToggleSlider = Color3.fromRGB(100, 95, 140),
+	ToggleToggled = Color3.fromRGB(0, 0, 0),
+
+	SliderRail = Color3.fromRGB(100, 95, 140),
+
+	DropdownFrame = Color3.fromRGB(131, 127, 163),
+	DropdownHolder = Color3.fromRGB(14, 13, 19),
+	DropdownBorder = Color3.fromRGB(12, 11, 16),
+	DropdownOption = Color3.fromRGB(100, 95, 140),
+
+	Keybind = Color3.fromRGB(100, 95, 140),
+
+	Input = Color3.fromRGB(123, 119, 157),
+	InputFocused = Color3.fromRGB(9, 9, 13),
+	InputIndicator = Color3.fromRGB(138, 135, 168),
+
+	Dialog = Color3.fromRGB(14, 13, 19),
+	DialogHolder = Color3.fromRGB(12, 11, 17),
+	DialogHolderLine = Color3.fromRGB(11, 10, 15),
+	DialogButton = Color3.fromRGB(14, 13, 19),
+	DialogButtonBorder = Color3.fromRGB(112, 107, 149),
+	DialogBorder = Color3.fromRGB(100, 95, 140),
+	DialogInput = Color3.fromRGB(33, 32, 37),
+	DialogInputLine = Color3.fromRGB(138, 135, 168),
+
+	Text = Color3.fromRGB(240, 240, 240),
+	SubText = Color3.fromRGB(170, 170, 170),
+	Hover = Color3.fromRGB(100, 95, 140),
+	HoverChange = 0.06
+}
+
+end)() end,
+    [114] = function()local wax,script,require=ImportGlobals(114)local ImportGlobals return (function(...)return {
+	Accent = Color3.fromRGB(60, 120, 220),
+
+	AcrylicMain = Color3.fromRGB(245, 246, 248),
+	AcrylicBorder = Color3.fromRGB(199, 202, 209),
+	AcrylicGradient = ColorSequence.new(Color3.fromRGB(217, 227, 243), Color3.fromRGB(246, 246, 248)),
+	AcrylicNoise = 0.9,
+
+	TitleBarLine = Color3.fromRGB(208, 209, 210),
+	Tab = Color3.fromRGB(199, 202, 209),
+
+	Element = Color3.fromRGB(210, 213, 220),
+	ElementBorder = Color3.fromRGB(183, 184, 186),
+	InElementBorder = Color3.fromRGB(189, 191, 198),
+	ElementTransparency = 0.87,
+
+	ToggleSlider = Color3.fromRGB(210, 213, 220),
+	ToggleToggled = Color3.fromRGB(60, 120, 220),
+
+	SliderRail = Color3.fromRGB(210, 213, 220),
+
+	DropdownFrame = Color3.fromRGB(178, 181, 187),
+	DropdownHolder = Color3.fromRGB(245, 246, 248),
+	DropdownBorder = Color3.fromRGB(196, 196, 198),
+	DropdownOption = Color3.fromRGB(210, 213, 220),
+
+	Keybind = Color3.fromRGB(210, 213, 220),
+
+	Input = Color3.fromRGB(189, 191, 198),
+	InputFocused = Color3.fromRGB(246, 247, 249),
+	InputIndicator = Color3.fromRGB(147, 149, 154),
+
+	Dialog = Color3.fromRGB(245, 246, 248),
+	DialogHolder = Color3.fromRGB(232, 233, 235),
+	DialogHolderLine = Color3.fromRGB(215, 216, 218),
+	DialogButton = Color3.fromRGB(245, 246, 248),
+	DialogButtonBorder = Color3.fromRGB(193, 195, 202),
+	DialogBorder = Color3.fromRGB(210, 213, 220),
+	DialogInput = Color3.fromRGB(232, 233, 235),
+	DialogInputLine = Color3.fromRGB(157, 159, 165),
+
+	Text = Color3.fromRGB(30, 30, 30),
+	SubText = Color3.fromRGB(90, 90, 90),
+	Hover = Color3.fromRGB(210, 213, 220),
+	HoverChange = 0.06
+}
+
+end)() end,
+    [115] = function()local wax,script,require=ImportGlobals(115)local ImportGlobals return (function(...)return {
+	Accent = Color3.fromRGB(255, 200, 60),
+
+	AcrylicMain = Color3.fromRGB(18, 15, 10),
+	AcrylicBorder = Color3.fromRGB(155, 136, 88),
+	AcrylicGradient = ColorSequence.new(Color3.fromRGB(100, 79, 27), Color3.fromRGB(11, 9, 6)),
+	AcrylicNoise = 0.9,
+
+	TitleBarLine = Color3.fromRGB(103, 89, 55),
+	Tab = Color3.fromRGB(162, 145, 101),
+
+	Element = Color3.fromRGB(150, 130, 80),
+	ElementBorder = Color3.fromRGB(15, 12, 8),
+	InElementBorder = Color3.fromRGB(155, 136, 88),
+	ElementTransparency = 0.87,
+
+	ToggleSlider = Color3.fromRGB(150, 130, 80),
+	ToggleToggled = Color3.fromRGB(0, 0, 0),
+
+	SliderRail = Color3.fromRGB(150, 130, 80),
+
+	DropdownFrame = Color3.fromRGB(171, 155, 115),
+	DropdownHolder = Color3.fromRGB(17, 14, 9),
+	DropdownBorder = Color3.fromRGB(14, 12, 8),
+	DropdownOption = Color3.fromRGB(150, 130, 80),
+
+	Keybind = Color3.fromRGB(150, 130, 80),
+
+	Input = Color3.fromRGB(165, 148, 106),
+	InputFocused = Color3.fromRGB(11, 9, 6),
+	InputIndicator = Color3.fromRGB(176, 161, 123),
+
+	Dialog = Color3.fromRGB(17, 14, 9),
+	DialogHolder = Color3.fromRGB(15, 12, 8),
+	DialogHolderLine = Color3.fromRGB(13, 11, 7),
+	DialogButton = Color3.fromRGB(17, 14, 9),
+	DialogButtonBorder = Color3.fromRGB(158, 140, 94),
+	DialogBorder = Color3.fromRGB(150, 130, 80),
+	DialogInput = Color3.fromRGB(36, 33, 28),
+	DialogInputLine = Color3.fromRGB(176, 161, 123),
+
+	Text = Color3.fromRGB(240, 240, 240),
+	SubText = Color3.fromRGB(170, 170, 170),
+	Hover = Color3.fromRGB(150, 130, 80),
+	HoverChange = 0.06
+}
+
+end)() end,
+    [116] = function()local wax,script,require=ImportGlobals(116)local ImportGlobals return (function(...)return {
     Accent = Color3.fromHex("#2AA198"), -- String color as accent
 
     AcrylicMain = Color3.fromHex("#002B36"), -- editor.background
@@ -60515,7 +62994,7 @@ end)() end,
     HoverChange = 0.1
 }
 end)() end,
-    [67] = function()local wax,script,require=ImportGlobals(67)local ImportGlobals return (function(...)return {
+    [117] = function()local wax,script,require=ImportGlobals(117)local ImportGlobals return (function(...)return {
     Accent = Color3.fromHex("#b58900"), -- Using the extension button color as accent
 
     AcrylicMain = Color3.fromHex("#FDF6E3"), -- editor.background
@@ -60562,7 +63041,199 @@ end)() end,
     HoverChange = 0.1
 }
 end)() end,
-    [68] = function()local wax,script,require=ImportGlobals(68)local ImportGlobals return (function(...)return {
+    [118] = function()local wax,script,require=ImportGlobals(118)local ImportGlobals return (function(...)return {
+	Accent = Color3.fromRGB(100, 150, 200),
+
+	AcrylicMain = Color3.fromRGB(15, 17, 20),
+	AcrylicBorder = Color3.fromRGB(103, 122, 145),
+	AcrylicGradient = ColorSequence.new(Color3.fromRGB(44, 63, 83), Color3.fromRGB(9, 11, 13)),
+	AcrylicNoise = 0.9,
+
+	TitleBarLine = Color3.fromRGB(67, 80, 98),
+	Tab = Color3.fromRGB(114, 131, 153),
+
+	Element = Color3.fromRGB(95, 115, 140),
+	ElementBorder = Color3.fromRGB(12, 14, 17),
+	InElementBorder = Color3.fromRGB(103, 122, 145),
+	ElementTransparency = 0.87,
+
+	ToggleSlider = Color3.fromRGB(95, 115, 140),
+	ToggleToggled = Color3.fromRGB(0, 0, 0),
+
+	SliderRail = Color3.fromRGB(95, 115, 140),
+
+	DropdownFrame = Color3.fromRGB(127, 143, 163),
+	DropdownHolder = Color3.fromRGB(14, 16, 19),
+	DropdownBorder = Color3.fromRGB(12, 13, 16),
+	DropdownOption = Color3.fromRGB(95, 115, 140),
+
+	Keybind = Color3.fromRGB(95, 115, 140),
+
+	Input = Color3.fromRGB(119, 136, 157),
+	InputFocused = Color3.fromRGB(9, 11, 13),
+	InputIndicator = Color3.fromRGB(135, 150, 168),
+
+	Dialog = Color3.fromRGB(14, 16, 19),
+	DialogHolder = Color3.fromRGB(12, 14, 17),
+	DialogHolderLine = Color3.fromRGB(11, 12, 15),
+	DialogButton = Color3.fromRGB(14, 16, 19),
+	DialogButtonBorder = Color3.fromRGB(107, 126, 149),
+	DialogBorder = Color3.fromRGB(95, 115, 140),
+	DialogInput = Color3.fromRGB(33, 35, 37),
+	DialogInputLine = Color3.fromRGB(135, 150, 168),
+
+	Text = Color3.fromRGB(240, 240, 240),
+	SubText = Color3.fromRGB(170, 170, 170),
+	Hover = Color3.fromRGB(95, 115, 140),
+	HoverChange = 0.06
+}
+
+end)() end,
+    [119] = function()local wax,script,require=ImportGlobals(119)local ImportGlobals return (function(...)return {
+	Accent = Color3.fromRGB(130, 150, 180),
+
+	AcrylicMain = Color3.fromRGB(13, 15, 18),
+	AcrylicBorder = Color3.fromRGB(98, 107, 122),
+	AcrylicGradient = ColorSequence.new(Color3.fromRGB(53, 62, 74), Color3.fromRGB(8, 9, 11)),
+	AcrylicNoise = 0.9,
+
+	TitleBarLine = Color3.fromRGB(63, 70, 81),
+	Tab = Color3.fromRGB(109, 118, 131),
+
+	Element = Color3.fromRGB(90, 100, 115),
+	ElementBorder = Color3.fromRGB(11, 12, 15),
+	InElementBorder = Color3.fromRGB(98, 107, 122),
+	ElementTransparency = 0.87,
+
+	ToggleSlider = Color3.fromRGB(90, 100, 115),
+	ToggleToggled = Color3.fromRGB(0, 0, 0),
+
+	SliderRail = Color3.fromRGB(90, 100, 115),
+
+	DropdownFrame = Color3.fromRGB(123, 131, 143),
+	DropdownHolder = Color3.fromRGB(12, 14, 17),
+	DropdownBorder = Color3.fromRGB(10, 12, 14),
+	DropdownOption = Color3.fromRGB(90, 100, 115),
+
+	Keybind = Color3.fromRGB(90, 100, 115),
+
+	Input = Color3.fromRGB(114, 123, 136),
+	InputFocused = Color3.fromRGB(8, 9, 11),
+	InputIndicator = Color3.fromRGB(131, 138, 150),
+
+	Dialog = Color3.fromRGB(12, 14, 17),
+	DialogHolder = Color3.fromRGB(11, 12, 15),
+	DialogHolderLine = Color3.fromRGB(9, 11, 13),
+	DialogButton = Color3.fromRGB(12, 14, 17),
+	DialogButtonBorder = Color3.fromRGB(103, 112, 126),
+	DialogBorder = Color3.fromRGB(90, 100, 115),
+	DialogInput = Color3.fromRGB(31, 33, 36),
+	DialogInputLine = Color3.fromRGB(131, 138, 150),
+
+	Text = Color3.fromRGB(240, 240, 240),
+	SubText = Color3.fromRGB(170, 170, 170),
+	Hover = Color3.fromRGB(90, 100, 115),
+	HoverChange = 0.06
+}
+
+end)() end,
+    [120] = function()local wax,script,require=ImportGlobals(120)local ImportGlobals return (function(...)return {
+	Accent = Color3.fromRGB(240, 130, 60),
+
+	AcrylicMain = Color3.fromRGB(22, 16, 14),
+	AcrylicBorder = Color3.fromRGB(164, 117, 88),
+	AcrylicGradient = ColorSequence.new(Color3.fromRGB(98, 55, 30), Color3.fromRGB(14, 10, 9)),
+	AcrylicNoise = 0.9,
+
+	TitleBarLine = Color3.fromRGB(111, 77, 56),
+	Tab = Color3.fromRGB(171, 127, 101),
+
+	Element = Color3.fromRGB(160, 110, 80),
+	ElementBorder = Color3.fromRGB(18, 13, 11),
+	InElementBorder = Color3.fromRGB(164, 117, 88),
+	ElementTransparency = 0.87,
+
+	ToggleSlider = Color3.fromRGB(160, 110, 80),
+	ToggleToggled = Color3.fromRGB(0, 0, 0),
+
+	SliderRail = Color3.fromRGB(160, 110, 80),
+
+	DropdownFrame = Color3.fromRGB(179, 139, 115),
+	DropdownHolder = Color3.fromRGB(20, 15, 13),
+	DropdownBorder = Color3.fromRGB(17, 12, 11),
+	DropdownOption = Color3.fromRGB(160, 110, 80),
+
+	Keybind = Color3.fromRGB(160, 110, 80),
+
+	Input = Color3.fromRGB(174, 131, 106),
+	InputFocused = Color3.fromRGB(14, 10, 9),
+	InputIndicator = Color3.fromRGB(183, 146, 123),
+
+	Dialog = Color3.fromRGB(20, 15, 13),
+	DialogHolder = Color3.fromRGB(18, 13, 11),
+	DialogHolderLine = Color3.fromRGB(16, 12, 10),
+	DialogButton = Color3.fromRGB(20, 15, 13),
+	DialogButtonBorder = Color3.fromRGB(167, 121, 94),
+	DialogBorder = Color3.fromRGB(160, 110, 80),
+	DialogInput = Color3.fromRGB(38, 34, 32),
+	DialogInputLine = Color3.fromRGB(183, 146, 123),
+
+	Text = Color3.fromRGB(240, 240, 240),
+	SubText = Color3.fromRGB(170, 170, 170),
+	Hover = Color3.fromRGB(160, 110, 80),
+	HoverChange = 0.06
+}
+
+end)() end,
+    [121] = function()local wax,script,require=ImportGlobals(121)local ImportGlobals return (function(...)return {
+	Accent = Color3.fromRGB(50, 180, 210),
+
+	AcrylicMain = Color3.fromRGB(10, 17, 20),
+	AcrylicBorder = Color3.fromRGB(84, 136, 150),
+	AcrylicGradient = ColorSequence.new(Color3.fromRGB(24, 74, 86), Color3.fromRGB(6, 11, 13)),
+	AcrylicNoise = 0.9,
+
+	TitleBarLine = Color3.fromRGB(52, 90, 101),
+	Tab = Color3.fromRGB(96, 145, 158),
+
+	Element = Color3.fromRGB(75, 130, 145),
+	ElementBorder = Color3.fromRGB(8, 14, 17),
+	InElementBorder = Color3.fromRGB(84, 136, 150),
+	ElementTransparency = 0.87,
+
+	ToggleSlider = Color3.fromRGB(75, 130, 145),
+	ToggleToggled = Color3.fromRGB(0, 0, 0),
+
+	SliderRail = Color3.fromRGB(75, 130, 145),
+
+	DropdownFrame = Color3.fromRGB(111, 155, 167),
+	DropdownHolder = Color3.fromRGB(9, 16, 19),
+	DropdownBorder = Color3.fromRGB(8, 13, 16),
+	DropdownOption = Color3.fromRGB(75, 130, 145),
+
+	Keybind = Color3.fromRGB(75, 130, 145),
+
+	Input = Color3.fromRGB(102, 148, 161),
+	InputFocused = Color3.fromRGB(6, 11, 13),
+	InputIndicator = Color3.fromRGB(120, 161, 172),
+
+	Dialog = Color3.fromRGB(9, 16, 19),
+	DialogHolder = Color3.fromRGB(8, 14, 17),
+	DialogHolderLine = Color3.fromRGB(7, 12, 15),
+	DialogButton = Color3.fromRGB(9, 16, 19),
+	DialogButtonBorder = Color3.fromRGB(89, 140, 153),
+	DialogBorder = Color3.fromRGB(75, 130, 145),
+	DialogInput = Color3.fromRGB(28, 35, 37),
+	DialogInputLine = Color3.fromRGB(120, 161, 172),
+
+	Text = Color3.fromRGB(240, 240, 240),
+	SubText = Color3.fromRGB(170, 170, 170),
+	Hover = Color3.fromRGB(75, 130, 145),
+	HoverChange = 0.06
+}
+
+end)() end,
+    [122] = function()local wax,script,require=ImportGlobals(122)local ImportGlobals return (function(...)return {
     Accent = Color3.fromHex("#bbdaff"), -- focusBorder
 
     AcrylicMain = Color3.fromHex("#002451"), -- editor.background
@@ -60609,7 +63280,55 @@ end)() end,
     HoverChange = 0.1
 }
 end)() end,
-    [69] = function()local wax,script,require=ImportGlobals(69)local ImportGlobals return (function(...)return {
+    [123] = function()local wax,script,require=ImportGlobals(123)local ImportGlobals return (function(...)return {
+	Accent = Color3.fromRGB(160, 230, 60),
+
+	AcrylicMain = Color3.fromRGB(14, 18, 10),
+	AcrylicBorder = Color3.fromRGB(126, 155, 88),
+	AcrylicGradient = ColorSequence.new(Color3.fromRGB(65, 92, 27), Color3.fromRGB(9, 11, 6)),
+	AcrylicNoise = 0.9,
+
+	TitleBarLine = Color3.fromRGB(82, 103, 55),
+	Tab = Color3.fromRGB(136, 162, 101),
+
+	Element = Color3.fromRGB(120, 150, 80),
+	ElementBorder = Color3.fromRGB(11, 15, 8),
+	InElementBorder = Color3.fromRGB(126, 155, 88),
+	ElementTransparency = 0.87,
+
+	ToggleSlider = Color3.fromRGB(120, 150, 80),
+	ToggleToggled = Color3.fromRGB(0, 0, 0),
+
+	SliderRail = Color3.fromRGB(120, 150, 80),
+
+	DropdownFrame = Color3.fromRGB(147, 171, 115),
+	DropdownHolder = Color3.fromRGB(13, 17, 9),
+	DropdownBorder = Color3.fromRGB(11, 14, 8),
+	DropdownOption = Color3.fromRGB(120, 150, 80),
+
+	Keybind = Color3.fromRGB(120, 150, 80),
+
+	Input = Color3.fromRGB(140, 165, 106),
+	InputFocused = Color3.fromRGB(9, 11, 6),
+	InputIndicator = Color3.fromRGB(153, 176, 123),
+
+	Dialog = Color3.fromRGB(13, 17, 9),
+	DialogHolder = Color3.fromRGB(11, 15, 8),
+	DialogHolderLine = Color3.fromRGB(10, 13, 7),
+	DialogButton = Color3.fromRGB(13, 17, 9),
+	DialogButtonBorder = Color3.fromRGB(130, 158, 94),
+	DialogBorder = Color3.fromRGB(120, 150, 80),
+	DialogInput = Color3.fromRGB(32, 36, 28),
+	DialogInputLine = Color3.fromRGB(153, 176, 123),
+
+	Text = Color3.fromRGB(240, 240, 240),
+	SubText = Color3.fromRGB(170, 170, 170),
+	Hover = Color3.fromRGB(120, 150, 80),
+	HoverChange = 0.06
+}
+
+end)() end,
+    [124] = function()local wax,script,require=ImportGlobals(124)local ImportGlobals return (function(...)return {
     Accent = Color3.fromRGB(97, 161, 107),
 
     AcrylicMain = Color3.fromRGB(252, 245, 228),
@@ -60656,7 +63375,7 @@ end)() end,
     HoverChange = 0.04
 }
 end)() end,
-    [70] = function()local wax,script,require=ImportGlobals(70)local ImportGlobals return (function(...)return {
+    [125] = function()local wax,script,require=ImportGlobals(125)local ImportGlobals return (function(...)return {
     Accent = Color3.fromHex("#48b258"),
 
     AcrylicMain = Color3.fromHex("#1e1e1e"),
@@ -60703,7 +63422,7 @@ end)() end,
     HoverChange = 0.05
 }
 end)() end,
-    [71] = function()local wax,script,require=ImportGlobals(71)local ImportGlobals return (function(...)return {
+    [126] = function()local wax,script,require=ImportGlobals(126)local ImportGlobals return (function(...)return {
     Accent = Color3.fromHex("#48b258"),
 
     AcrylicMain = Color3.fromHex("#1e1e1e"),
@@ -60750,7 +63469,7 @@ end)() end,
     HoverChange = 0.05
 }
 end)() end,
-    [72] = function()local wax,script,require=ImportGlobals(72)local ImportGlobals return (function(...)return {
+    [127] = function()local wax,script,require=ImportGlobals(127)local ImportGlobals return (function(...)return {
     Accent = Color3.fromHex("#007ACC"), -- activityBarBadge.background
 
     AcrylicMain = Color3.fromHex("#1E1E1E"), -- editor.background
@@ -60797,7 +63516,7 @@ end)() end,
     HoverChange = 0.1
 }
 end)() end,
-    [73] = function()local wax,script,require=ImportGlobals(73)local ImportGlobals return (function(...)return {
+    [128] = function()local wax,script,require=ImportGlobals(128)local ImportGlobals return (function(...)return {
     Accent = Color3.fromHex("#007ACC"), -- activityBarBadge.background
 
     AcrylicMain = Color3.fromHex("#FFFFFF"), -- editor.background
@@ -60844,7 +63563,7 @@ end)() end,
     HoverChange = 0.1
 } 
 end)() end,
-    [74] = function()local wax,script,require=ImportGlobals(74)local ImportGlobals return (function(...)return {
+    [129] = function()local wax,script,require=ImportGlobals(129)local ImportGlobals return (function(...)return {
     Accent = Color3.fromHex("#569cd6"), -- Based on keyword color
 
     AcrylicMain = Color3.fromHex("#000000"), -- editor.background
@@ -60891,7 +63610,7 @@ end)() end,
     HoverChange = 0.1
 }
 end)() end,
-    [75] = function()local wax,script,require=ImportGlobals(75)local ImportGlobals return (function(...)return {
+    [130] = function()local wax,script,require=ImportGlobals(130)local ImportGlobals return (function(...)return {
     Accent = Color3.fromHex("#0078D4"), -- focusBorder
 
     AcrylicMain = Color3.fromHex("#181818"), -- activityBar.background
@@ -60938,7 +63657,7 @@ end)() end,
     HoverChange = 0.1
 }
 end)() end,
-    [76] = function()local wax,script,require=ImportGlobals(76)local ImportGlobals return (function(...)return {
+    [131] = function()local wax,script,require=ImportGlobals(131)local ImportGlobals return (function(...)return {
     Accent = Color3.fromHex("#DCDCAA"), -- Based on function declarations color
 
     AcrylicMain = Color3.fromHex("#1E1E1E"), -- VS Code's default dark background
@@ -60985,7 +63704,7 @@ end)() end,
     HoverChange = 0.05
 }
 end)() end,
-    [77] = function()local wax,script,require=ImportGlobals(77)local ImportGlobals return (function(...)return {
+    [132] = function()local wax,script,require=ImportGlobals(132)local ImportGlobals return (function(...)return {
     Accent = Color3.fromHex("#5e2cbc"), -- Based on function color
 
     AcrylicMain = Color3.fromHex("#ffffff"), -- Light background
@@ -61032,7 +63751,7 @@ end)() end,
     HoverChange = 0.1
 } 
 end)() end,
-    [78] = function()local wax,script,require=ImportGlobals(78)local ImportGlobals return (function(...)return {
+    [133] = function()local wax,script,require=ImportGlobals(133)local ImportGlobals return (function(...)return {
     Accent = Color3.fromHex("#005FB8"), -- focusBorder
 
     AcrylicMain = Color3.fromHex("#F8F8F8"), -- activityBar.background
@@ -61079,7 +63798,7 @@ end)() end,
     HoverChange = 0.1
 }
 end)() end,
-    [79] = function()local wax,script,require=ImportGlobals(79)local ImportGlobals return (function(...)return {
+    [134] = function()local wax,script,require=ImportGlobals(134)local ImportGlobals return (function(...)return {
     Accent = Color3.fromHex("#795E26"), -- Function declarations color
 
     AcrylicMain = Color3.fromHex("#FFFFFF"), -- editor.background
@@ -61126,7 +63845,7 @@ end)() end,
     HoverChange = 0.1
 } 
 end)() end,
-    [80] = function()local wax,script,require=ImportGlobals(80)local ImportGlobals return (function(...)return {
+    [135] = function()local wax,script,require=ImportGlobals(135)local ImportGlobals return (function(...)return {
     Accent = Color3.fromHex("#cc3333"), -- badge.background
 
     AcrylicMain = Color3.fromHex("#580000"), -- activityBar.background
@@ -61173,7 +63892,151 @@ end)() end,
     HoverChange = 0.1
 }
 end)() end,
-    [81] = function()local wax,script,require=ImportGlobals(81)local ImportGlobals return (function(...)return {
+    [136] = function()local wax,script,require=ImportGlobals(136)local ImportGlobals return (function(...)return {
+	Accent = Color3.fromRGB(180, 20, 50),
+
+	AcrylicMain = Color3.fromRGB(14, 8, 10),
+	AcrylicBorder = Color3.fromRGB(117, 65, 74),
+	AcrylicGradient = ColorSequence.new(Color3.fromRGB(72, 12, 24), Color3.fromRGB(9, 5, 6)),
+	AcrylicNoise = 0.9,
+
+	TitleBarLine = Color3.fromRGB(76, 38, 45),
+	Tab = Color3.fromRGB(127, 79, 87),
+
+	Element = Color3.fromRGB(110, 55, 65),
+	ElementBorder = Color3.fromRGB(11, 6, 8),
+	InElementBorder = Color3.fromRGB(117, 65, 74),
+	ElementTransparency = 0.87,
+
+	ToggleSlider = Color3.fromRGB(110, 55, 65),
+	ToggleToggled = Color3.fromRGB(0, 0, 0),
+
+	SliderRail = Color3.fromRGB(110, 55, 65),
+
+	DropdownFrame = Color3.fromRGB(139, 95, 103),
+	DropdownHolder = Color3.fromRGB(13, 7, 9),
+	DropdownBorder = Color3.fromRGB(11, 6, 8),
+	DropdownOption = Color3.fromRGB(110, 55, 65),
+
+	Keybind = Color3.fromRGB(110, 55, 65),
+
+	Input = Color3.fromRGB(131, 85, 93),
+	InputFocused = Color3.fromRGB(9, 5, 6),
+	InputIndicator = Color3.fromRGB(146, 105, 112),
+
+	Dialog = Color3.fromRGB(13, 7, 9),
+	DialogHolder = Color3.fromRGB(11, 6, 8),
+	DialogHolderLine = Color3.fromRGB(10, 6, 7),
+	DialogButton = Color3.fromRGB(13, 7, 9),
+	DialogButtonBorder = Color3.fromRGB(121, 71, 80),
+	DialogBorder = Color3.fromRGB(110, 55, 65),
+	DialogInput = Color3.fromRGB(32, 26, 28),
+	DialogInputLine = Color3.fromRGB(146, 105, 112),
+
+	Text = Color3.fromRGB(240, 240, 240),
+	SubText = Color3.fromRGB(170, 170, 170),
+	Hover = Color3.fromRGB(110, 55, 65),
+	HoverChange = 0.06
+}
+
+end)() end,
+    [137] = function()local wax,script,require=ImportGlobals(137)local ImportGlobals return (function(...)return {
+	Accent = Color3.fromRGB(220, 150, 60),
+
+	AcrylicMain = Color3.fromRGB(250, 246, 235),
+	AcrylicBorder = Color3.fromRGB(213, 204, 185),
+	AcrylicGradient = ColorSequence.new(Color3.fromRGB(245, 231, 208), Color3.fromRGB(250, 246, 237)),
+	AcrylicNoise = 0.9,
+
+	TitleBarLine = Color3.fromRGB(212, 209, 199),
+	Tab = Color3.fromRGB(213, 204, 185),
+
+	Element = Color3.fromRGB(225, 215, 195),
+	ElementBorder = Color3.fromRGB(187, 184, 176),
+	InElementBorder = Color3.fromRGB(202, 193, 175),
+	ElementTransparency = 0.87,
+
+	ToggleSlider = Color3.fromRGB(225, 215, 195),
+	ToggleToggled = Color3.fromRGB(220, 150, 60),
+
+	SliderRail = Color3.fromRGB(225, 215, 195),
+
+	DropdownFrame = Color3.fromRGB(191, 182, 165),
+	DropdownHolder = Color3.fromRGB(250, 246, 235),
+	DropdownBorder = Color3.fromRGB(200, 196, 188),
+	DropdownOption = Color3.fromRGB(225, 215, 195),
+
+	Keybind = Color3.fromRGB(225, 215, 195),
+
+	Input = Color3.fromRGB(202, 193, 175),
+	InputFocused = Color3.fromRGB(250, 247, 238),
+	InputIndicator = Color3.fromRGB(157, 150, 136),
+
+	Dialog = Color3.fromRGB(250, 246, 235),
+	DialogHolder = Color3.fromRGB(237, 233, 223),
+	DialogHolderLine = Color3.fromRGB(220, 216, 206),
+	DialogButton = Color3.fromRGB(250, 246, 235),
+	DialogButtonBorder = Color3.fromRGB(207, 197, 179),
+	DialogBorder = Color3.fromRGB(225, 215, 195),
+	DialogInput = Color3.fromRGB(237, 233, 223),
+	DialogInputLine = Color3.fromRGB(168, 161, 146),
+
+	Text = Color3.fromRGB(30, 30, 30),
+	SubText = Color3.fromRGB(90, 90, 90),
+	Hover = Color3.fromRGB(225, 215, 195),
+	HoverChange = 0.06
+}
+
+end)() end,
+    [138] = function()local wax,script,require=ImportGlobals(138)local ImportGlobals return (function(...)return {
+	Accent = Color3.fromRGB(70, 180, 160),
+
+	AcrylicMain = Color3.fromRGB(10, 16, 15),
+	AcrylicBorder = Color3.fromRGB(88, 136, 126),
+	AcrylicGradient = ColorSequence.new(Color3.fromRGB(31, 73, 65), Color3.fromRGB(6, 10, 9)),
+	AcrylicNoise = 0.9,
+
+	TitleBarLine = Color3.fromRGB(55, 90, 83),
+	Tab = Color3.fromRGB(101, 145, 136),
+
+	Element = Color3.fromRGB(80, 130, 120),
+	ElementBorder = Color3.fromRGB(8, 13, 12),
+	InElementBorder = Color3.fromRGB(88, 136, 126),
+	ElementTransparency = 0.87,
+
+	ToggleSlider = Color3.fromRGB(80, 130, 120),
+	ToggleToggled = Color3.fromRGB(0, 0, 0),
+
+	SliderRail = Color3.fromRGB(80, 130, 120),
+
+	DropdownFrame = Color3.fromRGB(115, 155, 147),
+	DropdownHolder = Color3.fromRGB(9, 15, 14),
+	DropdownBorder = Color3.fromRGB(8, 12, 12),
+	DropdownOption = Color3.fromRGB(80, 130, 120),
+
+	Keybind = Color3.fromRGB(80, 130, 120),
+
+	Input = Color3.fromRGB(106, 148, 140),
+	InputFocused = Color3.fromRGB(6, 10, 9),
+	InputIndicator = Color3.fromRGB(123, 161, 153),
+
+	Dialog = Color3.fromRGB(9, 15, 14),
+	DialogHolder = Color3.fromRGB(8, 13, 12),
+	DialogHolderLine = Color3.fromRGB(7, 12, 11),
+	DialogButton = Color3.fromRGB(9, 15, 14),
+	DialogButtonBorder = Color3.fromRGB(94, 140, 130),
+	DialogBorder = Color3.fromRGB(80, 130, 120),
+	DialogInput = Color3.fromRGB(28, 34, 33),
+	DialogInputLine = Color3.fromRGB(123, 161, 153),
+
+	Text = Color3.fromRGB(240, 240, 240),
+	SubText = Color3.fromRGB(170, 170, 170),
+	Hover = Color3.fromRGB(80, 130, 120),
+	HoverChange = 0.06
+}
+
+end)() end,
+    [139] = function()local wax,script,require=ImportGlobals(139)local ImportGlobals return (function(...)return {
     Accent = Color3.fromHex("#7b36e2"),
 
     AcrylicMain = Color3.fromHex("#110e1a"),
@@ -61220,7 +64083,7 @@ end)() end,
     HoverChange = 0.05
 }
 end)() end,
-    [82] = function()local wax,script,require=ImportGlobals(82)local ImportGlobals return (function(...)return {
+    [140] = function()local wax,script,require=ImportGlobals(140)local ImportGlobals return (function(...)return {
     Accent = Color3.fromHex("#7b36e2"),
 
     AcrylicMain = Color3.fromHex("#110e1a"),
@@ -61267,7 +64130,7 @@ end)() end,
     HoverChange = 0.05
 }
 end)() end,
-    [83] = function()local wax,script,require=ImportGlobals(83)local ImportGlobals return (function(...)return {
+    [141] = function()local wax,script,require=ImportGlobals(141)local ImportGlobals return (function(...)return {
     Accent = Color3.fromHex("#165fb3"),
 
     AcrylicMain = Color3.fromHex("#21252b"),
@@ -61314,7 +64177,7 @@ end)() end,
     HoverChange = 0.05
 }
 end)() end,
-    [84] = function()local wax,script,require=ImportGlobals(84)local ImportGlobals return (function(...)return {
+    [142] = function()local wax,script,require=ImportGlobals(142)local ImportGlobals return (function(...)return {
     Accent = Color3.fromHex("#165fb3"),
 
     AcrylicMain = Color3.fromHex("#191c28"),
@@ -61361,7 +64224,7 @@ end)() end,
     HoverChange = 0.05
 }
 end)() end,
-    [85] = function()local wax,script,require=ImportGlobals(85)local ImportGlobals return (function(...)return {
+    [143] = function()local wax,script,require=ImportGlobals(143)local ImportGlobals return (function(...)return {
     Accent = Color3.fromHex("#0f96ff"),
 
     AcrylicMain = Color3.fromHex("#ffffff"),
@@ -61408,7 +64271,7 @@ end)() end,
     HoverChange = 0.1
 }
 end)() end,
-    [86] = function()local wax,script,require=ImportGlobals(86)local ImportGlobals return (function(...)return {
+    [144] = function()local wax,script,require=ImportGlobals(144)local ImportGlobals return (function(...)return {
     Accent = Color3.fromHex("#e32b00"),
 
     AcrylicMain = Color3.fromHex("#130c0f"),
@@ -61455,7 +64318,7 @@ end)() end,
     HoverChange = 0.05
 }
 end)() end,
-    [87] = function()local wax,script,require=ImportGlobals(87)local ImportGlobals return (function(...)return {
+    [145] = function()local wax,script,require=ImportGlobals(145)local ImportGlobals return (function(...)return {
     Accent = Color3.fromHex("#1591ff"),
 
     AcrylicMain = Color3.fromHex("#202432"),
@@ -61502,7 +64365,103 @@ end)() end,
     HoverChange = 0.05
 }
 end)() end,
-    [88] = function()local wax,script,require=ImportGlobals(88)local ImportGlobals return (function(...)return {
+    [146] = function()local wax,script,require=ImportGlobals(146)local ImportGlobals return (function(...)return {
+	Accent = Color3.fromRGB(120, 80, 220),
+
+	AcrylicMain = Color3.fromRGB(6, 6, 10),
+	AcrylicBorder = Color3.fromRGB(79, 69, 117),
+	AcrylicGradient = ColorSequence.new(Color3.fromRGB(45, 31, 83), Color3.fromRGB(3, 3, 6)),
+	AcrylicNoise = 0.9,
+
+	TitleBarLine = Color3.fromRGB(47, 41, 75),
+	Tab = Color3.fromRGB(92, 83, 127),
+
+	Element = Color3.fromRGB(70, 60, 110),
+	ElementBorder = Color3.fromRGB(5, 5, 8),
+	InElementBorder = Color3.fromRGB(79, 69, 117),
+	ElementTransparency = 0.87,
+
+	ToggleSlider = Color3.fromRGB(70, 60, 110),
+	ToggleToggled = Color3.fromRGB(0, 0, 0),
+
+	SliderRail = Color3.fromRGB(70, 60, 110),
+
+	DropdownFrame = Color3.fromRGB(107, 99, 139),
+	DropdownHolder = Color3.fromRGB(5, 5, 9),
+	DropdownBorder = Color3.fromRGB(4, 4, 8),
+	DropdownOption = Color3.fromRGB(70, 60, 110),
+
+	Keybind = Color3.fromRGB(70, 60, 110),
+
+	Input = Color3.fromRGB(97, 89, 131),
+	InputFocused = Color3.fromRGB(3, 3, 6),
+	InputIndicator = Color3.fromRGB(116, 108, 146),
+
+	Dialog = Color3.fromRGB(5, 5, 9),
+	DialogHolder = Color3.fromRGB(5, 5, 8),
+	DialogHolderLine = Color3.fromRGB(4, 4, 7),
+	DialogButton = Color3.fromRGB(5, 5, 9),
+	DialogButtonBorder = Color3.fromRGB(84, 75, 121),
+	DialogBorder = Color3.fromRGB(70, 60, 110),
+	DialogInput = Color3.fromRGB(25, 25, 28),
+	DialogInputLine = Color3.fromRGB(116, 108, 146),
+
+	Text = Color3.fromRGB(240, 240, 240),
+	SubText = Color3.fromRGB(170, 170, 170),
+	Hover = Color3.fromRGB(70, 60, 110),
+	HoverChange = 0.06
+}
+
+end)() end,
+    [147] = function()local wax,script,require=ImportGlobals(147)local ImportGlobals return (function(...)return {
+	Accent = Color3.fromRGB(210, 255, 60),
+
+	AcrylicMain = Color3.fromRGB(14, 16, 10),
+	AcrylicBorder = Color3.fromRGB(136, 155, 79),
+	AcrylicGradient = ColorSequence.new(Color3.fromRGB(82, 99, 27), Color3.fromRGB(9, 10, 6)),
+	AcrylicNoise = 0.9,
+
+	TitleBarLine = Color3.fromRGB(89, 103, 49),
+	Tab = Color3.fromRGB(145, 162, 92),
+
+	Element = Color3.fromRGB(130, 150, 70),
+	ElementBorder = Color3.fromRGB(11, 13, 8),
+	InElementBorder = Color3.fromRGB(136, 155, 79),
+	ElementTransparency = 0.87,
+
+	ToggleSlider = Color3.fromRGB(130, 150, 70),
+	ToggleToggled = Color3.fromRGB(0, 0, 0),
+
+	SliderRail = Color3.fromRGB(130, 150, 70),
+
+	DropdownFrame = Color3.fromRGB(155, 171, 107),
+	DropdownHolder = Color3.fromRGB(13, 15, 9),
+	DropdownBorder = Color3.fromRGB(11, 12, 8),
+	DropdownOption = Color3.fromRGB(130, 150, 70),
+
+	Keybind = Color3.fromRGB(130, 150, 70),
+
+	Input = Color3.fromRGB(148, 165, 97),
+	InputFocused = Color3.fromRGB(9, 10, 6),
+	InputIndicator = Color3.fromRGB(161, 176, 116),
+
+	Dialog = Color3.fromRGB(13, 15, 9),
+	DialogHolder = Color3.fromRGB(11, 13, 8),
+	DialogHolderLine = Color3.fromRGB(10, 12, 7),
+	DialogButton = Color3.fromRGB(13, 15, 9),
+	DialogButtonBorder = Color3.fromRGB(140, 158, 84),
+	DialogBorder = Color3.fromRGB(130, 150, 70),
+	DialogInput = Color3.fromRGB(32, 34, 28),
+	DialogInputLine = Color3.fromRGB(161, 176, 116),
+
+	Text = Color3.fromRGB(240, 240, 240),
+	SubText = Color3.fromRGB(170, 170, 170),
+	Hover = Color3.fromRGB(130, 150, 70),
+	HoverChange = 0.06
+}
+
+end)() end,
+    [148] = function()local wax,script,require=ImportGlobals(148)local ImportGlobals return (function(...)return {
 	Accent = Color3.fromRGB(90, 235, 45),
 
 	AcrylicMain = Color3.fromRGB(30, 30, 30),
@@ -61532,7 +64491,55 @@ end)() end,
 	DialogInputLine = Color3.fromRGB(120, 120, 120)
 }
 end)() end,
-    [89] = function()local wax,script,require=ImportGlobals(89)local ImportGlobals return (function(...)return {
+    [149] = function()local wax,script,require=ImportGlobals(149)local ImportGlobals return (function(...)return {
+	Accent = Color3.fromRGB(160, 40, 60),
+
+	AcrylicMain = Color3.fromRGB(16, 10, 12),
+	AcrylicBorder = Color3.fromRGB(117, 69, 79),
+	AcrylicGradient = ColorSequence.new(Color3.fromRGB(66, 20, 28), Color3.fromRGB(10, 6, 7)),
+	AcrylicNoise = 0.9,
+
+	TitleBarLine = Color3.fromRGB(77, 42, 49),
+	Tab = Color3.fromRGB(127, 83, 92),
+
+	Element = Color3.fromRGB(110, 60, 70),
+	ElementBorder = Color3.fromRGB(13, 8, 10),
+	InElementBorder = Color3.fromRGB(117, 69, 79),
+	ElementTransparency = 0.87,
+
+	ToggleSlider = Color3.fromRGB(110, 60, 70),
+	ToggleToggled = Color3.fromRGB(0, 0, 0),
+
+	SliderRail = Color3.fromRGB(110, 60, 70),
+
+	DropdownFrame = Color3.fromRGB(139, 99, 107),
+	DropdownHolder = Color3.fromRGB(15, 9, 11),
+	DropdownBorder = Color3.fromRGB(12, 8, 9),
+	DropdownOption = Color3.fromRGB(110, 60, 70),
+
+	Keybind = Color3.fromRGB(110, 60, 70),
+
+	Input = Color3.fromRGB(131, 89, 97),
+	InputFocused = Color3.fromRGB(10, 6, 7),
+	InputIndicator = Color3.fromRGB(146, 108, 116),
+
+	Dialog = Color3.fromRGB(15, 9, 11),
+	DialogHolder = Color3.fromRGB(13, 8, 10),
+	DialogHolderLine = Color3.fromRGB(12, 7, 9),
+	DialogButton = Color3.fromRGB(15, 9, 11),
+	DialogButtonBorder = Color3.fromRGB(121, 75, 84),
+	DialogBorder = Color3.fromRGB(110, 60, 70),
+	DialogInput = Color3.fromRGB(34, 28, 30),
+	DialogInputLine = Color3.fromRGB(146, 108, 116),
+
+	Text = Color3.fromRGB(240, 240, 240),
+	SubText = Color3.fromRGB(170, 170, 170),
+	Hover = Color3.fromRGB(110, 60, 70),
+	HoverChange = 0.06
+}
+
+end)() end,
+    [150] = function()local wax,script,require=ImportGlobals(150)local ImportGlobals return (function(...)return {
     Accent = Color3.fromHex("#e95420"),
 
     AcrylicMain = Color3.fromHex("#383838"),
@@ -61579,7 +64586,7 @@ end)() end,
     HoverChange = 0.1
 }
 end)() end,
-    [90] = function()local wax,script,require=ImportGlobals(90)local ImportGlobals return (function(...)return {
+    [151] = function()local wax,script,require=ImportGlobals(151)local ImportGlobals return (function(...)return {
     Accent = Color3.fromHex("#e95420"),
 
     AcrylicMain = Color3.fromHex("#edeef0"),
@@ -61626,16 +64633,16 @@ end)() end,
     HoverChange = 0.1
 }
 end)() end,
-    [92] = function()local wax,script,require=ImportGlobals(92)local ImportGlobals return (function(...)return require(script.Parent._Index["reselim_flipper@2.0.0"]["flipper"])
+    [153] = function()local wax,script,require=ImportGlobals(153)local ImportGlobals return (function(...)return require(script.Parent._Index["reselim_flipper@2.0.0"]["flipper"])
 
 end)() end,
-    [93] = function()local wax,script,require=ImportGlobals(93)local ImportGlobals return (function(...)return require(script.Parent._Index["littensy_ripple@0.9.3"]["ripple"])
+    [154] = function()local wax,script,require=ImportGlobals(154)local ImportGlobals return (function(...)return require(script.Parent._Index["littensy_ripple@0.9.3"]["ripple"])
 
 end)() end,
-    [94] = function()local wax,script,require=ImportGlobals(94)local ImportGlobals return (function(...)return require(script.Parent._Index["lucasmzreal_fastsignal@10.4.0"]["fastsignal"])
+    [155] = function()local wax,script,require=ImportGlobals(155)local ImportGlobals return (function(...)return require(script.Parent._Index["lucasmzreal_fastsignal@10.4.0"]["fastsignal"])
 
 end)() end,
-    [97] = function()local wax,script,require=ImportGlobals(97)local ImportGlobals return (function(...)--[[
+    [158] = function()local wax,script,require=ImportGlobals(158)local ImportGlobals return (function(...)--[[
 	An implementation of Promises similar to Promise/A+.
 ]]
 
@@ -63705,7 +66712,7 @@ end
 return Promise
 
 end)() end,
-    [98] = function()local wax,script,require=ImportGlobals(98)local ImportGlobals return (function(...)return function()
+    [159] = function()local wax,script,require=ImportGlobals(159)local ImportGlobals return (function(...)return function()
 	local Promise = require(script.Parent)
 	Promise.TEST = true
 
@@ -65551,10 +68558,10 @@ end)() end,
 end
 
 end)() end,
-    [100] = function()local wax,script,require=ImportGlobals(100)local ImportGlobals return (function(...)return require(script.Parent.Parent["evaera_promise@4.0.0"]["promise"])
+    [161] = function()local wax,script,require=ImportGlobals(161)local ImportGlobals return (function(...)return require(script.Parent.Parent["evaera_promise@4.0.0"]["promise"])
 
 end)() end,
-    [101] = function()local wax,script,require=ImportGlobals(101)local ImportGlobals return (function(...)local types = require(script.types)
+    [162] = function()local wax,script,require=ImportGlobals(162)local ImportGlobals return (function(...)local types = require(script.types)
 
 export type Motion<T = number> = types.Motion<T>
 
@@ -65578,7 +68585,7 @@ return {
 }
 
 end)() end,
-    [102] = function()local wax,script,require=ImportGlobals(102)local ImportGlobals return (function(...)local config = {
+    [163] = function()local wax,script,require=ImportGlobals(163)local ImportGlobals return (function(...)local config = {
 	spring = {
 		default = { tension = 170, friction = 26 },
 		gentle = { tension = 120, friction = 14 },
@@ -65607,7 +68614,7 @@ end)() end,
 return config
 
 end)() end,
-    [103] = function()local wax,script,require=ImportGlobals(103)local ImportGlobals return (function(...)local RunService = game:GetService("RunService")
+    [164] = function()local wax,script,require=ImportGlobals(164)local ImportGlobals return (function(...)local RunService = game:GetService("RunService")
 
 local types = require(script.Parent.types)
 local immediateSolver = require(script.Parent.solvers.immediate)
@@ -65917,7 +68924,7 @@ end
 return createMotion
 
 end)() end,
-    [104] = function()local wax,script,require=ImportGlobals(104)local ImportGlobals return (function(...)return function()
+    [165] = function()local wax,script,require=ImportGlobals(165)local ImportGlobals return (function(...)return function()
 	local types = require(script.Parent.types)
 	local createMotion = require(script.Parent.createMotion)
 	local linear = require(script.Parent.solvers.linear)
@@ -66245,7 +69252,7 @@ end)() end,
 end
 
 end)() end,
-    [106] = function()local wax,script,require=ImportGlobals(106)local ImportGlobals return (function(...)local types = require(script.Parent.Parent.types)
+    [167] = function()local wax,script,require=ImportGlobals(167)local ImportGlobals return (function(...)local types = require(script.Parent.Parent.types)
 local intermediate = require(script.Parent.Parent.utils.intermediate)
 
 local function immediate(motionGoal: types.MotionGoal): types.MotionSolver
@@ -66266,7 +69273,7 @@ end
 return immediate
 
 end)() end,
-    [107] = function()local wax,script,require=ImportGlobals(107)local ImportGlobals return (function(...)return function()
+    [168] = function()local wax,script,require=ImportGlobals(168)local ImportGlobals return (function(...)return function()
 	local createMotion = require(script.Parent.Parent.createMotion)
 	local immediate = require(script.Parent.immediate)
 
@@ -66362,7 +69369,7 @@ end)() end,
 end
 
 end)() end,
-    [108] = function()local wax,script,require=ImportGlobals(108)local ImportGlobals return (function(...)local types = require(script.Parent.Parent.types)
+    [169] = function()local wax,script,require=ImportGlobals(169)local ImportGlobals return (function(...)local types = require(script.Parent.Parent.types)
 local config = require(script.Parent.Parent.config)
 local intermediate = require(script.Parent.Parent.utils.intermediate)
 
@@ -66401,7 +69408,7 @@ end
 return linear
 
 end)() end,
-    [109] = function()local wax,script,require=ImportGlobals(109)local ImportGlobals return (function(...)return function()
+    [170] = function()local wax,script,require=ImportGlobals(170)local ImportGlobals return (function(...)return function()
 	local createMotion = require(script.Parent.Parent.createMotion)
 	local linear = require(script.Parent.linear)
 
@@ -66477,7 +69484,7 @@ end)() end,
 end
 
 end)() end,
-    [110] = function()local wax,script,require=ImportGlobals(110)local ImportGlobals return (function(...)local types = require(script.Parent.Parent.types)
+    [171] = function()local wax,script,require=ImportGlobals(171)local ImportGlobals return (function(...)local types = require(script.Parent.Parent.types)
 local config = require(script.Parent.Parent.config)
 local intermediate = require(script.Parent.Parent.utils.intermediate)
 
@@ -66553,7 +69560,7 @@ end
 return spring
 
 end)() end,
-    [111] = function()local wax,script,require=ImportGlobals(111)local ImportGlobals return (function(...)return function()
+    [172] = function()local wax,script,require=ImportGlobals(172)local ImportGlobals return (function(...)return function()
 	local createMotion = require(script.Parent.Parent.createMotion)
 	local snapshot = require(script.Parent.Parent.utils.snapshot)
 	local spring = require(script.Parent.spring)
@@ -66647,7 +69654,7 @@ end)() end,
 end
 
 end)() end,
-    [112] = function()local wax,script,require=ImportGlobals(112)local ImportGlobals return (function(...)local TweenService = game:GetService("TweenService")
+    [173] = function()local wax,script,require=ImportGlobals(173)local ImportGlobals return (function(...)local TweenService = game:GetService("TweenService")
 
 local types = require(script.Parent.Parent.types)
 local config = require(script.Parent.Parent.config)
@@ -66730,7 +69737,7 @@ end
 return tween
 
 end)() end,
-    [113] = function()local wax,script,require=ImportGlobals(113)local ImportGlobals return (function(...)return function()
+    [174] = function()local wax,script,require=ImportGlobals(174)local ImportGlobals return (function(...)return function()
 	local createMotion = require(script.Parent.Parent.createMotion)
 	local tween = require(script.Parent.tween)
 
@@ -66795,7 +69802,7 @@ end)() end,
 end
 
 end)() end,
-    [114] = function()local wax,script,require=ImportGlobals(114)local ImportGlobals return (function(...)type Cleanup = () -> ()
+    [175] = function()local wax,script,require=ImportGlobals(175)local ImportGlobals return (function(...)type Cleanup = () -> ()
 
 export type Heartbeat = {
 	Connect: (self: Heartbeat, callback: (deltaTime: number) -> ()) -> Disconnectable,
@@ -66874,7 +69881,7 @@ export type MotionGoal = { [any]: number } | number | UDim2 | UDim | Vector2 | V
 return nil
 
 end)() end,
-    [116] = function()local wax,script,require=ImportGlobals(116)local ImportGlobals return (function(...)local function assign<T>(object: T, ...: { [any]: any }): T
+    [177] = function()local wax,script,require=ImportGlobals(177)local ImportGlobals return (function(...)local function assign<T>(object: T, ...: { [any]: any }): T
 	assert(type(object) == "table", `Expected a table for first argument, got ${type(object)}`)
 
 	for index = 1, select("#", ...) do
@@ -66891,7 +69898,7 @@ end
 return assign
 
 end)() end,
-    [117] = function()local wax,script,require=ImportGlobals(117)local ImportGlobals return (function(...)type Intermediate = { [any]: number }
+    [178] = function()local wax,script,require=ImportGlobals(178)local ImportGlobals return (function(...)type Intermediate = { [any]: number }
 
 local intermediates = {
 	number = {
@@ -66996,7 +70003,7 @@ return {
 }
 
 end)() end,
-    [118] = function()local wax,script,require=ImportGlobals(118)local ImportGlobals return (function(...)local function merge<T, U>(a: T & { [any]: any }, b: U & { [any]: any }): T & U
+    [179] = function()local wax,script,require=ImportGlobals(179)local ImportGlobals return (function(...)local function merge<T, U>(a: T & { [any]: any }, b: U & { [any]: any }): T & U
 	local copy = table.clone(a)
 
 	for key, value in pairs(b) do
@@ -67009,7 +70016,7 @@ end
 return merge
 
 end)() end,
-    [119] = function()local wax,script,require=ImportGlobals(119)local ImportGlobals return (function(...)local HttpService = game:GetService("HttpService")
+    [180] = function()local wax,script,require=ImportGlobals(180)local ImportGlobals return (function(...)local HttpService = game:GetService("HttpService")
 
 local types = require(script.Parent.Parent.types)
 local createMotion = require(script.Parent.Parent.createMotion)
@@ -67058,7 +70065,7 @@ return {
 }
 
 end)() end,
-    [120] = function()local wax,script,require=ImportGlobals(120)local ImportGlobals return (function(...)type Spy = {
+    [181] = function()local wax,script,require=ImportGlobals(181)local ImportGlobals return (function(...)type Spy = {
 	calls: number,
 	arguments: { { unknown } },
 	handle: (...any) -> (),
@@ -67084,7 +70091,7 @@ end
 return spy
 
 end)() end,
-    [122] = function()local wax,script,require=ImportGlobals(122)local ImportGlobals return (function(...)--!nocheck
+    [183] = function()local wax,script,require=ImportGlobals(183)local ImportGlobals return (function(...)--!nocheck
 --!optimize 2
 --!native
 
@@ -67138,7 +70145,7 @@ local ChosenSignal: typeof( require(script.Docs) ) = IsDeferred
 
 return ChosenSignal
 end)() end,
-    [123] = function()local wax,script,require=ImportGlobals(123)local ImportGlobals return (function(...)--!optimize 2
+    [184] = function()local wax,script,require=ImportGlobals(184)local ImportGlobals return (function(...)--!optimize 2
 --!native
 
 export type ScriptSignal<T...> = {
@@ -67328,7 +70335,7 @@ ScriptConnection.Destroy = ScriptConnection.Disconnect
 
 return ScriptSignal :: typeof( require(script.Parent.Docs) )
 end)() end,
-    [124] = function()local wax,script,require=ImportGlobals(124)local ImportGlobals return (function(...)--[[
+    [185] = function()local wax,script,require=ImportGlobals(185)local ImportGlobals return (function(...)--[[
 	Meant to hold docs. Makes it easier to mess with them individually.
 ]]
 
@@ -67563,7 +70570,7 @@ end
 
 return returnType
 end)() end,
-    [125] = function()local wax,script,require=ImportGlobals(125)local ImportGlobals return (function(...)--!optimize 2
+    [186] = function()local wax,script,require=ImportGlobals(186)local ImportGlobals return (function(...)--!optimize 2
 --!native
 
 export type ScriptSignal<T...> = {
@@ -67642,7 +70649,7 @@ end
 
 return ScriptSignal :: typeof( require(script.Parent.Docs) )
 end)() end,
-    [126] = function()local wax,script,require=ImportGlobals(126)local ImportGlobals return (function(...)--[[
+    [187] = function()local wax,script,require=ImportGlobals(187)local ImportGlobals return (function(...)--[[
 	FastSignal has 3 editions.
 
 		* Adaptive
@@ -67672,7 +70679,7 @@ end)() end,
 
 return error("Not meant to run.")
 end)() end,
-    [127] = function()local wax,script,require=ImportGlobals(127)local ImportGlobals return (function(...)return {
+    [188] = function()local wax,script,require=ImportGlobals(188)local ImportGlobals return (function(...)return {
 	package = {
 		authors = {"RBLXUtils", "LucasMZReal"},
 		description = "FastSignal is a signal library made with consistency and expectable behaviour in mind, it is efficient, easy to use, and widely compatible.",
@@ -67684,7 +70691,7 @@ end)() end,
 	},
 }
 end)() end,
-    [129] = function()local wax,script,require=ImportGlobals(129)local ImportGlobals return (function(...)local Flipper = {
+    [190] = function()local wax,script,require=ImportGlobals(190)local ImportGlobals return (function(...)local Flipper = {
 	SingleMotor = require(script.SingleMotor),
 	GroupMotor = require(script.GroupMotor),
 
@@ -67697,7 +70704,7 @@ end)() end,
 
 return Flipper
 end)() end,
-    [130] = function()local wax,script,require=ImportGlobals(130)local ImportGlobals return (function(...)local RunService = game:GetService("RunService")
+    [191] = function()local wax,script,require=ImportGlobals(191)local ImportGlobals return (function(...)local RunService = game:GetService("RunService")
 
 local Signal = require(script.Parent.Signal)
 
@@ -67754,7 +70761,7 @@ end
 return BaseMotor
 
 end)() end,
-    [131] = function()local wax,script,require=ImportGlobals(131)local ImportGlobals return (function(...)return function()
+    [192] = function()local wax,script,require=ImportGlobals(192)local ImportGlobals return (function(...)return function()
 	local RunService = game:GetService("RunService")
 
 	local BaseMotor = require(script.Parent.BaseMotor)
@@ -67795,7 +70802,7 @@ end)() end,
 end
 
 end)() end,
-    [132] = function()local wax,script,require=ImportGlobals(132)local ImportGlobals return (function(...)local BaseMotor = require(script.Parent.BaseMotor)
+    [193] = function()local wax,script,require=ImportGlobals(193)local ImportGlobals return (function(...)local BaseMotor = require(script.Parent.BaseMotor)
 local SingleMotor = require(script.Parent.SingleMotor)
 
 local isMotor = require(script.Parent.isMotor)
@@ -67904,7 +70911,7 @@ end
 return GroupMotor
 
 end)() end,
-    [133] = function()local wax,script,require=ImportGlobals(133)local ImportGlobals return (function(...)return function()
+    [194] = function()local wax,script,require=ImportGlobals(194)local ImportGlobals return (function(...)return function()
 	local GroupMotor = require(script.Parent.GroupMotor)
 
 	local Instant = require(script.Parent.Instant)
@@ -67989,7 +70996,7 @@ end)() end,
 end
 
 end)() end,
-    [134] = function()local wax,script,require=ImportGlobals(134)local ImportGlobals return (function(...)local Instant = {}
+    [195] = function()local wax,script,require=ImportGlobals(195)local ImportGlobals return (function(...)local Instant = {}
 Instant.__index = Instant
 
 function Instant.new(targetValue)
@@ -68007,7 +71014,7 @@ end
 
 return Instant
 end)() end,
-    [135] = function()local wax,script,require=ImportGlobals(135)local ImportGlobals return (function(...)return function()
+    [196] = function()local wax,script,require=ImportGlobals(196)local ImportGlobals return (function(...)return function()
 	local Instant = require(script.Parent.Instant)
 
 	it("should return a completed state with the provided value", function()
@@ -68018,7 +71025,7 @@ end)() end,
 	end)
 end
 end)() end,
-    [136] = function()local wax,script,require=ImportGlobals(136)local ImportGlobals return (function(...)local Linear = {}
+    [197] = function()local wax,script,require=ImportGlobals(197)local ImportGlobals return (function(...)local Linear = {}
 Linear.__index = Linear
 
 function Linear.new(targetValue, options)
@@ -68055,7 +71062,7 @@ end
 
 return Linear
 end)() end,
-    [137] = function()local wax,script,require=ImportGlobals(137)local ImportGlobals return (function(...)return function()
+    [198] = function()local wax,script,require=ImportGlobals(198)local ImportGlobals return (function(...)return function()
 	local SingleMotor = require(script.Parent.SingleMotor)
 	local Linear = require(script.Parent.Linear)
 
@@ -68113,7 +71120,7 @@ end)() end,
 	end)
 end
 end)() end,
-    [138] = function()local wax,script,require=ImportGlobals(138)local ImportGlobals return (function(...)local Connection = {}
+    [199] = function()local wax,script,require=ImportGlobals(199)local ImportGlobals return (function(...)local Connection = {}
 Connection.__index = Connection
 
 function Connection.new(signal, handler)
@@ -68172,7 +71179,7 @@ end
 
 return Signal
 end)() end,
-    [139] = function()local wax,script,require=ImportGlobals(139)local ImportGlobals return (function(...)return function()
+    [200] = function()local wax,script,require=ImportGlobals(200)local ImportGlobals return (function(...)return function()
 	local Signal = require(script.Parent.Signal)
 
 	it("should invoke all connections, instantly", function()
@@ -68222,7 +71229,7 @@ end)() end,
 	end)
 end
 end)() end,
-    [140] = function()local wax,script,require=ImportGlobals(140)local ImportGlobals return (function(...)local BaseMotor = require(script.Parent.BaseMotor)
+    [201] = function()local wax,script,require=ImportGlobals(201)local ImportGlobals return (function(...)local BaseMotor = require(script.Parent.BaseMotor)
 
 local SingleMotor = setmetatable({}, BaseMotor)
 SingleMotor.__index = SingleMotor
@@ -68291,7 +71298,7 @@ end
 return SingleMotor
 
 end)() end,
-    [141] = function()local wax,script,require=ImportGlobals(141)local ImportGlobals return (function(...)return function()
+    [202] = function()local wax,script,require=ImportGlobals(202)local ImportGlobals return (function(...)return function()
 	local SingleMotor = require(script.Parent.SingleMotor)
 	local Instant = require(script.Parent.Instant)
 
@@ -68338,7 +71345,7 @@ end)() end,
 end
 
 end)() end,
-    [142] = function()local wax,script,require=ImportGlobals(142)local ImportGlobals return (function(...)local VELOCITY_THRESHOLD = 0.001
+    [203] = function()local wax,script,require=ImportGlobals(203)local ImportGlobals return (function(...)local VELOCITY_THRESHOLD = 0.001
 local POSITION_THRESHOLD = 0.001
 
 local EPS = 0.0001
@@ -68447,7 +71454,7 @@ end
 
 return Spring
 end)() end,
-    [143] = function()local wax,script,require=ImportGlobals(143)local ImportGlobals return (function(...)return function()
+    [204] = function()local wax,script,require=ImportGlobals(204)local ImportGlobals return (function(...)return function()
 	local SingleMotor = require(script.Parent.SingleMotor)
 	local Spring = require(script.Parent.Spring)
 
@@ -68483,7 +71490,7 @@ end)() end,
 	end)
 end
 end)() end,
-    [144] = function()local wax,script,require=ImportGlobals(144)local ImportGlobals return (function(...)local function isMotor(value)
+    [205] = function()local wax,script,require=ImportGlobals(205)local ImportGlobals return (function(...)local function isMotor(value)
 	local motorType = tostring(value):match("^Motor%((.+)%)$")
 
 	if motorType then
@@ -68495,7 +71502,7 @@ end
 
 return isMotor
 end)() end,
-    [145] = function()local wax,script,require=ImportGlobals(145)local ImportGlobals return (function(...)return function()
+    [206] = function()local wax,script,require=ImportGlobals(206)local ImportGlobals return (function(...)return function()
 	local isMotor = require(script.Parent.isMotor)
 
 	local SingleMotor = require(script.Parent.SingleMotor)
@@ -68534,487 +71541,6 @@ local ObjectTree = {
         },
         {
             {
-                91,
-                1,
-                {
-                    "Packages"
-                },
-                {
-                    {
-                        93,
-                        2,
-                        {
-                            "Ripple"
-                        }
-                    },
-                    {
-                        94,
-                        2,
-                        {
-                            "Signal"
-                        }
-                    },
-                    {
-                        95,
-                        1,
-                        {
-                            "_Index"
-                        },
-                        {
-                            {
-                                128,
-                                1,
-                                {
-                                    "reselim_flipper@2.0.0"
-                                },
-                                {
-                                    {
-                                        129,
-                                        2,
-                                        {
-                                            "flipper"
-                                        },
-                                        {
-                                            {
-                                                134,
-                                                2,
-                                                {
-                                                    "Instant"
-                                                }
-                                            },
-                                            {
-                                                145,
-                                                2,
-                                                {
-                                                    "isMotor.spec"
-                                                }
-                                            },
-                                            {
-                                                144,
-                                                2,
-                                                {
-                                                    "isMotor"
-                                                }
-                                            },
-                                            {
-                                                143,
-                                                2,
-                                                {
-                                                    "Spring.spec"
-                                                }
-                                            },
-                                            {
-                                                140,
-                                                2,
-                                                {
-                                                    "SingleMotor"
-                                                }
-                                            },
-                                            {
-                                                136,
-                                                2,
-                                                {
-                                                    "Linear"
-                                                }
-                                            },
-                                            {
-                                                135,
-                                                2,
-                                                {
-                                                    "Instant.spec"
-                                                }
-                                            },
-                                            {
-                                                132,
-                                                2,
-                                                {
-                                                    "GroupMotor"
-                                                }
-                                            },
-                                            {
-                                                131,
-                                                2,
-                                                {
-                                                    "BaseMotor.spec"
-                                                }
-                                            },
-                                            {
-                                                137,
-                                                2,
-                                                {
-                                                    "Linear.spec"
-                                                }
-                                            },
-                                            {
-                                                142,
-                                                2,
-                                                {
-                                                    "Spring"
-                                                }
-                                            },
-                                            {
-                                                139,
-                                                2,
-                                                {
-                                                    "Signal.spec"
-                                                }
-                                            },
-                                            {
-                                                138,
-                                                2,
-                                                {
-                                                    "Signal"
-                                                }
-                                            },
-                                            {
-                                                133,
-                                                2,
-                                                {
-                                                    "GroupMotor.spec"
-                                                }
-                                            },
-                                            {
-                                                130,
-                                                2,
-                                                {
-                                                    "BaseMotor"
-                                                }
-                                            },
-                                            {
-                                                141,
-                                                2,
-                                                {
-                                                    "SingleMotor.spec"
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            },
-                            {
-                                99,
-                                1,
-                                {
-                                    "littensy_ripple@0.9.3"
-                                },
-                                {
-                                    {
-                                        101,
-                                        2,
-                                        {
-                                            "ripple"
-                                        },
-                                        {
-                                            {
-                                                102,
-                                                2,
-                                                {
-                                                    "config"
-                                                }
-                                            },
-                                            {
-                                                115,
-                                                1,
-                                                {
-                                                    "utils"
-                                                },
-                                                {
-                                                    {
-                                                        116,
-                                                        2,
-                                                        {
-                                                            "assign"
-                                                        }
-                                                    },
-                                                    {
-                                                        118,
-                                                        2,
-                                                        {
-                                                            "merge"
-                                                        }
-                                                    },
-                                                    {
-                                                        117,
-                                                        2,
-                                                        {
-                                                            "intermediate"
-                                                        }
-                                                    },
-                                                    {
-                                                        120,
-                                                        2,
-                                                        {
-                                                            "spy"
-                                                        }
-                                                    },
-                                                    {
-                                                        119,
-                                                        2,
-                                                        {
-                                                            "snapshot"
-                                                        }
-                                                    }
-                                                }
-                                            },
-                                            {
-                                                103,
-                                                2,
-                                                {
-                                                    "createMotion"
-                                                }
-                                            },
-                                            {
-                                                104,
-                                                2,
-                                                {
-                                                    "createMotion.spec"
-                                                }
-                                            },
-                                            {
-                                                114,
-                                                2,
-                                                {
-                                                    "types"
-                                                }
-                                            },
-                                            {
-                                                105,
-                                                1,
-                                                {
-                                                    "solvers"
-                                                },
-                                                {
-                                                    {
-                                                        113,
-                                                        2,
-                                                        {
-                                                            "tween.spec"
-                                                        }
-                                                    },
-                                                    {
-                                                        110,
-                                                        2,
-                                                        {
-                                                            "spring"
-                                                        }
-                                                    },
-                                                    {
-                                                        107,
-                                                        2,
-                                                        {
-                                                            "immediate.spec"
-                                                        }
-                                                    },
-                                                    {
-                                                        106,
-                                                        2,
-                                                        {
-                                                            "immediate"
-                                                        }
-                                                    },
-                                                    {
-                                                        108,
-                                                        2,
-                                                        {
-                                                            "linear"
-                                                        }
-                                                    },
-                                                    {
-                                                        109,
-                                                        2,
-                                                        {
-                                                            "linear.spec"
-                                                        }
-                                                    },
-                                                    {
-                                                        111,
-                                                        2,
-                                                        {
-                                                            "spring.spec"
-                                                        }
-                                                    },
-                                                    {
-                                                        112,
-                                                        2,
-                                                        {
-                                                            "tween"
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    },
-                                    {
-                                        100,
-                                        2,
-                                        {
-                                            "Promise"
-                                        }
-                                    }
-                                }
-                            },
-                            {
-                                121,
-                                1,
-                                {
-                                    "lucasmzreal_fastsignal@10.4.0"
-                                },
-                                {
-                                    {
-                                        122,
-                                        2,
-                                        {
-                                            "fastsignal"
-                                        },
-                                        {
-                                            {
-                                                123,
-                                                2,
-                                                {
-                                                    "Deferred"
-                                                }
-                                            },
-                                            {
-                                                127,
-                                                2,
-                                                {
-                                                    "wally"
-                                                }
-                                            },
-                                            {
-                                                126,
-                                                2,
-                                                {
-                                                    "Readme"
-                                                }
-                                            },
-                                            {
-                                                125,
-                                                2,
-                                                {
-                                                    "Immediate"
-                                                }
-                                            },
-                                            {
-                                                124,
-                                                2,
-                                                {
-                                                    "Docs"
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            },
-                            {
-                                96,
-                                1,
-                                {
-                                    "evaera_promise@4.0.0"
-                                },
-                                {
-                                    {
-                                        97,
-                                        2,
-                                        {
-                                            "promise"
-                                        },
-                                        {
-                                            {
-                                                98,
-                                                2,
-                                                {
-                                                    "init.spec"
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    {
-                        92,
-                        2,
-                        {
-                            "Flipper"
-                        }
-                    }
-                }
-            },
-            {
-                13,
-                2,
-                {
-                    "Elements"
-                },
-                {
-                    {
-                        17,
-                        2,
-                        {
-                            "ImagePicker"
-                        }
-                    },
-                    {
-                        21,
-                        2,
-                        {
-                            "Slider"
-                        }
-                    },
-                    {
-                        15,
-                        2,
-                        {
-                            "Colorpicker"
-                        }
-                    },
-                    {
-                        16,
-                        2,
-                        {
-                            "Dropdown"
-                        }
-                    },
-                    {
-                        20,
-                        2,
-                        {
-                            "Paragraph"
-                        }
-                    },
-                    {
-                        14,
-                        2,
-                        {
-                            "Button"
-                        }
-                    },
-                    {
-                        19,
-                        2,
-                        {
-                            "Keybind"
-                        }
-                    },
-                    {
-                        22,
-                        2,
-                        {
-                            "Toggle"
-                        }
-                    },
-                    {
-                        18,
-                        2,
-                        {
-                            "Input"
-                        }
-                    }
-                }
-            },
-            {
                 23,
                 1,
                 {
@@ -69022,17 +71548,17 @@ local ObjectTree = {
                 },
                 {
                     {
-                        29,
-                        2,
-                        {
-                            "Creator"
-                        }
-                    },
-                    {
                         30,
                         2,
                         {
                             "Icons"
+                        }
+                    },
+                    {
+                        29,
+                        2,
+                        {
+                            "Creator"
                         }
                     },
                     {
@@ -69050,13 +71576,6 @@ local ObjectTree = {
                                 }
                             },
                             {
-                                26,
-                                2,
-                                {
-                                    "AcrylicPaint"
-                                }
-                            },
-                            {
                                 27,
                                 2,
                                 {
@@ -69068,6 +71587,13 @@ local ObjectTree = {
                                 2,
                                 {
                                     "AcrylicBlur"
+                                }
+                            },
+                            {
+                                26,
+                                2,
+                                {
+                                    "AcrylicPaint"
                                 }
                             }
                         }
@@ -69082,10 +71608,17 @@ local ObjectTree = {
                 },
                 {
                     {
-                        12,
+                        7,
                         2,
                         {
-                            "Window"
+                            "Notification"
+                        }
+                    },
+                    {
+                        11,
+                        2,
+                        {
+                            "TitleBar"
                         }
                     },
                     {
@@ -69096,24 +71629,10 @@ local ObjectTree = {
                         }
                     },
                     {
-                        7,
+                        12,
                         2,
                         {
-                            "Notification"
-                        }
-                    },
-                    {
-                        3,
-                        2,
-                        {
-                            "Assets"
-                        }
-                    },
-                    {
-                        9,
-                        2,
-                        {
-                            "Tab"
+                            "Window"
                         }
                     },
                     {
@@ -69121,20 +71640,6 @@ local ObjectTree = {
                         2,
                         {
                             "Textbox"
-                        }
-                    },
-                    {
-                        4,
-                        2,
-                        {
-                            "Button"
-                        }
-                    },
-                    {
-                        11,
-                        2,
-                        {
-                            "TitleBar"
                         }
                     },
                     {
@@ -69150,6 +71655,99 @@ local ObjectTree = {
                         {
                             "Dialog"
                         }
+                    },
+                    {
+                        9,
+                        2,
+                        {
+                            "Tab"
+                        }
+                    },
+                    {
+                        3,
+                        2,
+                        {
+                            "Assets"
+                        }
+                    },
+                    {
+                        4,
+                        2,
+                        {
+                            "Button"
+                        }
+                    }
+                }
+            },
+            {
+                13,
+                2,
+                {
+                    "Elements"
+                },
+                {
+                    {
+                        15,
+                        2,
+                        {
+                            "Colorpicker"
+                        }
+                    },
+                    {
+                        20,
+                        2,
+                        {
+                            "Paragraph"
+                        }
+                    },
+                    {
+                        14,
+                        2,
+                        {
+                            "Button"
+                        }
+                    },
+                    {
+                        21,
+                        2,
+                        {
+                            "Slider"
+                        }
+                    },
+                    {
+                        22,
+                        2,
+                        {
+                            "Toggle"
+                        }
+                    },
+                    {
+                        19,
+                        2,
+                        {
+                            "Keybind"
+                        }
+                    },
+                    {
+                        17,
+                        2,
+                        {
+                            "ImagePicker"
+                        }
+                    },
+                    {
+                        16,
+                        2,
+                        {
+                            "Dropdown"
+                        }
+                    },
+                    {
+                        18,
+                        2,
+                        {
+                            "Input"
+                        }
                     }
                 }
             },
@@ -69161,59 +71759,521 @@ local ObjectTree = {
                 },
                 {
                     {
-                        47,
+                        99,
                         2,
                         {
-                            "DuoTone Dark Space"
-                        }
-                    },
-                    {
-                        60,
-                        2,
-                        {
-                            "Monokai Classic"
-                        }
-                    },
-                    {
-                        32,
-                        2,
-                        {
-                            "Abyss"
-                        }
-                    },
-                    {
-                        46,
-                        2,
-                        {
-                            "DuoTone Dark Sky"
+                            "Nebula"
                         }
                     },
                     {
                         39,
                         2,
                         {
+                            "Aqua"
+                        }
+                    },
+                    {
+                        121,
+                        2,
+                        {
+                            "Tidal"
+                        }
+                    },
+                    {
+                        56,
+                        2,
+                        {
+                            "Cyberpunk"
+                        }
+                    },
+                    {
+                        81,
+                        2,
+                        {
+                            "Graphene"
+                        }
+                    },
+                    {
+                        105,
+                        2,
+                        {
+                            "Porcelain"
+                        }
+                    },
+                    {
+                        95,
+                        2,
+                        {
+                            "Monokai Classic"
+                        }
+                    },
+                    {
+                        137,
+                        2,
+                        {
+                            "Vanilla_Cream"
+                        }
+                    },
+                    {
+                        85,
+                        2,
+                        {
+                            "Jade"
+                        }
+                    },
+                    {
+                        55,
+                        2,
+                        {
+                            "Crimson_Night"
+                        }
+                    },
+                    {
+                        102,
+                        2,
+                        {
+                            "Onyx_Red"
+                        }
+                    },
+                    {
+                        54,
+                        2,
+                        {
+                            "Cotton_Candy"
+                        }
+                    },
+                    {
+                        65,
+                        2,
+                        {
+                            "DuoTone Dark Sky"
+                        }
+                    },
+                    {
+                        64,
+                        2,
+                        {
+                            "DuoTone Dark Sea"
+                        }
+                    },
+                    {
+                        151,
+                        2,
+                        {
+                            "Yaru"
+                        }
+                    },
+                    {
+                        150,
+                        2,
+                        {
+                            "Yaru Dark"
+                        }
+                    },
+                    {
+                        106,
+                        2,
+                        {
+                            "Quiet Light"
+                        }
+                    },
+                    {
+                        112,
+                        2,
+                        {
+                            "Sky_Light"
+                        }
+                    },
+                    {
+                        66,
+                        2,
+                        {
+                            "DuoTone Dark Space"
+                        }
+                    },
+                    {
+                        69,
+                        2,
+                        {
+                            "Emerald_Deep"
+                        }
+                    },
+                    {
+                        52,
+                        2,
+                        {
+                            "Copper"
+                        }
+                    },
+                    {
+                        48,
+                        2,
+                        {
+                            "Charcoal_Lime"
+                        }
+                    },
+                    {
+                        93,
+                        2,
+                        {
+                            "Mint_Chocolate"
+                        }
+                    },
+                    {
+                        97,
+                        2,
+                        {
+                            "Monokai Vibrant"
+                        }
+                    },
+                    {
+                        58,
+                        2,
+                        {
+                            "Dark"
+                        }
+                    },
+                    {
+                        80,
+                        2,
+                        {
+                            "GitHub Light"
+                        }
+                    },
+                    {
+                        148,
+                        2,
+                        {
+                            "Vynixu"
+                        }
+                    },
+                    {
+                        61,
+                        2,
+                        {
+                            "Deep_Space"
+                        }
+                    },
+                    {
+                        107,
+                        2,
+                        {
+                            "Rose"
+                        }
+                    },
+                    {
+                        146,
+                        2,
+                        {
+                            "Void"
+                        }
+                    },
+                    {
+                        119,
+                        2,
+                        {
+                            "Storm"
+                        }
+                    },
+                    {
+                        144,
+                        2,
+                        {
+                            "Viow Mars"
+                        }
+                    },
+                    {
+                        109,
+                        2,
+                        {
+                            "Royal_Purple"
+                        }
+                    },
+                    {
+                        111,
+                        2,
+                        {
+                            "Sakura"
+                        }
+                    },
+                    {
+                        135,
+                        2,
+                        {
+                            "VSC Red"
+                        }
+                    },
+                    {
+                        142,
+                        2,
+                        {
+                            "Viow Flat"
+                        }
+                    },
+                    {
+                        49,
+                        2,
+                        {
+                            "Cherry_Cola"
+                        }
+                    },
+                    {
+                        118,
+                        2,
+                        {
+                            "Steel_Blue"
+                        }
+                    },
+                    {
+                        57,
+                        2,
+                        {
                             "Dark Typewriter"
                         }
                     },
                     {
-                        77,
+                        117,
+                        2,
+                        {
+                            "Solarized Light"
+                        }
+                    },
+                    {
+                        122,
+                        2,
+                        {
+                            "Tomorrow Night Blue"
+                        }
+                    },
+                    {
+                        82,
+                        2,
+                        {
+                            "Ink_Blue"
+                        }
+                    },
+                    {
+                        98,
+                        2,
+                        {
+                            "Monokai"
+                        }
+                    },
+                    {
+                        101,
+                        2,
+                        {
+                            "Obsidian_Gold"
+                        }
+                    },
+                    {
+                        100,
+                        2,
+                        {
+                            "Neon_Sign"
+                        }
+                    },
+                    {
+                        139,
+                        2,
+                        {
+                            "Viow Arabian Mix"
+                        }
+                    },
+                    {
+                        36,
+                        2,
+                        {
+                            "Ambiance"
+                        }
+                    },
+                    {
+                        136,
+                        2,
+                        {
+                            "Vampire"
+                        }
+                    },
+                    {
+                        88,
+                        2,
+                        {
+                            "Light"
+                        }
+                    },
+                    {
+                        34,
+                        2,
+                        {
+                            "Amaranth"
+                        }
+                    },
+                    {
+                        76,
+                        2,
+                        {
+                            "GitHub Dark"
+                        }
+                    },
+                    {
+                        38,
+                        2,
+                        {
+                            "Amethyst"
+                        }
+                    },
+                    {
+                        42,
+                        2,
+                        {
+                            "Aurora"
+                        }
+                    },
+                    {
+                        83,
+                        2,
+                        {
+                            "Iron_Rust"
+                        }
+                    },
+                    {
+                        143,
+                        2,
+                        {
+                            "Viow Light"
+                        }
+                    },
+                    {
+                        134,
+                        2,
+                        {
+                            "VSC Light+"
+                        }
+                    },
+                    {
+                        60,
+                        2,
+                        {
+                            "Deep_Ocean"
+                        }
+                    },
+                    {
+                        133,
+                        2,
+                        {
+                            "VSC Light Modern"
+                        }
+                    },
+                    {
+                        84,
+                        2,
+                        {
+                            "Ivory_Gold"
+                        }
+                    },
+                    {
+                        44,
+                        2,
+                        {
+                            "Blood_Moon"
+                        }
+                    },
+                    {
+                        40,
+                        2,
+                        {
+                            "Arc Dark"
+                        }
+                    },
+                    {
+                        132,
                         2,
                         {
                             "VSC Light High Contrast"
                         }
                     },
                     {
-                        70,
+                        131,
+                        2,
+                        {
+                            "VSC Dark+"
+                        }
+                    },
+                    {
+                        77,
+                        2,
+                        {
+                            "GitHub Light Colorblind"
+                        }
+                    },
+                    {
+                        68,
+                        2,
+                        {
+                            "Elementary"
+                        }
+                    },
+                    {
+                        125,
                         2,
                         {
                             "United GNOME"
                         }
                     },
                     {
-                        45,
+                        41,
                         2,
                         {
-                            "DuoTone Dark Sea"
+                            "Ashfall"
+                        }
+                    },
+                    {
+                        108,
+                        2,
+                        {
+                            "Rosewood"
+                        }
+                    },
+                    {
+                        75,
+                        2,
+                        {
+                            "GitHub Dark High Contrast"
+                        }
+                    },
+                    {
+                        128,
+                        2,
+                        {
+                            "VS Light"
+                        }
+                    },
+                    {
+                        87,
+                        2,
+                        {
+                            "Lavender_Night"
+                        }
+                    },
+                    {
+                        59,
+                        2,
+                        {
+                            "Darker"
+                        }
+                    },
+                    {
+                        127,
+                        2,
+                        {
+                            "VS Dark"
+                        }
+                    },
+                    {
+                        73,
+                        2,
+                        {
+                            "GitHub Dark Default"
                         }
                     },
                     {
@@ -69224,266 +72284,231 @@ local ObjectTree = {
                         }
                     },
                     {
-                        43,
+                        46,
                         2,
                         {
-                            "DuoTone Dark Earth"
-                        }
-                    },
-                    {
-                        90,
-                        2,
-                        {
-                            "Yaru"
-                        }
-                    },
-                    {
-                        64,
-                        2,
-                        {
-                            "Quiet Light"
-                        }
-                    },
-                    {
-                        89,
-                        2,
-                        {
-                            "Yaru Dark"
-                        }
-                    },
-                    {
-                        34,
-                        2,
-                        {
-                            "Ambiance"
-                        }
-                    },
-                    {
-                        78,
-                        2,
-                        {
-                            "VSC Light Modern"
-                        }
-                    },
-                    {
-                        88,
-                        2,
-                        {
-                            "Vynixu"
-                        }
-                    },
-                    {
-                        87,
-                        2,
-                        {
-                            "Viow Neon"
-                        }
-                    },
-                    {
-                        53,
-                        2,
-                        {
-                            "GitHub Dark"
-                        }
-                    },
-                    {
-                        62,
-                        2,
-                        {
-                            "Monokai Vibrant"
-                        }
-                    },
-                    {
-                        42,
-                        2,
-                        {
-                            "Darkest"
-                        }
-                    },
-                    {
-                        58,
-                        2,
-                        {
-                            "Kimbie Dark"
-                        }
-                    },
-                    {
-                        85,
-                        2,
-                        {
-                            "Viow Light"
-                        }
-                    },
-                    {
-                        66,
-                        2,
-                        {
-                            "Solarized Dark"
-                        }
-                    },
-                    {
-                        75,
-                        2,
-                        {
-                            "VSC Dark Modern"
-                        }
-                    },
-                    {
-                        83,
-                        2,
-                        {
-                            "Viow Darker"
-                        }
-                    },
-                    {
-                        51,
-                        2,
-                        {
-                            "GitHub Dark Dimmed"
-                        }
-                    },
-                    {
-                        40,
-                        2,
-                        {
-                            "Dark"
-                        }
-                    },
-                    {
-                        52,
-                        2,
-                        {
-                            "GitHub Dark High Contrast"
-                        }
-                    },
-                    {
-                        63,
-                        2,
-                        {
-                            "Monokai"
-                        }
-                    },
-                    {
-                        59,
-                        2,
-                        {
-                            "Light"
-                        }
-                    },
-                    {
-                        37,
-                        2,
-                        {
-                            "Aqua"
-                        }
-                    },
-                    {
-                        68,
-                        2,
-                        {
-                            "Tomorrow Night Blue"
-                        }
-                    },
-                    {
-                        69,
-                        2,
-                        {
-                            "Typewriter"
-                        }
-                    },
-                    {
-                        65,
-                        2,
-                        {
-                            "Rose"
-                        }
-                    },
-                    {
-                        81,
-                        2,
-                        {
-                            "Viow Arabian Mix"
-                        }
-                    },
-                    {
-                        79,
-                        2,
-                        {
-                            "VSC Light+"
-                        }
-                    },
-                    {
-                        82,
-                        2,
-                        {
-                            "Viow Arabian"
-                        }
-                    },
-                    {
-                        38,
-                        2,
-                        {
-                            "Arc Dark"
-                        }
-                    },
-                    {
-                        76,
-                        2,
-                        {
-                            "VSC Dark+"
-                        }
-                    },
-                    {
-                        35,
-                        2,
-                        {
-                            "Amethyst Dark"
-                        }
-                    },
-                    {
-                        84,
-                        2,
-                        {
-                            "Viow Flat"
+                            "Bronze"
                         }
                     },
                     {
                         72,
                         2,
                         {
-                            "VS Dark"
+                            "GitHub Dark Colorblind"
                         }
                     },
                     {
-                        71,
+                        130,
+                        2,
+                        {
+                            "VSC Dark Modern"
+                        }
+                    },
+                    {
+                        124,
+                        2,
+                        {
+                            "Typewriter"
+                        }
+                    },
+                    {
+                        123,
+                        2,
+                        {
+                            "Toxic_Slime"
+                        }
+                    },
+                    {
+                        120,
+                        2,
+                        {
+                            "Sunset_Ember"
+                        }
+                    },
+                    {
+                        145,
+                        2,
+                        {
+                            "Viow Neon"
+                        }
+                    },
+                    {
+                        103,
+                        2,
+                        {
+                            "Peach"
+                        }
+                    },
+                    {
+                        116,
+                        2,
+                        {
+                            "Solarized Dark"
+                        }
+                    },
+                    {
+                        115,
+                        2,
+                        {
+                            "Solaris"
+                        }
+                    },
+                    {
+                        37,
+                        2,
+                        {
+                            "Amethyst Dark"
+                        }
+                    },
+                    {
+                        79,
+                        2,
+                        {
+                            "GitHub Light High Contrast"
+                        }
+                    },
+                    {
+                        70,
+                        2,
+                        {
+                            "Forest_Night"
+                        }
+                    },
+                    {
+                        32,
+                        2,
+                        {
+                            "Abyss"
+                        }
+                    },
+                    {
+                        113,
+                        2,
+                        {
+                            "Slate_Violet"
+                        }
+                    },
+                    {
+                        51,
+                        2,
+                        {
+                            "Cocoa"
+                        }
+                    },
+                    {
+                        110,
+                        2,
+                        {
+                            "Sage"
+                        }
+                    },
+                    {
+                        129,
+                        2,
+                        {
+                            "VSC Dark High Contrast"
+                        }
+                    },
+                    {
+                        147,
+                        2,
+                        {
+                            "Volt"
+                        }
+                    },
+                    {
+                        104,
+                        2,
+                        {
+                            "Plum"
+                        }
+                    },
+                    {
+                        140,
+                        2,
+                        {
+                            "Viow Arabian"
+                        }
+                    },
+                    {
+                        149,
+                        2,
+                        {
+                            "Wine"
+                        }
+                    },
+                    {
+                        47,
+                        2,
+                        {
+                            "Bubblegum"
+                        }
+                    },
+                    {
+                        96,
+                        2,
+                        {
+                            "Monokai Dimmed"
+                        }
+                    },
+                    {
+                        126,
                         2,
                         {
                             "United Ubuntu"
                         }
                     },
                     {
-                        86,
+                        71,
                         2,
                         {
-                            "Viow Mars"
+                            "Frostbyte"
                         }
                     },
                     {
-                        36,
+                        138,
                         2,
                         {
-                            "Amethyst"
+                            "Verdigris"
                         }
                     },
                     {
-                        73,
+                        63,
                         2,
                         {
-                            "VS Light"
+                            "DuoTone Dark Forest"
                         }
                     },
                     {
-                        55,
+                        53,
+                        2,
+                        {
+                            "Copperfield"
+                        }
+                    },
+                    {
+                        62,
+                        2,
+                        {
+                            "DuoTone Dark Earth"
+                        }
+                    },
+                    {
+                        94,
+                        2,
+                        {
+                            "Mint_Light"
+                        }
+                    },
+                    {
+                        91,
+                        2,
+                        {
+                            "Magma"
+                        }
+                    },
+                    {
+                        78,
                         2,
                         {
                             "GitHub Light Default"
@@ -69493,84 +72518,493 @@ local ObjectTree = {
                         67,
                         2,
                         {
-                            "Solarized Light"
+                            "Dusk"
                         }
                     },
                     {
-                        80,
+                        43,
                         2,
                         {
-                            "VSC Red"
+                            "Blackberry"
                         }
                     },
                     {
-                        54,
+                        89,
                         2,
                         {
-                            "GitHub Light Colorblind"
+                            "Lilac"
                         }
                     },
                     {
-                        49,
+                        92,
                         2,
                         {
-                            "GitHub Dark Colorblind"
+                            "Midnight_Teal"
                         }
                     },
                     {
-                        44,
+                        45,
                         2,
                         {
-                            "DuoTone Dark Forest"
+                            "Blush"
                         }
                     },
                     {
-                        74,
+                        35,
                         2,
                         {
-                            "VSC Dark High Contrast"
+                            "Amber_Glow"
                         }
                     },
                     {
-                        61,
+                        90,
                         2,
                         {
-                            "Monokai Dimmed"
+                            "Linen"
                         }
                     },
                     {
-                        41,
+                        141,
                         2,
                         {
-                            "Darker"
-                        }
-                    },
-                    {
-                        57,
-                        2,
-                        {
-                            "GitHub Light"
+                            "Viow Darker"
                         }
                     },
                     {
                         50,
                         2,
                         {
-                            "GitHub Dark Default"
+                            "Cobalt"
                         }
                     },
                     {
-                        56,
+                        86,
                         2,
                         {
-                            "GitHub Light High Contrast"
+                            "Kimbie Dark"
                         }
                     },
                     {
-                        48,
+                        114,
                         2,
                         {
-                            "Elementary"
+                            "Snowbank"
+                        }
+                    },
+                    {
+                        74,
+                        2,
+                        {
+                            "GitHub Dark Dimmed"
+                        }
+                    }
+                }
+            },
+            {
+                152,
+                1,
+                {
+                    "Packages"
+                },
+                {
+                    {
+                        153,
+                        2,
+                        {
+                            "Flipper"
+                        }
+                    },
+                    {
+                        156,
+                        1,
+                        {
+                            "_Index"
+                        },
+                        {
+                            {
+                                157,
+                                1,
+                                {
+                                    "evaera_promise@4.0.0"
+                                },
+                                {
+                                    {
+                                        158,
+                                        2,
+                                        {
+                                            "promise"
+                                        },
+                                        {
+                                            {
+                                                159,
+                                                2,
+                                                {
+                                                    "init.spec"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                189,
+                                1,
+                                {
+                                    "reselim_flipper@2.0.0"
+                                },
+                                {
+                                    {
+                                        190,
+                                        2,
+                                        {
+                                            "flipper"
+                                        },
+                                        {
+                                            {
+                                                206,
+                                                2,
+                                                {
+                                                    "isMotor.spec"
+                                                }
+                                            },
+                                            {
+                                                205,
+                                                2,
+                                                {
+                                                    "isMotor"
+                                                }
+                                            },
+                                            {
+                                                198,
+                                                2,
+                                                {
+                                                    "Linear.spec"
+                                                }
+                                            },
+                                            {
+                                                192,
+                                                2,
+                                                {
+                                                    "BaseMotor.spec"
+                                                }
+                                            },
+                                            {
+                                                203,
+                                                2,
+                                                {
+                                                    "Spring"
+                                                }
+                                            },
+                                            {
+                                                194,
+                                                2,
+                                                {
+                                                    "GroupMotor.spec"
+                                                }
+                                            },
+                                            {
+                                                204,
+                                                2,
+                                                {
+                                                    "Spring.spec"
+                                                }
+                                            },
+                                            {
+                                                200,
+                                                2,
+                                                {
+                                                    "Signal.spec"
+                                                }
+                                            },
+                                            {
+                                                195,
+                                                2,
+                                                {
+                                                    "Instant"
+                                                }
+                                            },
+                                            {
+                                                193,
+                                                2,
+                                                {
+                                                    "GroupMotor"
+                                                }
+                                            },
+                                            {
+                                                201,
+                                                2,
+                                                {
+                                                    "SingleMotor"
+                                                }
+                                            },
+                                            {
+                                                197,
+                                                2,
+                                                {
+                                                    "Linear"
+                                                }
+                                            },
+                                            {
+                                                196,
+                                                2,
+                                                {
+                                                    "Instant.spec"
+                                                }
+                                            },
+                                            {
+                                                199,
+                                                2,
+                                                {
+                                                    "Signal"
+                                                }
+                                            },
+                                            {
+                                                191,
+                                                2,
+                                                {
+                                                    "BaseMotor"
+                                                }
+                                            },
+                                            {
+                                                202,
+                                                2,
+                                                {
+                                                    "SingleMotor.spec"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                182,
+                                1,
+                                {
+                                    "lucasmzreal_fastsignal@10.4.0"
+                                },
+                                {
+                                    {
+                                        183,
+                                        2,
+                                        {
+                                            "fastsignal"
+                                        },
+                                        {
+                                            {
+                                                186,
+                                                2,
+                                                {
+                                                    "Immediate"
+                                                }
+                                            },
+                                            {
+                                                185,
+                                                2,
+                                                {
+                                                    "Docs"
+                                                }
+                                            },
+                                            {
+                                                188,
+                                                2,
+                                                {
+                                                    "wally"
+                                                }
+                                            },
+                                            {
+                                                184,
+                                                2,
+                                                {
+                                                    "Deferred"
+                                                }
+                                            },
+                                            {
+                                                187,
+                                                2,
+                                                {
+                                                    "Readme"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                160,
+                                1,
+                                {
+                                    "littensy_ripple@0.9.3"
+                                },
+                                {
+                                    {
+                                        162,
+                                        2,
+                                        {
+                                            "ripple"
+                                        },
+                                        {
+                                            {
+                                                166,
+                                                1,
+                                                {
+                                                    "solvers"
+                                                },
+                                                {
+                                                    {
+                                                        172,
+                                                        2,
+                                                        {
+                                                            "spring.spec"
+                                                        }
+                                                    },
+                                                    {
+                                                        174,
+                                                        2,
+                                                        {
+                                                            "tween.spec"
+                                                        }
+                                                    },
+                                                    {
+                                                        171,
+                                                        2,
+                                                        {
+                                                            "spring"
+                                                        }
+                                                    },
+                                                    {
+                                                        170,
+                                                        2,
+                                                        {
+                                                            "linear.spec"
+                                                        }
+                                                    },
+                                                    {
+                                                        173,
+                                                        2,
+                                                        {
+                                                            "tween"
+                                                        }
+                                                    },
+                                                    {
+                                                        167,
+                                                        2,
+                                                        {
+                                                            "immediate"
+                                                        }
+                                                    },
+                                                    {
+                                                        168,
+                                                        2,
+                                                        {
+                                                            "immediate.spec"
+                                                        }
+                                                    },
+                                                    {
+                                                        169,
+                                                        2,
+                                                        {
+                                                            "linear"
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                175,
+                                                2,
+                                                {
+                                                    "types"
+                                                }
+                                            },
+                                            {
+                                                163,
+                                                2,
+                                                {
+                                                    "config"
+                                                }
+                                            },
+                                            {
+                                                165,
+                                                2,
+                                                {
+                                                    "createMotion.spec"
+                                                }
+                                            },
+                                            {
+                                                164,
+                                                2,
+                                                {
+                                                    "createMotion"
+                                                }
+                                            },
+                                            {
+                                                176,
+                                                1,
+                                                {
+                                                    "utils"
+                                                },
+                                                {
+                                                    {
+                                                        178,
+                                                        2,
+                                                        {
+                                                            "intermediate"
+                                                        }
+                                                    },
+                                                    {
+                                                        179,
+                                                        2,
+                                                        {
+                                                            "merge"
+                                                        }
+                                                    },
+                                                    {
+                                                        181,
+                                                        2,
+                                                        {
+                                                            "spy"
+                                                        }
+                                                    },
+                                                    {
+                                                        177,
+                                                        2,
+                                                        {
+                                                            "assign"
+                                                        }
+                                                    },
+                                                    {
+                                                        180,
+                                                        2,
+                                                        {
+                                                            "snapshot"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    {
+                                        161,
+                                        2,
+                                        {
+                                            "Promise"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    {
+                        154,
+                        2,
+                        {
+                            "Ripple"
+                        }
+                    },
+                    {
+                        155,
+                        2,
+                        {
+                            "Signal"
                         }
                     }
                 }
@@ -69610,112 +73044,173 @@ local LineOffsets = {
     [29] = 5409,
     [30] = 5636,
     [31] = 58822,
-    [32] = 58899,
-    [33] = 58946,
-    [34] = 58993,
-    [35] = 59040,
-    [36] = 59087,
-    [37] = 59135,
-    [38] = 59183,
-    [39] = 59230,
-    [40] = 59277,
-    [41] = 59325,
-    [42] = 59355,
-    [43] = 59385,
-    [44] = 59432,
-    [45] = 59479,
-    [46] = 59526,
-    [47] = 59573,
-    [48] = 59620,
-    [49] = 59667,
-    [50] = 59714,
-    [51] = 59761,
-    [52] = 59808,
-    [53] = 59857,
-    [54] = 59904,
-    [55] = 59951,
-    [56] = 59999,
-    [57] = 60046,
-    [58] = 60093,
-    [59] = 60140,
-    [60] = 60188,
-    [61] = 60235,
-    [62] = 60282,
-    [63] = 60329,
-    [64] = 60376,
-    [65] = 60423,
-    [66] = 60471,
-    [67] = 60518,
-    [68] = 60565,
-    [69] = 60612,
-    [70] = 60659,
-    [71] = 60706,
-    [72] = 60753,
-    [73] = 60800,
-    [74] = 60847,
-    [75] = 60894,
-    [76] = 60941,
-    [77] = 60988,
-    [78] = 61035,
-    [79] = 61082,
-    [80] = 61129,
-    [81] = 61176,
-    [82] = 61223,
-    [83] = 61270,
-    [84] = 61317,
-    [85] = 61364,
-    [86] = 61411,
-    [87] = 61458,
-    [88] = 61505,
-    [89] = 61535,
-    [90] = 61582,
-    [92] = 61629,
-    [93] = 61632,
-    [94] = 61635,
-    [97] = 61638,
-    [98] = 63708,
-    [100] = 65554,
-    [101] = 65557,
-    [102] = 65581,
-    [103] = 65610,
-    [104] = 65920,
-    [106] = 66248,
-    [107] = 66269,
-    [108] = 66365,
-    [109] = 66404,
-    [110] = 66480,
-    [111] = 66556,
-    [112] = 66650,
-    [113] = 66733,
-    [114] = 66798,
-    [116] = 66877,
-    [117] = 66894,
-    [118] = 66999,
-    [119] = 67012,
-    [120] = 67061,
-    [122] = 67087,
-    [123] = 67141,
-    [124] = 67331,
-    [125] = 67566,
-    [126] = 67645,
-    [127] = 67675,
-    [129] = 67687,
-    [130] = 67700,
-    [131] = 67757,
-    [132] = 67798,
-    [133] = 67907,
-    [134] = 67992,
-    [135] = 68010,
-    [136] = 68021,
-    [137] = 68058,
-    [138] = 68116,
-    [139] = 68175,
-    [140] = 68225,
-    [141] = 68294,
-    [142] = 68341,
-    [143] = 68450,
-    [144] = 68486,
-    [145] = 68498
+    [32] = 58960,
+    [33] = 59007,
+    [34] = 59054,
+    [35] = 59102,
+    [36] = 59150,
+    [37] = 59197,
+    [38] = 59244,
+    [39] = 59292,
+    [40] = 59340,
+    [41] = 59387,
+    [42] = 59435,
+    [43] = 59483,
+    [44] = 59531,
+    [45] = 59579,
+    [46] = 59627,
+    [47] = 59675,
+    [48] = 59723,
+    [49] = 59771,
+    [50] = 59819,
+    [51] = 59867,
+    [52] = 59915,
+    [53] = 59963,
+    [54] = 60011,
+    [55] = 60059,
+    [56] = 60107,
+    [57] = 60155,
+    [58] = 60202,
+    [59] = 60250,
+    [60] = 60280,
+    [61] = 60328,
+    [62] = 60376,
+    [63] = 60423,
+    [64] = 60470,
+    [65] = 60517,
+    [66] = 60564,
+    [67] = 60611,
+    [68] = 60659,
+    [69] = 60706,
+    [70] = 60754,
+    [71] = 60802,
+    [72] = 60850,
+    [73] = 60897,
+    [74] = 60944,
+    [75] = 60991,
+    [76] = 61040,
+    [77] = 61087,
+    [78] = 61134,
+    [79] = 61182,
+    [80] = 61229,
+    [81] = 61276,
+    [82] = 61324,
+    [83] = 61372,
+    [84] = 61420,
+    [85] = 61468,
+    [86] = 61516,
+    [87] = 61563,
+    [88] = 61611,
+    [89] = 61659,
+    [90] = 61707,
+    [91] = 61755,
+    [92] = 61803,
+    [93] = 61851,
+    [94] = 61899,
+    [95] = 61947,
+    [96] = 61994,
+    [97] = 62041,
+    [98] = 62088,
+    [99] = 62135,
+    [100] = 62183,
+    [101] = 62231,
+    [102] = 62279,
+    [103] = 62327,
+    [104] = 62375,
+    [105] = 62423,
+    [106] = 62471,
+    [107] = 62518,
+    [108] = 62566,
+    [109] = 62614,
+    [110] = 62662,
+    [111] = 62710,
+    [112] = 62758,
+    [113] = 62806,
+    [114] = 62854,
+    [115] = 62902,
+    [116] = 62950,
+    [117] = 62997,
+    [118] = 63044,
+    [119] = 63092,
+    [120] = 63140,
+    [121] = 63188,
+    [122] = 63236,
+    [123] = 63283,
+    [124] = 63331,
+    [125] = 63378,
+    [126] = 63425,
+    [127] = 63472,
+    [128] = 63519,
+    [129] = 63566,
+    [130] = 63613,
+    [131] = 63660,
+    [132] = 63707,
+    [133] = 63754,
+    [134] = 63801,
+    [135] = 63848,
+    [136] = 63895,
+    [137] = 63943,
+    [138] = 63991,
+    [139] = 64039,
+    [140] = 64086,
+    [141] = 64133,
+    [142] = 64180,
+    [143] = 64227,
+    [144] = 64274,
+    [145] = 64321,
+    [146] = 64368,
+    [147] = 64416,
+    [148] = 64464,
+    [149] = 64494,
+    [150] = 64542,
+    [151] = 64589,
+    [153] = 64636,
+    [154] = 64639,
+    [155] = 64642,
+    [158] = 64645,
+    [159] = 66715,
+    [161] = 68561,
+    [162] = 68564,
+    [163] = 68588,
+    [164] = 68617,
+    [165] = 68927,
+    [167] = 69255,
+    [168] = 69276,
+    [169] = 69372,
+    [170] = 69411,
+    [171] = 69487,
+    [172] = 69563,
+    [173] = 69657,
+    [174] = 69740,
+    [175] = 69805,
+    [177] = 69884,
+    [178] = 69901,
+    [179] = 70006,
+    [180] = 70019,
+    [181] = 70068,
+    [183] = 70094,
+    [184] = 70148,
+    [185] = 70338,
+    [186] = 70573,
+    [187] = 70652,
+    [188] = 70682,
+    [190] = 70694,
+    [191] = 70707,
+    [192] = 70764,
+    [193] = 70805,
+    [194] = 70914,
+    [195] = 70999,
+    [196] = 71017,
+    [197] = 71028,
+    [198] = 71065,
+    [199] = 71123,
+    [200] = 71182,
+    [201] = 71232,
+    [202] = 71301,
+    [203] = 71348,
+    [204] = 71457,
+    [205] = 71493,
+    [206] = 71505
 }
 
 -- Misc AOT variable imports
