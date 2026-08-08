@@ -735,6 +735,7 @@ local SaveManager = {} do
 		end
 
 		local function updateAutoSaveDescription()
+			if not AutoSaveToggle then return end
 			if SaveManager.AutoSave and SaveManager.AutoSaveConfig then
 				AutoSaveToggle:SetDesc("Current autosave config: " .. SaveManager.AutoSaveConfig)
 			else
@@ -742,12 +743,16 @@ local SaveManager = {} do
 			end
 		end
 
+		local AutoSaveInitializing = true
+
 		AutoSaveToggle = section:CreateToggle("SaveManager_AutoSave", {
 			Title = "Auto Save",
 			Description = "No autosave config selected",
 			Default = SaveManager.AutoSave,
 			Callback = function(Value)
-				local selectedConfig = SaveManager.Options.SaveManager_ConfigList.Value
+				if AutoSaveInitializing then return end
+
+				local selectedConfig = SaveManager.Options.SaveManager_ConfigList and SaveManager.Options.SaveManager_ConfigList.Value
 
 				if Value and not selectedConfig then
 					self.Library:Notify({
@@ -794,6 +799,8 @@ local SaveManager = {} do
 				end
 			end
 		})
+
+		AutoSaveInitializing = false
 
 		updateAutoSaveDescription()
 
