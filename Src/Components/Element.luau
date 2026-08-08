@@ -10,6 +10,7 @@ return function(Title, Desc, Parent, Hover, Config)
 	Config = typeof(Config) == "table" and Config or {}
 
 	Element.TitleLabel = New("TextLabel", {
+		Name = "ElementTitleLabel",
 		FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Medium, Enum.FontStyle.Normal),
 		Text = Title,
 		TextColor3 = Color3.fromRGB(240, 240, 240),

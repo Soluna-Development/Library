@@ -68,8 +68,42 @@ return function(Config)
 		Position = UDim2.new(1, -20, 1, -20),
 	})
 
+	Window.TabSearchBox = New("TextBox", {
+		Size = UDim2.new(1, 0, 0, 28),
+		Position = UDim2.fromOffset(0, 0),
+		BackgroundTransparency = 0.89,
+		BackgroundColor3 = Color3.fromRGB(130, 130, 130),
+		PlaceholderText = "Search",
+		ClearTextOnFocus = false,
+		FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json"),
+		TextSize = 12,
+		TextXAlignment = "Left",
+		ClipsDescendants = true,
+		ThemeTag = {
+			BackgroundColor3 = "Element",
+			TextColor3 = "Text",
+			PlaceholderColor3 = "SubText",
+		},
+	}, {
+		New("UICorner", {
+			CornerRadius = UDim.new(0, 6),
+		}),
+		New("UIStroke", {
+			Transparency = 0.5,
+			ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
+			ThemeTag = {
+				Color = "ElementBorder",
+			},
+		}),
+		New("UIPadding", {
+			PaddingLeft = UDim.new(0, 10),
+			PaddingRight = UDim.new(0, 10),
+		}),
+	})
+
 	Window.TabHolder = New("ScrollingFrame", {
-		Size = UDim2.fromScale(1, 1),
+		Size = UDim2.new(1, 0, 1, -32),
+		Position = UDim2.fromOffset(0, 32),
 		BackgroundTransparency = 1,
 		ScrollBarImageTransparency = 1,
 		ScrollBarThickness = 0,
@@ -88,6 +122,7 @@ return function(Config)
 		BackgroundTransparency = 1,
 		ClipsDescendants = true,
 	}, {
+		Window.TabSearchBox,
 		Window.TabHolder,
 		Selector,
 	})
@@ -250,6 +285,10 @@ return function(Config)
 			MousePos = Input.Position
 			StartPos = Window.Root.Position
 
+			if Input.UserInputType == Enum.UserInputType.Touch then
+				Window.TitleBar.Frame.Modal = true
+			end
+
 			if Window.Maximized then
 				StartPos = UDim2.fromOffset(
 					Mouse.X - (Mouse.X * ((OldSizeX - 100) / Window.Root.AbsoluteSize.X)),
@@ -260,6 +299,7 @@ return function(Config)
 			Input.Changed:Connect(function()
 				if Input.UserInputState == Enum.UserInputState.End then
 					Dragging = false
+					Window.TitleBar.Frame.Modal = false
 				end
 			end)
 		end
@@ -281,6 +321,10 @@ return function(Config)
 		then
 			Resizing = true
 			ResizePos = Input.Position
+
+			if Input.UserInputType == Enum.UserInputType.Touch then
+				ResizeStartFrame.Modal = true
+			end
 		end
 	end)
 
@@ -319,6 +363,8 @@ return function(Config)
 	Creator.AddSignal(UserInputService.InputEnded, function(Input)
 		if Resizing == true or Input.UserInputType == Enum.UserInputType.Touch then
 			Resizing = false
+			ResizeStartFrame.Modal = false
+			Window.TitleBar.Frame.Modal = false
 			Window.Size = UDim2.fromOffset(SizeMotor:getValue().X, SizeMotor:getValue().Y)
 			-- Fire size changed signal
 			if Library and Library.WindowSizeChanged then
@@ -354,7 +400,7 @@ return function(Config)
 			local Icon = Config.Mobile.GetIcon(Window.Minimized)
 			Window.HideButton.Image = Icon.Image
 			Window.HideButton.ImageRectOffset = Icon.ImageRectOffset
-			Window.HideButton.ImageRectSize = Icon.ImageRectSize
+			Window.HideButton.ImageRectSize = Icon.ImageRectSiz
 		end
 		Window.PostMinimized:Fire(tick(), Window.Root.Visible)
 	end
@@ -478,6 +524,44 @@ return function(Config)
 	end
 
 	local TabModule = require(Components.Tab):Init(Window)
+
+	local function TabMatchesQuery(Tab, Query)
+		for _, Descendant in next, Tab.ContainerFrame:GetDescendants() do
+			if Descendant.Name == "ElementTitleLabel" and string.find(string.lower(Descendant.Text), Query, 1, true) then
+				return true
+			end
+		end
+		return false
+	end
+
+	local function FilterTabs(Query)
+		Query = string.lower(Query)
+
+		if Query == "" then
+			for _, Tab in next, TabModule.Tabs do
+				Tab.Frame.Visible = true
+			end
+			return
+		end
+
+		local FirstMatch
+		for TabIndex, Tab in next, TabModule.Tabs do
+			local Matches = TabMatchesQuery(Tab, Query)
+			Tab.Frame.Visible = Matches
+
+			if Matches and not FirstMatch then
+				FirstMatch = TabIndex
+			end
+		end
+
+		if FirstMatch and not (TabModule.Tabs[TabModule.SelectedTab] and TabModule.Tabs[TabModule.SelectedTab].Frame.Visible) then
+			TabModule:SelectTab(FirstMatch)
+		end
+	end
+
+	Creator.AddSignal(Window.TabSearchBox:GetPropertyChangedSignal("Text"), function()
+		FilterTabs(Window.TabSearchBox.Text)
+	end)
 
 	function Window:Tab(TabConfig)
 		return TabModule:New(TabConfig.Title, TabConfig.Icon, Window.TabHolder)

@@ -13,6 +13,7 @@ local TabModule = {
 	Containers = {},
 	SelectedTab = 0,
 	TabCount = 0,
+	HasLaidOut = false,
 }
 
 function TabModule:Init(Window)
@@ -173,6 +174,7 @@ function TabModule:New(Title, Icon, Parent)
 end
 
 function TabModule:SelectTab(Tab)
+	local Library = require(Root)
 	local Window = TabModule.Window
 
 	TabModule.SelectedTab = Tab
@@ -186,6 +188,13 @@ function TabModule:SelectTab(Tab)
 	TabModule.Tabs[Tab].Selected = true
 
 	Window.TabDisplay.Text = TabModule.Tabs[Tab].Name
+
+	if not TabModule.HasLaidOut then
+		local RunService = Library.Utilities:Clone(game:GetService("RunService"))
+		RunService.Heartbeat:Wait()
+		TabModule.HasLaidOut = true
+	end
+
 	Window.SelectorPosMotor:setGoal(Spring(TabModule:GetCurrentTabPos(), { frequency = 6 }))
 
 	task.spawn(function()
