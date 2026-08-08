@@ -59,6 +59,7 @@ return function(Config)
 	local TitleBarHeight = 42
 	local OuterPadding = 12
 	local EdgeInset = 6
+	local LeftInset = 14
 	local RowHeight = 44
 	local SearchBoxSize = Horizontal and 34 or 28
 	local SearchRowWidth = 170
@@ -111,7 +112,7 @@ return function(Config)
 			TabDisplaySize = TabDisplaySize,
 			ContainerPos = ContainerPos,
 			ContainerSize = ContainerSize,
-			SelectorInset = IsHorizontal and (SearchRowWidth + 10) or (BoxSize + 4 + 17),
+			SelectorInset = IsHorizontal and (SearchRowWidth + 10 + LeftInset) or (BoxSize + 4 + 17),
 		}
 	end
 
@@ -138,9 +139,9 @@ return function(Config)
 	})
 
 	Window.TabSearchBox = New("TextBox", {
-		Size = Horizontal and UDim2.new(0, SearchRowWidth, 1, 0) or UDim2.new(1, 0, 0, Layout.SearchBoxSize),
+		Size = Horizontal and UDim2.new(0, SearchRowWidth, 1, 0) or UDim2.new(1, -LeftInset, 0, Layout.SearchBoxSize),
 		AnchorPoint = Horizontal and Vector2.new(0, 0.5) or Vector2.new(0, 0),
-		Position = Horizontal and UDim2.new(0, 0, 0.5, 0) or UDim2.fromOffset(0, 0),
+		Position = Horizontal and UDim2.new(0, LeftInset, 0.5, 0) or UDim2.fromOffset(LeftInset, 0),
 		BackgroundTransparency = 0.89,
 		BackgroundColor3 = Color3.fromRGB(130, 130, 130),
 		PlaceholderText = "Search",
@@ -188,8 +189,8 @@ return function(Config)
 	})
 
 	Window.TabHolder = New("ScrollingFrame", {
-		Size = Horizontal and UDim2.new(1, -SearchRowWidth - 10 - EdgeInset, 1, 0) or UDim2.new(1, 0, 1, -(Layout.SearchBoxSize + 4)),
-		Position = Horizontal and UDim2.fromOffset(SearchRowWidth + 10, 0) or UDim2.fromOffset(0, Layout.SearchBoxSize + 4),
+		Size = Horizontal and UDim2.new(1, -SearchRowWidth - 10 - EdgeInset - LeftInset, 1, 0) or UDim2.new(1, -LeftInset, 1, -(Layout.SearchBoxSize + 4)),
+		Position = Horizontal and UDim2.fromOffset(SearchRowWidth + 10 + LeftInset, 0) or UDim2.fromOffset(LeftInset, Layout.SearchBoxSize + 4),
 		BackgroundTransparency = 1,
 		ScrollBarImageTransparency = 1,
 		ScrollBarThickness = 0,
@@ -632,15 +633,15 @@ return function(Config)
 		Reversed = Layout.Reversed
 		SelectorInset = Layout.SelectorInset
 
-		Window.TabSearchBox.Size = Horizontal and UDim2.new(0, SearchRowWidth, 1, 0) or UDim2.new(1, 0, 0, Layout.SearchBoxSize)
+		Window.TabSearchBox.Size = Horizontal and UDim2.new(0, SearchRowWidth, 1, 0) or UDim2.new(1, -LeftInset, 0, Layout.SearchBoxSize)
 		Window.TabSearchBox.AnchorPoint = Horizontal and Vector2.new(0, 0.5) or Vector2.new(0, 0)
-		Window.TabSearchBox.Position = Horizontal and UDim2.new(0, 0, 0.5, 0) or UDim2.fromOffset(0, 0)
+		Window.TabSearchBox.Position = Horizontal and UDim2.new(0, LeftInset, 0.5, 0) or UDim2.fromOffset(LeftInset, 0)
 
 		Window.NoResultsLabel.Size = Horizontal and UDim2.new(0, 160, 1, 0) or UDim2.new(1, 0, 0, 28)
 		Window.NoResultsLabel.Position = Horizontal and UDim2.fromOffset(0, 0) or UDim2.fromOffset(0, 4)
 
-		Window.TabHolder.Size = Horizontal and UDim2.new(1, -SearchRowWidth - 10 - EdgeInset, 1, 0) or UDim2.new(1, 0, 1, -(Layout.SearchBoxSize + 4))
-		Window.TabHolder.Position = Horizontal and UDim2.fromOffset(SearchRowWidth + 10, 0) or UDim2.fromOffset(0, Layout.SearchBoxSize + 4)
+		Window.TabHolder.Size = Horizontal and UDim2.new(1, -SearchRowWidth - 10 - EdgeInset - LeftInset, 1, 0) or UDim2.new(1, -LeftInset, 1, -(Layout.SearchBoxSize + 4))
+		Window.TabHolder.Position = Horizontal and UDim2.fromOffset(SearchRowWidth + 10 + LeftInset, 0) or UDim2.fromOffset(LeftInset, Layout.SearchBoxSize + 4)
 		Window.TabHolder.ScrollingDirection = Horizontal and Enum.ScrollingDirection.X or Enum.ScrollingDirection.Y
 		Window.TabHolder.CanvasPosition = Vector2.new(0, 0)
 
