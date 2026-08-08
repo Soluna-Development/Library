@@ -25,6 +25,7 @@ return function(Title, Parent)
 		Parent = Parent,
 	}, {
 		New("TextLabel", {
+			Name = "SectionTitleLabel",
 			RichText = true,
 			Text = Title,
 			TextTransparency = 0,

@@ -3,14 +3,14 @@ local SaveManager = loadstring(game:HttpGetAsync("https://raw.githubusercontent.
 local InterfaceManager = loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/Soluna-Development/Library/refs/heads/main/Addons/InterfaceManager.luau"))()
  
 local Window = Library:CreateWindow{
-    Title = `Fluent {Library.Version}`,
+    Title = `Fluent Renewed {Library.Version}`,
     SubTitle = "by Soluna Development",
     TabWidth = 160,
     Size = UDim2.fromOffset(830, 525),
     Resize = true, -- Resize this ^ Size according to a 1920x1080 screen, good for mobile users but may look weird on some devices
     MinSize = Vector2.new(470, 380),
     Acrylic = true, -- The blur may be detectable, setting this to false disables blur entirely
-    Theme = "Darker",
+    Theme = "Darkest",
     MinimizeKey = Enum.KeyCode.LeftShift, -- Used when theres no MinimizeKeybind
     Mobile = {
         WindowSize = UDim2.fromOffset(1920, 1080), -- Optional, overrides ^ Size only for Mobile users, omit to keep the same Size on Mobile

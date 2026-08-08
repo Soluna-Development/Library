@@ -3,6 +3,7 @@ local Themes = {
 		"Vynixu",
 		"Dark",
 		"Darker",
+		"Darkest",
 		"Light",
 		"Quiet Light",
 		"Aqua",

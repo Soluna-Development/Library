@@ -103,6 +103,22 @@ return function(Config)
 		}),
 	})
 
+	Window.NoResultsLabel = New("TextLabel", {
+		Text = "No results found",
+		Visible = false,
+		FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json"),
+		TextSize = 12,
+		TextTransparency = 0.4,
+		TextXAlignment = "Center",
+		TextYAlignment = "Center",
+		Size = UDim2.new(1, 0, 0, 28),
+		Position = UDim2.fromOffset(0, 4),
+		BackgroundTransparency = 1,
+		ThemeTag = {
+			TextColor3 = "SubText",
+		},
+	})
+
 	Window.TabHolder = New("ScrollingFrame", {
 		Size = UDim2.new(1, 0, 1, -32),
 		Position = UDim2.fromOffset(0, 32),
@@ -116,6 +132,7 @@ return function(Config)
 		New("UIListLayout", {
 			Padding = UDim.new(0, 4),
 		}),
+		Window.NoResultsLabel,
 	})
 
 	local TabFrame = New("Frame", {
@@ -518,7 +535,12 @@ return function(Config)
 
 	local function TabMatchesQuery(Tab, Query)
 		for _, Descendant in next, Tab.ContainerFrame:GetDescendants() do
-			if Descendant.Name == "ElementTitleLabel" and string.find(string.lower(Descendant.Text), Query, 1, true) then
+			if
+				(Descendant.Name == "ElementTitleLabel"
+					or Descendant.Name == "ElementDescLabel"
+					or Descendant.Name == "SectionTitleLabel")
+				and string.find(string.lower(Descendant.Text), Query, 1, true)
+			then
 				return true
 			end
 		end
@@ -533,6 +555,7 @@ return function(Config)
 				Tab.Frame.Visible = true
 			end
 			Selector.Visible = true
+			Window.NoResultsLabel.Visible = false
 			return
 		end
 
@@ -547,6 +570,7 @@ return function(Config)
 		end
 
 		Selector.Visible = FirstMatch ~= nil
+		Window.NoResultsLabel.Visible = FirstMatch == nil
 
 		if FirstMatch and not (TabModule.Tabs[TabModule.SelectedTab] and TabModule.Tabs[TabModule.SelectedTab].Frame.Visible) then
 			TabModule:SelectTab(FirstMatch)

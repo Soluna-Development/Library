@@ -14,7 +14,7 @@ local Library = loadstring(game:HttpGetAsync("https://github.com/Soluna-Developm
 
 To create the Fluent.luau:
 
-```
+```bash
 lune run Lune/Build/init.luau bundle input=default.project.json script-output=Fluent.luau minify=false ci-mode=true
 ```
 

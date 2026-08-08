@@ -25,6 +25,7 @@ return function(Title, Desc, Parent, Hover, Config)
 	}) :: TextLabel
 
 	Element.DescLabel = New("TextLabel", {
+		Name = "ElementDescLabel",
 		FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json"),
 		Text = Desc,
 		TextColor3 = Color3.fromRGB(200, 200, 200),

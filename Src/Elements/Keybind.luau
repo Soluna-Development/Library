@@ -146,9 +146,10 @@ function Element:New(Idx, Config)
 			or Input.UserInputType == Enum.UserInputType.Touch
 		then
 			Picking = true
-			KeybindDisplayLabel.Text = "..."
+			local PreviousLabel = KeybindDisplayLabel.Text
+			KeybindDisplayLabel.Text = "ESC To Cancel"
 
-			wait(0.2)
+			task.wait(0.2)
 
 			UserInputService.InputBegan:Once(function(Input)
 				local Key
@@ -159,6 +160,12 @@ function Element:New(Idx, Config)
 					Key = "LeftMousebutton"
 				elseif Input.UserInputType == Enum.UserInputType.MouseButton2 then
 					Key = "RightMousebutton"
+				end
+
+				if Key == "Escape" then
+					Picking = false
+					KeybindDisplayLabel.Text = PreviousLabel
+					return
 				end
 
 				UserInputService.InputEnded:Once(function(Input)

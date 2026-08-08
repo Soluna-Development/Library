@@ -29,7 +29,7 @@ function Element:New(Idx, Config)
 		Value = Config.Default or Config.Value,
 		Multi = Config.Multi or false,
 		AutoDeselect = Config.AutoDeselect or false,
-		Searchable = Config.Searchable or false,
+		Searchable = Config.Searchable == nil or Config.Searchable,
 		FocusSearch = Config.FocusSearch or true,
 		SearchPlaceholder = Config.SearchPlaceholder or "Search...",
 		Displayer = typeof(Config.Displayer) == "function" and Config.Displayer or function(Value)
@@ -105,6 +105,22 @@ function Element:New(Idx, Config)
 		Padding = UDim.new(0, 3),
 	})
 
+	local DropdownNoResultsLabel = New("TextLabel", {
+		Name = "DropdownNoResultsLabel",
+		Text = "No results found",
+		Visible = false,
+		FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json"),
+		TextSize = 12,
+		TextTransparency = 0.4,
+		TextXAlignment = "Center",
+		TextYAlignment = "Center",
+		Size = UDim2.new(1, 0, 0, 28),
+		BackgroundTransparency = 1,
+		ThemeTag = {
+			TextColor3 = "SubText",
+		},
+	})
+
 	local DropdownScrollFrame = New("ScrollingFrame", {
 		Size = UDim2.new(1, -5, 1, Dropdown.Searchable and -40 or -10),
 		Position = UDim2.fromOffset(5, Dropdown.Searchable and 40 or 5),
@@ -119,6 +135,7 @@ function Element:New(Idx, Config)
 		CanvasSize = UDim2.fromScale(0, 0),
 	}, {
 		DropdownListLayout,
+		DropdownNoResultsLabel,
 	})
 
 	local DropdownHolderFrame = New("Frame", {
@@ -256,6 +273,7 @@ function Element:New(Idx, Config)
 	local ScrollFrame = self.ScrollFrame
 	function Dropdown:Open()
 		Dropdown.Opened = true
+		Dropdown.HighlightedIndex = nil
 		ScrollFrame.ScrollingEnabled = false
 		DropdownHolderCanvas.Visible = true
 		DropdownHolderFrame:TweenSize(
@@ -276,6 +294,7 @@ function Element:New(Idx, Config)
 
 	function Dropdown:Close()
 		Dropdown.Opened = false
+		Dropdown.HighlightedIndex = nil
 		ScrollFrame.ScrollingEnabled = true
 		DropdownHolderFrame.Size = UDim2.fromScale(1, 0.6)
 		DropdownHolderCanvas.Visible = false
@@ -303,6 +322,59 @@ function Element:New(Idx, Config)
 				or Mouse.Y > AbsPos.Y + AbsSize.Y
 			then
 				Dropdown:Close()
+			end
+		end
+	end)
+
+	local function SetHighlightedIndex(NewIndex)
+		local OrderedButtons = Dropdown.OrderedButtons or {}
+
+		if Dropdown.HighlightedIndex and OrderedButtons[Dropdown.HighlightedIndex] then
+			OrderedButtons[Dropdown.HighlightedIndex].Table:SetHighlight(false)
+		end
+
+		Dropdown.HighlightedIndex = NewIndex
+
+		local Entry = NewIndex and OrderedButtons[NewIndex]
+		if Entry then
+			Entry.Table:SetHighlight(true)
+
+			local ButtonPos = Entry.Button.Position.Y.Offset
+			local ButtonSize = Entry.Button.AbsoluteSize.Y
+			local ViewTop = DropdownScrollFrame.CanvasPosition.Y
+			local ViewBottom = ViewTop + DropdownScrollFrame.AbsoluteSize.Y
+
+			if ButtonPos < ViewTop then
+				DropdownScrollFrame.CanvasPosition = Vector2.new(0, ButtonPos)
+			elseif ButtonPos + ButtonSize > ViewBottom then
+				DropdownScrollFrame.CanvasPosition = Vector2.new(0, ButtonPos + ButtonSize - DropdownScrollFrame.AbsoluteSize.Y)
+			end
+		end
+	end
+
+	Creator.AddSignal(UserInputService.InputBegan, function(Input)
+		if not Dropdown.Opened or Input.UserInputType ~= Enum.UserInputType.Keyboard then
+			return
+		end
+
+		local OrderedButtons = Dropdown.OrderedButtons or {}
+		if #OrderedButtons == 0 then
+			return
+		end
+
+		if Input.KeyCode == Enum.KeyCode.Down then
+			local NewIndex = Dropdown.HighlightedIndex and math.min(Dropdown.HighlightedIndex + 1, #OrderedButtons) or 1
+			SetHighlightedIndex(NewIndex)
+		elseif Input.KeyCode == Enum.KeyCode.Up then
+			local NewIndex = Dropdown.HighlightedIndex and math.max(Dropdown.HighlightedIndex - 1, 1) or #OrderedButtons
+			SetHighlightedIndex(NewIndex)
+		elseif Input.KeyCode == Enum.KeyCode.Return or Input.KeyCode == Enum.KeyCode.KeypadEnter then
+			if Dropdown.HighlightedIndex and OrderedButtons[Dropdown.HighlightedIndex] then
+				OrderedButtons[Dropdown.HighlightedIndex].Table:Select()
+
+				if not Config.Multi then
+					Dropdown:Close()
+				end
 			end
 		end
 	end)
@@ -339,12 +411,20 @@ function Element:New(Idx, Config)
 		end
 	end
 
+	local BuildGeneration = 0
+
 	function Dropdown:BuildDropdownList()
+		BuildGeneration += 1
+		local ThisGeneration = BuildGeneration
+
 		local Values = Dropdown.Values
 		local Buttons = {}
+		local OrderedButtons = {}
+
+		Dropdown.HighlightedIndex = nil
 
 		for _, Element in next, DropdownScrollFrame:GetChildren() do
-			if not Element:IsA("UIListLayout") then
+			if not Element:IsA("UIListLayout") and Element ~= DropdownNoResultsLabel then
 				Element:Destroy()
 			end
 		end
@@ -352,13 +432,21 @@ function Element:New(Idx, Config)
 		local Count = 0
 
 		for Idx, Value in next, Values do
+			if ThisGeneration ~= BuildGeneration then
+				return
+			end
+
 			Count += 1
 
 			if Count % 30 == 0 then
 				task.wait()
+
+				if ThisGeneration ~= BuildGeneration then
+					return
+				end
 			end
 
-			if Dropdown.Searchable and SearchBox.Text ~= "" and not string.lower(Dropdown.Displayer(Value)):match(string.lower(SearchBox.Text)) then
+			if Dropdown.Searchable and SearchBox.Text ~= "" and not string.find(string.lower(Dropdown.Displayer(Value)), string.lower(SearchBox.Text), 1, true) then
 				continue
 			end
 
@@ -429,37 +517,50 @@ function Element:New(Idx, Config)
 				SetSelTransparency(Selected and 0 or 1)
 			end
 
+			function Table:SetHighlight(Highlighted)
+				if Highlighted then
+					SetBackTransparency(0.85)
+				else
+					SetBackTransparency(Selected and 0.89 or 1)
+				end
+			end
+
+			function Table:Select()
+				local Try = not Selected
+
+				if Dropdown:GetActiveValues() == 1 and not Try and not Config.AllowNull then
+					return
+				end
+
+				if Config.Multi then
+					Selected = Try
+					Dropdown.Value[Value] = Selected and true or nil
+
+					if typeof(Dropdown.Callback) == "function" then
+						Library:SafeCallback(Dropdown.Callback, Dropdown.Value)
+					end
+					if typeof(Dropdown.Changed) == "function" then
+						Library:SafeCallback(Dropdown.Changed, Dropdown.Value)
+					end
+				else
+					Selected = Try
+					Dropdown:SetValue(Selected and Value or nil)
+
+					for _, OtherButton in next, Buttons do
+						OtherButton:UpdateButton()
+					end
+				end
+
+				Table:UpdateButton()
+				Dropdown:Display()
+			end
+
 			ButtonLabel.InputBegan:Connect(function(Input)
 				if
 					Input.UserInputType == Enum.UserInputType.MouseButton1
 					or Input.UserInputType == Enum.UserInputType.Touch
 				then
-					local Try = not Selected
-
-					if Dropdown:GetActiveValues() == 1 and not Try and not Config.AllowNull then
-					else
-						if Config.Multi then
-							Selected = Try
-							Dropdown.Value[Value] = Selected and true or nil
-
-							if typeof(Dropdown.Callback) == "function" then
-								Library:SafeCallback(Dropdown.Callback, Dropdown.Value)
-							end
-							if typeof(Dropdown.Changed) == "function" then
-								Library:SafeCallback(Dropdown.Changed, Dropdown.Value)
-							end
-						else
-							Selected = Try
-							Dropdown:SetValue(Selected and Value or nil)
-
-							for _, OtherButton in next, Buttons do
-								OtherButton:UpdateButton()
-							end
-						end
-
-						Table:UpdateButton()
-						Dropdown:Display()
-					end
+					Table:Select()
 				end
 			end)
 
@@ -470,7 +571,15 @@ function Element:New(Idx, Config)
 			Dropdown:Display()
 
 			Buttons[Button] = Table
+			OrderedButtons[#OrderedButtons + 1] = { Button = Button, Table = Table, Value = Value }
 		end
+
+		if ThisGeneration ~= BuildGeneration then
+			return
+		end
+
+		Dropdown.OrderedButtons = OrderedButtons
+		DropdownNoResultsLabel.Visible = #OrderedButtons == 0
 
 		ListSizeX = 0
 

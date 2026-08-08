@@ -13,6 +13,17 @@ local Element = {}
 Element.__index = Element
 Element.__type = "Colorpicker"
 
+local PrebuiltColors = {
+	Color3.fromRGB(255, 0, 0),
+	Color3.fromRGB(0, 255, 0),
+	Color3.fromRGB(0, 0, 255),
+	Color3.fromRGB(255, 255, 0),
+	Color3.fromRGB(255, 165, 0),
+	Color3.fromRGB(128, 0, 128),
+	Color3.fromRGB(255, 255, 255),
+	Color3.fromRGB(0, 0, 0),
+}
+
 function Element:New(Idx, Config)
 	local Library = self.Library
 	assert(Config.Title, "Colorpicker - Missing Title")
@@ -70,7 +81,7 @@ function Element:New(Idx, Config)
 	local function CreateColorDialog()
 		local Dialog = require(Components.Dialog):Create()
 		Dialog.Title.Text = Colorpicker.Title
-		Dialog.Root.Size = UDim2.fromOffset(430, 330)
+		Dialog.Root.Size = UDim2.fromOffset(430, 410)
 
 		local Hue, Sat, Vib = Colorpicker.Hue, Colorpicker.Sat, Colorpicker.Vib
 		local Transparency = Colorpicker.Transparency
@@ -335,6 +346,91 @@ function Element:New(Idx, Config)
 				Colorpicker:SetValue({ Hue, Sat, Vib }, Transparency)
 			end
 		end
+
+		local function ApplyPickedColor(Color)
+			Hue, Sat, Vib = Color3.toHSV(Color)
+			Display()
+		end
+
+		local RecentColorsLabel = New("TextLabel", {
+			FontFace = Font.new(
+				"rbxasset://fonts/families/GothamSSm.json",
+				Enum.FontWeight.Medium,
+				Enum.FontStyle.Normal
+			),
+			Text = "Presets",
+			TextColor3 = Color3.fromRGB(240, 240, 240),
+			TextSize = 13,
+			TextXAlignment = Enum.TextXAlignment.Left,
+			Size = UDim2.new(0, 90, 0, 18),
+			Position = UDim2.fromOffset(20, 265),
+			BackgroundTransparency = 1,
+			Parent = Dialog.Root,
+			ThemeTag = {
+				TextColor3 = "Text",
+			},
+		}) :: TextLabel
+
+		local RecentColorsHolder = New("Frame", {
+			Size = UDim2.fromOffset(390, 24),
+			Position = UDim2.fromOffset(20, 288),
+			BackgroundTransparency = 1,
+			Parent = Dialog.Root,
+		}, {
+			New("UIListLayout", {
+				FillDirection = Enum.FillDirection.Horizontal,
+				Padding = UDim.new(0, 6),
+				VerticalAlignment = Enum.VerticalAlignment.Center,
+			}),
+		}) :: Frame
+
+		local function RenderRecentColors()
+			for _, Child in next, RecentColorsHolder:GetChildren() do
+				if not Child:IsA("UIListLayout") then
+					Child:Destroy()
+				end
+			end
+
+			for _, Color in next, PrebuiltColors do
+				local Swatch = New("ImageLabel", {
+					Size = UDim2.fromOffset(20, 20),
+					Image = "http://www.roblox.com/asset/?id=14204231522",
+					ImageTransparency = 0.45,
+					ScaleType = Enum.ScaleType.Tile,
+					TileSize = UDim2.fromOffset(40, 40),
+					Parent = RecentColorsHolder,
+				}, {
+					New("UICorner", {
+						CornerRadius = UDim.new(0, 4),
+					}),
+					New("UIStroke", {
+						Thickness = 1,
+						Transparency = 0.6,
+					}),
+					New("Frame", {
+						Size = UDim2.fromScale(1, 1),
+						BackgroundColor3 = Color,
+					}, {
+						New("UICorner", {
+							CornerRadius = UDim.new(0, 4),
+						}),
+					}),
+				}) :: ImageLabel
+
+				local SwatchButton = New("TextButton", {
+					Size = UDim2.fromScale(1, 1),
+					BackgroundTransparency = 1,
+					Text = "",
+					Parent = Swatch,
+				}) :: TextButton
+
+				Creator.AddSignal(SwatchButton.MouseButton1Click, function()
+					ApplyPickedColor(Color)
+				end)
+			end
+		end
+
+		RenderRecentColors()
 
 		Creator.AddSignal(HexInput.Input.FocusLost, function(Enter)
 			if Enter then
