@@ -13,7 +13,6 @@ local TabModule = {
 	Containers = {},
 	SelectedTab = 0,
 	TabCount = 0,
-	HasLaidOut = false,
 }
 
 function TabModule:Init(Window)
@@ -22,10 +21,23 @@ function TabModule:Init(Window)
 end
 
 function TabModule:GetCurrentTabPos()
-	local TabHolderPos = TabModule.Window.TabHolder.AbsolutePosition.Y
-	local TabPos = TabModule.Tabs[TabModule.SelectedTab].Frame.AbsolutePosition.Y
+	local ItemHeight = 34
+	local ItemPadding = 4
+	local Step = ItemHeight + ItemPadding
 
-	return TabPos - TabHolderPos
+	local Position = 0
+	for TabIndex = 1, TabModule.TabCount do
+		if TabIndex == TabModule.SelectedTab then
+			break
+		end
+
+		local TabObject = TabModule.Tabs[TabIndex]
+		if TabObject and TabObject.Frame.Visible then
+			Position += Step
+		end
+	end
+
+	return Position
 end
 
 function TabModule:New(Title, Icon, Parent)
@@ -174,7 +186,6 @@ function TabModule:New(Title, Icon, Parent)
 end
 
 function TabModule:SelectTab(Tab)
-	local Library = require(Root)
 	local Window = TabModule.Window
 
 	TabModule.SelectedTab = Tab
@@ -188,13 +199,6 @@ function TabModule:SelectTab(Tab)
 	TabModule.Tabs[Tab].Selected = true
 
 	Window.TabDisplay.Text = TabModule.Tabs[Tab].Name
-
-	if not TabModule.HasLaidOut then
-		local RunService = Library.Utilities:Clone(game:GetService("RunService"))
-		RunService.Heartbeat:Wait()
-		TabModule.HasLaidOut = true
-	end
-
 	Window.SelectorPosMotor:setGoal(Spring(TabModule:GetCurrentTabPos(), { frequency = 6 }))
 
 	task.spawn(function()

@@ -63,6 +63,7 @@ return function(Config)
 	})
 
 	local ResizeStartFrame = New("Frame", {
+		Active = true,
 		Size = UDim2.fromOffset(20, 20),
 		BackgroundTransparency = 1,
 		Position = UDim2.new(1, -20, 1, -20),
@@ -163,6 +164,7 @@ return function(Config)
 	})
 
 	Window.Root = New("Frame", {
+		Active = true,
 		BackgroundTransparency = 1,
 		Size = Window.Size,
 		Position = Window.Position,
@@ -285,10 +287,6 @@ return function(Config)
 			MousePos = Input.Position
 			StartPos = Window.Root.Position
 
-			if Input.UserInputType == Enum.UserInputType.Touch then
-				Window.TitleBar.Frame.Modal = true
-			end
-
 			if Window.Maximized then
 				StartPos = UDim2.fromOffset(
 					Mouse.X - (Mouse.X * ((OldSizeX - 100) / Window.Root.AbsoluteSize.X)),
@@ -299,7 +297,6 @@ return function(Config)
 			Input.Changed:Connect(function()
 				if Input.UserInputState == Enum.UserInputState.End then
 					Dragging = false
-					Window.TitleBar.Frame.Modal = false
 				end
 			end)
 		end
@@ -321,10 +318,6 @@ return function(Config)
 		then
 			Resizing = true
 			ResizePos = Input.Position
-
-			if Input.UserInputType == Enum.UserInputType.Touch then
-				ResizeStartFrame.Modal = true
-			end
 		end
 	end)
 
@@ -363,8 +356,6 @@ return function(Config)
 	Creator.AddSignal(UserInputService.InputEnded, function(Input)
 		if Resizing == true or Input.UserInputType == Enum.UserInputType.Touch then
 			Resizing = false
-			ResizeStartFrame.Modal = false
-			Window.TitleBar.Frame.Modal = false
 			Window.Size = UDim2.fromOffset(SizeMotor:getValue().X, SizeMotor:getValue().Y)
 			-- Fire size changed signal
 			if Library and Library.WindowSizeChanged then

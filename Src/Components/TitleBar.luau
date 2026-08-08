@@ -72,6 +72,7 @@ return function(Config)
 	end
 
 	TitleBar.Frame = New("Frame", {
+		Active = true,
 		Size = UDim2.new(1, 0, 0, 42),
 		BackgroundTransparency = 1,
 		Parent = Config.Parent
