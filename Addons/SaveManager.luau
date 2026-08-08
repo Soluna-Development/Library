@@ -596,11 +596,11 @@ local SaveManager = {} do
 	function SaveManager:BuildConfigSection(tab)
 		assert(self.Library, "Must set SaveManager.Library")
 
-		local section = tab:AddSection("Configuration")
+		local section = tab:CreateSection("Configuration")
 		local AutoSaveToggle
 
-		section:AddInput("SaveManager_ConfigName",    { Title = "Config name" })
-		section:AddDropdown("SaveManager_ConfigList", {
+		section:CreateInput("SaveManager_ConfigName",    { Title = "Config name" })
+		section:CreateDropdown("SaveManager_ConfigList", {
 			Title = "Config list",
 			Values = self:RefreshConfigList(),
 			AllowNull = true,
@@ -623,7 +623,7 @@ local SaveManager = {} do
 			end
 		})
 
-		section:AddButton({
+		section:CreateButton({
 			Title = "Create config",
 			Callback = function()
 				local name = SaveManager.Options.SaveManager_ConfigName.Value
@@ -661,7 +661,7 @@ local SaveManager = {} do
 			end
 		})
 
-		section:AddButton({Title = "Load config", Callback = function()
+		section:CreateButton({Title = "Load config", Callback = function()
 			local name = SaveManager.Options.SaveManager_ConfigList.Value
 
 			local success, err = self:Load(name)
@@ -682,7 +682,7 @@ local SaveManager = {} do
 			})
 		end})
 
-		section:AddButton({Title = "Overwrite config", Callback = function()
+		section:CreateButton({Title = "Overwrite config", Callback = function()
 			local name = SaveManager.Options.SaveManager_ConfigList.Value
 
 			local success, err = self:Save(name)
@@ -703,13 +703,13 @@ local SaveManager = {} do
 			})
 		end})
 
-		section:AddButton({Title = "Refresh list", Callback = function()
+		section:CreateButton({Title = "Refresh list", Callback = function()
 			SaveManager.Options.SaveManager_ConfigList:SetValues(self:RefreshConfigList())
 			SaveManager.Options.SaveManager_ConfigList:SetValue(nil)
 		end})
 
 		local AutoloadButton
-		AutoloadButton = section:AddButton({Title = "Set as autoload", Description = "Current autoload config: none", Callback = function()
+		AutoloadButton = section:CreateButton({Title = "Set as autoload", Description = "Current autoload config: none", Callback = function()
 			local name = SaveManager.Options.SaveManager_ConfigList.Value
 			writefile(`{self.Folder}/settings/autoload.txt`, name)
 			AutoloadButton:SetDesc("Current autoload config: " .. name)
@@ -734,7 +734,6 @@ local SaveManager = {} do
 			end
 		end
 
-		local AutoSaveToggle
 		local function updateAutoSaveDescription()
 			if SaveManager.AutoSave and SaveManager.AutoSaveConfig then
 				AutoSaveToggle:SetDesc("Current autosave config: " .. SaveManager.AutoSaveConfig)
@@ -743,7 +742,7 @@ local SaveManager = {} do
 			end
 		end
 
-		AutoSaveToggle = section:AddToggle("SaveManager_AutoSave", {
+		AutoSaveToggle = section:CreateToggle("SaveManager_AutoSave", {
 			Title = "Auto Save",
 			Description = "No autosave config selected",
 			Default = SaveManager.AutoSave,
