@@ -106,7 +106,7 @@ function Element:New(Idx, Config)
 		Toggle:SetValue(not Toggle.Value)
 	end)
 
-	Toggle.Keybind = setmetatable({}, { -- TODO: Rewrite this piece of shit
+	Toggle.Keybind = setmetatable({}, {
 		__call = function(_, self, Idx, Config)
 			local Keybind = {
 				Value = Config.Default or Config.Value or Enum.KeyCode.Unknown,

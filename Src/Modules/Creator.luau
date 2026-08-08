@@ -176,19 +176,16 @@ end
 function Creator.New(Name, Properties: { [string]: any }?, Children: { [number]: Instance }?): Instance
 	local Object = Instance.new(Name)
 
-	-- Default properties
 	for Name, Value in next, Creator.DefaultProperties[Name] or {} do
 		Object[Name] = Value
 	end
 
-	-- Properties
 	for Name, Value in next, Properties or {} do
 		if Name ~= "ThemeTag" then
 			Object[Name] = Value
 		end
 	end
 
-	-- Children
 	for _, Child in next, Children or {} do
 		Child.Parent = Object
 	end

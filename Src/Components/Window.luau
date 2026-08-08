@@ -1,5 +1,3 @@
--- a wise man once said: "i will rewrite this someday"
-
 local Root = script.Parent.Parent
 local Flipper = require(Root.Packages.Flipper)
 local Creator = require(Root.Modules.Creator)
@@ -360,7 +358,6 @@ return function(Config)
 		if Resizing == true or Input.UserInputType == Enum.UserInputType.Touch then
 			Resizing = false
 			Window.Size = UDim2.fromOffset(SizeMotor:getValue().X, SizeMotor:getValue().Y)
-			-- Fire size changed signal
 			if Library and Library.WindowSizeChanged then
 				Library.WindowSizeChanged:Fire(Window.Size)
 			end
@@ -535,6 +532,7 @@ return function(Config)
 			for _, Tab in next, TabModule.Tabs do
 				Tab.Frame.Visible = true
 			end
+			Selector.Visible = true
 			return
 		end
 
@@ -547,6 +545,8 @@ return function(Config)
 				FirstMatch = TabIndex
 			end
 		end
+
+		Selector.Visible = FirstMatch ~= nil
 
 		if FirstMatch and not (TabModule.Tabs[TabModule.SelectedTab] and TabModule.Tabs[TabModule.SelectedTab].Frame.Visible) then
 			TabModule:SelectTab(FirstMatch)
