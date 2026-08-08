@@ -23,6 +23,8 @@ return function(Config)
 	assert(typeof(Config.Mobile.GetIcon) == "function", "Mobile Config key 'GetIcon' must be a function!")
 	assert(typeof(Config.Mobile.Size) == "UDim2", "Mobile Config key 'Size' must be a UDim2!")
 	
+	local WindowSize = (Library.Utilities:GetOS() == "Mobile" and Config.Mobile.Size) and Config.Mobile.Size or Config.Size
+
 	local Window = {
 		Minimized = false,
 		OnMinimized = Signal.new(),
@@ -30,13 +32,13 @@ return function(Config)
 		Maximized = false,
 		OnMaximized = Signal.new(),
 		PostMaximized = Signal.new(),
-		Size = Config.Size,
+		Size = WindowSize,
 		MinSize = Config.MinSize,
 		CurrentPos = 0,
 		TabWidth = 0,
 		Position = UDim2.fromOffset(
-			Camera.ViewportSize.X / 2 - Config.Size.X.Offset / 2,
-			Camera.ViewportSize.Y / 2 - Config.Size.Y.Offset / 2
+			Camera.ViewportSize.X / 2 - WindowSize.X.Offset / 2,
+			Camera.ViewportSize.Y / 2 - WindowSize.Y.Offset / 2
 		),
 	}
 
