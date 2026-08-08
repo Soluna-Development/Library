@@ -13,7 +13,7 @@ local Window = Library:CreateWindow{
     Theme = "Darker",
     MinimizeKey = Enum.KeyCode.LeftShift, -- Used when theres no MinimizeKeybind
     Mobile = {
-        WindowSize = UDim2.fromOffset(500, 340), -- Optional, overrides ^ Size only for Mobile users, omit to keep the same Size on Mobile
+        WindowSize = UDim2.fromOffset(1920, 1080), -- Optional, overrides ^ Size only for Mobile users, omit to keep the same Size on Mobile
     },
 }
 

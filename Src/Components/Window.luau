@@ -22,11 +22,7 @@ return function(Config)
 	assert(typeof(Config.Mobile) == "table", "Config key 'Mobile' must be a table!")
 	assert(typeof(Config.Mobile.GetIcon) == "function", "Mobile Config key 'GetIcon' must be a function!")
 	assert(typeof(Config.Mobile.Size) == "UDim2", "Mobile Config key 'Size' must be a UDim2!")
-	assert(Config.Mobile.WindowSize == nil or typeof(Config.Mobile.WindowSize) == "UDim2", "Mobile Config key 'WindowSize' must be a UDim2!")
-
-	local IsMobile = Library.Utilities:GetOS() == "Mobile"
-	local EffectiveSize = (IsMobile and Config.Mobile.WindowSize) or Config.Size
-
+	
 	local Window = {
 		Minimized = false,
 		OnMinimized = Signal.new(),
@@ -34,13 +30,13 @@ return function(Config)
 		Maximized = false,
 		OnMaximized = Signal.new(),
 		PostMaximized = Signal.new(),
-		Size = EffectiveSize,
+		Size = Config.Size,
 		MinSize = Config.MinSize,
 		CurrentPos = 0,
 		TabWidth = 0,
 		Position = UDim2.fromOffset(
-			Camera.ViewportSize.X / 2 - EffectiveSize.X.Offset / 2,
-			Camera.ViewportSize.Y / 2 - EffectiveSize.Y.Offset / 2
+			Camera.ViewportSize.X / 2 - Config.Size.X.Offset / 2,
+			Camera.ViewportSize.Y / 2 - Config.Size.Y.Offset / 2
 		),
 	}
 
@@ -358,7 +354,7 @@ return function(Config)
 			local Icon = Config.Mobile.GetIcon(Window.Minimized)
 			Window.HideButton.Image = Icon.Image
 			Window.HideButton.ImageRectOffset = Icon.ImageRectOffset
-			Window.HideButton.ImageRectSize = Icon.ImageRectSiz
+			Window.HideButton.ImageRectSize = Icon.ImageRectSize
 		end
 		Window.PostMinimized:Fire(tick(), Window.Root.Visible)
 	end
