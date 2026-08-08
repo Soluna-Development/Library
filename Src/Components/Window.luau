@@ -59,6 +59,60 @@ return function(Config)
 	local SearchBoxSize = Horizontal and 34 or 28
 	local SearchRowWidth = 170
 
+	local function ComputeLayout(ForAlignment)
+		local IsHorizontal = ForAlignment == "Top" or ForAlignment == "Bottom"
+		local IsReversed = ForAlignment == "Right" or ForAlignment == "Bottom"
+		local BoxSize = IsHorizontal and 34 or 28
+
+		local TabFramePos, TabFrameSize
+		if IsHorizontal then
+			TabFrameSize = UDim2.new(1, -OuterPadding * 2, 0, RowHeight)
+			TabFramePos = IsReversed and UDim2.new(0, OuterPadding, 1, -RowHeight - 12) or UDim2.new(0, OuterPadding, 0, TitleBarHeight + 12)
+		else
+			TabFrameSize = UDim2.new(0, Window.TabWidth, 1, -66)
+			TabFramePos = ForAlignment == "Right" and UDim2.new(1, -OuterPadding - Window.TabWidth, 0, 54) or UDim2.new(0, OuterPadding, 0, 54)
+		end
+
+		local TabDisplayPos, TabDisplaySize, ContainerPos, ContainerSize
+
+		if ForAlignment == "Left" then
+			TabDisplayPos = UDim2.fromOffset(Window.TabWidth + 26, 56)
+			TabDisplaySize = UDim2.new(1, -Window.TabWidth - 42, 0, 28)
+			ContainerPos = UDim2.fromOffset(Window.TabWidth + 26, 90)
+			ContainerSize = UDim2.new(1, -Window.TabWidth - 32, 1, -102)
+		elseif ForAlignment == "Right" then
+			TabDisplayPos = UDim2.fromOffset(26, 56)
+			TabDisplaySize = UDim2.new(1, -Window.TabWidth - 42, 0, 28)
+			ContainerPos = UDim2.fromOffset(26, 90)
+			ContainerSize = UDim2.new(1, -Window.TabWidth - 32, 1, -102)
+		elseif ForAlignment == "Top" then
+			TabDisplayPos = UDim2.fromOffset(26, TitleBarHeight + RowHeight + 24)
+			TabDisplaySize = UDim2.new(1, -42, 0, 28)
+			ContainerPos = UDim2.fromOffset(26, TitleBarHeight + RowHeight + 58)
+			ContainerSize = UDim2.new(1, -42, 1, -(TitleBarHeight + RowHeight + 70))
+		else
+			TabDisplayPos = UDim2.fromOffset(26, TitleBarHeight + 22)
+			TabDisplaySize = UDim2.new(1, -42, 0, 28)
+			ContainerPos = UDim2.fromOffset(26, TitleBarHeight + 56)
+			ContainerSize = UDim2.new(1, -42, 1, -(TitleBarHeight + RowHeight + 68))
+		end
+
+		return {
+			Horizontal = IsHorizontal,
+			Reversed = IsReversed,
+			SearchBoxSize = BoxSize,
+			TabFramePos = TabFramePos,
+			TabFrameSize = TabFrameSize,
+			TabDisplayPos = TabDisplayPos,
+			TabDisplaySize = TabDisplaySize,
+			ContainerPos = ContainerPos,
+			ContainerSize = ContainerSize,
+			SelectorInset = IsHorizontal and (SearchRowWidth + 10) or (BoxSize + 4 + 17),
+		}
+	end
+
+	local Layout = ComputeLayout(Alignment)
+
 	local Selector = New("Frame", {
 		Size = Horizontal and UDim2.fromOffset(0, 3) or UDim2.fromOffset(3, 0),
 		BackgroundColor3 = Color3.fromRGB(76, 194, 255),
@@ -80,7 +134,7 @@ return function(Config)
 	})
 
 	Window.TabSearchBox = New("TextBox", {
-		Size = Horizontal and UDim2.fromOffset(SearchRowWidth, SearchBoxSize) or UDim2.new(1, 0, 0, SearchBoxSize),
+		Size = Horizontal and UDim2.fromOffset(SearchRowWidth, Layout.SearchBoxSize) or UDim2.new(1, 0, 0, Layout.SearchBoxSize),
 		Position = UDim2.fromOffset(0, 0),
 		BackgroundTransparency = 0.89,
 		BackgroundColor3 = Color3.fromRGB(130, 130, 130),
@@ -129,8 +183,8 @@ return function(Config)
 	})
 
 	Window.TabHolder = New("ScrollingFrame", {
-		Size = Horizontal and UDim2.new(1, -SearchRowWidth - 10, 1, 0) or UDim2.new(1, 0, 1, -(SearchBoxSize + 4)),
-		Position = Horizontal and UDim2.fromOffset(SearchRowWidth + 10, 0) or UDim2.fromOffset(0, SearchBoxSize + 4),
+		Size = Horizontal and UDim2.new(1, -SearchRowWidth - 10, 1, 0) or UDim2.new(1, 0, 1, -(Layout.SearchBoxSize + 4)),
+		Position = Horizontal and UDim2.fromOffset(SearchRowWidth + 10, 0) or UDim2.fromOffset(0, Layout.SearchBoxSize + 4),
 		BackgroundTransparency = 1,
 		ScrollBarImageTransparency = 1,
 		ScrollBarThickness = 0,
@@ -146,55 +200,16 @@ return function(Config)
 		Window.NoResultsLabel,
 	})
 
-	local TabFrame
-
-	if Horizontal then
-		TabFrame = New("Frame", {
-			Size = UDim2.new(1, -OuterPadding * 2, 0, RowHeight),
-			Position = Reversed and UDim2.new(0, OuterPadding, 1, -RowHeight - 12) or UDim2.new(0, OuterPadding, 0, TitleBarHeight + 12),
-			BackgroundTransparency = 1,
-			ClipsDescendants = false,
-		}, {
-			Window.TabSearchBox,
-			Window.TabHolder,
-			Selector,
-		})
-	else
-		TabFrame = New("Frame", {
-			Size = UDim2.new(0, Window.TabWidth, 1, -66),
-			Position = Alignment == "Right" and UDim2.new(1, -OuterPadding - Window.TabWidth, 0, 54) or UDim2.new(0, OuterPadding, 0, 54),
-			BackgroundTransparency = 1,
-			ClipsDescendants = true,
-		}, {
-			Window.TabSearchBox,
-			Window.TabHolder,
-			Selector,
-		})
-	end
-
-	local TabDisplayPos, TabDisplaySize, ContainerPos, ContainerSize
-
-	if Alignment == "Left" then
-		TabDisplayPos = UDim2.fromOffset(Window.TabWidth + 26, 56)
-		TabDisplaySize = UDim2.new(1, -Window.TabWidth - 42, 0, 28)
-		ContainerPos = UDim2.fromOffset(Window.TabWidth + 26, 90)
-		ContainerSize = UDim2.new(1, -Window.TabWidth - 32, 1, -102)
-	elseif Alignment == "Right" then
-		TabDisplayPos = UDim2.fromOffset(26, 56)
-		TabDisplaySize = UDim2.new(1, -Window.TabWidth - 42, 0, 28)
-		ContainerPos = UDim2.fromOffset(26, 90)
-		ContainerSize = UDim2.new(1, -Window.TabWidth - 32, 1, -102)
-	elseif Alignment == "Top" then
-		TabDisplayPos = UDim2.fromOffset(26, TitleBarHeight + RowHeight + 24)
-		TabDisplaySize = UDim2.new(1, -42, 0, 28)
-		ContainerPos = UDim2.fromOffset(26, TitleBarHeight + RowHeight + 58)
-		ContainerSize = UDim2.new(1, -42, 1, -(TitleBarHeight + RowHeight + 70))
-	else
-		TabDisplayPos = UDim2.fromOffset(26, TitleBarHeight + 22)
-		TabDisplaySize = UDim2.new(1, -42, 0, 28)
-		ContainerPos = UDim2.fromOffset(26, TitleBarHeight + 56)
-		ContainerSize = UDim2.new(1, -42, 1, -(TitleBarHeight + RowHeight + 68))
-	end
+	local TabFrame = New("Frame", {
+		Size = Layout.TabFrameSize,
+		Position = Layout.TabFramePos,
+		BackgroundTransparency = 1,
+		ClipsDescendants = not Horizontal,
+	}, {
+		Window.TabSearchBox,
+		Window.TabHolder,
+		Selector,
+	})
 
 	Window.TabDisplay = New("TextLabel", {
 		RichText = true,
@@ -204,8 +219,8 @@ return function(Config)
 		TextSize = 28,
 		TextXAlignment = "Left",
 		TextYAlignment = "Center",
-		Size = TabDisplaySize,
-		Position = TabDisplayPos,
+		Size = Layout.TabDisplaySize,
+		Position = Layout.TabDisplayPos,
 		BackgroundTransparency = 1,
 		ThemeTag = {
 			TextColor3 = "Text",
@@ -223,8 +238,8 @@ return function(Config)
 	})
 
 	Window.ContainerCanvas = New("Frame", {
-		Size = ContainerSize,
-		Position = ContainerPos,
+		Size = Layout.ContainerSize,
+		Position = Layout.ContainerPos,
 		BackgroundTransparency = 1,
 	}, {
 		Window.ContainerAnim,
@@ -290,7 +305,7 @@ return function(Config)
 		Window.Root.Position = UDim2.new(0, values.X, 0, values.Y)
 	end)
 
-	local SelectorInset = Horizontal and (SearchRowWidth + 10) or (SearchBoxSize + 4 + 17)
+	local SelectorInset = Layout.SelectorInset
 
 	local LastValue = 0
 	local LastTime = 0
@@ -598,6 +613,63 @@ return function(Config)
 	end
 
 	local TabModule = require(Components.Tab):Init(Window)
+
+	function Window:SetAlignment(NewAlignment)
+		if not ValidAlignments[NewAlignment] or NewAlignment == Window.Alignment then
+			return
+		end
+
+		Window.Alignment = NewAlignment
+		Alignment = NewAlignment
+		Layout = ComputeLayout(NewAlignment)
+
+		Horizontal = Layout.Horizontal
+		Reversed = Layout.Reversed
+		SelectorInset = Layout.SelectorInset
+
+		Window.TabSearchBox.Size = Horizontal and UDim2.fromOffset(SearchRowWidth, Layout.SearchBoxSize) or UDim2.new(1, 0, 0, Layout.SearchBoxSize)
+
+		Window.NoResultsLabel.Size = Horizontal and UDim2.new(0, 160, 1, 0) or UDim2.new(1, 0, 0, 28)
+		Window.NoResultsLabel.Position = Horizontal and UDim2.fromOffset(0, 0) or UDim2.fromOffset(0, 4)
+
+		Window.TabHolder.Size = Horizontal and UDim2.new(1, -SearchRowWidth - 10, 1, 0) or UDim2.new(1, 0, 1, -(Layout.SearchBoxSize + 4))
+		Window.TabHolder.Position = Horizontal and UDim2.fromOffset(SearchRowWidth + 10, 0) or UDim2.fromOffset(0, Layout.SearchBoxSize + 4)
+		Window.TabHolder.ScrollingDirection = Horizontal and Enum.ScrollingDirection.X or Enum.ScrollingDirection.Y
+		Window.TabHolder.CanvasPosition = Vector2.new(0, 0)
+
+		Window.TabHolder.UIListLayout.FillDirection = Horizontal and Enum.FillDirection.Horizontal or Enum.FillDirection.Vertical
+		Window.TabHolder.UIListLayout.VerticalAlignment = Horizontal and Enum.VerticalAlignment.Center or Enum.VerticalAlignment.Top
+
+		TabFrame.Size = Layout.TabFrameSize
+		TabFrame.Position = Layout.TabFramePos
+		TabFrame.ClipsDescendants = not Horizontal
+
+		Window.TabDisplay.Size = Layout.TabDisplaySize
+		Window.TabDisplay.Position = Layout.TabDisplayPos
+
+		Window.ContainerCanvas.Size = Layout.ContainerSize
+		Window.ContainerCanvas.Position = Layout.ContainerPos
+
+		Selector.Size = Horizontal and UDim2.fromOffset(0, 3) or UDim2.fromOffset(3, 0)
+		Selector.AnchorPoint = Horizontal and Vector2.new(0.5, Reversed and 0 or 1) or Vector2.new(Reversed and 1 or 0, 0.5)
+
+		TabModule:RebuildForAlignment()
+
+		task.defer(function()
+			local CurrentPos = TabModule:GetCurrentTabPos()
+			local CurrentSize = TabModule:GetCurrentTabSize()
+
+			LastValue = CurrentPos + 16
+			LastTime = 0
+
+			Window.SelectorPosMotor:setGoal(Instant(CurrentPos))
+			Window.SelectorSizeMotor:setGoal(Instant(Horizontal and CurrentSize or 34))
+		end)
+	end
+
+	function Window:GetAlignment()
+		return Window.Alignment
+	end
 
 	local function TabMatchesQuery(Tab, Query)
 		for _, Descendant in next, Tab.ContainerFrame:GetDescendants() do

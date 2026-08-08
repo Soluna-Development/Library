@@ -300,6 +300,7 @@ function Library:Window(Config: {
 		SubTitle = Config.SubTitle or "Made with Fluent Renewed",
 
 		TabWidth = Config.TabWidth or 160,
+		Alignment = Config.Alignment,
 		Mobile = {
 			GetIcon = (Config.Mobile and Config.Mobile.GetIcon) or function(IsMinimized: boolean): { Image: string, ImageRectOffset: Vector2, ImageRectSize: Vector2 }
 				return Library.Utilities:GetIcon(IsMinimized and "phosphor-eye" or "phosphor-eye-slash")

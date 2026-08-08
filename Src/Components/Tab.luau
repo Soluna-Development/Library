@@ -55,6 +55,57 @@ function TabModule:GetCurrentTabSize()
 	return Horizontal and TabObject.Frame.AbsoluteSize.X or 34
 end
 
+function TabModule:ApplyPillShape(Tab, Alignment)
+	local Horizontal = Alignment == "Top" or Alignment == "Bottom"
+	local RightAligned = Alignment == "Right"
+
+	local TextLabel = Tab.Frame:FindFirstChild("TabTitleLabel")
+	local IconLabel = Tab.Frame:FindFirstChild("IconLabel")
+
+	if Horizontal then
+		TextLabel.Position = UDim2.new(0, 28, 0.5, 0)
+		TextLabel.Size = UDim2.new(0, 0, 1, 0)
+		TextLabel.AutomaticSize = Enum.AutomaticSize.X
+		TextLabel.TextXAlignment = "Left"
+
+		IconLabel.Position = UDim2.new(0, 10, 0.5, 0)
+
+		Tab.Frame.Size = UDim2.new(0, 40, 1, 0)
+		Tab.Frame.AutomaticSize = Enum.AutomaticSize.X
+
+		if not Tab.Frame:FindFirstChild("UIPadding") then
+			New("UIPadding", {
+				PaddingLeft = UDim.new(0, 4),
+				PaddingRight = UDim.new(0, 16),
+				Parent = Tab.Frame,
+			})
+		end
+	else
+		TextLabel.Position = RightAligned and UDim2.new(0, 8, 0.5, 0) or UDim2.new(0, 30, 0.5, 0)
+		TextLabel.Size = UDim2.new(1, -38, 1, 0)
+		TextLabel.AutomaticSize = Enum.AutomaticSize.None
+		TextLabel.TextXAlignment = RightAligned and "Right" or "Left"
+
+		IconLabel.Position = RightAligned and UDim2.new(1, -24, 0.5, 0) or UDim2.new(0, 8, 0.5, 0)
+
+		Tab.Frame.Size = UDim2.new(1, 0, 0, 34)
+		Tab.Frame.AutomaticSize = Enum.AutomaticSize.None
+
+		local ExistingPadding = Tab.Frame:FindFirstChild("UIPadding")
+		if ExistingPadding then
+			ExistingPadding:Destroy()
+		end
+	end
+end
+
+function TabModule:RebuildForAlignment()
+	local Alignment = TabModule.Window.Alignment
+
+	for _, Tab in next, TabModule.Tabs do
+		TabModule:ApplyPillShape(Tab, Alignment)
+	end
+end
+
 function TabModule:New(Title, Icon, Parent)
 	local Library = require(Root)
 	local Window = TabModule.Window
@@ -104,6 +155,7 @@ function TabModule:New(Title, Icon, Parent)
 	})
 
 	local IconLabel = New("ImageLabel", {
+		Name = "IconLabel",
 		AnchorPoint = Vector2.new(0, 0.5),
 		Size = UDim2.fromOffset(16, 16),
 		Position = RightAligned and UDim2.new(1, -24, 0.5, 0) or UDim2.new(0, 8, 0.5, 0),
@@ -116,46 +168,22 @@ function TabModule:New(Title, Icon, Parent)
 		},
 	})
 
-	if Horizontal then
-		TextLabel.Position = UDim2.new(0, 28, 0.5, 0)
-		TextLabel.Size = UDim2.new(0, 0, 1, 0)
-		IconLabel.Position = UDim2.new(0, 10, 0.5, 0)
+	Tab.Frame = New("TextButton", {
+		Size = UDim2.new(1, 0, 0, 34),
+		BackgroundTransparency = 1,
+		Parent = Parent,
+		ThemeTag = {
+			BackgroundColor3 = "Tab",
+		},
+	}, {
+		New("UICorner", {
+			CornerRadius = UDim.new(0, 6),
+		}),
+		TextLabel,
+		IconLabel,
+	})
 
-		Tab.Frame = New("TextButton", {
-			Size = UDim2.new(0, 40, 1, 0),
-			AutomaticSize = Enum.AutomaticSize.X,
-			BackgroundTransparency = 1,
-			Parent = Parent,
-			ThemeTag = {
-				BackgroundColor3 = "Tab",
-			},
-		}, {
-			New("UICorner", {
-				CornerRadius = UDim.new(0, 6),
-			}),
-			New("UIPadding", {
-				PaddingLeft = UDim.new(0, 4),
-				PaddingRight = UDim.new(0, 16),
-			}),
-			TextLabel,
-			IconLabel,
-		})
-	else
-		Tab.Frame = New("TextButton", {
-			Size = UDim2.new(1, 0, 0, 34),
-			BackgroundTransparency = 1,
-			Parent = Parent,
-			ThemeTag = {
-				BackgroundColor3 = "Tab",
-			},
-		}, {
-			New("UICorner", {
-				CornerRadius = UDim.new(0, 6),
-			}),
-			TextLabel,
-			IconLabel,
-		})
-	end
+	TabModule:ApplyPillShape(Tab, Alignment)
 
 	local ContainerLayout = New("UIListLayout", {
 		Padding = UDim.new(0, 5),

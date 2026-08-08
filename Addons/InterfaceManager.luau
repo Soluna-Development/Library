@@ -22,13 +22,19 @@ local InterfaceManager = {} do
 
 		local WindowAlignment = self.Library.CreatedWindow and self.Library.CreatedWindow.Alignment
 
-		InterfaceManager.Settings = {
+		local Defaults = {
 			Theme = self.Library.Theme or "Dark",
 			Acrylic = self.Library.UseAcrylic or true,
 			Transparency = self.Library.Transparency or true,
 			MenuKeybind = self.Library.MinimizeKey or Enum.KeyCode.RightControl,
 			Alignment = InterfaceManager.ValidAlignments[WindowAlignment] and WindowAlignment or "Left"
 		}
+
+		for Key, Value in next, Defaults do
+			if InterfaceManager.Settings[Key] == nil then
+				InterfaceManager.Settings[Key] = Value
+			end
+		end
 	end
 
     function InterfaceManager:BuildFolderTree()
@@ -124,18 +130,16 @@ local InterfaceManager = {} do
 	
 		local TabAlignment = section:AddDropdown("InterfaceManager_TabAlignment", {
 			Title = "Tab Alignment",
-			Description = "Changes where the tabs appear. Requires a reload.",
+			Description = "Changes where the tabs appear.",
 			Values = {"Left", "Right", "Top", "Bottom"},
 			Default = Settings.Alignment,
 			Callback = function(Value)
 				Settings.Alignment = Value
 				InterfaceManager:SaveSettings()
 
-				Library:Notify({
-					Title = "Interface",
-					Content = "Tab alignment will apply the next time the interface is loaded.",
-					Duration = 6
-				})
+				if Library.CreatedWindow and Library.CreatedWindow.SetAlignment then
+					Library.CreatedWindow:SetAlignment(Value)
+				end
 			end
 		})
 
